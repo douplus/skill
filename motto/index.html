@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+	<script src="./jquery-2.0.3.min.js"></script>
+    <title>名言判斷系統</title>
+</head>
+<style>
+section{
+text-align: center;
+}
+section > div{
+line-height: 20px;
+height: 20px;
+font-size: 18px;
+font-weight: bold;
+}
+#text_btn{
+margin-top: 5px;
+height: 30px;
+width: 100%;
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+-o-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+}
+#_btn{
+height: 30px;
+width: 50%;
+cursor: pointer;
+margin-top: 10px;
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+-o-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+}
+#show_all{
+text-align: center;
+}
+</style>
+<script>
+$(function(){
+	$('#text_btn').keypress(function(e){
+	    if( e.which == 13 ){
+			action();
+		}
+	});
+	$('#_btn').click(function(){
+		action();
+	});
+});
+function action(){
+		if( $('#text_btn').val() == '' ) return alert('請輸入內容');
+		$.ajax({
+            url: './php/index.php',
+            data: { q: $('#text_btn').val().trim() },
+            type: 'GET',
+            dataType: 'html',
+			success: function(msg){
+                console.log( JSON.parse( msg ) );
+				var obj = JSON.parse( msg );
+				var a = parseInt( obj[1].split(' ')[1].replace(/\,/g,'') );
+				var b = parseInt( obj[3].split(' ')[1].replace(/\,/g,'') );
+				var c = parseInt( obj[5].split(' ')[1].replace(/\,/g,'') );
+				var d = ( a/b == a/c ) ? ( 0.5*a/b ) : ( a/b + a/c );
+				var e = ( a/b == a/c ) ? ( '(1/2)*0.5' ) : ( '1/2 + 1/3' );
+				$('#show_all').prepend( 
+					'<p>' + 
+						'<div>' + obj[0]+' ->斷詞完-> '+obj[2].substr(1).replace(/\+/g,',')+' ->取權重高的字-> '+obj[4].substr(1).replace(/\+/g,',') + '</div>'+
+						'<div>' + '1 : ' + obj[0]+'->'+ a + '</div>'+
+						'<div>' + '2 : ' + obj[2].substr(1).replace(/\+/g,',') +'->'+ b + '</div>'+
+						'<div>' + '3 : ' + obj[4].substr(1).replace(/\+/g,',') +'->'+ c + '</div>'+
+						'<div>' + '1/2 : ' + a/b + '</div>'+
+						'<div>' + '1/3 : ' + a/c + '</div>'+
+						'<div>' + ''+e+' : <strong style="color: red;">' + d + '</strong></div>'+
+						'<div>-------------------------------------------------------------------------------------</div>'+
+					'</p>' );
+				
+            },
+            error:function(xhr, ajaxOptions, thrownError){ 
+                console.log(xhr.status); 
+                console.log(thrownError); 
+            }
+        });
+}
+function trim(s){
+　　s = s.replace(/^\s*/, '').replace(/\s*$/, '');
+　　var trimed = '', i = '';
+　　for( i = 0 ; i < s.length ; i++ )
+　　　　if( !s.charAt(i).match(' ') )
+　　　　　　trimed = trimed.concat( s.charAt(i) ) ;
+　　return trimed ;
+}
+</script>
+<body>
+	<section>
+		<div>Powered By Google Search Result</div>
+		<input id="text_btn" type="text"/>
+		<input id="_btn" type="button" value="Start"/>
+	</section>
+	<div id="show_all"></div>
+	<div id="show"></div>
+	<div id="info" style="display: none;"></div>
+</body>
+</html>
