@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+	<link rel="stylesheet" href="index.css"/>
+	<link rel="stylesheet" href="./cv/cv.css"/>
+	<link rel="stylesheet" href="./learn/learn.css"/>
+	<link rel="stylesheet" href="./task/task_area.css"/>
+	<link rel="stylesheet" href="./information/information.css"/>
+	<link rel="stylesheet" href="./cooperation/cooperation_area.css"/>
+	<link rel="stylesheet" href="./library/jquery-ui-1.10.3.custom.min.css"/>
+	<link rel="stylesheet" href="./library/tipsy.css"/>
+    <title>Skill 神人網</title>
+	<script>localStorage.removeItem('jqData');localStorage.removeItem('jsData');</script>
+<script>
+	(function(){    // include jQuery.js
+		var jq_file = './library/jquery-2.0.3.min.js';
+		var jqData = localStorage.jqData || null;
+		if( jqData === null ){    // Load jQuery
+			var xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				if( xhr.readyState == 4 ){
+					eval( xhr.responseText );
+					localStorage.jqData = xhr.responseText;
+					CheckLogin();
+				}else{
+					return;   
+				}
+			};
+			xhr.open( 'GET', jq_file, true );
+			xhr.send();
+		}else{    // Cache jQuery.js
+			eval(jqData);
+			CheckLogin();
+		}
+		function IncludeJS(){    // include js files
+			var js_file = new Array('./library/jquery-ui-1.10.3.custom.min.js', 
+									'./library/jquery.tipsy.js',
+									'./library/jquery.tagcanvas.min.js',
+									'./information/information.js',
+									'./index.js');
+			var jsData = localStorage.jsData || null;
+			if( jsData === null ){
+				var data = '';
+				$.ajax({ type: 'GET', async : false, url: js_file[0] }).done(function(res){ data += res; });
+				$.ajax({ type: 'GET', async : false, url: js_file[1] }).done(function(res){ data += res; });
+				$.ajax({ type: 'GET', async : false, url: js_file[2] }).done(function(res){ localStorage.jsData = res+data; });
+			}else{
+				eval(jsData);
+			}
+			$.ajax({ type: 'GET', async : false, url: js_file[3] }).done(function(res){});
+			$.ajax({ type: 'GET', async : false, url: js_file[4] }).done(function(res){});
+			history.replaceState('','','./');
+		}
+		function CheckLogin(){    // 檢查使用者是否登入
+			if( $.cookie.get({ name: 'UserInfo' }) == null || localStorage.UserCV == null ){  // 未登入：跳回首頁
+				window.location.replace( './home/index.html' );
+			}else{  // 已登入：載入頁面
+				$('#init-overlay').addClass('dom_hidden');
+				IncludeJS();
+			}
+		};
+	})();
+</script>
+</head>
+<body>
+	<section id="init-overlay"></section>
+	<header id="fixed_header">
+		<div id="fixed_logo">
+			<div>&nbsp;</div>
+		</div>
+		<nav id="fixed_nav" _opened="learn">
+			<div class="first_item">
+				<a id="a_fixed_arrow_up"></a>
+				<div class="fixed_arrow">&nbsp;</div>
+			</div>
+			<div role="top" class="item fixed_nav_item0">
+				<a id="a_cv_icon" rel="tipsy" title="查看個人履歷"></a>
+				<div id="cv_icon">&nbsp;</div>
+				<div>履歷</div>
+				<i id="i_cv" class="dom_hidden"></i>
+			</div>
+			<div class="item"> 	
+				<a id="a_cooperation_icon" rel="tipsy" title="查看自己正在合作的任務"></a>
+				<div id="cooperation_icon">&nbsp;</div>
+				<div>合作</div>
+				<i id="i_cooperation" class="dom_hidden"></i>
+			</div>
+			<div class="item">
+				<a id="a_learn_icon" rel="tipsy" title="查看各領域之神人"></a>
+				<div id="learn_icon">&nbsp;</div>
+				<div>神人區</div>
+				<i id="i_learn" class="dom_hidden"></i>
+			</div>
+			<div class="item">
+				<a id="a_task_icon" rel="tipsy" title="查看任務"></a>
+				<div id="task_icon">&nbsp;</div>
+				<div>任務區</div>
+				<i id="i_task" class="dom_hidden"></i>
+			</div>
+			<div class="item">
+				<a id="a_information_icon" rel="tipsy" title="查看成大的資訊"></a>
+				<div id="information_icon">&nbsp;</div>
+				<div>資訊區</div>
+				<i id="i_information" class="dom_hidden"></i>
+			</div>
+			<div class="last_item">
+				<a id="a_fixed_arrow_down"></a>
+				<div class="fixed_arrow">&nbsp;</div>
+			</div>
+		</nav>   
+	</header>
+	<header id="top_header">
+		<nav id="top_nav">
+			<div id="top_logo">Skill</div>
+			<section></section>
+			<section class="top_nav-user">
+				<img id="top_nav_UserImg" src="./Images/user.png" alt="王梓憲">
+			</section>
+			<section style="position: absolute;right: 60px;width: 50px;height: 100%;background-image: url('./Images/message_g.png'); background-repeat: no-repeat; background-size: 35px 35px; background-position: 50% 50%;">&nbsp;</section>		
+			<section id="top_nav-user_wrapper" class="dom_hidden">
+				<div class="top">
+					<a><img id="top_nav_user_wrapperImg" src="./Images/user.png" alt="王梓憲"></a>
+					<section>
+						<div top-nav="username">王梓憲</div>
+						<div top-nav="email">shane120680@gmail.com</div>
+						<a id="top_nav_user_wrapperGoToCV">查看個人資料</a>
+					</section>
+				</div>
+				<div class="bottom">
+					<div>
+						<a id="top_nav_user_wrapperNewAccount">新增帳戶</a>
+					</div>
+					<div>
+						<a id="top_nav_user_wrapperLogout">登出</a>
+					</div>
+				</div>
+			</section>
+		</nav>
+	</header>	
+	<article id="cv" class="dom_hidden">
+		<div class="wrapper">
+			<nav id="cv_nav" class="dom_hidden">
+				<section>
+					<span class="cv_img_text">更換相片</span>
+					<img id="change_cv_img" class="cv_img" src="" alt="未找到大頭貼" original-title="點擊變更我的大頭像"/>
+					<div class="cv_user">
+						<dl>
+							<dt class="cv_user-male">&nbsp;</dt>
+							<dd itemprop="user">王梓憲</dd>
+						</dl>
+						<div class="cv_score">                                       
+                            <span class="badge1"></span>
+                            <span _badge="gold" class="badgecount">1</span>                                  
+                            <span class="badge2"></span>
+                            <span _badge="silver" class="badgecount">22</span>
+                            <span class="badge3"></span>
+                            <span _badge="copper" class="badgecount">374</span>                              
+						</div>
+						<input id="cv_follow" type="button" value="關注">
+					</div>
+					<div class="cv_action">
+						
+					</div>
+				</section>
+				<ul id="cv_list" _tabbed="#tabs-1">
+					<li class="tabs-active"><a href="#tabs-1"><div>關於</div></a></li>
+					<li><a href="#tabs-2"><div>任務</div></a></li>
+					<li><a href="#tabs-3"><div>評分</div></a></li>
+					<li><a href="#tabs-4"><div>關注</div></a></li>
+				</ul>
+			</nav>
+			<div id="cv_container">
+				<article id="tabs-1">
+					<section class="cv_list">
+						<dl>
+							<dt class="cv_education">&nbsp;</dt>
+							<dd itemprop="education">NCKU, 工科系</dd>
+						</dl>
+						<dl>
+							<dt class="cv_email">&nbsp;</dt>
+							<dd itemprop="email">
+								<a class="a_learn_email">shane120680@gmail.com</a>
+							</dd>
+						</dl>
+						<dl>
+							<dt class="cv_join">&nbsp;</dt>
+							<dd itemprop="join">
+								<span class="learn_join_label">Joined on </span>
+								<span>2013/10/10</span>
+							</dd>
+						</dl>
+						<dl>
+							<dt class="cv_skill">&nbsp;</dt>
+							<dd itemprop="skill" class="cv_skill_data">
+								<span>php</span>
+								<span>html5</span>
+								<span>css</span>
+								<span>javascript</span>
+								<span>jquery</span>
+								<span>pgonegap</span>
+								<span>mysql</span>
+								<span>c</span>
+								<span>c++</span>
+								<span>magic</span>
+								<span>piano</span>
+								<span>cello</span>
+							</dd>
+						</dl>
+						<em _role="cv_list" class="cv_modify">編輯</em>
+					</section>
+					<section class="cv_motto">
+						<h2>我的名言</h2>
+						<p>當你的左臉被人打，那你的左臉就會痛。</p>
+						<em _role="cv_motto" class="cv_modify">編輯</em>
+					</section>
+					<section class="cv_need">
+						<h2>我的需求</h2>
+						<div class="cv_need_list">
+							<span>php</span>
+							<span>html5</span>
+							<span>css</span>
+							<span>javascript</span>
+							<span>jquery</span>
+							<span>pgonegap</span>
+							<span>mysql</span>
+							<span>c</span>
+						</div>
+						<em _role="cv_need" class="cv_modify">編輯</em>
+					</section>
+					<section class="cv_about">
+						<h2>關於我</h2>
+						<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
+						<em _role="cv_about" class="cv_modify">編輯</em>
+					</section>
+					<section class="cv_experience">
+						<h2>我的經歷</h2>
+						<div class="cv_experience_list">
+							<p>first</p>
+							<p>second</p>
+						</div>
+						<em _role="cv_experience" class="cv_modify">編輯</em>
+					</section>
+				</article>
+				<article id="tabs-2" class="dom_hidden">
+					<div style="position: relative;width: 96%;margin: 10px 2%;">
+						<div id="cv_task-accordion">
+							<h3>First</h3>
+							<div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
+							<h3>Second</h3>
+							<div>Phasellus mattis tincidunt nibh.</div>
+							<h3>Third</h3>
+							<div>Nam dui erat, auctor a, dignissim quis.</div>
+						</div>
+					</div>
+				</article>
+				<article id="tabs-3" class="dom_hidden">
+					<div style="position: relative;width: 96%;margin: 10px 2%;">
+						<div id="cv_cooperation-accordion">
+							<h3>1</h3>
+							<div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
+							<h3>2</h3>
+							<div>Phasellus mattis tincidunt nibh.</div>
+							<h3>3</h3>
+							<div>Nam dui erat, auctor a, dignissim quis.</div>
+							<h3>4</h3>
+							<div>Nam dui erat, auctor a, dignissim quis.</div>
+						</div>
+					</div>
+				</article>
+				<article id="tabs-4" class="dom_hidden">
+					<div style="position: relative;width: 96%;margin: 10px 2%;">
+					</div>
+				</article>
+			</div>
+		</div>
+	</article>
+	<article id="learn">
+		<div class="wrapper">
+			<nav id="learn_nav">
+				<section>
+					<div class="targetMaster_box"><input type="input" id="targetMaster" value="" placeholder="尋找神人？" autofocus=""></div>
+					<input type="button" id="submitMaster" value="Search">
+				</section>
+			</nav>
+			<div id="learn_container">
+				<article>
+					<h2>神人</h2>
+					<section class="learn_item master">
+						<div class="learn_item_left">
+							<img src="" alt="未找到大頭貼" title="javascript 神人。<p>54 points : 1042 followers</p>"/>
+						</div>
+						<div class="learn_item_right">
+							<div class="learn_item_more" title="查看更多">> more...</div>
+							<div class="details">
+								<dl>
+									<dt class="learn_user-male">&nbsp;</dt>
+									<dd itemprop="user">魯夫</dd>
+								</dl>                                                              
+								<dl class="learn_score">
+									<span class="badge1"></span>
+									<span _badge="gold" class="badgecount">1</span>                                  
+									<span class="badge2"></span>
+									<span _badge="silver" class="badgecount">22</span>
+									<span class="badge3"></span>
+									<span _badge="copper" class="badgecount">374</span>    
+								</dl>
+								<dl>
+									<dt class="learn_education">&nbsp;</dt>
+									<dd itemprop="education">NCKU, 電機系</dd>
+								</dl>
+								<dl>
+									<dt class="learn_email">&nbsp;</dt>
+									<dd itemprop="email">
+										<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt class="learn_join">&nbsp;</dt>
+									<dd itemprop="join">
+										<span class="learn_join_label">Joined on </span>
+										<span>2013/10/09</span>
+									</dd>
+								</dl>
+								<dl>
+									<dt class="learn_skill">&nbsp;</dt>
+									<dd itemprop="skill" class="learn_skill_data">
+										<span>二檔</span>
+										<span>三檔</span>
+										<span>霸氣</span>
+										<span>橡皮人</span>
+										<span>吃</span>
+									</dd>
+								</dl>
+							</div>
+							<div class="others">
+								<p itemprop="motto">javascript 跟吃飯一樣簡單。</p>
+							</div>
+						</div>
+					</section>
+					<section class="learn_item master">
+						<div class="learn_item_left">
+							<img src="" alt="未找到大頭貼" title="1% 神人。<p>401 points : 15520 followers</p>"/>
+						</div>
+						<div class="learn_item_right">
+							<div class="learn_item_more" title="查看更多">> more...</div>
+							<div class="details">
+								<dl>
+									<dt class="learn_user-male">&nbsp;</dt>
+									<dd itemprop="user">索隆</dd>
+								</dl>
+								<dl class="learn_score">
+									<span class="badge1"></span>
+									<span _badge="gold" class="badgecount">1</span>                                  
+									<span class="badge2"></span>
+									<span _badge="silver" class="badgecount">22</span>
+									<span class="badge3"></span>
+									<span _badge="copper" class="badgecount">374</span>    
+								</dl>
+								<dl>
+									<dt class="learn_education">&nbsp;</dt>
+									<dd itemprop="education">NCKU, 電機系</dd>
+								</dl>
+								<dl>
+									<dt class="learn_email">&nbsp;</dt>
+									<dd itemprop="email">
+										<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt class="learn_join">&nbsp;</dt>
+									<dd itemprop="join">
+										<span class="learn_join_label">Joined on </span>
+										<span>2013/10/09</span>
+									</dd>
+								</dl>
+								<dl>
+									<dt class="learn_skill">&nbsp;</dt>
+									<dd itemprop="skill" class="learn_skill_data">
+										<span>獅子歌歌</span>
+										<span>三千世界</span>
+										<span>鬼氣●九刀流-阿修羅</span>
+										<span>迷路</span>
+										<span>鬼斬</span>
+									</dd>
+								</dl>
+							</div>
+							<div class="others">
+								<p itemprop="motto">請叫我1%的男人。</p>
+							</div>
+						</div>
+					</section>
+					<section class="learn_item master">
+						<div class="learn_item_left">
+							<img src="" alt="未找到大頭貼" title="健美 神人。<p>251 points : 5390 followers</p>"/>
+						</div>
+						<div class="learn_item_right">
+							<div class="learn_item_more" title="查看更多">> more...</div>
+							<div class="details">
+								<dl>
+									<dt class="learn_user-male">&nbsp;</dt>
+									<dd itemprop="user">山治</dd>
+								</dl>
+								<dl class="learn_score">
+									<span class="badge1"></span>
+									<span _badge="gold" class="badgecount">1</span>                                  
+									<span class="badge2"></span>
+									<span _badge="silver" class="badgecount">22</span>
+									<span class="badge3"></span>
+									<span _badge="copper" class="badgecount">374</span>    
+								</dl>
+								<dl>
+									<dt class="learn_education">&nbsp;</dt>
+									<dd itemprop="education">NCKU, 電機系</dd>
+								</dl>
+								<dl>
+									<dt class="learn_email">&nbsp;</dt>
+									<dd itemprop="email">
+										<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt class="learn_join">&nbsp;</dt>
+									<dd itemprop="join">
+										<span class="learn_join_label">Joined on </span>
+										<span>2013/10/09</span>
+									</dd>
+								</dl>
+								<dl>
+									<dt class="learn_skill">&nbsp;</dt>
+									<dd itemprop="skill" class="learn_skill_data">
+										<span>噴鼻血</span>
+										<span>做菜</span>
+										<span>惡魔風腳</span>
+										<span>空中步行</span>
+										<span>抽菸</span>
+									</dd>
+								</dl>
+							</div>
+							<div class="others">
+								<p itemprop="motto">就算沒有堅直的軀幹，也應該挺起胸膛。</p>
+							</div>
+						</div>
+					</section>
+					<section class="learn_item master">
+						<div class="learn_item_left">
+							<img src="" alt="未找到大頭貼" title="兩性關係 神人。<p>1112 points : 1720 followers</p>"/>
+						</div>
+						<div class="learn_item_right">
+							<div class="learn_item_more" title="查看更多">> more...</div>
+							<div class="details">
+								<dl>
+									<dt class="learn_user-female">&nbsp;</dt>
+									<dd itemprop="user">娜美</dd>
+								</dl>
+								<dl class="learn_score">
+									<span class="badge1"></span>
+									<span _badge="gold" class="badgecount">1</span>                                  
+									<span class="badge2"></span>
+									<span _badge="silver" class="badgecount">22</span>
+									<span class="badge3"></span>
+									<span _badge="copper" class="badgecount">374</span>    
+								</dl>
+								<dl>
+									<dt class="learn_education">&nbsp;</dt>
+									<dd itemprop="education">NCKU, 電機系</dd>
+								</dl>
+								<dl>
+									<dt class="learn_email">&nbsp;</dt>
+									<dd itemprop="email">
+										<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt class="learn_join">&nbsp;</dt>
+									<dd itemprop="join">
+										<span class="learn_join_label">Joined on </span>
+										<span>2013/10/09</span>
+									</dd>
+								</dl>
+								<dl>
+									<dt class="learn_skill">&nbsp;</dt>
+									<dd itemprop="skill" class="learn_skill_data">
+										<span>偷東西</span>
+										<span>航海術</span>
+										<span>海市蜃樓</span>
+										<span>棍法</span>
+									</dd>
+								</dl>
+							</div>
+							<div class="others">
+								<p itemprop="motto">初戀就是一點點笨拙外加許許多多好奇。</p>
+							</div>
+						</div>
+					</section>
+					<section class="learn_item master">
+						<div class="learn_item_left">
+							<img src="" alt="未找到大頭貼" title="哲學界 神人。<p>39 points : 1020 followers</p>"/>
+						</div>
+						<div class="learn_item_right">
+							<div class="learn_item_more" title="查看更多">> more...</div>
+							<div class="details">
+								<dl>
+									<dt class="learn_user-male">&nbsp;</dt>
+									<dd itemprop="user">布魯克</dd>
+								</dl>
+								<dl class="learn_score">
+									<span class="badge1"></span>
+									<span _badge="gold" class="badgecount">1</span>                                  
+									<span class="badge2"></span>
+									<span _badge="silver" class="badgecount">22</span>
+									<span class="badge3"></span>
+									<span _badge="copper" class="badgecount">374</span>    
+								</dl>
+								<dl>
+									<dt class="learn_education">&nbsp;</dt>
+									<dd itemprop="education">NCKU, 電機系</dd>
+								</dl>
+								<dl>
+									<dt class="learn_email">&nbsp;</dt>
+									<dd itemprop="email">
+										<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt class="learn_join">&nbsp;</dt>
+									<dd itemprop="join">
+										<span class="learn_join_label">Joined on </span>
+										<span>2013/10/09</span>
+									</dd>
+								</dl>
+								<dl>
+									<dt class="learn_skill">&nbsp;</dt>
+									<dd itemprop="skill" class="learn_skill_data">
+										<span>看內褲</span>
+										<span>講冷笑話</span>
+										<span>音樂</span>
+										<span>冰凍劍氣</span>
+									</dd>
+								</dl>
+							</div>
+							<div class="others">
+								<p itemprop="motto">當你的左臉被人打，那你的左臉就會痛。</p>
+							</div>
+						</div>
+					</section>
+					<h2 class="interval">新使用者</h2>
+					<section class="learn_item_new">
+						<div class="learn_item_area">
+							<img src="" alt="未找到大頭貼"/>
+							<section>
+								<div>
+									<dl>
+										<dt class="learn_user-male">&nbsp;</dt>
+										<dd itemprop="user">佛朗基</dd>
+									</dl>
+								</div>
+							</section>
+							<div class="learn_item_more" title="查看更多">&gt; more...</div>
+						</div>
+					</section>
+					<section class="learn_item_new">
+						<div class="learn_item_area">
+							<img src="" alt="未找到大頭貼"/>
+							<section>
+								<div>
+									<dl>
+										<dt class="learn_user-female">&nbsp;</dt>
+										<dd itemprop="user">羅賓</dd>
+									</dl>
+								</div>
+							</section>
+							<div class="learn_item_more" title="查看更多">&gt; more...</div>
+						</div>
+					</section>
+					<section class="learn_item_new">
+						<div class="learn_item_area">
+							<img src="" alt="未找到大頭貼"/>
+							<section>
+								<div>
+									<dl>
+										<dt class="learn_user-male">&nbsp;</dt>
+										<dd itemprop="user">喬巴</dd>
+									</dl>
+								</div>
+							</section>
+							<div class="learn_item_more" title="查看更多">&gt; more...</div>
+						</div>
+					</section>
+					<section class="learn_item_new">
+						<div class="learn_item_area">
+							<img src="" alt="未找到大頭貼"/>
+							<section>
+								<div>
+									<dl>
+										<dt class="learn_user-male">&nbsp;</dt>
+										<dd itemprop="user">特拉法爾加-羅</dd>
+									</dl>
+								</div>
+							</section>
+							<div class="learn_item_more" title="查看更多">&gt; more...</div>
+						</div>
+					</section>
+					<section class="learn_item_new">
+						<div class="learn_item_area">
+							<img src="" alt="未找到大頭貼"/>
+							<section>
+								<div>
+									<dl>
+										<dt class="learn_user-female">&nbsp;</dt>
+										<dd itemprop="user">女帝-漢考克</dd>
+									</dl>
+								</div>
+							</section>
+							<div class="learn_item_more" title="查看更多">&gt; more...</div>
+						</div>
+					</section>
+				</article>
+			</div>
+		</div>
+	</article>
+	<article id="task" class="dom_hidden">
+		<div class="wrapper">
+			<nav id="task_nav" class="dom_hidden">
+				<section>
+					<div class="inline">
+						<input type="button" id="backTask" class="dom_hidden" value="‹" title="返回任務雲">
+						<input type="button" id="addTask" value="+" title="新增任務">
+						<select id="task_nav_select">
+							<option value ="all">全部</option>
+							<option value ="title">任務標題</option>
+							<option value="classify">任務分類</option>
+						</select>
+					</div>
+				</section>
+				<section>
+					<div class="targetTask_box"><input type="input" id="targetTask" value="" placeholder="搜尋任務" autofocus=""></div>
+					<input type="button" id="submitTask" value="Search">
+				</section>
+			</nav>
+			<div id="task_container">
+				<article id="task_cloud"></article>
+				<ul id="weightTags" class="dom_hidden">
+						<li><a data-weight="98" onclick="return TagInput(this)">php</a></li>
+						<li><a data-weight="95" onclick="return TagInput(this)">html5</a></li>
+						<li><a data-weight="60" onclick="return TagInput(this)">perl</a></li>
+						<li><a data-weight="112" onclick="return TagInput(this)">javascript</a></li>
+						<li><a data-weight="90" onclick="return TagInput(this)">jquery</a></li>
+						<li><a data-weight="80" onclick="return TagInput(this)">css3</a></li>
+						<li><a data-weight="10" onclick="return TagInput(this)">ruby</a></li>
+						<li><a data-weight="88" onclick="return TagInput(this)">ajax</a></li>
+						<li><a data-weight="40" onclick="return TagInput(this)">server push</a></li>
+				</ul>
+				<article id="task_result" class="dom_hidden">
+						<section class="task_item">
+							<header>
+								<dl>
+									<dt class="task_user-male">&nbsp;</dt>
+									<dd itemprop="user" class="task_user_data">魯夫</dd>
+								</dl>
+								<dl>
+									<dt class="task_skill">&nbsp;</dt>
+									<dd itemprop="skill" class="task_skill_data">
+										<span>二檔</span>
+										<span>三檔</span>
+										<span>霸氣</span>
+										<span>橡皮人</span>
+										<span>吃</span>
+									</dd>
+								</dl>
+							</header>
+							<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas, 點擊查看詳情</p>
+							<dl class="task_item_footer">
+								<dt class="task_classify">分類：</dt>
+								<dd class="task_classify_data">
+									<span>分類一</span>
+									<span>分類二</span>
+									<span>分類三</span>
+									<span>分類四</span>
+								</dd>
+							</dl>
+						</section>
+						<section class="task_item">
+							<header>
+								<dl>
+									<dt class="task_user-female">&nbsp;</dt>
+									<dd itemprop="user" class="task_user_data">娜美</dd>
+								</dl>
+								<dl>
+									<dt class="task_skill">&nbsp;</dt>
+									<dd itemprop="skill" class="task_skill_data">
+										<span>偷東西</span>
+										<span>航海術</span>
+										<span>海市蜃樓</span>
+										<span>棍法</span>
+									</dd>
+								</dl>
+							</header>
+							<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo, 點擊查看詳情</p>
+							<dl class="task_item_footer">
+								<dt class="task_classify">分類：</dt>
+								<dd class="task_classify_data">
+									<span>分類一</span>
+									<span>分類二</span>
+									<span>分類三</span>
+									<span>分類四</span>
+								</dd>
+							</dl>
+						</section>
+						<section class="task_item">
+							<header>
+								<dl>
+									<dt class="task_user-male">&nbsp;</dt>
+									<dd itemprop="user" class="task_user_data">索隆</dd>
+								</dl>
+								<dl>
+									<dt class="task_skill">&nbsp;</dt>
+									<dd itemprop="skill" class="task_skill_data">
+										<span>獅子歌歌</span>
+										<span>三千世界</span>
+										<span>鬼氣●九刀流-阿修羅</span>
+										<span>迷路</span>
+										<span>鬼斬</span>
+									</dd>
+								</dl>
+							</header>
+							<p><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. <a href="#">Donec non enim</a> in turpis pulvinar facilisis. Ut felis, 點擊查看詳情</p>
+							<dl class="task_item_footer">
+								<dt class="task_classify">分類：</dt>
+								<dd class="task_classify_data">
+									<span>分類一</span>
+									<span>分類二</span>
+									<span>分類三</span>
+									<span>分類四</span>
+								</dd>
+							</dl>
+						</section>
+				</article>
+			</div>
+		</div>
+	</article>
+	<article id="cooperation" class="dom_hidden">
+		<div class="wrapper">
+			<nav id="co_nav" class="dom_hidden"></nav>
+			<div id="co_container">
+				<article>
+					<section class="co_item">
+						<div>
+							<section class="co_qu">
+								<div class="co_qu_image">
+									<img alt="none" src="">
+								</div>
+								<div class="co_qu_info">
+									<dl class="co_qu_info_name">
+										<dt class="co_user-male">&nbsp;</dt>
+										<dd itemprop="user" class="co_user_data">魯夫</dd>
+									</dl>
+									<p class="co_qu_info_data">
+										But as garbage collection takes time to kick in so we are practically have memory in heap containing both big string 1 & 2. They can be a issue for me if this happens a lot.
+									</p>
+								</div>
+							</section>
+							<section class="co_ans">
+								<div class="co_ans_image">
+									<img alt="none" src="">
+								</div>
+								<div class="co_ans_info">
+									<dl class="co_qu_info_name">
+										<dt class="co_user-female">&nbsp;</dt>
+										<dd itemprop="user" class="co_user_data">娜美</dd>
+									</dl>
+									<p class="co_ans_info_data">
+										I am not sure I get your answer, do you care to explain more? also edited my question.
+									</p>
+								</div>
+							</section>
+						</div>
+						<i class="co_item_more" title="查看更多">&gt; more...</i>
+					</section>
+					<section class="co_item">
+						<div>
+							<section class="co_qu">
+								<div class="co_qu_image">
+									<img alt="none" src="">
+								</div>
+								<div class="co_qu_info">
+									<dl class="co_qu_info_name">
+										<dt class="co_user-male">&nbsp;</dt>
+										<dd itemprop="user" class="co_user_data">索隆</dd>
+									</dl>
+									<p class="co_qu_info_data">
+										It shouldn't really matter for non-interned Strings. If you start running out of memory, the garbage collector will remove any objects that are no longer referenced. 
+									</p>
+								</div>
+							</section>
+							<section class="co_ans">
+								<div class="co_ans_image">
+									<img alt="none" src="">
+								</div>
+								<div class="co_ans_info">
+									<dl class="co_qu_info_name">
+										<dt class="co_user-male">&nbsp;</dt>
+										<dd itemprop="user" class="co_user_data">喬巴</dd>
+									</dl>
+									<p class="co_ans_info_data">
+										I think he wants to completely reassign str to a new string, not somehow mutate a preexisting one.
+									</p>
+								</div>
+							</section>
+						</div>
+						<i class="co_item_more" title="查看更多">&gt; more...</i>
+					</section>
+				</article>
+			</div>
+		</div>
+	</article>
+	<article id="information" class="dom_hidden">
+		<div class="wrapper">
+		  	<nav id="information_nav" class="dom_hidden"></nav>
+			<div id="information_category">
+			  <div id="i_c">
+				<div class="i_c_item flip" id="liberal_arts"><p>文學院</p></div>
+				<!--<div class="i_c_back flip"><p>liberal_arts</p></div>-->
+				</div>
+				<div class="i_c_item" id="science"><p>理學院</p></div>
+				<div class="i_c_item" id="engineer"><p>工學院</p></div>
+				<div class="i_c_item" id="management"><p>管理學院</p></div>
+				<div class="i_c_item" id="medicine"><p>醫學院</p></div>
+				<div class="i_c_item" id="social_science"><p>社會科學院</p></div>
+				<div class="i_c_item" id="electrical_enginee"><p>電機資訊學院</p></div>
+				<div class="i_c_item" id="planning_design"><p>規劃與設計學院</p></div>
+				<div class="i_c_item" id="bioscience"><p>生物科學與科技學院</p></div>
+			</div>
+			<!--liberal_arts-->
+			<div class="deparment_block">
+			 	<div class="liberal_arts_item deparment"><p>中國文學系</p></div>
+				<div class="liberal_arts_item deparment"><p>外國文學系</p></div>
+				<div class="liberal_arts_item deparment"><p>歷史學系</p></div>
+				<div class="liberal_arts_item deparment"><p>台灣文學學系</p></div>
+			</div>
+			<!--science-->
+			<div class="deparment_block">
+			 	<div class="science_item deparment"><p>數學系</p></div>
+				<div class="science_item deparment"><p>物理系</p></div>
+				<div class="science_item deparment"><p>化學系</p></div>
+				<div class="science_item deparment"><p>地球科學系</p></div>
+				<div class="science_item deparment"><p>光電系</p></div>
+			</div>
+			<!--engineer part-->
+			<div class="deparment_block">
+			 	<div class="engineer_item deparment"><p>機械工程學系</p></div>
+				<div class="engineer_item deparment"><p>化學工程學系</p></div>
+				<div class="engineer_item deparment"><p>資源工程學系</p></div>
+				<div class="engineer_item deparment"><p>材料工程學系</p></div>
+				<div class="engineer_item deparment"><p>土木工程學系</p></div>
+				<div class="engineer_item deparment"><p>水利工程學系</p></div>
+				<div class="engineer_item deparment"><p>工科工程學系</p></div>
+				<div class="engineer_item deparment"><p>系統工程學系</p></div>
+				<div class="engineer_item deparment"><p>航太工程學系</p></div>
+				<div class="engineer_item deparment"><p>環境工程學系</p></div>
+				<div class="engineer_item deparment"><p>測量工程學系</p></div>
+				<div class="engineer_item deparment"><p>醫學工程學系</p></div>
+			</div>
+			<!--management-->
+			<div class="deparment_block">
+			 	<div class="management_item deparment"><p>會計系</p></div>
+				<div class="management_item deparment"><p>統計系</p></div>
+				<div class="management_item deparment"><p>工業資訊管理學系</p></div>
+				<div class="management_item deparment"><p>企業管理學系</p></div>
+				<div class="management_item deparment"><p>交通管理學系</p></div>
+			</div>
+			<!--medicine-->
+			<div class="deparment_block">
+			 	<div class="medicine_item deparment"><p>護理系</p></div>
+				<div class="medicine_item deparment"><p>醫技系</p></div>
+				<div class="medicine_item deparment"><p>醫學系</p></div>
+				<div class="medicine_item deparment"><p>物理治療系</p></div>
+				<div class="medicine_item deparment"><p>職能治療系</p></div>
+			</div>
+			<!--social_science-->
+			<div class="deparment_block">
+			 	<div class="social_science_item deparment"><p>法律系</p></div>
+				<div class="social_science_item deparment"><p>政治系</p></div>
+				<div class="social_science_item deparment"><p>經濟系</p></div>
+				<div class="planning_design_item deparment"><p>心理系</p></div>
+			</div>
+			<!--electrical_enginee-->
+			<div class="deparment_block">
+			 	<div class="electrical_engineer_item deparment"><p>法律系</p></div>
+				<div class="electrical_engineer_item deparment"><p>政治系</p></div>
+			</div>
+			<!--planning_design-->
+			<div class="deparment_block">
+			 	<div class="planning_design_item deparment"><p>建築系</p></div>
+				<div class="planning_design_item deparment"><p>都市計化學系</p></div>
+				<div class="planning_design_item deparment"><p>工業設計學系</p></div>
+			</div>
+			<!--bioscience-->
+			<div class="deparment_block">
+			 	<div class="bioscience_item deparment"><p>生命系</p></div>
+			</div>
+		</div>
+	</article>
+	<article id="cv_box" class="dom_hidden">
+		<section class="dom_hidden">
+			<header>
+				<div id="cv_box_leave">離開</div>
+			</header>
+			<article>
+				<div class="wrapper">
+					<nav id="cv_box_nav">
+						<section>
+							<img class="cv_img" src="" alt="未找到大頭貼">
+							<div class="cv_user">
+								<dl>
+									<dt class="cv_user-male">&nbsp;</dt>
+									<dd itemprop="user">王梓憲</dd>
+								</dl>
+								<div class="cv_score">                                       
+									<span class="badge1"></span>
+									<span _badge="gold" class="badgecount">1</span>                                  
+									<span class="badge2"></span>
+									<span _badge="silver" class="badgecount">22</span>
+									<span class="badge3"></span>
+									<span _badge="copper" class="badgecount">374</span>                              
+								</div>
+								<input id="cv_follow" type="button" value="關注">
+							</div>
+						</section>
+						<ul id="cv_box_list" _tabbed="#cv_box_tabs-1">
+							<li class="tabs-active"><a href="#cv_box_tabs-1"><div>關於</div></a></li>
+							<li><a href="#cv_box_tabs-2"><div>任務</div></a></li>
+							<li><a href="#cv_box_tabs-3"><div>評分</div></a></li>
+							<li><a href="#cv_box_tabs-4"><div>關注</div></a></li>
+						</ul>
+					</nav>
+					<div id="cv_container">
+						<article id="cv_box_tabs-1">
+							<section class="cv_list">
+								<dl>
+									<dt class="cv_education">&nbsp;</dt>
+									<dd itemprop="education">NCKU, 工科系</dd>
+								</dl>
+								<dl>
+									<dt class="cv_email">&nbsp;</dt>
+									<dd itemprop="email">
+										<a class="a_learn_email">shane120680@gmail.com</a>
+									</dd>
+								</dl>
+								<dl>
+									<dt class="cv_join">&nbsp;</dt>
+									<dd itemprop="join">
+										<span class="learn_join_label">Joined on </span>
+										<span>2013/10/10</span>
+									</dd>
+								</dl>
+								<dl>
+									<dt class="cv_skill">&nbsp;</dt>
+									<dd itemprop="skill" class="cv_skill_data">
+										<span>php</span>
+										<span>html5</span>
+										<span>css</span>
+										<span>javascript</span>
+										<span>jquery</span>
+										<span>pgonegap</span>
+										<span>mysql</span>
+										<span>c</span>
+										<span>c++</span>
+										<span>magic</span>
+										<span>piano</span>
+										<span>cello</span>
+									</dd>
+								</dl>
+							</section>
+							<section class="cv_motto">
+								<h2>我的名言</h2>
+								<p>當你的左臉被人打，那你的左臉就會痛。</p>
+							</section>
+							<section class="cv_need">
+								<h2>我的需求</h2>
+								<div class="cv_need_list">
+									<span>php</span>
+									<span>html5</span>
+									<span>css</span>
+									<span>javascript</span>
+									<span>jquery</span>
+									<span>pgonegap</span>
+									<span>mysql</span>
+									<span>c</span>
+								</div>
+							</section>
+							<section class="cv_about">
+								<h2>關於我</h2>
+								<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas		</p>
+							</section>
+							<section class="cv_experience">
+								<h2>我的經歷</h2>
+								<div>
+									<p>first</p>
+									<p>second</p>
+								</div>
+							</section>
+						</article>
+						<article id="cv_box_tabs-2" class="dom_hidden">
+							<div style="position: relative;width: 96%;margin: 10px 2%;">
+								<div id="cv_box_task-accordion">
+									<h3>First</h3>
+									<div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
+									<h3>Second</h3>
+									<div>Phasellus mattis tincidunt nibh.</div>
+									<h3>Third</h3>
+									<div>Nam dui erat, auctor a, dignissim quis.</div>
+								</div>
+							</div>
+						</article>
+						<article id="cv_box_tabs-3" class="dom_hidden">
+							<div style="position: relative;width: 96%;margin: 10px 2%;">
+								<div id="cv_box_cooperation-accordion">
+									<h3>1</h3>
+									<div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
+									<h3>2</h3>
+									<div>Phasellus mattis tincidunt nibh.</div>
+									<h3>3</h3>
+									<div>Nam dui erat, auctor a, dignissim quis.</div>
+									<h3>4</h3>
+									<div>Nam dui erat, auctor a, dignissim quis.</div>
+								</div>
+							</div>
+						</article>
+						<article id="cv_box_tabs-4" class="dom_hidden">
+							<div style="position: relative;width: 96%;margin: 10px 2%;">
+							</div>
+						</article>
+					</div>
+				</div>
+			</article>
+		</section>
+	</article>
+</body>
+</html>
