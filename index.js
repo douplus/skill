@@ -1,3 +1,4 @@
+/*test*/
 $(function(){    // 初始設定
 	SetViewport();
 	InitialTagCloud();
@@ -317,5 +318,11 @@ function SetCV(){    // 進入 分類 介面
 	}
 	$('#tabs-1 > section.cv_need').find('div.cv_need_list').html( d );
 	$('#top_nav_user_wrapperGoToCV').prev().text( obj.EMAIL ).end().prevAll('[top-nav=username]').text( obj.USERNAME );
+	// 抓取 IP
+	$.getJSON( 'http://smart-ip.net/geoip-json?callback=?',
+        function(data){  console.log(data);
+            sessionStorage.setItem( 'where', JSON.stringify( data ) );
+        }
+    );
 	return false;
 }
