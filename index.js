@@ -1,3 +1,4 @@
+/*test*/
 $(function(){    // 初始設定
 	SetViewport();
 	InitialTagCloud();

@@ -28,15 +28,10 @@
 			IncludeJS();
 		}
 		function IncludeJS(){    // include js files
-			if( $.cookie.enabled() ){
-				var js_file = new Array('./jquery.tagsinput.min.js',
-										'./index.js');
-				$.ajax({ type: 'GET', async : false, url: js_file[0] }).done(function(res){});
-				$.ajax({ type: 'GET', async : false, url: js_file[1] }).done(function(res){});
-			}else{
-				document.write('<script type="text/undefined">');
-				alert('請至瀏覽器設定啟用 Cookie。');
-			}
+			var js_file = new Array('./jquery.tagsinput.min.js',
+									'./index.js');
+			$.ajax({ type: 'GET', async : false, url: js_file[0] }).done(function(res){});
+			$.ajax({ type: 'GET', async : false, url: js_file[1] }).done(function(res){});
 			history.replaceState('','','./');
 		}
 	})();

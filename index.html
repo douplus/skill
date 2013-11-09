@@ -35,27 +35,22 @@
 			CheckLogin();
 		}
 		function IncludeJS(){    // include js files
-			if( $.cookie.enabled() ){
-				var js_file = new Array('./library/jquery-ui-1.10.3.custom.min.js', 
+			var js_file = new Array('./library/jquery-ui-1.10.3.custom.min.js', 
 									'./library/jquery.tipsy.js',
 									'./library/jquery.tagcanvas.min.js',
 									'./information/information.js',
 									'./index.js');
-				var jsData = localStorage.jsData || null;
-				if( jsData === null ){
-					var data = '';
-					$.ajax({ type: 'GET', async : false, url: js_file[0] }).done(function(res){ data += res; });
-					$.ajax({ type: 'GET', async : false, url: js_file[1] }).done(function(res){ data += res; });
-					$.ajax({ type: 'GET', async : false, url: js_file[2] }).done(function(res){ localStorage.jsData = res+data; });
-				}else{
-					eval(jsData);
-				}
-				$.ajax({ type: 'GET', async : false, url: js_file[3] }).done(function(res){});
-				$.ajax({ type: 'GET', async : false, url: js_file[4] }).done(function(res){});
+			var jsData = localStorage.jsData || null;
+			if( jsData === null ){
+				var data = '';
+				$.ajax({ type: 'GET', async : false, url: js_file[0] }).done(function(res){ data += res; });
+				$.ajax({ type: 'GET', async : false, url: js_file[1] }).done(function(res){ data += res; });
+				$.ajax({ type: 'GET', async : false, url: js_file[2] }).done(function(res){ localStorage.jsData = res+data; });
 			}else{
-				document.write('<script type="text/undefined">');
-				alert('請至瀏覽器設定啟用 Cookie。');
+				eval(jsData);
 			}
+			$.ajax({ type: 'GET', async : false, url: js_file[3] }).done(function(res){});
+			$.ajax({ type: 'GET', async : false, url: js_file[4] }).done(function(res){});
 			history.replaceState('','','./');
 		}
 		function CheckLogin(){    // 檢查使用者是否登入
