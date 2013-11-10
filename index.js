@@ -8,6 +8,7 @@ $(function(){    // 初始設定
 	}, 1000);
 	$('#i_learn').removeClass('dom_hidden').data('status', true);
 	SetCV();
+	StartUsing();
 });
 $(function(){
 	$('#top_nav_user_wrapperGoToCV').click(function(){    // 進入 個人履歷
@@ -317,11 +318,45 @@ function SetCV(){    // 進入 分類 介面
 	}
 	$('#tabs-1 > section.cv_need').find('div.cv_need_list').html( d );
 	$('#top_nav_user_wrapperGoToCV').prev().text( obj.EMAIL ).end().prevAll('[top-nav=username]').text( obj.USERNAME );
-	// 抓取 IP
-	$.getJSON( 'http://smart-ip.net/geoip-json?callback=?',
-        function(data){  console.log(data);
-            sessionStorage.setItem( 'where', JSON.stringify( data ) );
-        }
-    );
 	return false;
+}
+function StartUsing(){    // 使用者開始使用 skill，設定 ip address and score
+	$.ajax({    // 抓取 IP
+		url: 'http://smart-ip.net/geoip-json?callback=?',
+		dataType: 'json',
+		success: function(data){  console.log(data);
+            sessionStorage.setItem( 'where', JSON.stringify( data ) );
+			$.ajax({    //
+				url: './php/start_using.php',
+				data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, userip: data.host, usingtime: $.timestamp.get({readable: true}) },
+				type: 'POST',
+				dataType: 'html',
+				success: function(msg){
+					console.log( msg );
+					msg = msg.split('@');
+					if( msg[0] == 'success' ){
+					console.log( parseInt( msg[1] ) )
+						if( parseInt( msg[1] ) == 1 ){
+							var $a = $('#preloader');
+							$a.find('span').text('每日登入，積分+5').end().removeClass('dom_hidden');
+							window.setTimeout(function(){
+								$a.find('span').text('您的積分：'+msg[2]+'');
+								window.setTimeout(function(){
+									$a.addClass('dom_hidden')
+								}, 2000);
+							}, 1000);
+						}
+						$('#score').text( msg[2] );
+					}else if( msg[0] == 'error' ){
+						alert( msg[1] );
+					}
+				},
+				error:function(xhr, ajaxOptions, thrownError){ 
+					console.log(xhr.status); 
+					console.log(thrownError);
+					alert('資料格式正確，但是伺服器發生錯誤。');
+				}
+			});
+		}
+	});
 }
