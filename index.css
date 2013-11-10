@@ -191,15 +191,23 @@ z-index: 12;
 position: absolute;
 right: 0;
 top: 20px;
-width: 9px;
-height: 16px;
-background-image: url('./Images/triangle.png');
-background-repeat: no-repeat;
-background-size: 100%;
-background-position: 50% 50%;
+width: 0;
+height: 0;
+border-color: transparent;
+border-style: solid;
+border-width: 8px 8px 8px 0;
+border-right-color: #e5e5e5;
 }
 #fixed_nav > .item:hover{
 opacity: 0.5;
+}
+#i_cv{
+position: absolute; 
+right: 10px; 
+bottom: -7px; width: 0; height: 0; border-color: transparent; 
+border-style: solid; 
+border-width: 0 10px 10px; 
+border-bottom-color: #f1f1f1;
 }
 /**/
 #top_header{

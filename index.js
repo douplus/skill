@@ -10,7 +10,7 @@ $(function(){    // 初始設定
 	SetCV();
 });
 $(function(){
-	$('#a_cv_icon, #top_nav_user_wrapperGoToCV').click(function(){    // 進入 個人履歷
+	$('#top_nav_user_wrapperGoToCV').click(function(){    // 進入 個人履歷
 		if( !$('#i_cv').data().status ){
 			$(''+$('#cv_list').attr('_tabbed')+'').addClass('dom_hidden').data('status', false);
 			$('#cv_list').attr('_tabbed', '#tabs-1').find('li.tabs-active').removeClass('tabs-active').end().find('li:nth-child(1)').addClass('tabs-active');
@@ -158,7 +158,7 @@ $(function(){
 		var a = parseInt( $a.attr('class').replace('item fixed_nav_item', '') );
 		var b = parseInt( $('#fixed_nav').data().num );
 		var c = a+b;
-		if( (5-a) > b ){
+		if( (4-a) > b ){
 			$a.attr('class', 'item fixed_nav_item'+c+'');
 		}else{
 			alert('已經是最底層了');
@@ -239,9 +239,9 @@ function SetViewport(){    // 設定 Viewport
 }
 function SetFixedNav(){    // 關於左側導覽列滾動
 	var a = localStorage.viewport_height-118;
-	var b = ( Math.floor(a/55) > 5 ) ? 5 : Math.floor(a/55);
+	var b = ( Math.floor(a/55) > 4 ) ? 4 : Math.floor(a/55);
 	$('#fixed_nav').data({ 'num': b });
-	if( b >= 5 ){
+	if( b >= 4 ){
 		$('#fixed_nav [role=top]').attr('class', 'item fixed_nav_item0');
 	}
 }
