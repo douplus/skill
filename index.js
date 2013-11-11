@@ -3,7 +3,6 @@ $(function(){    // 初始設定
 	InitialTagCloud();
 	SetTagCloud();
 	$('#i_learn').removeClass('dom_hidden').data('status', true);
-	SetCV();
 	StartUsing();
 	CheckMaster();
 });
@@ -107,12 +106,6 @@ $(function(){
 	$('#cv_box_leave').click(function(){    // 離開 個人簡歷 介面
 		$('#cv_box').addClass('dom_hidden').children('section').addClass('dom_hidden');
 	});
-	$('#learn_container').on('click', 'div.learn_item_more', function(){    // 神人區 點擊看更多使用者資訊
-		$(''+$('#cv_box_list').attr('_tabbed')+'').addClass('dom_hidden').data('status', false);
-		$('#cv_box_list').attr('_tabbed', '#cv_box_tabs-1').find('li.tabs-active').removeClass('tabs-active').end().find('li:nth-child(1)').addClass('tabs-active');
-		$('#cv_box_tabs-1').removeClass('dom_hidden').data('status', true);
-		$('#cv_box').removeClass('dom_hidden').children('section').removeClass('dom_hidden');
-	});
 	$('#co_container').on('click', 'i.co_item_more', function(){    // 進入 合作交流串 介面
 		window.location.href = './cooperation/index.html';
 	});
@@ -175,7 +168,10 @@ $(function(){
 		
 	});
 	$('#top_nav_UserImg').click(function(){    // 點擊 top nav 使用者大頭像
+		var a = JSON.parse( localStorage.UserCV );
+		$('#top_nav_user_wrapperGoToCV').prev().text( a.EMAIL ).end().prevAll('[top-nav=username]').text( a.USERNAME );
 		$('#top_nav-user_wrapper').removeClass('dom_hidden');
+		SetCV( a.USERID );
 		return false;
 	});
 	$('#top_nav_user_wrapperLogout').click(function(){    // 登出
@@ -183,9 +179,18 @@ $(function(){
 		localStorage.clear();
 		window.location.href = './home/index.html';
 	});
+	$('#top_nav_user_wrapperHome').click(function(){    // 回到首頁
+		window.location.replace( './home/index.html' );
+	});
 });
 $(document).on('click', function(e){
 	$('#top_nav-user_wrapper').addClass('dom_hidden');
+});
+$('#learn_container').on('click', 'div.learn_item_more',function(e){    // 神人區 點擊看更多使用者資訊
+	$(''+$('#cv_box_list').attr('_tabbed')+'').addClass('dom_hidden').data('status', false);
+	$('#cv_box_list').attr('_tabbed', '#cv_box_tabs-1').find('li.tabs-active').removeClass('tabs-active').end().find('li:nth-child(1)').addClass('tabs-active');
+	$('#cv_box_tabs-1').removeClass('dom_hidden').data('status', true);
+	ShowCV_Master( $(this).nextAll('div.master_hide_info').text() );
 });
 $(function(){    //
 	$('#submitTask').click(function(){    // 點擊 搜尋任務
@@ -290,32 +295,6 @@ function TagInput(s){    // 進入 分類 介面
 	window.location.href = './task/index.html';
 	return false;
 }
-function SetCV(){    // 進入 分類 介面
-	var obj = JSON.parse( localStorage.UserCV );
-	if( parseInt( obj.GENDER ) == 1 ){  // 男
-		var gender = 'male';
-	}else if( parseInt( obj.GENDER ) == 2 ){  // 女
-		var gender = 'female';
-	}else{  // 組織
-		var gender = 'organization';
-	}
-	$('#cv_nav').find('[itemprop=user]').text( obj.USERNAME ).prev().attr('class', 'cv_user-'+gender);
-	var a = obj.SKILL.split(','), b = '';
-	for( var i=0; i<a.length; i++ ){
-		b += '<span>'+a[i]+'</span>';
-	}
-	$('#tabs-1 > section.cv_list').find('[itemprop=skill]').html( b ).end()
-									.find('[itemprop=email]').children().text( obj.EMAIL ).end().end()
-									.find('[itemprop=join] > span:nth-child(2)').text( obj.JOIN_TIME );
-	$('#tabs-1 > section.cv_motto').find('p').text( obj.MOTTO );
-	var c = obj.NEED.split(','), d = '';
-	for( var i=0; i<c.length; i++ ){
-		d += '<span>'+c[i]+'</span>';
-	}
-	$('#tabs-1 > section.cv_need').find('div.cv_need_list').html( d );
-	$('#top_nav_user_wrapperGoToCV').prev().text( obj.EMAIL ).end().prevAll('[top-nav=username]').text( obj.USERNAME );
-	return false;
-}
 function StartUsing(){    // 使用者開始使用 skill，設定 ip address and score
 	$.ajax({    // 抓取 IP
 		url: 'http://smart-ip.net/geoip-json?callback=?',
@@ -413,12 +392,9 @@ function ShowMaster( a ){    // 顯示神人資料
 	/*    0  ,    1   ,  2  ,   3  ,     4    ,    5    ,  6  ,  7  ,  8 ,    9   ,    10    ,       11     ,  12 ,  13   */
 	clearTimeout( $('#learn_container').data().timeoutNum );
 	var o_data = JSON.parse( a ), count = 0, html = '';
-	for( var obj in o_data ){
-		count += 1;
-	}
+	for( var obj in o_data ){ count += 1; }
 	for( var i=0; i<count; i++ ){
-		var a = o_data[i].split('***');
-		var b = a[6].split(',');
+		var a = o_data[i].split('***'), b = a[6].split(',');
 		html += '<section class="learn_item master" master-id="'+a[0]+'">\
 					\<div class="learn_item_left">\
 						\<img src="" alt="未找到大頭貼" title="'+a[7]+'。<p>54 points : 0 followers</p>"/>\
@@ -428,28 +404,22 @@ function ShowMaster( a ){    // 顯示神人資料
 						\<div class="details">\
 							\<dl>\
 								\<dt class="learn_user-'
-									if( parseInt( a[3] ) == 1 ){  // 男
-										html += 'male';
-									}else if( parseInt( a[3] ) == 2 ){  // 女
-										html += 'female';
-									}else{  // 組織
-										html += 'organization';
-									}
+									html += CheckGender( a[3] );
 						html += '">&nbsp;</dt>\
 								\<dd itemprop="user">'+a[1]+'</dd>\
 							\</dl>\
 							\<dl class="learn_score">\
 								\<span class="badge1"></span>\
-									\<span _badge="gold" class="badgecount">0</span>\
+									\<span _badge="gold" class="badgecount">'+JSON.parse( CheckScore( a[12] ) ).gold+'</span>\
 									\<span class="badge2"></span>\
-									\<span _badge="silver" class="badgecount">0</span>\
+									\<span _badge="silver" class="badgecount">'+JSON.parse( CheckScore( a[12] ) ).silver+'</span>\
 									\<span class="badge3"></span>\
-									\<span _badge="copper" class="badgecount">'+a[12]+'</span>\
+									\<span _badge="copper" class="badgecount">'+JSON.parse( CheckScore( a[12] ) ).copper+'</span>\
 							\</dl>\
 							\<dl>\
 								\<dt class="learn_education">&nbsp;</dt>\
 								\<dd itemprop="education">';
-								( a[4] == '' )? html+='未填寫學歷':html+=a[4];
+									html+=a[4];
 						html += '</dd>\
 							\</dl>\
 							\<dl>\
@@ -468,9 +438,7 @@ function ShowMaster( a ){    // 顯示神人資料
 							\<dl>\
 								\<dt class="learn_skill">&nbsp;</dt>\
 								\<dd itemprop="skill" class="learn_skill_data">';
-									for( var j=0; j<b.length; j++ ){
-										html += '<span>'+b[j]+'</span>';
-									}
+									for( var j=0; j<b.length; j++ ){ html += '<span>'+b[j]+'</span>'; }
 						html += '</dd>\
 							\</dl>\
 						\</div>\
@@ -485,4 +453,82 @@ function ShowMaster( a ){    // 顯示神人資料
 	 $('#learn_master section.master img').tipsy({gravity: $.fn.tipsy.autoNS, html: true, fade: true});
 	StartLearnMetro();
 	SetMetroTag_P();
+}
+function ShowCV_Master( data ){
+	/* USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP */
+	/*    0  ,    1   ,  2  ,   3  ,     4    ,    5    ,  6  ,  7  ,  8 ,    9   ,    10    ,       11     ,  12 ,  13   */
+	var a = data.split('***'), b = '', c = a[6].split(','), d = '', e = a[8].split(',');
+	for( var j=0; j<c.length; j++ ){ b += '<span>'+c[j]+'</span>'; }
+	for( var j=0; j<e.length; j++ ){ d += '<span>'+e[j]+'</span>'; }
+	$('#cv_box_nav > section').find('[itemprop=user]').text( a[1] ).prev().attr('class', 'cv_user-'+CheckGender( a[3] )+'').end().end()
+			.find('#cv_follow').attr( 'user-id', a[0] ).end()
+			.find('[_badge=gold]').text( JSON.parse( CheckScore( a[12] ) ).gold ).end()
+			.find('[_badge=silver]').text( JSON.parse( CheckScore( a[12] ) ).silver ).end()
+			.find('[_badge=copper]').text( JSON.parse( CheckScore( a[12] ) ).copper );
+	$('#cv_box_tabs-1').find('[itemprop=education]').text( a[4] ).end()
+			.find('[itemprop=email] > a').text( a[2] ).end()
+			.find('[itemprop=join_time]').text( a[5] ).end()
+			.find('[itemprop=skill]').html( b ).end()
+			.find('[itemprop=motto]').text( a[7] ).end()
+			.find('[itemprop=need]').html( d ).end()
+			.find('[itemprop=about]').text( a[9] ).end()
+			.find('[itemprop=experience]').text( a[10] );
+			_badge="gold"
+	$('#cv_box').removeClass('dom_hidden').children('section').removeClass('dom_hidden');
+}
+function SetCV( data ){    // 設定個人履歷
+	/* USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP */
+	/*    0  ,    1   ,  2  ,   3  ,     4    ,    5    ,  6  ,  7  ,  8 ,    9   ,    10    ,       11     ,  12 ,  13   */
+	$.ajax({    //
+		url: './php/get_CV.php',
+		data: { userid: data },
+		type: 'POST',
+		dataType: 'html',
+		success: function(msg){
+			console.log( msg );
+			msg = msg.split('@@');
+			if( msg[0] == 'success' ){
+				localStorage.setItem( 'my_CV', msg[1] );
+				var a = JSON.parse( msg[1] )[0].split('***'), b = a[6].split(','), c = '', d = a[8].split(','), e = '';
+				$('#cv_nav > section').find('[itemprop=user]').text( a[1] ).prev().attr('class', 'cv_user-'+CheckGender( a[3] )).end().end()
+						.find('[_badge=gold]').text( JSON.parse( CheckScore( a[12] ) ).gold ).end()
+						.find('[_badge=silver]').text( JSON.parse( CheckScore( a[12] ) ).silver ).end()
+						.find('[_badge=copper]').text( JSON.parse( CheckScore( a[12] ) ).copper );
+				for( var i=0; i<b.length; i++ ){ c += '<span>'+b[i]+'</span>'; }
+				for( var i=0; i<d.length; i++ ){ e += '<span>'+d[i]+'</span>'; }
+				$('#tabs-1').find('[itemprop=education]').text( a[4] ).end()
+							.find('[itemprop=skill]').html( c ).end()
+							.find('[itemprop=email] > a').text( a[2] ).end()
+							.find('[itemprop=join_time]').text( a[5] ).end()
+							.find('[itemprop=motto]').text( a[7] ).end()
+							.find('[itemprop=need]').html( e ).end()
+							.find('[itemprop=about]').text( a[9] ).end()
+							.find('[itemprop=experience]').text( a[10] );
+			}else if( msg[0] == 'error' ){
+				alert( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			alert('資料格式正確，但是伺服器發生錯誤。');
+		}
+	});
+	return false;
+}
+function CheckGender(a){
+	if( parseInt( a ) == 1 ){  // 男
+		return 'male';
+	}else if( parseInt( a ) == 2 ){  // 女
+		return 'female';
+	}else{  // 組織
+		return 'organization';
+	}
+}
+function CheckScore(a){
+	var copper = parseInt( a )%1000;
+	var temp = parseInt( a )/1000;
+	var gold = Math.floor( temp/10 );
+	var silver = Math.floor( temp )%10;
+	return JSON.stringify( { gold: gold, silver: silver, copper: copper } );
 }

@@ -329,7 +329,7 @@ $(function(){
 			var obj = JSON.parse( localStorage.UserCV );
 			$('#enter-summary > strong').text( obj.USERNAME );
 			$('#enter-form').removeClass('dom_hidden');
-			var a = JSON.stringify( { 'username': obj.USERNAME, 'userid': obj.USERID } );
+			var a = JSON.stringify( { 'username': obj.USERNAME, 'userid': obj.USERID, 'email': obj.EMAIL } );
 			$.cookie.set({ name: 'UserInfo', value: a, expires: '1', path: '/' });
 			localStorage.setItem( 'UserInfo', a );
 		}
@@ -632,7 +632,7 @@ function SetCompleted( motto ){    // 設定 完成註冊
 				var obj = JSON.parse( localStorage.UserCV );
 				obj['MOTTO'] = motto;
 				localStorage.setItem( 'UserCV', JSON.stringify( obj ) );
-				var a = JSON.stringify( { 'username': sessionStorage.temp_SetUserName, 'userid': sessionStorage.temp_SetUserId } );
+				var a = JSON.stringify( { 'username': sessionStorage.temp_SetUserName, 'userid': sessionStorage.temp_SetUserId, 'email': sessionStorage.temp_SetEmail } );
 				$.cookie.set({ name: 'UserInfo', value: a, expires: '1', path: '/' });
 				localStorage.setItem( 'UserInfo', a );
 				alert( '完成註冊。' );
@@ -665,6 +665,7 @@ function CheckLogin( email, passwd ){    // 設定 登入
 					var obj = JSON.parse( msg[5] );
 					sessionStorage.setItem( 'temp_SetUserId', obj.USERID );
 					sessionStorage.setItem( 'temp_SetUserName', obj.USERNAME );
+					sessionStorage.setItem( 'temp_SetEmail', obj.EMAIL );
 					localStorage.setItem( 'UserCV', msg[5] ); console.log( msg[5] );
 					if( parseInt( msg[3] ) == 0 ){    // 尚未填寫技能
 						SetTagsInput();
@@ -684,7 +685,7 @@ function CheckLogin( email, passwd ){    // 設定 登入
 						$('#set_box').removeClass('dom_hidden').children('section').removeClass('dom_hidden');
 						return false;
 					}
-					var a = JSON.stringify( { 'username': msg[1], 'userid': msg[2] } );
+					var a = JSON.stringify( { 'username': msg[1], 'userid': msg[2], 'email': obj.EMAIL } );
 					$.cookie.set({ name: 'UserInfo', value: a, expires: '1', path: '/' });
 					localStorage.setItem( 'UserInfo', a );
 					alert( '歡迎~'+msg[1]+'。' );
