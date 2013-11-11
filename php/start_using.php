@@ -18,7 +18,9 @@
 	$query = sprintf( "SELECT LASTUSING_TIME, SCORE FROM `1_CV` WHERE USERID = '$userid'" );
 	$result = mysql_query($query) or die('error@錯誤。');
 	while( $a = mysql_fetch_array($result) ){
-		if( abs((strtotime($a['LASTUSING_TIME'])-strtotime(date('Y-m-d H:i:s', strtotime( $usingtime ))))) > 60*60*24 ){
+		$temp1 = explode( ' ', $a['LASTUSING_TIME'] );
+		$temp2 = explode( ' ', $usingtime );
+		if( abs( strtotime($temp1[0]) - strtotime($temp2[0]) ) > 60*60*24 ){
 			$is_another = 1;
 		}
 		$score = $a['SCORE'];
