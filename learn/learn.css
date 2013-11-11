@@ -105,6 +105,12 @@ background-repeat: no-repeat;
 background-size: 100%;
 background-position: 50% 50%;
 }
+.learn_user-organization{
+background-image: url('../Images/organization.png');
+background-repeat: no-repeat;
+background-size: 100%;
+background-position: 50% 50%;
+}
 .learn_education{
 background-image: url('../Images/education_g.png');
 background-repeat: no-repeat;
@@ -141,6 +147,7 @@ padding: 0 4px;
 border: 1px solid rgba(0,0,0,0.1);
 background: #f1f1f1;
 line-height: 22px;
+margin-right: 5px;
 }
 .learn_item_more{
 position: absolute;

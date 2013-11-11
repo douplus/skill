@@ -2,13 +2,10 @@ $(function(){    // 初始設定
 	SetViewport();
 	InitialTagCloud();
 	SetTagCloud();
-	SetMetroTag_P();
-	window.setTimeout(function(){
-		StartLearnMetro();
-	}, 1000);
 	$('#i_learn').removeClass('dom_hidden').data('status', true);
 	SetCV();
 	StartUsing();
+	CheckMaster();
 });
 $(function(){
 	$('#top_nav_user_wrapperGoToCV').click(function(){    // 進入 個人履歷
@@ -210,7 +207,6 @@ $(function(){    // jQuery UI
 });
 $(function(){    // jQuery Tipsy
    $('a[rel=tipsy]').tipsy({gravity: $.fn.tipsy.autoWE});
-   $('#learn_container .master img').tipsy({gravity: $.fn.tipsy.autoNS, html: true, fade: true});
    $('#change_cv_img').tipsy({gravity: $.fn.tipsy.autoNS, html: true, fade: true});
    //$('#learn_container div.learn_item_more').tipsy({gravity: $.fn.tipsy.autoWE});
 });
@@ -247,13 +243,13 @@ function SetFixedNav(){    // 關於左側導覽列滾動
 	}
 }
 function SetMetroTag_P(){    //  設定 Metro 介面 <p> 文字左右置中
-	var a = $('#learn_container').find('div.others');
+	var a = $('#learn_master').find('div.others');
 	a.children('p').css('width', a.width());
 }
 // Metro UI 顏色陣列
 var aryMetroColor = new Array('#99b433', '#00a300', '#1e7145', '#ff0097', '#9f00a7', '#7e3878', '#603cba', '#1d1d1d', '#00aba9', '#2d89ef', '#2b5797', '#ffc40d', '#e3a21a', '#da532c', '#ee1111', '#b91d47');
 function StartLearnMetro(){    // 學習區 Metro UI
-	var a = $('#learn_container > article > section.master');
+	var a = $('#learn_master > section.master');
 	var b = Math.floor(Math.random()*(a.length-1+1))+1;
 	b = b - 1;    // 隨機選擇某個人
 	var c = Math.floor(Math.random()*(aryMetroColor.length-1+1))+1;
@@ -324,7 +320,7 @@ function StartUsing(){    // 使用者開始使用 skill，設定 ip address and
 	$.ajax({    // 抓取 IP
 		url: 'http://smart-ip.net/geoip-json?callback=?',
 		dataType: 'json',
-		success: function(data){  console.log(data);
+		success: function(data){  //console.log(data);
             sessionStorage.setItem( 'where', JSON.stringify( data ) );
 			$.ajax({    //
 				url: './php/start_using.php',
@@ -332,7 +328,7 @@ function StartUsing(){    // 使用者開始使用 skill，設定 ip address and
 				type: 'POST',
 				dataType: 'html',
 				success: function(msg){
-					console.log( msg );
+					//console.log( msg );
 					msg = msg.split('@');
 					if( msg[0] == 'success' ){
 					console.log( parseInt( msg[1] ) )
@@ -359,4 +355,134 @@ function StartUsing(){    // 使用者開始使用 skill，設定 ip address and
 			});
 		}
 	});
+}
+function CheckMaster(){    // 使用者開始使用 skill，設定 ip address and score
+	var a = $.timestamp.get({readable: true}).split(' ')[0];
+	var b = localStorage.Master_info || null;
+	$.ajax({    //
+		url: './php/check_master.php',
+		data: { time: a },
+		type: 'POST',
+		dataType: 'html',
+		success: function(msg){
+			console.log( msg );
+			msg = msg.split('@');
+			if( msg[0] == 'success' ){
+				localStorage.setItem( 'Master_list', msg[3]+'@'+msg[2] );
+				if( b == null || Math.abs( parseInt( Date.parse( a ) ) - parseInt( Date.parse( msg[3] ) ) ) > 24*60*60*1000 ){
+					GetMaster();
+				}else{
+					ShowMaster( b );
+				}
+			}else if( msg[0] == 'error' ){
+				alert( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			alert('資料格式正確，但是伺服器發生錯誤。');
+		}
+	});
+}
+function GetMaster(){    // 抓神人資料
+	$.ajax({    //
+		url: './php/get_master.php',
+		data: { time: $.timestamp.get({readable: true}).split(' ')[0] },
+		type: 'POST',
+		dataType: 'html',
+		success: function(msg){
+			console.log( msg );
+			msg = msg.split('@@');
+			if( msg[0] == 'success' ){
+				localStorage.setItem( 'Master_info', msg[1] );
+				ShowMaster( msg[1] );
+			}else if( msg[0] == 'error' ){
+				alert( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			alert('資料格式正確，但是伺服器發生錯誤。');
+		}
+	});
+}
+function ShowMaster( a ){    // 顯示神人資料
+	/* USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP */
+	/*    0  ,    1   ,  2  ,   3  ,     4    ,    5    ,  6  ,  7  ,  8 ,    9   ,    10    ,       11     ,  12 ,  13   */
+	clearTimeout( $('#learn_container').data().timeoutNum );
+	var o_data = JSON.parse( a ), count = 0, html = '';
+	for( var obj in o_data ){
+		count += 1;
+	}
+	for( var i=0; i<count; i++ ){
+		var a = o_data[i].split('***');
+		var b = a[6].split(',');
+		html += '<section class="learn_item master" master-id="'+a[0]+'">\
+					\<div class="learn_item_left">\
+						\<img src="" alt="未找到大頭貼" title="'+a[7]+'。<p>54 points : 0 followers</p>"/>\
+					\</div>\
+					\<div class="learn_item_right">\
+						\<div class="learn_item_more" title="查看更多">> more...</div>\
+						\<div class="details">\
+							\<dl>\
+								\<dt class="learn_user-'
+									if( parseInt( a[3] ) == 1 ){  // 男
+										html += 'male';
+									}else if( parseInt( a[3] ) == 2 ){  // 女
+										html += 'female';
+									}else{  // 組織
+										html += 'organization';
+									}
+						html += '">&nbsp;</dt>\
+								\<dd itemprop="user">'+a[1]+'</dd>\
+							\</dl>\
+							\<dl class="learn_score">\
+								\<span class="badge1"></span>\
+									\<span _badge="gold" class="badgecount">0</span>\
+									\<span class="badge2"></span>\
+									\<span _badge="silver" class="badgecount">0</span>\
+									\<span class="badge3"></span>\
+									\<span _badge="copper" class="badgecount">'+a[12]+'</span>\
+							\</dl>\
+							\<dl>\
+								\<dt class="learn_education">&nbsp;</dt>\
+								\<dd itemprop="education">';
+								( a[4] == '' )? html+='未填寫學歷':html+=a[4];
+						html += '</dd>\
+							\</dl>\
+							\<dl>\
+								\<dt class="learn_email">&nbsp;</dt>\
+								\<dd itemprop="email">\
+									\<a class="a_learn_email">'+a[2]+'</a>\
+								\</dd>\
+							\</dl>\
+							\<dl>\
+								\<dt class="learn_join">&nbsp;</dt>\
+								\<dd itemprop="join">\
+									\<span class="learn_join_label">Joined on </span>\
+									\<span>'+a[5]+'</span>\
+								\</dd>\
+							\</dl>\
+							\<dl>\
+								\<dt class="learn_skill">&nbsp;</dt>\
+								\<dd itemprop="skill" class="learn_skill_data">';
+									for( var j=0; j<b.length; j++ ){
+										html += '<span>'+b[j]+'</span>';
+									}
+						html += '</dd>\
+							\</dl>\
+						\</div>\
+						\<div class="others">\
+							\<p itemprop="motto">'+a[7]+'</p>\
+						\</div>\
+						\<div class="master_hide_info" style="display: none;">'+o_data[i]+'</div>\
+					\</div>\
+				\</section>';
+	}
+	$('#learn_master').html( html );
+	 $('#learn_master section.master img').tipsy({gravity: $.fn.tipsy.autoNS, html: true, fade: true});
+	StartLearnMetro();
+	SetMetroTag_P();
 }

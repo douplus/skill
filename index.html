@@ -59,11 +59,14 @@
 			history.replaceState('','','./');
 		}
 		function CheckLogin(){    // 檢查使用者是否登入
-			if( $.cookie.get({ name: 'UserInfo' }) == null || localStorage.UserCV == null ){  // 未登入：跳回首頁
+			var a = $.cookie.get({ name: 'UserInfo' });
+			if( a == null || localStorage.UserCV == null ){  // 未登入：跳回首頁
 				window.location.replace( './home/index.html' );
 			}else{  // 已登入：載入頁面
 				$('#init-overlay').addClass('dom_hidden');
 				IncludeJS();
+				$.cookie.set({ name: 'UserInfo', value: a, expires: '1', path: '/' });
+				localStorage.setItem( 'UserInfo', a );
 			}
 		};
 	})();
@@ -290,264 +293,268 @@
 			<div id="learn_container">
 				<article>
 					<h2>神人</h2>
-					<section class="learn_item master">
-						<div class="learn_item_left">
-							<img src="" alt="未找到大頭貼" title="javascript 神人。<p>54 points : 1042 followers</p>"/>
-						</div>
-						<div class="learn_item_right">
-							<div class="learn_item_more" title="查看更多">> more...</div>
-							<div class="details">
-								<dl>
-									<dt class="learn_user-male">&nbsp;</dt>
-									<dd itemprop="user">魯夫</dd>
-								</dl>                                                              
-								<dl class="learn_score">
-									<span class="badge1"></span>
-									<span _badge="gold" class="badgecount">1</span>                                  
-									<span class="badge2"></span>
-									<span _badge="silver" class="badgecount">22</span>
-									<span class="badge3"></span>
-									<span _badge="copper" class="badgecount">374</span>    
-								</dl>
-								<dl>
-									<dt class="learn_education">&nbsp;</dt>
-									<dd itemprop="education">NCKU, 電機系</dd>
-								</dl>
-								<dl>
-									<dt class="learn_email">&nbsp;</dt>
-									<dd itemprop="email">
-										<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="learn_join">&nbsp;</dt>
-									<dd itemprop="join">
-										<span class="learn_join_label">Joined on </span>
-										<span>2013/10/09</span>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="learn_skill">&nbsp;</dt>
-									<dd itemprop="skill" class="learn_skill_data">
-										<span>二檔</span>
-										<span>三檔</span>
-										<span>霸氣</span>
-										<span>橡皮人</span>
-										<span>吃</span>
-									</dd>
-								</dl>
+					<div id="learn_master">
+					<!--
+						<section class="learn_item master">
+							<div class="learn_item_left">
+								<img src="" alt="未找到大頭貼" title="javascript 神人。<p>54 points : 1042 followers</p>"/>
 							</div>
-							<div class="others">
-								<p itemprop="motto">javascript 跟吃飯一樣簡單。</p>
+							<div class="learn_item_right">
+								<div class="learn_item_more" title="查看更多">> more...</div>
+								<div class="details">
+									<dl>
+										<dt class="learn_user-male">&nbsp;</dt>
+										<dd itemprop="user">魯夫</dd>
+									</dl>                                                              
+									<dl class="learn_score">
+										<span class="badge1"></span>
+										<span _badge="gold" class="badgecount">1</span>                                  
+										<span class="badge2"></span>
+										<span _badge="silver" class="badgecount">22</span>
+										<span class="badge3"></span>
+										<span _badge="copper" class="badgecount">374</span>    
+									</dl>
+									<dl>
+										<dt class="learn_education">&nbsp;</dt>
+										<dd itemprop="education">NCKU, 電機系</dd>
+									</dl>
+									<dl>
+										<dt class="learn_email">&nbsp;</dt>
+										<dd itemprop="email">
+											<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
+										</dd>
+									</dl>
+									<dl>
+										<dt class="learn_join">&nbsp;</dt>
+										<dd itemprop="join">
+											<span class="learn_join_label">Joined on </span>
+											<span>2013/10/09</span>
+										</dd>
+									</dl>
+									<dl>
+										<dt class="learn_skill">&nbsp;</dt>
+										<dd itemprop="skill" class="learn_skill_data">
+											<span>二檔</span>
+											<span>三檔</span>
+											<span>霸氣</span>
+											<span>橡皮人</span>
+											<span>吃</span>
+										</dd>
+									</dl>
+								</div>
+								<div class="others">
+									<p itemprop="motto">javascript 跟吃飯一樣簡單。</p>
+								</div>
 							</div>
-						</div>
-					</section>
-					<section class="learn_item master">
-						<div class="learn_item_left">
-							<img src="" alt="未找到大頭貼" title="1% 神人。<p>401 points : 15520 followers</p>"/>
-						</div>
-						<div class="learn_item_right">
-							<div class="learn_item_more" title="查看更多">> more...</div>
-							<div class="details">
-								<dl>
-									<dt class="learn_user-male">&nbsp;</dt>
-									<dd itemprop="user">索隆</dd>
-								</dl>
-								<dl class="learn_score">
-									<span class="badge1"></span>
-									<span _badge="gold" class="badgecount">1</span>                                  
-									<span class="badge2"></span>
-									<span _badge="silver" class="badgecount">22</span>
-									<span class="badge3"></span>
-									<span _badge="copper" class="badgecount">374</span>    
-								</dl>
-								<dl>
-									<dt class="learn_education">&nbsp;</dt>
-									<dd itemprop="education">NCKU, 電機系</dd>
-								</dl>
-								<dl>
-									<dt class="learn_email">&nbsp;</dt>
-									<dd itemprop="email">
-										<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="learn_join">&nbsp;</dt>
-									<dd itemprop="join">
-										<span class="learn_join_label">Joined on </span>
-										<span>2013/10/09</span>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="learn_skill">&nbsp;</dt>
-									<dd itemprop="skill" class="learn_skill_data">
-										<span>獅子歌歌</span>
-										<span>三千世界</span>
-										<span>鬼氣●九刀流-阿修羅</span>
-										<span>迷路</span>
-										<span>鬼斬</span>
-									</dd>
-								</dl>
+						</section>
+						<section class="learn_item master">
+							<div class="learn_item_left">
+								<img src="" alt="未找到大頭貼" title="1% 神人。<p>401 points : 15520 followers</p>"/>
 							</div>
-							<div class="others">
-								<p itemprop="motto">請叫我1%的男人。</p>
+							<div class="learn_item_right">
+								<div class="learn_item_more" title="查看更多">> more...</div>
+								<div class="details">
+									<dl>
+										<dt class="learn_user-male">&nbsp;</dt>
+										<dd itemprop="user">索隆</dd>
+									</dl>
+									<dl class="learn_score">
+										<span class="badge1"></span>
+										<span _badge="gold" class="badgecount">1</span>                                  
+										<span class="badge2"></span>
+										<span _badge="silver" class="badgecount">22</span>
+										<span class="badge3"></span>
+										<span _badge="copper" class="badgecount">374</span>    
+									</dl>
+									<dl>
+										<dt class="learn_education">&nbsp;</dt>
+										<dd itemprop="education">NCKU, 電機系</dd>
+									</dl>
+									<dl>
+										<dt class="learn_email">&nbsp;</dt>
+										<dd itemprop="email">
+											<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
+										</dd>
+									</dl>
+									<dl>
+										<dt class="learn_join">&nbsp;</dt>
+										<dd itemprop="join">
+											<span class="learn_join_label">Joined on </span>
+											<span>2013/10/09</span>
+										</dd>
+									</dl>
+									<dl>
+										<dt class="learn_skill">&nbsp;</dt>
+										<dd itemprop="skill" class="learn_skill_data">
+											<span>獅子歌歌</span>
+											<span>三千世界</span>
+											<span>鬼氣●九刀流-阿修羅</span>
+											<span>迷路</span>
+											<span>鬼斬</span>
+										</dd>
+									</dl>
+								</div>
+								<div class="others">
+									<p itemprop="motto">請叫我1%的男人。</p>
+								</div>
 							</div>
-						</div>
-					</section>
-					<section class="learn_item master">
-						<div class="learn_item_left">
-							<img src="" alt="未找到大頭貼" title="健美 神人。<p>251 points : 5390 followers</p>"/>
-						</div>
-						<div class="learn_item_right">
-							<div class="learn_item_more" title="查看更多">> more...</div>
-							<div class="details">
-								<dl>
-									<dt class="learn_user-male">&nbsp;</dt>
-									<dd itemprop="user">山治</dd>
-								</dl>
-								<dl class="learn_score">
-									<span class="badge1"></span>
-									<span _badge="gold" class="badgecount">1</span>                                  
-									<span class="badge2"></span>
-									<span _badge="silver" class="badgecount">22</span>
-									<span class="badge3"></span>
-									<span _badge="copper" class="badgecount">374</span>    
-								</dl>
-								<dl>
-									<dt class="learn_education">&nbsp;</dt>
-									<dd itemprop="education">NCKU, 電機系</dd>
-								</dl>
-								<dl>
-									<dt class="learn_email">&nbsp;</dt>
-									<dd itemprop="email">
-										<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="learn_join">&nbsp;</dt>
-									<dd itemprop="join">
-										<span class="learn_join_label">Joined on </span>
-										<span>2013/10/09</span>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="learn_skill">&nbsp;</dt>
-									<dd itemprop="skill" class="learn_skill_data">
-										<span>噴鼻血</span>
-										<span>做菜</span>
-										<span>惡魔風腳</span>
-										<span>空中步行</span>
-										<span>抽菸</span>
-									</dd>
-								</dl>
+						</section>
+						<section class="learn_item master">
+							<div class="learn_item_left">
+								<img src="" alt="未找到大頭貼" title="健美 神人。<p>251 points : 5390 followers</p>"/>
 							</div>
-							<div class="others">
-								<p itemprop="motto">就算沒有堅直的軀幹，也應該挺起胸膛。</p>
+							<div class="learn_item_right">
+								<div class="learn_item_more" title="查看更多">> more...</div>
+								<div class="details">
+									<dl>
+										<dt class="learn_user-male">&nbsp;</dt>
+										<dd itemprop="user">山治</dd>
+									</dl>
+									<dl class="learn_score">
+										<span class="badge1"></span>
+										<span _badge="gold" class="badgecount">1</span>                                  
+										<span class="badge2"></span>
+										<span _badge="silver" class="badgecount">22</span>
+										<span class="badge3"></span>
+										<span _badge="copper" class="badgecount">374</span>    
+									</dl>
+									<dl>
+										<dt class="learn_education">&nbsp;</dt>
+										<dd itemprop="education">NCKU, 電機系</dd>
+									</dl>
+									<dl>
+										<dt class="learn_email">&nbsp;</dt>
+										<dd itemprop="email">
+											<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
+										</dd>
+									</dl>
+									<dl>
+										<dt class="learn_join">&nbsp;</dt>
+										<dd itemprop="join">
+											<span class="learn_join_label">Joined on </span>
+											<span>2013/10/09</span>
+										</dd>
+									</dl>
+									<dl>
+										<dt class="learn_skill">&nbsp;</dt>
+										<dd itemprop="skill" class="learn_skill_data">
+											<span>噴鼻血</span>
+											<span>做菜</span>
+											<span>惡魔風腳</span>
+											<span>空中步行</span>
+											<span>抽菸</span>
+										</dd>
+									</dl>
+								</div>
+								<div class="others">
+									<p itemprop="motto">就算沒有堅直的軀幹，也應該挺起胸膛。</p>
+								</div>
 							</div>
-						</div>
-					</section>
-					<section class="learn_item master">
-						<div class="learn_item_left">
-							<img src="" alt="未找到大頭貼" title="兩性關係 神人。<p>1112 points : 1720 followers</p>"/>
-						</div>
-						<div class="learn_item_right">
-							<div class="learn_item_more" title="查看更多">> more...</div>
-							<div class="details">
-								<dl>
-									<dt class="learn_user-female">&nbsp;</dt>
-									<dd itemprop="user">娜美</dd>
-								</dl>
-								<dl class="learn_score">
-									<span class="badge1"></span>
-									<span _badge="gold" class="badgecount">1</span>                                  
-									<span class="badge2"></span>
-									<span _badge="silver" class="badgecount">22</span>
-									<span class="badge3"></span>
-									<span _badge="copper" class="badgecount">374</span>    
-								</dl>
-								<dl>
-									<dt class="learn_education">&nbsp;</dt>
-									<dd itemprop="education">NCKU, 電機系</dd>
-								</dl>
-								<dl>
-									<dt class="learn_email">&nbsp;</dt>
-									<dd itemprop="email">
-										<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="learn_join">&nbsp;</dt>
-									<dd itemprop="join">
-										<span class="learn_join_label">Joined on </span>
-										<span>2013/10/09</span>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="learn_skill">&nbsp;</dt>
-									<dd itemprop="skill" class="learn_skill_data">
-										<span>偷東西</span>
-										<span>航海術</span>
-										<span>海市蜃樓</span>
-										<span>棍法</span>
-									</dd>
-								</dl>
+						</section>
+						<section class="learn_item master">
+							<div class="learn_item_left">
+								<img src="" alt="未找到大頭貼" title="兩性關係 神人。<p>1112 points : 1720 followers</p>"/>
 							</div>
-							<div class="others">
-								<p itemprop="motto">初戀就是一點點笨拙外加許許多多好奇。</p>
+							<div class="learn_item_right">
+								<div class="learn_item_more" title="查看更多">> more...</div>
+								<div class="details">
+									<dl>
+										<dt class="learn_user-female">&nbsp;</dt>
+										<dd itemprop="user">娜美</dd>
+									</dl>
+									<dl class="learn_score">
+										<span class="badge1"></span>
+										<span _badge="gold" class="badgecount">1</span>                                  
+										<span class="badge2"></span>
+										<span _badge="silver" class="badgecount">22</span>
+										<span class="badge3"></span>
+										<span _badge="copper" class="badgecount">374</span>    
+									</dl>
+									<dl>
+										<dt class="learn_education">&nbsp;</dt>
+										<dd itemprop="education">NCKU, 電機系</dd>
+									</dl>
+									<dl>
+										<dt class="learn_email">&nbsp;</dt>
+										<dd itemprop="email">
+											<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
+										</dd>
+									</dl>
+									<dl>
+										<dt class="learn_join">&nbsp;</dt>
+										<dd itemprop="join">
+											<span class="learn_join_label">Joined on </span>
+											<span>2013/10/09</span>
+										</dd>
+									</dl>
+									<dl>
+										<dt class="learn_skill">&nbsp;</dt>
+										<dd itemprop="skill" class="learn_skill_data">
+											<span>偷東西</span>
+											<span>航海術</span>
+											<span>海市蜃樓</span>
+											<span>棍法</span>
+										</dd>
+									</dl>
+								</div>
+								<div class="others">
+									<p itemprop="motto">初戀就是一點點笨拙外加許許多多好奇。</p>
+								</div>
 							</div>
-						</div>
-					</section>
-					<section class="learn_item master">
-						<div class="learn_item_left">
-							<img src="" alt="未找到大頭貼" title="哲學界 神人。<p>39 points : 1020 followers</p>"/>
-						</div>
-						<div class="learn_item_right">
-							<div class="learn_item_more" title="查看更多">> more...</div>
-							<div class="details">
-								<dl>
-									<dt class="learn_user-male">&nbsp;</dt>
-									<dd itemprop="user">布魯克</dd>
-								</dl>
-								<dl class="learn_score">
-									<span class="badge1"></span>
-									<span _badge="gold" class="badgecount">1</span>                                  
-									<span class="badge2"></span>
-									<span _badge="silver" class="badgecount">22</span>
-									<span class="badge3"></span>
-									<span _badge="copper" class="badgecount">374</span>    
-								</dl>
-								<dl>
-									<dt class="learn_education">&nbsp;</dt>
-									<dd itemprop="education">NCKU, 電機系</dd>
-								</dl>
-								<dl>
-									<dt class="learn_email">&nbsp;</dt>
-									<dd itemprop="email">
-										<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="learn_join">&nbsp;</dt>
-									<dd itemprop="join">
-										<span class="learn_join_label">Joined on </span>
-										<span>2013/10/09</span>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="learn_skill">&nbsp;</dt>
-									<dd itemprop="skill" class="learn_skill_data">
-										<span>看內褲</span>
-										<span>講冷笑話</span>
-										<span>音樂</span>
-										<span>冰凍劍氣</span>
-									</dd>
-								</dl>
+						</section>
+						<section class="learn_item master">
+							<div class="learn_item_left">
+								<img src="" alt="未找到大頭貼" title="哲學界 神人。<p>39 points : 1020 followers</p>"/>
 							</div>
-							<div class="others">
-								<p itemprop="motto">當你的左臉被人打，那你的左臉就會痛。</p>
+							<div class="learn_item_right">
+								<div class="learn_item_more" title="查看更多">> more...</div>
+								<div class="details">
+									<dl>
+										<dt class="learn_user-male">&nbsp;</dt>
+										<dd itemprop="user">布魯克</dd>
+									</dl>
+									<dl class="learn_score">
+										<span class="badge1"></span>
+										<span _badge="gold" class="badgecount">1</span>                                  
+										<span class="badge2"></span>
+										<span _badge="silver" class="badgecount">22</span>
+										<span class="badge3"></span>
+										<span _badge="copper" class="badgecount">374</span>    
+									</dl>
+									<dl>
+										<dt class="learn_education">&nbsp;</dt>
+										<dd itemprop="education">NCKU, 電機系</dd>
+									</dl>
+									<dl>
+										<dt class="learn_email">&nbsp;</dt>
+										<dd itemprop="email">
+											<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">onepiece@gmail.com</a>
+										</dd>
+									</dl>
+									<dl>
+										<dt class="learn_join">&nbsp;</dt>
+										<dd itemprop="join">
+											<span class="learn_join_label">Joined on </span>
+											<span>2013/10/09</span>
+										</dd>
+									</dl>
+									<dl>
+										<dt class="learn_skill">&nbsp;</dt>
+										<dd itemprop="skill" class="learn_skill_data">
+											<span>看內褲</span>
+											<span>講冷笑話</span>
+											<span>音樂</span>
+											<span>冰凍劍氣</span>
+										</dd>
+									</dl>
+								</div>
+								<div class="others">
+									<p itemprop="motto">當你的左臉被人打，那你的左臉就會痛。</p>
+								</div>
 							</div>
-						</div>
-					</section>
+						</section>
+					-->
+					</div>
 					<h2 class="interval">新使用者</h2>
 					<section class="learn_item_new">
 						<div class="learn_item_area">
