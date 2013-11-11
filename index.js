@@ -168,7 +168,7 @@ $(function(){
 		
 	});
 	$('#top_nav_UserImg').click(function(){    // 點擊 top nav 使用者大頭像
-		var a = JSON.parse( localStorage.UserCV );
+		var a = JSON.parse( localStorage.Based_CV );
 		$('#top_nav_user_wrapperGoToCV').prev().text( a.EMAIL ).end().prevAll('[top-nav=username]').text( a.USERNAME );
 		$('#top_nav-user_wrapper').removeClass('dom_hidden');
 		SetCV( a.USERID );

@@ -325,8 +325,8 @@ $(function(){
 		$('body').css( 'overflow', 'hidden');
 		$('#login-summary').parent().addClass('dom_hidden');
 		$('#login-password').val('');
-		if( $.cookie.get({ name: 'UserInfo' }) != null && localStorage.UserCV != null ){  // 已登入
-			var obj = JSON.parse( localStorage.UserCV );
+		if( $.cookie.get({ name: 'UserInfo' }) != null && localStorage.Based_CV != null ){  // 已登入
+			var obj = JSON.parse( localStorage.Based_CV );
 			$('#enter-summary > strong').text( obj.USERNAME );
 			$('#enter-form').removeClass('dom_hidden');
 			var a = JSON.stringify( { 'username': obj.USERNAME, 'userid': obj.USERID, 'email': obj.EMAIL } );
@@ -546,7 +546,7 @@ function SetCV( name, email, password ){    // 註冊成功：設定個人履歷
 				sessionStorage.setItem( 'temp_SetUserId', 'u_'+temp[0] );
 				sessionStorage.setItem( 'temp_SetUserName', name );
 				var obj = { 'USERID': 'u_'+temp[0], 'USERNAME': name, 'EMAIL': email, 'password': password, 'GENDER': gender, 'JOIN_TIME': temp[1].split(' ')[0] };
-				localStorage.setItem( 'UserCV', JSON.stringify( obj ) );
+				localStorage.setItem( 'Based_CV', JSON.stringify( obj ) );
 			}else if( msg[0] == 'error' ){
 				$('#sign-up-password').val('');
 				$('#sign-up-password-again').val('');
@@ -604,10 +604,10 @@ function SetSkillNext(){    // 設定帳號：下一步
 				$('#set-need').addClass('dom_hidden');
 				$('#set-motto').removeClass('dom_hidden');
 				$('#set_box_next').addClass('dom_hidden');
-				var obj = JSON.parse( localStorage.UserCV );
+				var obj = JSON.parse( localStorage.Based_CV );
 				obj['SKILL'] = str1.substr(1);
 				obj['NEED'] = str2.substr(1);
-				localStorage.setItem( 'UserCV', JSON.stringify( obj ) );
+				localStorage.setItem( 'Based_CV', JSON.stringify( obj ) );
 			}else if( msg[0] == 'error' ){
 				alert( msg[1] );
 			}
@@ -629,9 +629,9 @@ function SetCompleted( motto ){    // 設定 完成註冊
 			console.log( msg );
 			msg = msg.split('@');
 			if( msg[0] == 'success' ){
-				var obj = JSON.parse( localStorage.UserCV );
+				var obj = JSON.parse( localStorage.Based_CV );
 				obj['MOTTO'] = motto;
-				localStorage.setItem( 'UserCV', JSON.stringify( obj ) );
+				localStorage.setItem( 'Based_CV', JSON.stringify( obj ) );
 				var a = JSON.stringify( { 'username': sessionStorage.temp_SetUserName, 'userid': sessionStorage.temp_SetUserId, 'email': sessionStorage.temp_SetEmail } );
 				$.cookie.set({ name: 'UserInfo', value: a, expires: '1', path: '/' });
 				localStorage.setItem( 'UserInfo', a );
@@ -666,7 +666,7 @@ function CheckLogin( email, passwd ){    // 設定 登入
 					sessionStorage.setItem( 'temp_SetUserId', obj.USERID );
 					sessionStorage.setItem( 'temp_SetUserName', obj.USERNAME );
 					sessionStorage.setItem( 'temp_SetEmail', obj.EMAIL );
-					localStorage.setItem( 'UserCV', msg[5] ); console.log( msg[5] );
+					localStorage.setItem( 'Based_CV', msg[5] ); console.log( msg[5] );
 					if( parseInt( msg[3] ) == 0 ){    // 尚未填寫技能
 						SetTagsInput();
 						alert( '歡迎~'+msg[1]+'，尚未填寫技能與名言。' );

@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="./library/jquery-ui-1.10.3.custom.min.css"/>
 	<link rel="stylesheet" href="./library/tipsy.css"/>
     <title>Skill 神人網</title>
-	<script>localStorage.removeItem('jqData');localStorage.removeItem('jsData');</script>
+	<script>localStorage.removeItem('jqData');localStorage.removeItem('jsData');localStorage.removeItem('UserCV');</script>
 <script>
 	(function(){    // include jQuery.js
 		var jq_file = './library/jquery-2.0.3.min.js';
@@ -60,7 +60,7 @@
 		}
 		function CheckLogin(){    // 檢查使用者是否登入
 			var a = $.cookie.get({ name: 'UserInfo' });
-			if( a == null || localStorage.UserCV == null ){  // 未登入：跳回首頁
+			if( a == null || localStorage.Based_CV == null ){  // 未登入：跳回首頁
 				window.location.replace( './home/index.html' );
 			}else{  // 已登入：載入頁面
 				$('#init-overlay').addClass('dom_hidden');
