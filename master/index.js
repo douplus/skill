@@ -254,6 +254,7 @@ function ShowMaster( a ){    // 顯示神人資料
 						\</div>\
 						\<div class="others">\
 							\<p itemprop="motto">'+a[7]+'</p>\
+							\<strong>Score:<span itemprop="motto-score">100</span></strong>\
 						\</div>\
 					\</div>\
 				\</section>';
