@@ -37,6 +37,13 @@ $(function(){
 		collapsible: true
     });
 	$('a[rel=account-tipsy]').tipsy({gravity: $.fn.tipsy.autoWE});
+	$('#modify_skill, #modify_need').tagsInput({
+		'height': 'auto',
+	    'width': '95%',
+	    'interactive': true,
+	    'defaultText': 'add a skill...',
+	    'placeholderColor': '#A7D285'
+	});
 });
 </script>
 <!-- master : end of JS files -->

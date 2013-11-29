@@ -78,15 +78,6 @@ function selectImage( fileList ){
 		alert('這個不是圖片檔唷。');
 	}
 }
-$(function(){
-	$('#modify_skill, #modify_need').tagsInput({
-		'height': 'auto',
-	    'width': '95%',
-	    'interactive': true,
-	    'defaultText': 'add a skill...',
-	    'placeholderColor': '#A7D285'
-	});
-});
 $(document).on('click', '#account_container em.account_modify',function(){  // 編輯 資訊
 	switch( $(this).attr('_role') ){
 		case 'account_experience':
