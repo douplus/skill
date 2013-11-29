@@ -4,27 +4,37 @@ $(document).ready(function(){
     var post_tittle = $('#post-tittle').val();
     var post_content = $('#post-content').val();
 
-    console.log("true");
+
 
     var task_id = 't_'+$.timestamp.get( { readable: false } );
+    var a = true;
+    console.log("a");
+    if( post_tittle == '' ){
+      $('#input-tittle').append('<p class="hint">請輸入標題</p>');
+      a = false;
+    console.log("a");      
+    }
+    if( post_content == '' ){
+      $('#input-content').append('<p class="hint">請輸入內容</p>');
+      a = false;
+    }
 
-
-    $.ajax({    
-          url: '../php/posttask.php',
-          data: {"select":task_select,"tittle":post_tittle,"content":post_content,"task_id":task_id},
-          type: 'POST',
-          dataType: 'html',
-          success: function(msg){
-            console.log(msg);
-          },
-          error:function(xhr, ajaxOptions, thrownError){ 
-            console.log(xhr.status); 
-            console.log(thrownError);
-          }
-        });
-      alert('創建任務成功');    
-      $('#add_task_leave').trigger('click') 
-
-    });
-
+    if (a == 1) {
+        $.ajax({    
+              url: '../php/posttask.php',
+              data: {"select":task_select,"tittle":post_tittle,"content":post_content,"task_id":task_id},
+              type: 'POST',
+              dataType: 'html',
+              success: function(msg){
+                console.log(msg);
+              },
+              error:function(xhr, ajaxOptions, thrownError){ 
+                console.log(xhr.status); 
+                console.log(thrownError);
+              }
+            });
+          alert('創建任務成功');    
+          $('#add_task_leave').trigger('click') 
+    };
+  });
 });

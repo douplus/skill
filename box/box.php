@@ -35,10 +35,10 @@
 							$('option[value=disabled]').attr('disabled', 'disabled');
 						</script>
 					</div>	
-					<div class="input-tittle">
+					<div id ="input-tittle">
 						<input id="post-tittle" placeholder="標題">
 					</div>
-					<div class="input-content">
+					<div id ="input-content">
 						<textarea id="post-content" placeholder="內容" rows="6"></textarea>
 					</div>
 					<div>

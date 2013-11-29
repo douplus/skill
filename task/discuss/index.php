@@ -53,6 +53,7 @@
 		};
 	})();
 </script>
+
 <body>
 	<nav id="discuss_nav">
 		<ul id="discuss_list">
@@ -64,7 +65,7 @@
 			<li id="discuss_title">我想學煮菜</li>
 		</ul>
 	</nav>
-<article id="container">
+	<article id="container">
 		<div>
 			<article class="_co_box_article">
 				<div class="wrapper">
@@ -72,27 +73,27 @@
 						<div class="_co_box_framework0">
 							<div class="_co_box_qu_framework1_1">
 							<div class="image">
-								<img  src="../../img/image7.jpg" />
+								<img id="task_poster">
 							</div>										
 								<div class="_co_box_qu_content1">
-									<div class="user_name">姓名:索隆</div>
-									<div>學校:海賊王大學</div>
-									<div>專長:
-										<span id ="aa"  data-title="劍術 追蹤人數6000" data-content="是一種用刀砍別人的武術。"data-placement="bottom" >劍術</span>
+									<div id="task_name"class="user_name">姓名:索隆</div>
+									<div id="task_department">學校:海賊王大學</div>
+									<div id="task_skill">專長:
+										<!-- <span id ="aa" data-title="劍術 追蹤人數6000" data-content="是一種用刀砍別人的武術。"data-placement="bottom" >劍術</span> -->
 									</div>
 										<div class="">                       
 											<span class="reputation-score" ></span>                                           
 											<span class="badge1"></span>
-											<span class="badgecount">3</span>                                  
+											<span class="badgecount">0</span>                                  
 											<span class="badge2"></span>
-											<span class="badgecount">3</span>
+											<span class="badgecount">0</span>
 											<span class="badge3"></span>
-											<span class="badgecount">4</span>                              
+											<span id="task_score" class="badgecount"></span>                              
 										</div>									
 								</div>                    
 							</div>
 							<div class="_co_box_qu_framework1_2">								
-								<h1 class="tittle"style="padding-bottom: 10px; border-bottom: 2px solid #D5D5D5; font-size: 30px;">我想學騙術</h1>
+								<h1 id="task_tittle"class="tittle"style="padding-bottom: 10px; border-bottom: 2px solid #D5D5D5; font-size: 30px;">我想學騙術</h1>
 								<div class="_co_box_qu_content2">
 								最近25了在打拉鋸，發現打人都不痛，才知道他們都有把裝備升等...
 								我 只升完武器就沒材料了，但是還有一堆裝備沒升到...
@@ -157,12 +158,12 @@
 								</div>
 							</div>
 							<div class="_co_box_dis_post2 ">
-										<div class="_co_box_dis_anstime">answered </div>         
-										<div><textarea class="span5" rows="5" placeholder="內容" style="resize: vertical; width:95% "></textarea><br></div>
-										<div style="text-align: center;";>
-										<input id="login" class="btn botton btn-info" type="submit" name="Submit" value="發送">
-										<input class="btn botton btn-info" type="reset" name="reset" value="清除">
-										</div>
+								<div class="_co_box_dis_anstime">answered </div>         
+								<div><textarea class="span5" rows="5" placeholder="內容" style="resize: vertical; width:95% "></textarea><br></div>
+								<div style="text-align: center;";>
+								<input id="login" class="btn botton btn-info" type="submit" name="Submit" value="發送">
+								<input class="btn botton btn-info" type="reset" name="reset" value="清除">
+								</div>
 							</div>
 							</div>
 						</div>							

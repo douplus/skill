@@ -53,7 +53,7 @@ function CheckScore($a){
 		<div class="cv_user">
 			<dl>
 				<dt class="cv_user-<?php echo CheckGender( $user_ary['GENDER'] );?>">&nbsp;</dt>
-				<dd itemprop="user"><?php echo $user_ary['USERNAME']; ?></dd>
+				<dd class="chinese" itemprop="user"><?php echo $user_ary['USERNAME']; ?></dd>
 			</dl>
 			<div class="cv_score">
 				<?php 
@@ -67,7 +67,7 @@ function CheckScore($a){
 					unset( $score_ary_temp );
 				?>                            
 			</div>
-			<input id="cv_follow" type="button" value="關注" user-id="<?php echo $user_ary['USERID']; ?>">
+			<input id="cv_follow" class="chinese" type="button" value="關注" user-id="<?php echo $user_ary['USERID']; ?>">
 		</div>
 	</section>
 	<ul id="cv_list" _tabbed="#cv_tabs-1">
@@ -76,10 +76,10 @@ function CheckScore($a){
 			<i class="back_bottom"></i>
 			<i class="back_front"></i>
 		</div>
-		<li class="tabs-active"><a class="cv_list_a" href="#cv_tabs-1"><div>關於</div></a></li>
-		<li><a class="cv_list_a" href="#cv_tabs-2"><div>任務</div></a></li>
-		<li><a class="cv_list_a" href="#cv_tabs-3"><div>評分</div></a></li>
-		<li><a class="cv_list_a" href="#cv_tabs-4"><div>關注</div></a></li>
+		<li class="tabs-active"><a class="cv_list_a" href="#cv_tabs-1"><div class="chinese">關於</div></a></li>
+		<li><a class="cv_list_a" href="#cv_tabs-2"><div class="chinese">任務</div></a></li>
+		<li><a class="cv_list_a" href="#cv_tabs-3"><div class="chinese">評分</div></a></li>
+		<li><a class="cv_list_a" href="#cv_tabs-4"><div class="chinese">關注</div></a></li>
 	</ul>
 </nav>
 <div id="cv_container">
@@ -115,11 +115,11 @@ function CheckScore($a){
 			</dl>
 		</section>
 		<section class="cv_motto">
-			<h2>我的名言</h2>
-			<p itemprop="motto"><?php echo $user_ary['MOTTO']; ?></p>
+			<h2 class="chinese">我的名言</h2>
+			<p class="chinese" itemprop="motto"><?php echo $user_ary['MOTTO']; ?></p>
 		</section>
 		<section class="cv_need">
-			<h2>我的需求</h2>
+			<h2 class="chinese">我的需求</h2>
 			<div class="cv_need_list" itemprop="need">
 				<?php
 					$need_ary_temp = explode( ',', $user_ary['NEED'] );
@@ -130,13 +130,13 @@ function CheckScore($a){
 			</div>
 		</section>
 		<section class="cv_about">
-			<h2>關於我</h2>
-			<p itemprop="about"><?php echo $user_ary['ABOUT_ME']; ?></p>
+			<h2 class="chinese">關於我</h2>
+			<p class="chinese" itemprop="about"><?php echo $user_ary['ABOUT_ME']; ?></p>
 		</section>
 		<section class="cv_experience">
-			<h2>我的經歷</h2>
+			<h2 class="chinese">我的經歷</h2>
 			<div class="cv_experience_list">
-				<p itemprop="experience"><?php echo $user_ary['EXPERIENCE']; ?></p>
+				<p class="chinese" itemprop="experience"><?php echo $user_ary['EXPERIENCE']; ?></p>
 			</div>
 		</section>
 	</article>

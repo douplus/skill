@@ -20,6 +20,7 @@
 	<script src="./modernizr.custom.18273.js"></script>
 	<script src="../task/addtask.js"></script>
 	<script src="../library/imageSlice.js"></script>
+	<script src="../library/jquery.tagsinput.min.js"></script>
 <script>
 	(function(){    // include jQuery.js
 		CheckLogin();

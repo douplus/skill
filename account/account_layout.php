@@ -65,17 +65,17 @@ function CheckGender($a){
 			<i class="back_bottom"></i>
 			<i class="back_front"></i>
 		</div>
-		<li class="tabs-active"><a class="account_list_a" href="#account_tabs-1"><div>帳戶</div></a></li>
-		<li><a class="account_list_a" href="#account_tabs-2"><div>任務</div></a></li>
-		<li><a class="account_list_a" href="#account_tabs-3"><div>合作</div></a></li>
-		<li><a class="account_list_a" href="#account_tabs-4"><div>關注</div></a></li>
+		<li class="tabs-active"><a class="account_list_a" href="#account_tabs-1"><div class="chinese">帳戶</div></a></li>
+		<li><a class="account_list_a" href="#account_tabs-2"><div class="chinese">任務</div></a></li>
+		<li><a class="account_list_a" href="#account_tabs-3"><div class="chinese">合作</div></a></li>
+		<li><a class="account_list_a" href="#account_tabs-4"><div class="chinese">關注</div></a></li>
 	</ul>
 </nav>
 <div id="account_container">
 	<article id="account_tabs-1">
 		<section class="account_passwd">
 			<div _role="account_passwd" id="change_passwd">&nbsp;</div>
-			<p>變更密碼</p>
+			<p class="chinese">變更密碼</p>
 			<div class="account_right">
 				<i class="account_right-bottom"></i>
 				<i class="account_right-front"></i>
@@ -96,48 +96,113 @@ function CheckGender($a){
 					<a class="a_learn_email"><?php echo $user_ary['EMAIL']; ?></a>
 				</dd>
 			</dl>
-			<div class="account_modify_area"><em _role="account_list" class="account_modify">編輯</em></div>
+			<div class="account_modify_area"><em _role="account_list" class="chinese account_modify">編輯</em></div>
 		</section>
 		<section class="account_skill">
-			<h2>我的技能</h2>
-			<div class="account_skill_list" itemprop="skill">
+			<h2 class="chinese">我的技能</h2>
+			<div class="account_skill_input dom_hidden">
 				<?php
 					$skill_ary_temp = explode( ',', $user_ary['SKILL'] );
 					$skill_ary_temp_len = count( $skill_ary_temp );
-					for( $i=0; $i<$skill_ary_temp_len; $i++ ){ echo '<span>'.$skill_ary_temp[$i].'</span>'; }
-					unset( $skill_ary_temp, $skill_ary_temp_len );
+					$temp = '';
+					for( $i=0; $i<$skill_ary_temp_len; $i++ ){
+						$temp .= ','.$skill_ary_temp[$i];
+						$temp_span .= '<span>'.$skill_ary_temp[$i].'</span>';
+					}
+					echo '<input id="modify_skill" value="'.substr( $temp, 1, strlen( $temp ) ).'"/>';
+					unset( $skill_ary_temp, $skill_ary_temp_len, $temp );
 				?>
 			</div>
-			<div class="account_modify_area"><em _role="account_skill" class="account_modify">編輯</em></div>
+			<div class="account_skill_list" itemprop="skill">
+				<?php
+					echo $temp_span;
+					unset( $temp_span );
+				?>
+			</div>
+			<div class="account_modify_area">
+				<em _role="account_skill" class="chinese account_modify">編輯</em>
+				<section class="account_edit dom_hidden">
+					<em _action="save" _role="account_skill" class="chinese">儲存</em>
+					<em _action="cancel" _role="account_skill" class="chinese">取消</em>
+				</section>
+			</div>
 		</section>
 		<section class="account_motto">
-			<h2>我的名言</h2>
-			<p itemprop="motto"><?php echo $user_ary['MOTTO']; ?></p>
-			<div class="account_modify_area"><em _role="account_motto" class="account_modify">編輯</em></div>
+			<h2 class="chinese">我的名言</h2>
+			<div class="account_motto_input dom_hidden">
+				<textarea id="modify_motto" class="chinese"></textarea>
+			</div>
+			<div class="account_experience_list">
+				<p class="chinese" itemprop="motto"><?php echo $user_ary['MOTTO']; ?></p>
+			</div>
+			<div class="account_modify_area">
+				<em _role="account_motto" class="chinese account_modify">編輯</em>
+				<section class="account_edit dom_hidden">
+					<em _action="save" _role="account_motto" class="chinese">儲存</em>
+					<em _action="cancel" _role="account_motto" class="chinese">取消</em>
+				</section>
+			</div>
 		</section>
 		<section class="account_need">
-			<h2>我的需求</h2>
-			<div class="account_need_list" itemprop="need">
+			<h2 class="chinese">我的需求</h2>
+			<div class="account_need_input dom_hidden">
 				<?php
 					$need_ary_temp = explode( ',', $user_ary['NEED'] );
 					$need_ary_temp_len = count( $need_ary_temp );
-					for( $i=0; $i<$need_ary_temp_len; $i++ ){ echo '<span>'.$need_ary_temp[$i].'</span>'; }
-					unset( $need_ary_temp, $need_ary_temp_len );
+					$temp = '';
+					for( $i=0; $i<$need_ary_temp_len; $i++ ){
+						$temp .= ','.$need_ary_temp[$i];
+						$temp_span .= '<span>'.$need_ary_temp[$i].'</span>';
+					}
+					echo '<input id="modify_need" value="'.substr( $temp, 1, strlen( $temp ) ).'"/>';
+					unset( $need_ary_temp, $need_ary_temp_len, $temp );
 				?>
 			</div>
-			<div class="account_modify_area"><em _role="account_need" class="account_modify">編輯</em></div>
+			<div class="account_need_list" itemprop="need">
+				<?php
+					echo $temp_span;
+					unset( $temp_span );
+				?>
+			</div>
+			<div class="account_modify_area">
+				<em _role="account_need" class="chinese account_modify">編輯</em>
+				<section class="account_edit dom_hidden">
+					<em _action="save" _role="account_need" class="chinese">儲存</em>
+					<em _action="cancel" _role="account_need" class="chinese">取消</em>
+				</section>
+			</div>
 		</section>
 		<section class="account_about">
-			<h2>關於我</h2>
-			<p itemprop="about"><?php echo $user_ary['ABOUT_ME']; ?></p>
-			<div class="account_modify_area"><em _role="account_about" class="account_modify">編輯</em></div>
+			<h2 class="chinese">關於我</h2>
+			<div class="account_about_input dom_hidden">
+				<textarea id="modify_about" class="chinese"></textarea>
+			</div>
+			<div class="account_experience_list">
+				<p class="chinese" itemprop="about"><?php echo $user_ary['ABOUT_ME']; ?></p>
+			</div>
+			<div class="account_modify_area">
+				<em _role="account_about" class="chinese account_modify">編輯</em>
+				<section class="account_edit dom_hidden">
+					<em _action="save" _role="account_about" class="chinese">儲存</em>
+					<em _action="cancel" _role="account_about" class="chinese">取消</em>
+				</section>
+			</div>
 		</section>
 		<section class="account_experience">
-			<h2>我的經歷</h2>
-			<div class="account_experience_list">
-				<p itemprop="experience"><?php echo $user_ary['EXPERIENCE']; ?></p>
+			<h2 class="chinese">我的經歷</h2>
+			<div class="account_experience_input dom_hidden">
+				<textarea id="modify_experience" class="chinese"></textarea>
 			</div>
-			<div class="account_modify_area"><em _role="account_experience" class="account_modify">編輯</em></div>
+			<div class="account_experience_list">
+				<p class="chinese" itemprop="experience"><?php echo $user_ary['EXPERIENCE']; ?></p>
+			</div>
+			<div class="account_modify_area">
+				<em _role="account_experience" class="chinese account_modify">編輯</em>
+				<section class="account_edit dom_hidden">
+					<em _action="save" _role="account_experience" class="chinese">儲存</em>
+					<em _action="cancel" _role="account_experience" class="chinese">取消</em>
+				</section>
+			</div>
 		</section>
 	</article>
 	<article id="account_tabs-2" class="dom_hidden">

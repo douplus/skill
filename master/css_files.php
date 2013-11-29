@@ -7,4 +7,6 @@
 <link rel="stylesheet" href="../css/information.css"/>
 <link rel="stylesheet" href="../css/account.css"/>
 <link rel="stylesheet" href="../css/box.css"/>
+<link rel="stylesheet" href="../css/addtask_box.css"/>
 <link rel="stylesheet" href="../css/color.css"/>
+<link rel="stylesheet" href="../library/jquery.tagsinput.css"/>

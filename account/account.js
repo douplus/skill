@@ -24,7 +24,6 @@ $(function(){
 		$('#UserImg_upload').trigger('click');
 	});
 	$('#UserImg_save-btn').click(function(){
-		$('#preloader').find('span').text('上傳中...').end().removeClass('dom_hidden');
 		saveImage();
 	});
 	initial_slicer();
@@ -39,7 +38,9 @@ function initial_slicer(){
 	}
 }
 function saveImage(){
-	var type = slicer.getImgType();
+	var type = slicer.getImgType() || null;
+	if( type == null ) return alert('請先選擇圖片。');
+	$('#preloader').find('span').text('上傳中...').end().removeClass('dom_hidden');
 	var imgData = slicer.getCroppedImageData(114, 114, type);
 	var userid = JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid;
 	type = type.substring(6);
@@ -76,4 +77,125 @@ function selectImage( fileList ){
 	}else{
 		alert('這個不是圖片檔唷。');
 	}
+}
+$(function(){
+	$('#modify_skill, #modify_need').tagsInput({
+		'height': 'auto',
+	    'width': '95%',
+	    'interactive': true,
+	    'defaultText': 'add a skill...',
+	    'placeholderColor': '#A7D285'
+	});
+});
+$(document).on('click', '#account_container em.account_modify',function(){  // 編輯 資訊
+	switch( $(this).attr('_role') ){
+		case 'account_experience':
+		case 'account_about':
+		case 'account_motto':
+			var $a = $(this).parent();
+			var a = $a.prev().children().text();
+			$a.prev().addClass('dom_hidden').prev().removeClass('dom_hidden').children().val( a );
+			$(this).data('temp', a).addClass('dom_hidden').next().removeClass('dom_hidden');
+			break;
+		case 'account_skill':
+			Edit_Skill( $(this) );
+			break;
+		case 'account_need':
+			Edit_Need( $(this) );
+			break;
+		default:
+			break;
+	}
+});
+$(document).on('click', '#account_container section.account_edit > [_action=cancel]',function(){  // 取消 修改資訊
+	switch( $(this).attr('_role') ){
+		case 'account_experience':
+		case 'account_about':
+		case 'account_motto':
+			var a = $(this).parent().prev().data().temp;
+			$(this).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+			break;
+		case 'account_skill':
+			var a = $(this).parent().prev().data().temp;
+			var b = a.split(',');
+			var temp = '';
+			for( var i=0; i<b.length; i++ ){
+				temp += '<span>'+b[i]+'</span>';
+			}
+			$(this).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').html(temp).prev().addClass('dom_hidden').children('#modify_skill').val(a);
+			break;
+		case 'account_need':
+			var a = $(this).parent().prev().data().temp;
+			var b = a.split(',');
+			var temp = '';
+			for( var i=0; i<b.length; i++ ){
+				temp += '<span>'+b[i]+'</span>';
+			}
+			$(this).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').html(temp).prev().addClass('dom_hidden').children('#modify_need').val(a);
+			break;
+		default:
+			break;
+	}
+});
+$(document).on('click', '#account_container section.account_edit > [_action=save]',function(){  // 儲存 修改資訊
+	switch( $(this).attr('_role') ){
+		case 'account_experience':
+			SaveExperience( $('#modify_experience').val(), this );
+			break;
+		case 'account_about':
+			SaveAbout( $('#modify_about').val(), this );
+			break;
+		case 'account_motto':
+			SaveMotto( $('#modify_motto').val(), this );
+			break;
+		case 'account_skill':
+			if( $('#modify_skill').val().trim() == '' ){
+				alert('請輸入技能');
+			}else{
+				SaveSkill( $('#modify_skill').val(), this );
+			}
+			break;
+		case 'account_need':
+			if( $('#modify_need').val().trim() == '' ){
+				alert('請輸入需求');
+			}else{
+				SaveNeed( $('#modify_need').val(), this );
+			}
+			break;
+		default:
+			break;
+	}
+});
+function Edit_Skill( $a ){  // 編輯 skill
+	var skill = $('#modify_skill').val(); console.log(skill);
+	$a.data('temp', skill).addClass('dom_hidden').next().removeClass('dom_hidden').end().parent().prev().addClass('dom_hidden').prev().removeClass('dom_hidden').children('#modify_skill').importTags(skill);
+}
+function Edit_Need( $a ){  // 編輯 need
+	var need = $('#modify_need').val();
+	$a.data('temp', need).addClass('dom_hidden').next().removeClass('dom_hidden').end().parent().prev().addClass('dom_hidden').prev().removeClass('dom_hidden').children('#modify_need').importTags(need);
+}
+function SaveExperience(a,b){  // 儲存 經歷
+	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+}
+function SaveAbout(a,b){  // 儲存 關於我
+	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+}
+function SaveMotto(a,b){  // 儲存 名言
+	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+}
+function SaveSkill(a,b){  // 儲存 skill
+	var skill = a.split(',');
+	var temp = '';
+	for( var i=0; i<skill.length; i++ ){
+		temp += '<span>'+skill[i]+'</span>';
+	}
+	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').html(temp).prev().addClass('dom_hidden').children('#modify_skill').val(a).importTags(a);
+}
+function SaveNeed(a,b){  // 儲存 need
+	var need = a.split(',');
+	var temp = '';
+	for( var i=0; i<need.length; i++ ){
+		temp += '<span>'+need[i]+'</span>';
+	}
+	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').html(temp).prev().addClass('dom_hidden').children('#modify_need').val(a).importTags(a);
 }

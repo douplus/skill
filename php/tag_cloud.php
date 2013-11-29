@@ -1,6 +1,6 @@
 <article id="task_cloud_area" class="dom_hidden">
 	<section id="task_cloud"></section>
-	<section id="task_cloud_text">
+	<section id="task_cloud_text" class="chinese">
 		<i>&nbsp;</i>標籤雲-&gt;熱門標籤
 	</section>
 	<a id="task-result_page" task-pjax="task-result" class="dom_hidden"></a>
