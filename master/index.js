@@ -149,7 +149,7 @@ function CheckMaster(){    // 使用者開始使用 skill，設定 ip address an
 		type: 'POST',
 		dataType: 'html',
 		success: function(msg){
-			console.log( msg );
+			//console.log( msg );
 			msg = msg.split('@');
 			if( msg[0] == 'success' ){
 				localStorage.setItem( 'Master_list', msg[3]+'@'+msg[2] );
@@ -177,7 +177,7 @@ function GetMaster(){    // 抓神人資料
 		type: 'POST',
 		dataType: 'html',
 		success: function(msg){
-			console.log( msg );
+			//console.log( msg );
 			msg = msg.split('@@');
 			if( msg[0] == 'success' ){
 				localStorage.setItem( 'Master_info', msg[1] );
