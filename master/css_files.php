@@ -1,0 +1,10 @@
+<link rel="stylesheet" href="../library/tipsy.css"/>
+<link rel="stylesheet" href="../css/index.css"/>
+<link rel="stylesheet" href="../css/master.css"/>
+<link rel="stylesheet" href="../library/jquery-ui-1.10.3.custom.min.css"/>
+<link rel="stylesheet" href="../css/task_area.css"/>
+<link rel="stylesheet" href="../css/cv.css"/>
+<link rel="stylesheet" href="../css/information.css"/>
+<link rel="stylesheet" href="../css/account.css"/>
+<link rel="stylesheet" href="../css/box.css"/>
+<link rel="stylesheet" href="../css/color.css"/>
