@@ -397,3 +397,30 @@ background-position: 50% 50%;
 background-repeat: no-repeat;
 background-size: 100%;
 }
+#task_cloud_text{
+position: absolute;
+right: 5px;
+bottom: 5px;
+height: 22px;
+line-height: 22px;
+font-size: 14px;
+padding: 4px 5px;
+background: rgb(51, 153, 255);
+color: white;
+border: 1px solid #ccc;
+border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
+border-bottom-color: #b3b3b3;
+border-radius: 5px;
+}
+#task_cloud_text > i{
+display: inline-block;
+width: 22px;
+height: 22px;
+line-height: 22px;
+vertical-align: text-top;
+background-image: url('../Images/cloud_white.png');
+background-position: 50% 50%;
+background-repeat: no-repeat;
+background-size: 100%;
+margin-right: 3px;
+}
