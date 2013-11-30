@@ -85,7 +85,7 @@ $.viewport.set();
 <body>
 	<section id="init-overlay" class=""></section>
 	<article id="preloader" class="dom_hidden">
-		<h3><img src=""><span></span></h3>
+		<h3><img src="../Images/preloader.gif"><span></span></h3>
 	</article>
 	<?php include('../php/tag_cloud.php'); ?>
 	<?php include('../php/fixed_header.php'); ?>
