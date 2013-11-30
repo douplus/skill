@@ -13,8 +13,12 @@
 	<script src="../../library/jquery.nailthumb.1.1.min.js"></script>
 	<script src="../../library/jquery.tipsy.js"></script>
 	<script src="../../library/bootstrap.min.js"></script>
+	<script src="../retask.js"></script>
 	<script src="./discuss.js"></script>
 </head>
+<?php
+     include('./retask.php'); 	
+?>
 <body>
 	<nav id="discuss_nav">
 		<ul id="discuss_list">

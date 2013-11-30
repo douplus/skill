@@ -311,7 +311,7 @@ $(function(){
 		$('body').css( 'overflow', '');
 	});
 	$('#sign-up').click(function(){    // 點擊註冊按鈕
-		document.getElementById('female').checked = true;
+		document.getElementById('female').checked = false;
 		document.getElementById('male').checked = false;
 		document.getElementById('gender-one').checked = true;
 		document.getElementById('gender-many').checked = false;
@@ -431,6 +431,15 @@ $(function(){
 				}
 			}
 		}
+		if( !document.getElementById('female').checked && !document.getElementById('male').checked && document.getElementById('gender-one').checked ){
+			$('#sign-up-summary').append('<li><i class="icon-sign icon-sign-error"></i>請選擇性別</li>');
+			e = false;
+		}else if( document.getElementById('female').checked && document.getElementById('male').checked && document.getElementById('gender-one').checked ){
+			$('#sign-up-summary').append('<li><i class="icon-sign icon-sign-error"></i>性別發生錯誤</li>');
+			document.getElementById('female').checked = false;
+			document.getElementById('male').checked = false;
+			e = false;
+		}
 		if( e ){
 			SetCV( a, b, c );
 		}else{
@@ -461,11 +470,16 @@ $(function(){
 			SetCompleted( a.trim() );
 		}
 	});
-	$('#login-password').keydown(function(e){    // 按下 enter 登入
+	$('#login-password, #login-email').keydown(function(e){  // 按下 enter 登入
 		if ($(this).is(':focus') && (e.keyCode == 13)) {
 			$('#login-button').trigger('click');
 		}
-	 });
+	});
+	$('#sign-up-name, #sign-up-email, #sign-up-password, #sign-up-password-again').keydown(function(e){  // 按下 enter 註冊
+		if ($(this).is(':focus') && (e.keyCode == 13)) {
+			$('#sign-up-button').trigger('click');
+		}
+	});
 });
 function SetTagsInput(){    // 設定技能標籤插件
 	$('#tag-skill, #tag-need').tagsInput({

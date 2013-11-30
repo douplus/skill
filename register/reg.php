@@ -45,8 +45,7 @@
 				<a href="http://merry.ee.ncku.edu.tw/~thwang/cur/" target="_blank">進入 Skill</a>
 			';
 		}else{
-			$message  = '創建使用者&發送認證信成功。';
-			die($message);
+			die('認證失敗。');
 		}
 	?>
 </body>

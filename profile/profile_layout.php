@@ -129,15 +129,15 @@ function CheckScore($a){
 				?>
 			</div>
 		</section>
-		<section class="cv_about">
-			<h2 class="chinese">關於我</h2>
-			<p class="chinese" itemprop="about"><?php echo $user_ary['ABOUT_ME']; ?></p>
-		</section>
 		<section class="cv_experience">
 			<h2 class="chinese">我的經歷</h2>
 			<div class="cv_experience_list">
 				<p class="chinese" itemprop="experience"><?php echo $user_ary['EXPERIENCE']; ?></p>
 			</div>
+		</section>
+		<section class="cv_about">
+			<h2 class="chinese">關於我</h2>
+			<p class="chinese" itemprop="about"><?php echo $user_ary['ABOUT_ME']; ?></p>
 		</section>
 	</article>
 	<article id="cv_tabs-2" class="dom_hidden">

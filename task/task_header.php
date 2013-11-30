@@ -7,7 +7,7 @@
 	<!-- load : CSS files -->
 	<?php 
 		include('../master/css_files.php'); 
-		include('../php/showtask.php'); 
+		include('../php/showtask.php');
 	?>
 	<!-- load : end of CSS files -->
 	<script src="../library/jquery-2.0.3.min.js"></script>

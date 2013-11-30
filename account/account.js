@@ -59,6 +59,11 @@ $(function(){
 			$('#change_passwd-again').val('');
 		}
 	});
+	$('#change_passwd-again, #change_passwd-old, #change_passwd-new').keydown(function(e){    // 按下 enter 變更密碼
+		if ($(this).is(':focus') && (e.keyCode == 13)) {
+			$('#change_passwd-save').trigger('click');
+		}
+	});
 });
 function ChangePassword( a, b ){  // 更改密碼
 	$('#preloader').find('span').text('正在設定密碼...').end().removeClass('dom_hidden');
@@ -377,20 +382,131 @@ function Edit_Need( $a ){  // 編輯 need
 	var need = $('#modify_need').val();
 	$a.data('temp', need).addClass('dom_hidden').next().removeClass('dom_hidden').end().parent().prev().addClass('dom_hidden').prev().removeClass('dom_hidden').children('#modify_need').importTags(need);
 }
-function SaveExperience(a,b){  // 儲存 經歷
-	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+function SaveExperience(a,b){  // 儲存 我的經歷
+	$('#preloader').find('span').text('更改中...').end().removeClass('dom_hidden');
+	$.ajax({
+		url: '../php/save_experience.php',
+		type: 'POST',
+		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, experience: a },
+		dataType: 'html',
+		success: function(msg){
+			//console.log( msg );
+			msg = msg.split('@');
+			$('#preloader').addClass('dom_hidden');
+			if( msg[0] == 'success' ){
+				alert( '更改 我的經歷 成功。' );
+				$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+			}else if( msg[0] == 'error' ){
+				alert( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			alert('資料格式正確，但是伺服器發生錯誤。');
+		}
+	});
 }
 function SaveAbout(a,b){  // 儲存 關於我
-	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+	$('#preloader').find('span').text('更改中...').end().removeClass('dom_hidden');
+	$.ajax({
+		url: '../php/save_about.php',
+		type: 'POST',
+		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, about: a },
+		dataType: 'html',
+		success: function(msg){
+			//console.log( msg );
+			msg = msg.split('@');
+			$('#preloader').addClass('dom_hidden');
+			if( msg[0] == 'success' ){
+				alert( '更改 關於我 成功。' );
+				$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+			}else if( msg[0] == 'error' ){
+				alert( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			alert('資料格式正確，但是伺服器發生錯誤。');
+		}
+	});
 }
 function SaveMotto(a,b){  // 儲存 名言
-	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+	$('#preloader').find('span').text('更改中...').end().removeClass('dom_hidden');
+	$.ajax({
+		url: '../php/save_motto.php',
+		type: 'POST',
+		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, motto: a },
+		dataType: 'html',
+		success: function(msg){
+			//console.log( msg );
+			msg = msg.split('@');
+			$('#preloader').addClass('dom_hidden');
+			if( msg[0] == 'success' ){
+				alert( '更改 我的名言 成功。' );
+				$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+			}else if( msg[0] == 'error' ){
+				alert( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			alert('資料格式正確，但是伺服器發生錯誤。');
+		}
+	});
 }
 function SaveEducation(a,b){  // 儲存 學歷
-	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+	$('#preloader').find('span').text('更改中...').end().removeClass('dom_hidden');
+	$.ajax({
+		url: '../php/save_education.php',
+		type: 'POST',
+		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, education: a },
+		dataType: 'html',
+		success: function(msg){
+			//console.log( msg );
+			msg = msg.split('@');
+			$('#preloader').addClass('dom_hidden');
+			if( msg[0] == 'success' ){
+				alert( '更改 最高學歷 成功。' );
+				$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+			}else if( msg[0] == 'error' ){
+				alert( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			alert('資料格式正確，但是伺服器發生錯誤。');
+		}
+	});
 }
 function SaveEmail(a,b){  // 儲存 Email
-	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+	$('#preloader').find('span').text('更改中...').end().removeClass('dom_hidden');
+	$.ajax({
+		url: '../php/save_email.php',
+		type: 'POST',
+		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, username: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).username, email: a },
+		dataType: 'html',
+		success: function(msg){
+			//console.log( msg );
+			msg = msg.split('@');
+			$('#preloader').addClass('dom_hidden');
+			if( msg[0] == 'success' ){
+				alert( '更改 Email 成功，系統已發送新的驗證信。' );
+				$('#re-send_validation').parent().attr('_status','non-valid').removeAttr('style').next().children('strong').attr('_status', 'non-valid').css('color', '#C44141').text('未驗證');
+				$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+			}else if( msg[0] == 'error' ){
+				alert( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			alert('資料格式正確，但是伺服器發生錯誤。');
+		}
+	});
 }
 function SaveSkill(a,b){  // 儲存 skill
 	var skill = a.split(','), temp = '';
@@ -401,7 +517,29 @@ function SaveSkill(a,b){  // 儲存 skill
 			return alert('技能欄位只能是"中英文"、"數字"、"-"和"_"。');
 		}
 	}
-	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').html(temp).prev().addClass('dom_hidden').children('#modify_skill').val(a).importTags(a);
+	$('#preloader').find('span').text('更改中...').end().removeClass('dom_hidden');
+	$.ajax({
+		url: '../php/save_skill.php',
+		type: 'POST',
+		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, skill: a },
+		dataType: 'html',
+		success: function(msg){
+			//console.log( msg );
+			msg = msg.split('@');
+			$('#preloader').addClass('dom_hidden');
+			if( msg[0] == 'success' ){
+				alert( '更改 我的技能 成功。' );
+				$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').html(temp).prev().addClass('dom_hidden').children('#modify_skill').val(a).importTags(a);
+			}else if( msg[0] == 'error' ){
+				alert( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			alert('資料格式正確，但是伺服器發生錯誤。');
+		}
+	});
 }
 function SaveNeed(a,b){  // 儲存 need
 	var need = a.split(','), temp = '';
@@ -412,5 +550,27 @@ function SaveNeed(a,b){  // 儲存 need
 			return alert('需求欄位只能是"中英文"、"數字"、"-"和"_"。');
 		}
 	}
-	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').html(temp).prev().addClass('dom_hidden').children('#modify_need').val(a).importTags(a);
+	$('#preloader').find('span').text('更改中...').end().removeClass('dom_hidden');
+	$.ajax({
+		url: '../php/save_need.php',
+		type: 'POST',
+		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, need: a },
+		dataType: 'html',
+		success: function(msg){
+			//console.log( msg );
+			msg = msg.split('@');
+			$('#preloader').addClass('dom_hidden');
+			if( msg[0] == 'success' ){
+				alert( '更改 我的需求 成功。' );
+				$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').html(temp).prev().addClass('dom_hidden').children('#modify_need').val(a).importTags(a);
+			}else if( msg[0] == 'error' ){
+				alert( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			alert('資料格式正確，但是伺服器發生錯誤。');
+		}
+	});
 }
