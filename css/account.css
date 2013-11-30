@@ -44,12 +44,13 @@ line-height: 26px;
 margin-right: 5px;
 }
 .account_skill_list > span{
-padding: 0 8px;
-border: 1px solid rgba(0,0,0,0.1);
-background: #f1f1f1;
+color: #fff;
+background: #0995D8;
+border: 1px solid #008BD3;
+border-radius: 2px;
+padding: 2px 5px;
 line-height: 26px;
 margin-right: 5px;
-color: #000;
 }
 .account_need_list > span{
 font-size: 18px;

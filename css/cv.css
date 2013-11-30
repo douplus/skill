@@ -69,11 +69,14 @@ text-align: left;
 margin-left: 27px;
 }
 .cv_skill_data > span{
-padding: 0 8px;
-border: 1px solid rgba(0,0,0,0.1);
-background: #f1f1f1;
-line-height: 26px;
+color: #fff;
+background: #0995D8;
+border: 1px solid #008BD3;
+border-radius: 2px;
+line-height: 22px;
 margin-right: 5px;
+font-size: 13px;
+padding: 2px 5px;
 }
 .cv_education{
 background-image: url('../Images/education_g.png');
