@@ -19,7 +19,7 @@ $(function){
 			var a = new Array();
 			/*TASKID, TITTLE, CONTENT, TIMESTAMP, TASKPOSTERID*/
 			var o_data = JSON.parse( a ), count = 0, html = '';
-			for( var obj in o_data ){ count += 1; }
+		for( var obj in o_data ){ count += 1; }
 			for( var i=0; i<count; i++ ){
 				var a = o_data[i].split('***');	
 				html += '<section class="task_item">\
@@ -46,8 +46,8 @@ $(function){
 						\</dd>\
 					\</dl>\
 			\</section>';
-
 			}
 		}
+	$('#task_result').html( html );
 
 });

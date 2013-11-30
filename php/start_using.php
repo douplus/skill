@@ -3,7 +3,6 @@
 	include('./db.php');
 
 	$userid = $_POST['userid'];
-	$userip = $_POST['userip'];
 	$usingtime = $_POST['usingtime'];
 	$score = '';
 	$photo = '';
@@ -28,7 +27,7 @@
 	}
 	
 	// 設定使用者 每日登入資訊
-	$query = sprintf( "UPDATE `1_CV` SET LASTUSING_TIME = '$usingtime', USERIP = '$userip', SCORE = '$score' WHERE USERID = '$userid'" );
+	$query = sprintf( "UPDATE `1_CV` SET LASTUSING_TIME = '$usingtime', SCORE = '$score' WHERE USERID = '$userid'" );
 	$result = mysql_query($query) or die('error@伺服器設定您的每日登入資訊失敗。');
 	
 	echo 'success@'.$is_another.'@'.$score.'@'.$photo;

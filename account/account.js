@@ -22,9 +22,94 @@ $(function(){
 		$('#box').attr('role-now', '').addClass('dom_hidden').children('[box-role=change_passwd]').addClass('dom_hidden');
 	});
 	$('#change_passwd-save').click(function(){  // 儲存 變更密碼
-		$('#box').attr('role-now', '').addClass('dom_hidden').children('[box-role=change_passwd]').addClass('dom_hidden');
+		$('#change_passwd-summary').html('').parent().addClass('dom_hidden');
+		var a = $('#change_passwd-new').val();
+		var b = $('#change_passwd-again').val();
+		var c = true;
+		if( a == '' || a.length < 6 || a.length > 12 || b == '' || b.length < 6 || b.length > 12 ){
+			$('#change_passwd-summary').append('<li><i class="icon-sign icon-sign-error"></i>新密碼的長度應該是 6~12 位數</li>');
+			c = false;
+		}else{
+			if( a !== b ){
+				$('#change_passwd-summary').append('<li><i class="icon-sign icon-sign-error"></i>新密碼與確認密碼不相同</li>');
+				c = false;
+			}else{
+				if( a.match(/\s/g) == null ){  // 判斷空白： \s
+					var bl = CheckPassword( a );
+					if( !bl ){
+						$('#change_passwd-summary').append('<li><i class="icon-sign icon-sign-error"></i>新密碼不能含有符號字元</li>');
+						c = false;
+					}
+				}else{
+					$('#change_passwd-summary').append('<li><i class="icon-sign icon-sign-error"></i>新密碼不能含有空白字元</li>');
+					c = false;
+				}
+			}
+		}
+		if( $('#change_passwd-old').val().trim() == '' ){
+			$('#change_passwd-summary').append('<li><i class="icon-sign icon-sign-error"></i>請輸入目前的密碼</li>');
+			c = false;
+		}
+		if( c ){
+			ChangePassword( $('#change_passwd-old').val(), a );
+		}else{
+			$('#change_passwd-summary').parent().removeClass('dom_hidden');
+			$('#change_passwd-old').val('');
+			$('#change_passwd-new').val('');
+			$('#change_passwd-again').val('');
+		}
 	});
 });
+function ChangePassword( a, b ){  // 更改密碼
+	$('#preloader').find('span').text('正在設定密碼...').end().removeClass('dom_hidden');
+	$.ajax({    // 設定 Motto
+		url: '../php/change_passwd.php',
+		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, old_passwd: a, new_passwd: b },
+		type: 'POST',
+		dataType: 'html',
+		success: function(msg){
+			console.log( msg );
+			msg = msg.split('@');
+			$('#preloader').addClass('dom_hidden');
+			if( msg[0] == 'success' ){
+				if( parseInt( msg[1] ) == 1 ){
+					alert( msg[2] );
+					$('#box').attr('role-now', '').addClass('dom_hidden').children('[box-role=change_passwd]').addClass('dom_hidden');
+				}else{
+					$('#change_passwd-summary').append('<li><i class="icon-sign icon-sign-error"></i>'+msg[2]+'</li>').parent().removeClass('dom_hidden');
+				}
+			}else{
+				alert( msg[1] );
+			}
+			$('#change_passwd-old').val('');
+			$('#change_passwd-new').val('');
+			$('#change_passwd-again').val('');
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			alert('資料格式正確，但是伺服器發生錯誤。');
+		}
+	});
+}
+function CheckPassword( a ){  // 檢查密碼是否有符合格式
+	if( CheckStr( a ) ){
+		return true;
+	}else{
+		return false;
+	}
+}
+function CheckStr( a ){  // 只能有 _ 和 - 能使用
+    if( /^[^@\/\'\\\"#$%&\^\*\=\+\(\)\?\:\[\]\{\}\!\~\.\,]+$/.test( a ) ){
+		if( a.match(/\\/g) == null ){  // 判斷反斜線： \ 
+			return true;
+		}else{
+			return false;
+		}
+	}else{
+        return false; 
+	}
+}
 $(function(){
 	$('#UserImg_upload-btn').click(function(){
 		$('#UserImg_upload').trigger('click');
@@ -139,21 +224,102 @@ $(document).on('click', '#account_container section.account_edit > [_action=canc
 	}
 });
 $(document).on('click', '#account_container section.account_edit > [_action=save]',function(){  // 儲存 修改資訊
+	var temp = true;
 	switch( $(this).attr('_role') ){
 		case 'account_experience':
-			SaveExperience( $('#modify_experience').val(), this );
+			var experience = $('#modify_experience').val().trim();
+			if( experience == '' ){
+				alert('未填寫內容。');
+				temp = false;
+			}else{
+				if( experience.length > 140 ){
+					alert('內容不可以超過 140 個字元。');
+					temp = false;
+				}else{
+					var bl = CheckTextarea( experience );
+					if( !bl ){
+						alert('內容格式錯誤，含有未認可的特殊字元。');
+						temp = false;
+					}
+				}
+			}
+			if( temp ) SaveExperience( experience, this );
 			break;
 		case 'account_about':
-			SaveAbout( $('#modify_about').val(), this );
+			var about = $('#modify_about').val().trim();
+			if( about == '' ){
+				alert('未填寫內容。');
+				temp = false;
+			}else{
+				if( about.length > 100 ){
+					alert('內容不可以超過 100 個字元。');
+					temp = false;
+				}else{
+					var bl = CheckTextarea( about );
+					if( !bl ){
+						alert('內容格式錯誤，含有未認可的特殊字元。');
+						temp = false;
+					}
+				}
+			}
+			if( temp ) SaveAbout( about, this );
 			break;
 		case 'account_motto':
-			SaveMotto( $('#modify_motto').val(), this );
+			var motto = $('#modify_motto').val().trim();
+			if( motto == '' ){
+				alert('未填寫內容。');
+				temp = false;
+			}else{
+				if( motto.length > 50 ){
+					alert('內容不可以超過 50 個字元。');
+					temp = false;
+				}else{
+					var bl = CheckTextarea( motto );
+					if( !bl ){
+						alert('內容格式錯誤，含有未認可的特殊字元。');
+						temp = false;
+					}
+				}
+			}
+			if( temp ) SaveMotto( motto, this );
 			break;
 		case 'account_education':
-			SaveEducation( $('#modify_education').val(), this );
+			var education = $('#modify_education').val().trim();
+			if( education == '' ){
+				alert('未填寫內容。');
+				temp = false;
+			}else{
+				if( education.length > 50 ){
+					alert('內容不可以超過 50 個字元。');
+					temp = false;
+				}else{
+					var bl = CheckTextarea( education );
+					if( !bl ){
+						alert('內容格式錯誤，含有未認可的特殊字元。');
+						temp = false;
+					}
+				}
+			}
+			if( temp ) SaveEducation( education, this );
 			break;
 		case 'account_email':
-			SaveEmail( $('#modify_email').val(), this );
+			var email = $('#modify_email').val().trim();
+			if( email == '' ){
+				alert('未填寫電子信箱。');
+				temp = false;
+			}else{
+				if( email.length > 50 ){
+					alert('電子信箱長度不應該超過 50 個字元。');
+					temp = false;
+				}else{
+					var bl = CheckEmail( email );
+					if( !bl ){
+						alert('電子信箱格式錯誤。');
+						temp = false;
+					}
+				}
+			}
+			if( temp ) SaveEmail( email, this );
 			break;
 		case 'account_skill':
 			if( $('#modify_skill').val().trim() == '' ){
@@ -174,6 +340,10 @@ $(document).on('click', '#account_container section.account_edit > [_action=save
 	}
 });
 $(document).on('click', '#change_passwd',function(){  // 進入 變更密碼 介面
+	$('#change_passwd-summary').html('').parent().addClass('dom_hidden');
+	$('#change_passwd-old').val('');
+	$('#change_passwd-new').val('');
+	$('#change_passwd-again').val('');
 	$('#box').attr('role-now', 'change_passwd').removeClass('dom_hidden').children('[box-role=change_passwd]').removeClass('dom_hidden');
 });
 $(document).on('click', '#re-send_validation',function(){  // 點擊 重寄認證信
@@ -181,6 +351,24 @@ $(document).on('click', '#re-send_validation',function(){  // 點擊 重寄認�
 		console.log('re-send');
 	}
 });
+function CheckEmail( a ){  // 檢查 Email 是否有符合格式
+	if( /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/.test( a ) ){
+		return true;
+	}else{
+		return false;      
+	}
+}
+function CheckTextarea( a ){  // 檢查 Textarea 是否有符合格式
+    if( /^[^@\/\'\\\"#$%&\^\*\=\+\(\)\[\]\{\}]+$/.test( a ) ){
+		if( a.match(/\\/g) == null ){  // 判斷反斜線： \ 
+			return true;
+		}else{
+			return false;
+		}
+	}else{
+        return false; 
+	}
+}
 function Edit_Skill( $a ){  // 編輯 skill
 	var skill = $('#modify_skill').val(); console.log(skill);
 	$a.data('temp', skill).addClass('dom_hidden').next().removeClass('dom_hidden').end().parent().prev().addClass('dom_hidden').prev().removeClass('dom_hidden').children('#modify_skill').importTags(skill);
@@ -205,18 +393,24 @@ function SaveEmail(a,b){  // 儲存 Email
 	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
 }
 function SaveSkill(a,b){  // 儲存 skill
-	var skill = a.split(',');
-	var temp = '';
+	var skill = a.split(','), temp = '';
 	for( var i=0; i<skill.length; i++ ){
-		temp += '<span>'+skill[i]+'</span>';
+		if( CheckStr( skill[i] ) ){
+			temp += '<span>'+skill[i]+'</span>';
+		}else{
+			return alert('技能欄位只能是"中英文"、"數字"、"-"和"_"。');
+		}
 	}
 	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').html(temp).prev().addClass('dom_hidden').children('#modify_skill').val(a).importTags(a);
 }
 function SaveNeed(a,b){  // 儲存 need
-	var need = a.split(',');
-	var temp = '';
+	var need = a.split(','), temp = '';
 	for( var i=0; i<need.length; i++ ){
-		temp += '<span>'+need[i]+'</span>';
+		if( CheckStr( need[i] ) ){
+			temp += '<span>'+need[i]+'</span>';
+		}else{
+			return alert('需求欄位只能是"中英文"、"數字"、"-"和"_"。');
+		}
 	}
 	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').html(temp).prev().addClass('dom_hidden').children('#modify_need').val(a).importTags(a);
 }

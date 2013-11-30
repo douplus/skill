@@ -100,43 +100,69 @@ function InitialMaster(){
 	}
 }
 function StartUsing(){    // 使用者開始使用 skill，設定 ip address and score
+	$.ajax({    //
+		url: '../php/start_using.php',
+		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, usingtime: $.timestamp.get({readable: true}) },
+		type: 'POST',
+		dataType: 'html',
+		success: function(msg){
+			console.log( msg );
+			msg = msg.split('@');
+			if( msg[0] == 'success' ){
+				if( parseInt( msg[1] ) == 1 ){
+					var $a = $('#preloader');
+					$a.find('span').text('每日登入，積分+5').end().removeClass('dom_hidden');
+					window.setTimeout(function(){
+						$a.find('span').text('您的積分：'+msg[2]+'');
+						window.setTimeout(function(){
+							$a.addClass('dom_hidden');
+						}, 2000);
+					}, 1000);
+				}
+				$('#score').text( msg[2] );
+				localStorage.setItem('photo_file', msg[3]);
+				SetPhoto( msg[3] );
+			}else if( msg[0] == 'error' ){
+				alert( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			alert('資料格式正確，但是伺服器發生錯誤。');
+		}
+	});
+}
+function SetIP(){    // 使用者開始使用 skill，設定 ip address and score
 	$.ajax({    // 抓取 IP
 		url: 'http://smart-ip.net/geoip-json?callback=?',
 		dataType: 'json',
 		success: function(data){  //console.log(data);
             sessionStorage.setItem( 'where', JSON.stringify( data ) );
-			$.ajax({    //
-				url: '../php/start_using.php',
-				data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, userip: data.host, usingtime: $.timestamp.get({readable: true}) },
+			$.ajax({    // 設定 IP
+				url: '../php/user_ip.php',
+				data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, userip: data.host },
 				type: 'POST',
 				dataType: 'html',
-				success: function(msg){
-					console.log( msg );
+				success: function(msg){  //console.log(data);
 					msg = msg.split('@');
 					if( msg[0] == 'success' ){
-						if( parseInt( msg[1] ) == 1 ){
-							var $a = $('#preloader');
-							$a.find('span').text('每日登入，積分+5').end().removeClass('dom_hidden');
-							window.setTimeout(function(){
-								$a.find('span').text('您的積分：'+msg[2]+'');
-								window.setTimeout(function(){
-									$a.addClass('dom_hidden');
-								}, 2000);
-							}, 1000);
-						}
-						$('#score').text( msg[2] );
-						localStorage.setItem('photo_file', msg[3]);
-						SetPhoto( msg[3] );
+						console.log( msg[1] );
 					}else if( msg[0] == 'error' ){
-						alert( msg[1] );
+						console.log( msg[1] );
 					}
 				},
 				error:function(xhr, ajaxOptions, thrownError){ 
 					console.log(xhr.status); 
 					console.log(thrownError);
-					alert('資料格式正確，但是伺服器發生錯誤。');
+					console.log('資料格式正確，但是伺服器 設定 IP 發生錯誤。');
 				}
 			});
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			console.log('資料格式正確，但是 smart-ip.net 發生錯誤。');
 		}
 	});
 }
@@ -286,3 +312,4 @@ function SetPhoto( a ){
 	a = a+'?rand=' + Math.random();
 	$('#top_nav_user_wrapperImg').attr('src', '../photo/'+a).parents('#top_nav-user_wrapper').prev().children('#top_nav_UserImg').attr('src', '../photo/'+a);
 }
+$(function(){ SetIP(); });

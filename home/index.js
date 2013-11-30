@@ -588,7 +588,7 @@ function SetSkillNext(){    // 設定帳號：下一步
 		if( CheckStr( temp ) ){
 			str2 += ','+temp;
 		}else{
-			return alert('技能欄位只能是"中英文"、"數字"、"-"和"_"。');
+			return alert('需求欄位只能是"中英文"、"數字"、"-"和"_"。');
 		}
 	}
 	$.ajax({    // 設定 Skill & Need

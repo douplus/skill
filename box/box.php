@@ -92,10 +92,8 @@
 					<div class="input-password-again">
 						<input type="password" id="change_passwd-again" minlength="6" maxlength="128" placeholder="確認密碼">
 					</div>
-					<div class="input-failure ">
-						<ul id="change_passwd-summary">
-							<li><i class="icon-sign icon-sign-error"></i>未填寫名稱</li>
-						</ul>
+					<div class="input-failure dom_hidden">
+						<ul id="change_passwd-summary"></ul>
 					</div>
 					<div class="button-command">
 						<button class="btn-color" id="change_passwd-save" type="submit">儲存變更</button>
