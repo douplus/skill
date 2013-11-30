@@ -353,7 +353,34 @@ $(document).on('click', '#change_passwd',function(){  // 進入 變更密碼 介
 });
 $(document).on('click', '#re-send_validation',function(){  // 點擊 重寄認證信
 	if( $(this).parent().attr('_status') === 'non-valid' ){
-		console.log('re-send');
+		$('#preloader').find('span').text('請稍後...').end().removeClass('dom_hidden');
+		var o_a = JSON.parse( $.cookie.get({ name: 'UserInfo' }) );
+		$.ajax({
+			url: '../php/re_send.php',
+			type: 'POST',
+			data: { userid: o_a.userid, username: o_a.username, email: o_a.email },
+			dataType: 'html',
+			success: function(msg){
+				//console.log( msg );
+				msg = msg.split('@');
+				$('#preloader').addClass('dom_hidden');
+				if( msg[0] == 'success' ){
+					if( parseInt( msg[1] ) == 0 ){
+						alert( '重寄認證信成功，系統已發送新的驗證信至'+o_a.email+'。' );
+					}else if( parseInt( msg[1] ) == 1 ){
+						alert( msg[2] );
+						$('#re-send_validation').parent().attr('_status', 'valid').css('opacity', '0.6').next().children('strong').attr('_status', 'valid').removeAttr('style').text('已驗證');
+					}
+				}else if( msg[0] == 'error' ){
+					alert( msg[1] );
+				}
+			},
+			error:function(xhr, ajaxOptions, thrownError){ 
+				console.log(xhr.status); 
+				console.log(thrownError);
+				alert('資料格式正確，但是伺服器發生錯誤。');
+			}
+		});
 	}
 });
 function CheckEmail( a ){  // 檢查 Email 是否有符合格式
@@ -491,12 +518,15 @@ function SaveEmail(a,b){  // 儲存 Email
 		dataType: 'html',
 		success: function(msg){
 			//console.log( msg );
-			msg = msg.split('@');
+			msg = msg.split('@@');
 			$('#preloader').addClass('dom_hidden');
 			if( msg[0] == 'success' ){
 				alert( '更改 Email 成功，系統已發送新的驗證信。' );
 				$('#re-send_validation').parent().attr('_status','non-valid').removeAttr('style').next().children('strong').attr('_status', 'non-valid').css('color', '#C44141').text('未驗證');
 				$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+				var temp = JSON.stringify( { 'username': JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).username, 'userid': JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, 'email': temp } );
+				$.cookie.set({ name: 'UserInfo', value: temp, expires: '1', path: '/' });
+				localStorage.setItem( 'UserInfo', temp );
 			}else if( msg[0] == 'error' ){
 				alert( msg[1] );
 			}

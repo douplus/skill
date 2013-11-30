@@ -5,11 +5,20 @@
 	$userid = $_POST['userid'];
 	$username = $_POST['username'];
 	$email = $_POST['email'];
-	
-	// 更新 使用者 Email
-	$query = sprintf( "UPDATE `1_CV` SET EMAIL = '$email' WHERE USERID = '$userid'" );
-	$result = mysql_query($query) or die('error@伺服器更新您的 Email 失敗。');
+	$sql_is_checked = 1;
 
+	// 
+	$query = sprintf( "SELECT IS_CHECKED FROM `1_ACCOUNT` WHERE USERID = '$userid'" );
+	$result = mysql_query($query) or die('error@系統存取資料出錯。');
+	while( $a = mysql_fetch_array($result) ){
+		$sql_is_checked = $a['IS_CHECKED'];
+		break;
+	}
+	
+	if( (int)$sql_is_checked == 1 ){
+		die('success@1@您的信箱已驗證。');
+	}
+	
 	$captcha = GeneratorPassword();
 	$is_checked = 0;
 
@@ -17,7 +26,7 @@
 	$query = sprintf( "UPDATE `1_ACCOUNT` SET CAPTCHA = '$captcha', IS_CHECKED = '$is_checked' WHERE USERID = '$userid'" );
     $result = mysql_query($query) or die('error@伺服器創建您的認證碼失敗。');
 
-	// 發送認證信
+	// 發送重寄驗證信
 	require_once(dirname(__FILE__).'/email/class.phpmailer.php');
 	$mailer = new PHPMailer();
 	$mailer->CharSet = 'utf-8';
@@ -38,8 +47,8 @@
 		<html>
 			<body>
 				<div><strong>'.$username.'</strong> 您好：</div>			
-				<h3>您已成功更改 Email！</h3>
-				<div>新的帳號資料如下：</div>
+				<h3>Skill 已重新寄送重寄驗證信！</h3>
+				<div>您帳號資料如下：</div>
 				<div>--------------</div>
 				<div>帳號:'.$email.'</div>
 				<div>--------------</div>
@@ -52,9 +61,9 @@
 	$mailer->IsHTML(true);
 
 	if( !$mailer->Send() ){
-        die('error@伺服器發送認證信失敗。');
+        die('error@伺服器發送重寄驗證信失敗。');
 	}
-	echo 'success@@更新 Email 成功 & 發送認證信成功。@@'.$email;
+	echo 'success@0@重寄重寄驗證信成功。';
 ?>
 <?php
 function GeneratorPassword(){
