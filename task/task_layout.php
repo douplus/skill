@@ -49,7 +49,7 @@
 			<header>
 				<dl>
 					<dt class="task_user-male">&nbsp;</dt>
-					<dd itemprop="user" class="task_user_data">魯夫</dd>
+					<dd itemprop="user" class="task_user_data">魯夫00000</dd>
 				</dl>
 				<dl>
 					<dt class="task_skill">&nbsp;</dt>

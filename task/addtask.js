@@ -22,7 +22,7 @@ $(document).ready(function(){
     if (a == 1) {
         $.ajax({    
               url: '../php/posttask.php',
-              data: {"select":task_select,"tittle":post_tittle,"content":post_content,"task_id":task_id},
+              data: {"select":task_select,"tittle":post_tittle,"content":post_content,"task_id":task_id,"task_poster_id": JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid},
               type: 'POST',
               dataType: 'html',
               success: function(msg){

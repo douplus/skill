@@ -8,52 +8,13 @@
     <link rel="stylesheet" href="../../css/discuss.css"/> 
 	<link rel="stylesheet" href="../../library/tipsy.css"/>
     <title>Skill 神人網</title>
-	<script>localStorage.removeItem('jqData');localStorage.removeItem('task_jsData');</script>
+	<script src="../../library/jquery-2.0.3.min.js"></script>
+	<script src="../../library/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="../../library/jquery.nailthumb.1.1.min.js"></script>
+	<script src="../../library/jquery.tipsy.js"></script>
+	<script src="../../library/bootstrap.min.js"></script>
+	<script src="./discuss.js"></script>
 </head>
-<script>
-	(function(){    // include jQuery.js
-		var jq_file = '../../library/jquery-2.0.3.min.js';
-		var jqData = localStorage.jqData || null;
-		if( jqData === null ){    // Load jQuery
-			var xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function(){
-				if( xhr.readyState == 4 ){
-					eval( xhr.responseText );
-					localStorage.jqData = xhr.responseText;
-					IncludeJS();
-				}else{
-					return;   
-				}
-			};
-			xhr.open( 'GET', jq_file, true );
-			xhr.send();
-		}else{    // Cache jQuery.js
-			eval(jqData);
-			IncludeJS();
-		}
-		function IncludeJS(){    // include js files
-			var js_file = new Array('../../library/jquery-ui-1.10.3.custom.min.js', 
-									'../../library/js_cookies.js',
-									'../../library/jquery.nailthumb.1.1.min.js',
-									'../../library/jquery.tipsy.js',
-									'../../library/bootstrap.min.js',
-									'./discuss.js');
-			var co_jsData = localStorage.co_jsData || null;
-			if( co_jsData === null ){
-				var data = '';
-				$.ajax({ type: 'GET', async : false, url: js_file[0] }).done(function(res){ data += res; });
-				$.ajax({ type: 'GET', async : false, url: js_file[1] }).done(function(res){ data += res; });
-				$.ajax({ type: 'GET', async : false, url: js_file[2] }).done(function(res){ data += res; });
-				$.ajax({ type: 'GET', async : false, url: js_file[3] }).done(function(res){ data += res; });
-				$.ajax({ type: 'GET', async : false, url: js_file[4] }).done(function(res){ localStorage.co_jsData = res+data; });
-			}else{
-				eval(co_jsData);
-			}
-			$.ajax({ type: 'GET', async : false, url: js_file[5] }).done(function(res){});
-		};
-	})();
-</script>
-
 <body>
 	<nav id="discuss_nav">
 		<ul id="discuss_list">
@@ -62,7 +23,7 @@
 				<i class="back_bottom"></i>
 				<i class="back_front"></i>
 			</div>
-			<li id="discuss_title">我想學煮菜</li>
+			<li id="task_top_tittle">我想學煮菜</li>
 		</ul>
 	</nav>
 	<article id="container">
@@ -94,7 +55,7 @@
 							</div>
 							<div class="_co_box_qu_framework1_2">								
 								<h1 id="task_tittle"class="tittle"style="padding-bottom: 10px; border-bottom: 2px solid #D5D5D5; font-size: 30px;">我想學騙術</h1>
-								<div class="_co_box_qu_content2">
+								<div id="task_content"class="_co_box_qu_content2">
 								最近25了在打拉鋸，發現打人都不痛，才知道他們都有把裝備升等...
 								我 只升完武器就沒材料了，但是還有一堆裝備沒升到...
 								我都自己挖水晶做裝備在把它分解，但是這樣好慢喔@@"
@@ -105,7 +66,7 @@
 								<a href="" title="short permalink to this question" class="short-link" >share</a>
 								<span class="lsep">|</span>
 								<a href="" class="suggest-edit-post" title="">improve this question</a>
-								<p >&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp &nbsp&nbsp&nbsp&nbsp
+								<p id="task_timestamp" style="margin-left: 80px;">
 									Mar 28 '11 at 13:03</p>
 							</div> 
 						</div>            

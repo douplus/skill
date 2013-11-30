@@ -5,7 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 	<title>Skill-任務</title>
 	<!-- load : CSS files -->
-	<?php include('../master/css_files.php'); ?>
+	<?php include('../master/css_files.php'); 
+		  include('../php/showtask.php'); 
+	?>
 	<!-- load : end of CSS files -->
 	<script src="../library/jquery-2.0.3.min.js"></script>
 	<script src="../library/jquery.pjax.js"></script>

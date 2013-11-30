@@ -469,11 +469,10 @@ height: 16px;
 width: 16px;
 margin-right: 8px;
 vertical-align: -3px;
-background-position: -52px 0;
 }
 .icon-sign{
 display: inline-block;
-background-image: url(http://static.zhihu.com/static/img/201304_sign/signup-1.3.png);
+background-image: url('../Images/error_blue.png');
 background-repeat: no-repeat;
 }
 .another-signup{

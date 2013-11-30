@@ -247,10 +247,14 @@ width: 40px;
 height: 40px;
 }
 #top_nav_UserImg{
-width: 30px;  
-height: 30px;  
-padding: 5px;
+width: 40px;
+height: 40px;
+padding: 0;
 cursor: pointer;
+border-radius: 5px;
+-webkit-box-shadow: 1px 1px 5px 1px #EBE5D7;
+-moz-box-shadow: 1px 1px 5px 1px #EBE5D7;
+box-shadow: 1px 1px 5px 1px #EBE5D7;
 }
 #top_nav-user_wrapper{
 position: absolute;

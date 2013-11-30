@@ -9,9 +9,6 @@
 				<section id ="post-form">
 					<div class="task_select-area">
 						<select id="post_task_select">
-							<option value="all">全部任務</option>
-							<option value="context">依內容</option>
-							<option value="tag">依標籤</option>
 							<option value="disabled" style="color: #333;">↓依分類↓</option>
 							<option value="classify-pc_and_network">電腦網路</option>
 							<option value="classify-life">生活資訊</option>
@@ -71,6 +68,38 @@
 						</div>
 					</section>
 					<input id="UserImg_upload" name="upload" type="file" onchange="selectImage(this.files)">
+				</article>
+			</div>
+		</article>
+	</section>
+	<section box-role="change_passwd" class="dom_hidden">
+		<header>
+			<div class="box_title chinese">更改密碼</div>
+			<div class="box_leave chinese" id="change_passwd_leave">離開</div>
+		</header>
+		<article>
+			<div class="wrapper">
+				<article class="passwd_wrapper">
+					<div class="input-password">
+						<input type="password" id="change_passwd-old" minlength="6" maxlength="128" placeholder="目前的密碼">
+					</div>
+					<section class="input-password-forget">
+						<div id="forget-password" class="chinese">忘記密碼?</div>
+					</section>
+					<div class="input-password-new">
+						<input type="password" id="change_passwd-new" minlength="6" maxlength="128" placeholder="新密碼">
+					</div>
+					<div class="input-password-again">
+						<input type="password" id="change_passwd-again" minlength="6" maxlength="128" placeholder="確認密碼">
+					</div>
+					<div class="input-failure ">
+						<ul id="change_passwd-summary">
+							<li><i class="icon-sign icon-sign-error"></i>未填寫名稱</li>
+						</ul>
+					</div>
+					<div class="button-command">
+						<button class="btn-color" id="change_passwd-save" type="submit">儲存變更</button>
+					</div>
 				</article>
 			</div>
 		</article>

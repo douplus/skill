@@ -18,6 +18,12 @@ $(function(){
 	$('#user_img_leave').click(function(){  // 離開 更改大頭貼 介面
 		$('#box').attr('role-now', '').addClass('dom_hidden').children('[box-role=user_img]').addClass('dom_hidden');
 	});
+	$('#change_passwd_leave').click(function(){  // 離開 變更密碼 介面
+		$('#box').attr('role-now', '').addClass('dom_hidden').children('[box-role=change_passwd]').addClass('dom_hidden');
+	});
+	$('#change_passwd-save').click(function(){  // 儲存 變更密碼
+		$('#box').attr('role-now', '').addClass('dom_hidden').children('[box-role=change_passwd]').addClass('dom_hidden');
+	});
 });
 $(function(){
 	$('#UserImg_upload-btn').click(function(){
@@ -83,6 +89,8 @@ $(document).on('click', '#account_container em.account_modify',function(){  // �
 		case 'account_experience':
 		case 'account_about':
 		case 'account_motto':
+		case 'account_education':
+		case 'account_email':
 			var $a = $(this).parent();
 			var a = $a.prev().children().text();
 			$a.prev().addClass('dom_hidden').prev().removeClass('dom_hidden').children().val( a );
@@ -103,6 +111,8 @@ $(document).on('click', '#account_container section.account_edit > [_action=canc
 		case 'account_experience':
 		case 'account_about':
 		case 'account_motto':
+		case 'account_education':
+		case 'account_email':
 			var a = $(this).parent().prev().data().temp;
 			$(this).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
 			break;
@@ -139,6 +149,12 @@ $(document).on('click', '#account_container section.account_edit > [_action=save
 		case 'account_motto':
 			SaveMotto( $('#modify_motto').val(), this );
 			break;
+		case 'account_education':
+			SaveEducation( $('#modify_education').val(), this );
+			break;
+		case 'account_email':
+			SaveEmail( $('#modify_email').val(), this );
+			break;
 		case 'account_skill':
 			if( $('#modify_skill').val().trim() == '' ){
 				alert('請輸入技能');
@@ -157,6 +173,14 @@ $(document).on('click', '#account_container section.account_edit > [_action=save
 			break;
 	}
 });
+$(document).on('click', '#change_passwd',function(){  // 進入 變更密碼 介面
+	$('#box').attr('role-now', 'change_passwd').removeClass('dom_hidden').children('[box-role=change_passwd]').removeClass('dom_hidden');
+});
+$(document).on('click', '#re-send_validation',function(){  // 點擊 重寄認證信
+	if( $(this).parent().attr('_status') === 'non-valid' ){
+		console.log('re-send');
+	}
+});
 function Edit_Skill( $a ){  // 編輯 skill
 	var skill = $('#modify_skill').val(); console.log(skill);
 	$a.data('temp', skill).addClass('dom_hidden').next().removeClass('dom_hidden').end().parent().prev().addClass('dom_hidden').prev().removeClass('dom_hidden').children('#modify_skill').importTags(skill);
@@ -172,6 +196,12 @@ function SaveAbout(a,b){  // 儲存 關於我
 	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
 }
 function SaveMotto(a,b){  // 儲存 名言
+	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+}
+function SaveEducation(a,b){  // 儲存 學歷
+	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
+}
+function SaveEmail(a,b){  // 儲存 Email
 	$(b).parent().addClass('dom_hidden').prev().removeClass('dom_hidden').parent().prev().removeClass('dom_hidden').children().text(a).end().prev().addClass('dom_hidden');
 }
 function SaveSkill(a,b){  // 儲存 skill
