@@ -16,6 +16,7 @@
 	<script src="../task/task.js"></script>
 	<script src="../profile/cv.js"></script>
 	<script src="./account.js"></script>
+	<script src="./follow.js"></script>
 	<script src="../information/information.js"></script>
 	<script src="../information/modernizr.custom.18273.js"></script>
 	<script src="../task/addtask.js"></script>
