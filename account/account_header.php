@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
-	<title>Skill-任務</title>
+	<meta name="ip" content="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
+	<title>Skill-帳戶</title>
 	<!-- load : CSS files -->
 	<?php include('../master/css_files.php'); ?>
 	<!-- load : end of CSS files -->
@@ -16,7 +17,7 @@
 	<script src="../task/task.js"></script>
 	<script src="../profile/cv.js"></script>
 	<script src="./account.js"></script>
-	<script src="./follow.js"></script>
+	<script src="../js/follow.js"></script>
 	<script src="../information/information.js"></script>
 	<script src="../information/modernizr.custom.18273.js"></script>
 	<script src="../task/addtask.js"></script>

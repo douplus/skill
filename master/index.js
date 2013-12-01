@@ -134,7 +134,49 @@ function StartUsing(){    // 使用者開始使用 skill，設定 ip address and
 	});
 }
 function SetIP(){    // 使用者開始使用 skill，設定 ip address and score
-	$.ajax({    // 抓取 IP
+	$.ajax({    // 設定 IP
+		url: '../php/user_ip.php',
+		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, userip: $('meta[name=ip]').attr('content') },
+		type: 'POST',
+		dataType: 'html',
+		success: function(msg){  //console.log(msg);
+			msg = msg.split('@');
+			if( msg[0] == 'success' ){
+				console.log( msg[1] );
+			}else if( msg[0] == 'error' ){
+				console.log( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			console.log('資料格式正確，但是伺服器 設定 IP 發生錯誤。');
+		}
+	});
+	/*$.getJSON("http://jsonip.appspot.com?callback=?",
+		function(data){
+		   sessionStorage.setItem( 'where', JSON.stringify( data ) );
+			$.ajax({    // 設定 IP
+				url: '../php/user_ip.php',
+				data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, userip: data.ip },
+				type: 'POST',
+				dataType: 'html',
+				success: function(msg){  //console.log(data);
+					msg = msg.split('@');
+					if( msg[0] == 'success' ){
+						console.log( msg[1] );
+					}else if( msg[0] == 'error' ){
+						console.log( msg[1] );
+					}
+				},
+				error:function(xhr, ajaxOptions, thrownError){ 
+					console.log(xhr.status); 
+					console.log(thrownError);
+					console.log('資料格式正確，但是伺服器 設定 IP 發生錯誤。');
+				}
+			});
+	});
+	/*$.ajax({    // 抓取 IP
 		url: 'http://smart-ip.net/geoip-json?callback=?',
 		dataType: 'json',
 		success: function(data){  //console.log(data);
@@ -164,7 +206,7 @@ function SetIP(){    // 使用者開始使用 skill，設定 ip address and scor
 			console.log(thrownError);
 			console.log('資料格式正確，但是 smart-ip.net 發生錯誤。');
 		}
-	});
+	});*/
 }
 function CheckMaster(){    // 使用者開始使用 skill，設定 ip address and score
 	var a = $.timestamp.get({readable: true}).split(' ')[0];

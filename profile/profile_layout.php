@@ -168,6 +168,7 @@ function CheckScore($a){
 	</article>
 	<article id="cv_tabs-4" class="dom_hidden">
 		<div style="position: relative;width: 96%;margin: 10px 2%;">
+			<?php include('../php/follow_layout.php');?>
 		</div>
 	</article>
 </div>

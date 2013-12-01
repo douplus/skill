@@ -3,7 +3,8 @@
 <head>
     <meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
-	<title>Skill-任務</title>
+	<meta name="ip" content="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
+	<title>Skill-履歷</title>
 	<!-- load : CSS files -->
 	<?php include('../master/css_files.php'); ?>
 	<!-- load : end of CSS files -->
@@ -21,6 +22,7 @@
 	<script src="../task/addtask.js"></script>
 	<script src="../library/imageSlice.js"></script>
 	<script src="../library/jquery.tagsinput.min.js"></script>
+	<script src="../js/follow.js"></script>
 <script>
 	(function(){    // include jQuery.js
 		function CheckLogin(){    // 檢查使用者是否登入
