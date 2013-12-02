@@ -85,6 +85,7 @@ $.viewport.set();
 </script>
 </head>
 <body>
+	<?php include('../php/error_layout.php'); ?>
 	<section id="init-overlay" class=""></section>
 	<article id="preloader" class="dom_hidden">
 		<h3><img src="../Images/preloader.gif"><span></span></h3>

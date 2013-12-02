@@ -11,3 +11,4 @@
 <link rel="stylesheet" href="../css/color.css"/>
 <link rel="stylesheet" href="../library/jquery.tagsinput.css"/>
 <link rel="stylesheet" href="../css/follow.css"/>
+<link rel="stylesheet" href="../css/error.css"/>

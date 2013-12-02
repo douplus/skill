@@ -1,5 +1,6 @@
 $(function(){  // header
 	$('#top_nav_user_wrapperImg').tipsy({gravity: $.fn.tipsy.autoNS, html: true, fade: true});
+	/*
 	$('#a_fixed_arrow_up').click(function(){    // 
 		var $a = $('#fixed_nav [role=top]');
 		var a = parseInt( $a.attr('class').replace('item fixed_nav_item', '') );
@@ -21,7 +22,7 @@ $(function(){  // header
 		}else{
 			alert('已經是最底層了');
 		}
-	});
+	});*/
 	$('#top_nav_UserImg').click(function(){    // 點擊 top nav 使用者大頭像
 		var a = JSON.parse( localStorage.Based_CV );
 		$('#GoToAccount').prevAll('[top-nav=username]').text( a.USERNAME );
@@ -121,7 +122,17 @@ function StartUsing(){    // 使用者開始使用 skill，設定 ip address and
 				}
 				$('#score').text( msg[2] );
 				localStorage.setItem('photo_file', msg[3]);
-				SetPhoto( msg[3] );
+				SetPhoto( msg[3] );    console.log(parseInt( msg[6] ));
+				if( parseInt( msg[4] ) == 0 ){
+					$('#error_log').text('請盡快認證信箱，否則系統將於'+msg[5]+'封鎖您的帳號。').parent().removeClass('dom_hidden');
+				}
+				if( parseInt( msg[6] ) == 1 ){
+					document.write('<script type="text/undefined">');
+					alert('您的信箱超過14天未驗證成功，帳號已被停用。');
+					$.cookie.remove({ name: 'UserInfo', path: '/', domain: '' });
+					localStorage.clear();
+					window.location.href = '../home/index.html';
+				}
 			}else if( msg[0] == 'error' ){
 				alert( msg[1] );
 			}
