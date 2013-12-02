@@ -158,10 +158,11 @@ color: #fff;
 background: #0995D8;
 border: 1px solid #008BD3;
 border-radius: 2px;
-line-height: 22px;
+line-height: 20px;
+height: 20px;
 margin-right: 5px;
 font-size: 13px;
-padding: 2px 5px;
+padding: 0 5px;
 }
 .learn_item_more{
 position: absolute;

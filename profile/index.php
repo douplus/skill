@@ -9,7 +9,9 @@
 <?php if( !$is_pjax ) include('./profile_header.php'); ?>
 <?php
 	$u = isset($_GET['u']) ? $_GET['u'] : '';
-	if( $u == '' ){
+	$v = isset($_GET['v']) ? $_GET['v'] : '';
+	if( $u == '' || $v == '' ){
+		echo '<script>alert("載入資訊發生錯誤。");</script>';
 		echo '<script>window.location.href = "../master/index.php"</script>';
 		exit;
 	}else{

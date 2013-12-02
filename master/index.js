@@ -262,10 +262,11 @@ function GetMaster(){    // 抓神人資料
 	});
 }
 function ShowMaster( a ){    // 顯示神人資料
-	/* USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO */
-	/*    0  ,    1   ,  2  ,   3  ,     4    ,    5    ,  6  ,  7  ,  8 ,    9   ,    10    ,       11     ,  12 ,  13  ,    14   */
+	/* USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO,FOLLOWERS,VIEWERS */
+	/*    0  ,    1   ,  2  ,   3  ,     4    ,    5    ,  6  ,  7  ,  8 ,    9   ,    10    ,       11     ,  12 ,  13  ,    14    ,    15   ,   16   */
 	clearTimeout( $('#learn_container').data().timeoutNum );
 	var o_data = JSON.parse( a ), count = 0, html = '';
+	var userid = JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid;
 	for( var obj in o_data ){ count += 1; }
 	for( var i=0; i<count; i++ ){
 		var a = o_data[i].split('***'), b = a[6].split(',');
@@ -273,11 +274,11 @@ function ShowMaster( a ){    // 顯示神人資料
 		html += '<section class="learn_item master" master-id="'+a[0]+'">\
 					\<div class="learn_item_left">\
 						\<img src="';
-						html += photo+'" alt="loading" title="'+a[7]+'。<p>54 points : 0 followers</p>"/>\
+						html += photo+'" alt="loading" title="'+a[7]+'。<p>'+a[16]+' viewers : '+a[15]+' followers</p>"/>\
 					\</div>\
 					\<div class="learn_item_right">\
 						\<a class="learn_item_more" href="../profile/index.php?u=';
-							html += a[0];
+							html = html + a[0] + '&v=' + userid;
 						html += '" data-pjax="profile" title="履歷">&gt; more...</a>\
 						\<div class="details">\
 							\<dl>\
@@ -300,7 +301,7 @@ function ShowMaster( a ){    // 顯示神人資料
 									html+=a[4];
 						html += '</dd>\
 							\</dl>\
-							\<dl>\
+							\<dl class="dom_hidden">\
 								\<dt class="learn_email">&nbsp;</dt>\
 								\<dd itemprop="email">\
 									\<a class="a_learn_email">'+a[2]+'</a>\

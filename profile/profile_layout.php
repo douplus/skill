@@ -2,7 +2,7 @@
 	header("Content-Type:text/html; charset=utf-8");
 	include('../php/db.php');
 	# 檢查帳號
-	$query = sprintf( "SELECT USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO FROM `1_CV` WHERE USERID = '$u'" );
+	$query = sprintf( "SELECT USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO,VIEWERS FROM `1_CV` WHERE USERID = '$u'" );
 	$result = mysql_query($query) or die('error@系統存取資料出錯。');
 	if( mysql_num_rows($result) == 1 ){
 		$user_ary = array();
@@ -22,10 +22,40 @@
 			$user_ary['SCORE'] = $a['SCORE'];
 			$user_ary['USERIP'] = $a['USERIP'];
 			$user_ary['USER_PHOTO'] = $a['USER_PHOTO'];
+			$user_ary['VIEWERS'] = $a['VIEWERS'];
+			break;
 		}
 	}else{
+		echo '<script>alert("載入資訊發生錯誤。");</script>';
 		echo '<script>window.location.href = "../master/index.php"</script>';
 		exit;
+	}
+	
+	# 檢查觀看者帳號
+	$query = sprintf( "SELECT USERNAME,USER_PHOTO,FOLLOWERS,VIEWERS FROM `1_CV` WHERE USERID = '$v'" );
+	$result = mysql_query($query) or die('error@系統存取資料出錯。');
+	if( mysql_num_rows($result) == 1 ){
+		$viewer_ary = array();
+		while( $a = mysql_fetch_array($result) ){
+			$viewer_ary['USERNAME'] = $a['USERNAME'];
+			$viewer_ary['USER_PHOTO'] = $a['USER_PHOTO'];
+			$viewer_ary['FOLLOWERS'] = $a['FOLLOWERS'];
+			$viewer_ary['VIEWERS'] = $a['VIEWERS'];
+			break;
+		}
+	}else{
+		echo '<script>alert("載入資訊發生錯誤。");</script>';
+		echo '<script>window.location.href = "../master/index.php"</script>';
+		exit;
+	}
+	
+	$new_view = (int)$user_ary['VIEWERS'];
+	$new_score = (float)$user_ary['SCORE'];
+	if( $v != $u ){  # 設定 viewers
+		$new_view += 1;
+		$new_score += 0.1;
+		$query = sprintf( "UPDATE `1_CV` SET VIEWERS = '$new_view', SCORE = '$new_score' WHERE USERID = '$u'" );
+		$result = mysql_query($query) or die('error@伺服器設定 viewers & score 失敗。');
 	}
 ?>
 <?php
@@ -53,11 +83,11 @@ function CheckScore($a){
 		<div class="cv_user">
 			<dl>
 				<dt class="cv_user-<?php echo CheckGender( $user_ary['GENDER'] );?>">&nbsp;</dt>
-				<dd class="chinese" itemprop="user"><?php echo $user_ary['USERNAME']; ?></dd>
+				<dd class="chinese" itemprop="user" title="<?php echo 'viewers: '.$new_view;?>"><?php echo $user_ary['USERNAME']; ?></dd>
 			</dl>
 			<div class="cv_score">
 				<?php 
-					$score_ary_temp = CheckScore( $user_ary['SCORE'] );
+					$score_ary_temp = CheckScore( $new_score );
 					echo '<span class="badge1"></span>';
 					echo '<span _badge="gold" class="badgecount">'.$score_ary_temp['gold'].'</span> ';
 					echo '<span class="badge2"></span>';
@@ -89,7 +119,7 @@ function CheckScore($a){
 				<dt class="cv_education">&nbsp;</dt>
 				<dd itemprop="education"><?php echo $user_ary['DEPARTMENT']; ?></dd>
 			</dl>
-			<dl>
+			<dl class="dom_hidden">
 				<dt class="cv_email">&nbsp;</dt>
 				<dd itemprop="email">
 					<a class="a_learn_email"><?php echo $user_ary['EMAIL']; ?></a>
