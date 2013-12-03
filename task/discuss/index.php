@@ -14,6 +14,7 @@
 	<script src="../../library/jquery.tipsy.js"></script>
 	<script src="../../library/bootstrap.min.js"></script>
 	<script src="../retask.js"></script>
+	<script src="../re_showtask.js"></script>
 	<script src="./discuss.js"></script>
 </head>
 

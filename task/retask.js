@@ -26,7 +26,8 @@ $('#re_task_submit').click(function(){
                 console.log(thrownError);
               }
             });
-          alert('創建任務成功');    
+          alert('創建任務成功'); 
+          window.location.reload();   
     };	    
 	    
 });
