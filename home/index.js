@@ -592,7 +592,11 @@ function SetSkillNext(){    // 設定帳號：下一步
 	for( var i=0; i<$a.length; i++ ){
 		var temp = $( $a[i] ).children('span').text().trim();
 		if( CheckStr( temp ) ){
-			str1 += ','+temp;
+			if( temp == 'example' ){
+				return alert('技能欄位不能是 example。');
+			}else{
+				str1 += ','+temp;
+			}
 		}else{
 			return alert('技能欄位只能是"中英文"、"數字"、"-"和"_"。');
 		}
@@ -600,7 +604,11 @@ function SetSkillNext(){    // 設定帳號：下一步
 	for( var i=0; i<$b.length; i++ ){
 		var temp = $( $b[i] ).children('span').text().trim();
 		if( CheckStr( temp ) ){
-			str2 += ','+temp;
+			if( temp == 'example' ){
+				return alert('需求欄位不能是 example。');
+			}else{
+				str2 += ','+temp;
+			}
 		}else{
 			return alert('需求欄位只能是"中英文"、"數字"、"-"和"_"。');
 		}

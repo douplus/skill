@@ -11,7 +11,6 @@
 	$$join_time = '';
 	
 	# 取得 user 帳號
-	//$query = sprintf( "SELECT USER_PHOTO, LASTUSING_TIME, SCORE FROM `1_CV` WHERE USERID = '$userid'" );
 	$query = sprintf( "SELECT 1_CV.USER_PHOTO,1_CV.LASTUSING_TIME,1_CV.SCORE,1_CV.JOIN_TIME,1_ACCOUNT.IS_CHECKED FROM `1_CV`,`1_ACCOUNT` WHERE 1_CV.USERID = 1_ACCOUNT.USERID AND 1_CV.USERID = '$userid'" );
 	$result = mysql_query($query) or die('error@錯誤。');
 	while( $a = mysql_fetch_array($result) ){
@@ -26,8 +25,9 @@
 		$is_checked = $a['IS_CHECKED'];
 	}
 	
+	# join-time 往後算14天
 	if( $score == '' || $is_checked == '' || $join_time == '' ){
-		die('error@伺服器設定您的資訊失敗。');
+		die('error@伺服器設定您的資訊失敗。@null');
 	}else if( (int)$is_checked == 0 ){
 		$date = strtotime('+14 day', strtotime($join_time));
 		$date = date('Y-m-d', $date);
@@ -41,6 +41,22 @@
 		if( strtotime($temp_usingtime[0]) > strtotime($date) ){
 			$is_remove = 1;
 		}
+	}
+	
+	if( (int)$is_remove === 1 ){
+		# 移除使用者帳戶
+		$query = sprintf( "DELETE FROM `1_ACCOUNT` WHERE USERID = '$userid'" );
+		$result = mysql_query($query) or die('error@伺服器刪除使用者帳戶失敗。');
+		$query = sprintf( "DELETE FROM `1_CV` WHERE USERID = '$userid'" );
+		$result = mysql_query($query) or die('error@伺服器刪除使用者帳戶失敗。');
+		$query = sprintf( "DELETE FROM `1_NEED` WHERE USERID = '$userid'" );
+		$result = mysql_query($query) or die('error@伺服器刪除使用者帳戶失敗。');
+		$query = sprintf( "DELETE FROM `1_SKILL` WHERE USERID = '$userid'" );
+		$result = mysql_query($query) or die('error@伺服器刪除使用者帳戶失敗。');
+		$query = sprintf( "DELETE FROM `1_TASK` WHERE TASKPOSTERID = '$userid'" );
+		$result = mysql_query($query) or die('error@伺服器刪除使用者帳戶失敗。');
+		$query = sprintf( "DELETE FROM `1_FOLLOW` WHERE FOLLOWING = '$userid' OR FOLLOWER = '$userid'" );
+		$result = mysql_query($query) or die('error@伺服器刪除使用者帳戶失敗。');
 	}
 	
 	# 每日登入 +5 分

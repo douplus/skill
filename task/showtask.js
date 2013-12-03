@@ -1,4 +1,4 @@
-$(function){
+$(function(){
 
 	$.ajax({  
 		url: '../../php/show_task.php',

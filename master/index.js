@@ -101,6 +101,7 @@ function InitialMaster(){
 	}
 }
 function StartUsing(){    // 使用者開始使用 skill，設定 ip address and score
+	console.log('StartUsing');
 	$.ajax({    //
 		url: '../php/start_using.php',
 		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, usingtime: $.timestamp.get({readable: true}) },
@@ -135,6 +136,11 @@ function StartUsing(){    // 使用者開始使用 skill，設定 ip address and
 				}
 			}else if( msg[0] == 'error' ){
 				alert( msg[1] );
+				if( msg[2] == 'null' ){
+					$.cookie.remove({ name: 'UserInfo', path: '/', domain: '' });
+					localStorage.clear();
+					window.location.href = '../home/index.html';
+				}
 			}
 		},
 		error:function(xhr, ajaxOptions, thrownError){ 
