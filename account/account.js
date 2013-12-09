@@ -467,7 +467,7 @@ function SaveMotto(a,b){  // 儲存 名言
 		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, motto: a },
 		dataType: 'html',
 		success: function(msg){
-			//console.log( msg );
+			console.log( msg );
 			msg = msg.split('@');
 			$('#preloader').addClass('dom_hidden');
 			if( msg[0] == 'success' ){

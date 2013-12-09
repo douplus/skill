@@ -34,7 +34,8 @@ $(document).ready(function(){
               }
             });
           alert('創建任務成功');    
-          $('#add_task_leave').trigger('click') 
+          $('#add_task_leave').trigger('click')
+          window.location.reload(); 
     };
   });
 });

@@ -4,7 +4,7 @@ $('#re_task_submit').click(function(){
 
 	var re_task_content = $('#re_task_content').val();
     var a = true;
-    var taskid = 't_1385748264801';
+  
 
     if ( re_task_content == '') {
       $('._co_box_dis_post2').append('<li>請輸入內容</li>');
@@ -15,7 +15,7 @@ $('#re_task_submit').click(function(){
     if (a == 1) {
         $.ajax({    
               url: '../discuss/retask.php',
-              data:{retaskcon : re_task_content , userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid , Taskid : taskid},
+              data:{retaskcon : re_task_content , userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid },
               type: 'POST',
               dataType: 'html',
               success: function(msg){

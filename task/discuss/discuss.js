@@ -19,6 +19,7 @@ $(function(){
 
     $.ajax({  
 		url: '../../php/get_task.php',
+		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid},		
 		type: 'POST',
 		dataType: 'html',
 		success: function(msg){
@@ -32,6 +33,8 @@ $(function(){
 
 		function ShowTask(msg){
 			msg = msg.split('@@');
+
+			
 			/*USERNAME, DEPARTMENT, SKILL, SCORE, USER_PHOTO*/
 			var a = msg[1].split('***');
 			/*TASKID, CLASSIFY, TITTLE, CONTENT, TIMESTAMP*/
@@ -42,6 +45,8 @@ $(function(){
 			length = skill.length;
 			console.log(a);
 			console.log(b);
+			console.log(skill);
+			html='';
 			$('#task_poster').attr('src',photo);
 			$('#task_name').text('姓名:'+a[0]);
 			$('#task_department').text('學校:'+a[1]);
@@ -51,8 +56,13 @@ $(function(){
 			$('#task_content').text(b[3]);
 			$('#task_timestamp').text(date[5]+date[6]+' / '+date[8]+date[9]+' At '+date[11]+date[12]+' : '+date[14]+date[15]);
 			for( var i=0; i<length; i++ ){
-			$('#task_skill').append('<span id ="aa">'+skill[i]+'</span>')	
-			}	
+			html += '<span id ="aa">'+skill[i]+'</span>';
+			}
+			console.log(html);
+			$('#task_skill').html(html);
+			console.log('msg[3]');
+			console.log(msg[3]);
+			$('#user_poster').attr('src','../../photo/'+msg[3]);		
 		}
 });
 

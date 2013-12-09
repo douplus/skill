@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
 	$.ajax({  
 		url: '../../php/re_showtask.php',
 		type: 'POST',
@@ -15,29 +15,25 @@ $(document).ready(function(){
 
 		function ShowReTask(a){
 			
-			var a = new Array();
-			/*TASKID, USERID, CONTENT, TIMESTAMP*/
+			/*CONTENT, TIMESTAMP, USERNAME, USER_PHOTO*/
 			var o_data = JSON.parse( a ), count = 0, html = '';
 		for( var obj in o_data ){ count += 1; }
 			for( var i=0; i<count; i++ ){
-				var a = o_data[i].split('***');
+				ary = o_data[i].split('***');
 
-	html += '<div class="_co_box_dis" style="border-bottom: 2px solid #E4E4E4;">\
-				\<div class="_co_box_dis_framework1">\
-					\<div class=" nailthumb-container square-thumb img-circle">\
-						\<img class="img-circle" src="../../img/image7.jpg">\									
-					\</div>\
-						\<a id="btn_cooperation_a" href="#myModal" role="button" class="btn" data-toggle="modal" style="margin-top: 3px;">合作</a>\
-				\</div>\
-				\<div class="_co_box_dis_framework2 ">\
-					\<span style="position: relative; float: left;"><a href="">'+a[1]+'</a></span>';
-				html +=	'<div class="_co_box_dis_anstime">&nbsp&nbsp&nbsp&nbsp&nbsp answered'+a[3]+'</div>';            
-				html +=	 a[2];                             
-		html +='</div>\
-			\</div>';				
+	html += '<div class="_co_box_dis" style="border-bottom: 2px solid #E4E4E4;">'+
+				'<div class="_co_box_dis_framework1">'+
+					'<div class=" nailthumb-container square-thumb img-circle">'+
+						'<img class="img-circle" src="../../photo/'+ary[3]+'">'+									
+					'</div>'+
+						'<a id="btn_cooperation_a" href="#myModal" role="button" class="btn" data-toggle="modal" style="margin-top: 3px;">合作</a>'+
+				'</div>'+
+				'<div class="_co_box_dis_framework2 ">'+
+					'<span style="position: relative; float: left;"><a href="">'+ary[2]+'</a></span>';
+				html +=	'<div class="_co_box_dis_anstime">&nbsp&nbsp&nbsp&nbsp&nbsp answered'+ary[1]+'</div>';            
+				html +=	 ary[0];                             
+		html +='</div></div>';				
 			}
-			
+	$('._co_box_dis_wrapper').html( html );
 		}
-
-
 });

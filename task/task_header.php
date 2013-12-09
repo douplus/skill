@@ -27,6 +27,7 @@
 	<script src="../library/imageSlice.js"></script>
 	<script src="../library/jquery.tagsinput.min.js"></script>
 	<script src="../js/follow.js"></script>
+	<script src="./showtask.js"></script>
 <script>
 	(function(){    // include jQuery.js
 		CheckLogin();

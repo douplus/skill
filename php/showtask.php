@@ -1,19 +1,13 @@
-<?php 
+<?php
 	include('./db.php');
 
-	$alltask_ary = array();
-	//取得所有任務資訊
-	$query = "select * from `1_TASK` ORDER BY TIMESTAMP DESC";
-	$res = mysql_query($query) or die('error@取得所有任務資訊錯誤。')
-	$alltask_ary = '';
-	while( $a = mysql_fetch_array($res) ){
-		$alltask_ary[] = $a[TASKID].'***'.$a[TITTLE].'***'.$a[CONTENT].'***'.$a[TIMESTAMP].'***'.$a[TASKPOSTERID];
+	$query = sprintf( "SELECT 1_TASK.TASKID,1_TASK.CLASSIFY,1_TASK.TITTLE,1_CV.USERNAME,1_CV.SKILL FROM `1_TASK`,`1_CV` WHERE 1_TASK.TASKPOSTERID = 1_CV.USERID ORDER BY 1_TASK.TIMESTAMP" );
+	$result = mysql_query($query) or die('error@錯誤。');
+
+	while( $a = mysql_fetch_array($result) ){
+	$alltask_ary[] = $a['TASKID'].'***'.$a['CLASSIFY'].'***'.$a['TITTLE'].'***'.$a['USERNAME'].'***'.$a['SKILL'];
 	}
 
-	if( $alltask_ary == ''){
-		echo 'error@@取得所有任務資訊錯誤。';
-	}else{
-		echo 'success@@'.json_encode( (object)$alltask_ary );
-	}
+	echo 'success@@'.json_encode( (object)$alltask_ary );
 
 ?>

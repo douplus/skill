@@ -1,7 +1,10 @@
 <?php
 include('../../php/db.php');
-	
-	$taskid = $_POST['Taskid'];
+
+
+	session_start(); 	
+	$taskid = $_SESSION['task_id'];
+
 	$retaskuser = $_POST['userid'];
 	$retaskcontent = $_POST['retaskcon'];
 

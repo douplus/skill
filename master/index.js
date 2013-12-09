@@ -262,7 +262,7 @@ function GetMaster(){    // 抓神人資料
 		type: 'POST',
 		dataType: 'html',
 		success: function(msg){
-			//console.log( msg );
+			console.log( msg );
 			msg = msg.split('@@');
 			if( msg[0] == 'success' ){
 				localStorage.setItem( 'Master_info', msg[1] );
@@ -279,8 +279,8 @@ function GetMaster(){    // 抓神人資料
 	});
 }
 function ShowMaster( a ){    // 顯示神人資料
-	/* USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO,FOLLOWERS,VIEWERS */
-	/*    0  ,    1   ,  2  ,   3  ,     4    ,    5    ,  6  ,  7  ,  8 ,    9   ,    10    ,       11     ,  12 ,  13  ,    14    ,    15   ,   16   */
+	/* USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO,FOLLOWERS,VIEWERS,M_SCORE */
+	/*    0  ,    1   ,  2  ,   3  ,     4    ,    5    ,  6  ,  7  ,  8 ,    9   ,    10    ,       11     ,  12 ,  13  ,    14    ,    15   ,   16   ,   17   */
 	clearTimeout( $('#learn_container').data().timeoutNum );
 	var o_data = JSON.parse( a ), count = 0, html = '';
 	var userid = JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid;
@@ -340,7 +340,7 @@ function ShowMaster( a ){    // 顯示神人資料
 						\</div>\
 						\<div class="others">\
 							\<p itemprop="motto">'+a[7]+'</p>\
-							\<strong>Score:<span itemprop="motto-score">100</span></strong>\
+							\<strong>Score:<span itemprop="motto-score">'+a[17]+'</span></strong>\
 						\</div>\
 					\</div>\
 				\</section>';

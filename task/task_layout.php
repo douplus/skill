@@ -1,3 +1,5 @@
+	<script src="./showtask.js"></script>
+
 <nav id="task_nav">
 	<section>
 		<div id="task_nav-left">
@@ -49,7 +51,7 @@
 			<header>
 				<dl>
 					<dt class="task_user-male">&nbsp;</dt>
-					<dd itemprop="user" class="task_user_data">魯夫00000</dd>
+					<dd itemprop="user" class="task_user_data">魯夫000</dd>
 				</dl>
 				<dl>
 					<dt class="task_skill">&nbsp;</dt>
