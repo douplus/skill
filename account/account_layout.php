@@ -54,33 +54,35 @@ function CheckGender($a){
 </nav>
 <div id="account_container">
 	<article id="account_tabs-1">
-		<section class="account_user" style="text-align: center;">
-			<dl>
-				<dt class="account_user-<?php echo CheckGender( $user_ary['GENDER'] );?>">&nbsp;</dt>
-				<dd class="chinese" itemprop="user"><?php echo $user_ary['USERNAME']; ?></dd>
-			</dl>
-		</section>
-		<section class="account_passwd">
-			<div _role="account_passwd" id="change_passwd">&nbsp;</div>
-			<p class="chinese">更改密碼</p>
-			<div class="account_right">
-				<i class="account_right-bottom"></i>
-				<i class="account_right-front"></i>
-			</div>
-		</section>
-		<?php
-			if( (int)$user_ary['IS_CHECKED'] == 1 ){
-				echo '<section class="account_validation" style="opacity: 0.6" _status="valid">';
-			}else{
-				echo '<section class="account_validation _status="non-valid">';
-			}
-		?>
-			<div _role="account_validation" id="re-send_validation">&nbsp;</div>
-			<p class="chinese">重寄驗證信</p>
-			<div class="account_right">
-				<i class="account_right-bottom"></i>
-				<i class="account_right-front"></i>
-			</div>
+		<section>
+			<section class="account_user" style="text-align: center;">
+				<dl>
+					<dt class="account_user-<?php echo CheckGender( $user_ary['GENDER'] );?>">&nbsp;</dt>
+					<dd class="chinese" itemprop="user"><?php echo $user_ary['USERNAME']; ?></dd>
+				</dl>
+			</section>
+			<section class="account_passwd">
+				<div _role="account_passwd" id="change_passwd">&nbsp;</div>
+				<p class="chinese">更改密碼</p>
+				<div class="account_right">
+					<i class="account_right-bottom"></i>
+					<i class="account_right-front"></i>
+				</div>
+			</section>
+			<?php
+				if( (int)$user_ary['IS_CHECKED'] == 1 ){
+					echo '<section class="account_validation" style="opacity: 0.5; background: #eee;" _status="valid">';
+				}else{
+					echo '<section class="account_validation" _status="non-valid">';
+				}
+			?>
+				<div _role="account_validation" id="re-send_validation">&nbsp;</div>
+				<p class="chinese">重寄驗證信</p>
+				<div class="account_right">
+					<i class="account_right-bottom"></i>
+					<i class="account_right-front"></i>
+				</div>
+			</section>
 		</section>
 		<section class="account_email">
 			<?php
@@ -242,6 +244,7 @@ function CheckGender($a){
 	</article>
 	<article id="account_tabs-3" class="dom_hidden">
 		<div style="position: relative;width: 96%;margin: 10px 2%;">
+		<!--
 				<section class="co_item">
 					<div>
 						<section class="co_qu">
@@ -308,6 +311,7 @@ function CheckGender($a){
 					</div>
 					<a class="co_item_more" href="./cooperation/index.php" title="查看更多">&gt; more...</a>
 				</section>
+				-->
 		</div>
 	</article>
 	<article id="account_tabs-4" class="dom_hidden">

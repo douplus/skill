@@ -238,17 +238,6 @@ line-height: 16px;
 font-size: 13px;
 font-style: normal;
 }
-#change_passwd,
-#re-send_validation{
-position: absolute;
-width: 100%;
-height: 100%;
-left: 0;
-top: 0;
-cursor: pointer;
-z-index: 35;
-border-radius: 5px;
-}
 .account_modify_area{
 border-top: 1px solid #ddd;
 margin: 0 5px;
@@ -669,3 +658,31 @@ max-width: 900px;
 }
 }
 /**/
+.account_validation,
+.account_passwd,
+.account_user{
+position: relative;
+}
+.account_passwd,
+.account_user{
+border-bottom: 1px solid #ccc;
+}
+#change_passwd{
+position: absolute;
+width: 100%;
+height: 100%;
+left: 0;
+top: 0;
+cursor: pointer;
+z-index: 35;
+}
+#re-send_validation{
+position: absolute;
+width: 100%;
+height: 100%;
+left: 0;
+top: 0;
+cursor: pointer;
+z-index: 35;
+border-radius: 0 0 5px 5px;
+}
