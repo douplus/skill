@@ -35,5 +35,6 @@ $(function(){
 		html +='</div></div>';				
 			}
 	$('._co_box_dis_wrapper').html( html );
+
 		}
 });

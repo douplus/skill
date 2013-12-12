@@ -60,9 +60,9 @@ $(function(){
 			}
 			console.log(html);
 			$('#task_skill').html(html);
-			console.log('msg[3]');
-			console.log(msg[3]);
-			$('#user_poster').attr('src','../../photo/'+msg[3]);		
+			$('#user_poster').attr('src','../../photo/'+msg[3]);
+
+			$('#myModalLabel').text(b[2]);		
 		}
 });
 

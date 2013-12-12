@@ -1,6 +1,7 @@
 <?php
 	header("Content-Type:text/html; charset=utf-8");
 	include('../php/db.php');
+
 	# 檢查帳號
 	$query = sprintf( "SELECT USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO,VIEWERS FROM `1_CV` WHERE USERID = '$u'" );
 	$result = mysql_query($query) or die('error@系統存取資料出錯。');
@@ -54,8 +55,26 @@
 	if( $v != $u ){  # 設定 viewers
 		$new_view += 1;
 		$new_score += 0.1;
-		$query = sprintf( "UPDATE `1_CV` SET VIEWERS = '$new_view', SCORE = '$new_score' WHERE USERID = '$u'" );
+		$query = sprintf( "UPDATE `1_CV` SET VIEWERS = VIEWERS + 1, SCORE = '$new_score' WHERE USERID = '$u'" );
 		$result = mysql_query($query) or die('error@伺服器設定 viewers & score 失敗。');
+	}
+	
+	# 檢查 關注
+	$query = sprintf( "SELECT * FROM `1_FOLLOW` WHERE FOLLOWER = '$v' AND FOLLOWED = '$u'" );
+	$result = mysql_query($query) or die('error@伺服器查詢 關注 失敗。');
+	if( mysql_num_rows( $result ) > 0 ){  # 已關注
+		$is_follow = 'yes';
+	}else{  # 尚未關注
+		$is_follow = 'no';
+	}
+	
+	# 檢查 開通
+	$query = sprintf( "SELECT * FROM `1_ACTIVATE` WHERE (ACTIVATER = '$u' AND ACTIVATED = '$v') OR (ACTIVATER = '$v' AND ACTIVATED = '$u')" );
+	$result = mysql_query($query) or die('error@伺服器查詢 開通 失敗。');
+	if( mysql_num_rows( $result ) > 0 ){  # 已關注
+		$is_activate = 'yes';
+	}else{  # 尚未關注
+		$is_activate = 'no';
 	}
 ?>
 <?php
@@ -97,7 +116,28 @@ function CheckScore($a){
 					unset( $score_ary_temp );
 				?>                            
 			</div>
-			<input id="cv_follow" class="chinese" type="button" value="關注" user-id="<?php echo $user_ary['USERID']; ?>">
+			<?php
+				if( $v === $u ){  # 
+					echo '<input id="cv_follow" class="chinese" type="hidden" value="關注" user-id="'.$user_ary['USERID'].'">';
+					echo '<input id="cv_unfollow" class="chinese" type="hidden" value="取消關注" user-id="'.$user_ary['USERID'].'">';
+				}else if( $is_follow === 'yes' ){
+					echo '<input id="cv_follow" class="chinese dom_hidden" type="button" value="關注" user-id="'.$user_ary['USERID'].'">';
+					echo '<input id="cv_unfollow" class="chinese" type="button" value="取消關注" user-id="'.$user_ary['USERID'].'">';
+				}else if( $is_follow === 'no' ){
+					echo '<input id="cv_follow" class="chinese" type="button" value="關注" user-id="'.$user_ary['USERID'].'">';
+					echo '<input id="cv_unfollow" class="chinese dom_hidden" type="button" value="取消關注" user-id="'.$user_ary['USERID'].'">';
+				}
+				if( $v === $u ){  # 
+					echo '<input id="cv_activate" class="chinese" type="hidden" value="開通" user-id="'.$user_ary['USERID'].'">';
+				}else if( $is_activate === 'yes' ){
+					echo '<input id="cv_activate" class="chinese" type="button" value="已開通" user-id="'.$user_ary['USERID'].'" style="opacity: 0.5; cursor: default;">';
+				}else if( $is_activate === 'no' ){
+					echo '<input id="cv_activate" class="chinese" type="button" value="開通" user-id="'.$user_ary['USERID'].'">';
+				}
+			?>
+			<script>
+				$('#cv_follow').data( 'follow', <?php echo '\''.$is_follow.'\'';?> ).next().data( 'follow', <?php echo '\''.$is_follow.'\'';?> ).next().data( 'activate', <?php echo '\''.$is_activate.'\'';?> );
+			</script>
 		</div>
 	</section>
 	<ul id="cv_list" _tabbed="#cv_tabs-1">

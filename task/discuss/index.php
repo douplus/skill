@@ -15,7 +15,6 @@
 	<script src="../../library/bootstrap.min.js"></script>
 	<script src="./discuss.js"></script>
 	<script src="../retask.js"></script>
-	<script src="./discuss.js"></script>	
 	<script src="../re_showtask.js"></script>
 
 </head>
@@ -144,11 +143,11 @@ $_SESSION['task_id']=$task_id;
 	</div>
 	<!-- Modal -->
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
+		<div class="modal-header task_co ">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="myModalLabel">二檔的問題?</h3>
 		</div>
-		<div class="modal-body">
+		<div class="modal-body task_co">
 			<textarea rows="4" class="span5"></textarea>
 		</div>
 		<div class="modal-footer">
@@ -156,19 +155,5 @@ $_SESSION['task_id']=$task_id;
 			<button class="btn btn-primary">傳送</button>
 		</div>
 	</div>   
-	<!-- Modal -->
-	<div id="myModa2" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="myModalLabel">二檔的問題?</h3>
-		</div>
-		<div class="modal-body">
-			<textarea rows="4" class="span5"></textarea>
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button>
-			<button class="btn btn-primary">傳送</button>
-		</div>
-	</div>  
 </body>
 </html>

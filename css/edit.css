@@ -1,5 +1,5 @@
-body{
-  background:#e6e6e6;
+﻿body{
+  background:ghostwhite;
 }
 
 .dom-hidden{
@@ -86,35 +86,36 @@ padding: 0 !important;
   list-style: none;
   font-size: 18px;
   line-height: 42px;
-  border-bottom: 2px solid transparent;
-  margin: 0 5px 0 40px;
+  margin: 2px 5px 0 -80px;
   display: inline-block;
   border-color: #427fed;
   font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", sans-serif;
 }
 
 #edit-wrap{
   position:relative;
+  padding-left:10px;
   float:left;
   margin-top:50px;
   width:100%;
 }
 
 .block{
-  height:250px;
-  background:#fff;
+  background:#f2ffff;
   position:relative;
   float:left;
   border:1px solid #d8d8d8;
   border-bottom-width:2px;
   border-radius:7px;
-  margin:10px auto;
+  margin:5px 3px 5px 0;
   padding:10px;
   display: inline-block;
 }
 
 .course-top{
   width:100%;
+  line-height:16px;
   position:relative;
   float:left;
   margin:0;
@@ -123,9 +124,19 @@ padding: 0 !important;
 .course-top > p{
   float:right;
   margin:0;
+  font-family: "Helvetica Neue", Helvetica, Arial, "微軟正黑體", sans-serif;
+  color:#333;
+  font-size:14px;
 }
+
 .course-top > .course-name{
   float:left;
+  color:#4888e7;
+  font-size:16px;
+}
+
+.course-top > .edit-button{
+  cursor:pointer;
 }
 
 .course-content{
@@ -143,13 +154,13 @@ textarea{
   display:none;
 }
 
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 1201px){
   #edit-wrap{
-    -webkit-column-count: 3;
+    -webkit-column-count: 2;
     -webkit-column-gap: 10px;
   }
   .block{
-    width:400px;
+    width:96%;
   }
 }
 
@@ -159,7 +170,7 @@ textarea{
     -webkit-column-gap: 10px;
   }
   .block{
-    width:400px;
+    width:94%;
   }
 }
 

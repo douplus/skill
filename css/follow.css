@@ -11,16 +11,6 @@ max-width: 980px;
 -moz-box-shadow: 0 0 10px 1px #c3c3c3;
 box-shadow: 0 0 10px 1px #c3c3c3;
 }
-.follow_item{
-margin: 16px 20px;
-position: relative;
-}
-.follow_item > .left{
-margin-right: 12px;
-position: relative;
-display: inline-block;
-vertical-align: middle;
-}
 .follow_item > .center{
 color: #666;
 font-size: 16px;
@@ -56,9 +46,8 @@ color: black;
 font-weight: bold;
 line-height: 18px;
 height: 18px;
-cursor: pointer;
 }
-.follow_item > .center > .title:hover{
+.follow_item > .center > .title > a:hover{
 text-decoration: underline;
 }
 .follow_item > .center > .context{
@@ -105,4 +94,32 @@ margin-right: 10px;
 }
 #follow_select > ._s{
 opacity: .4;
+}
+.follow_item > .center > .title > a{
+color: black;
+text-decoration: none;
+}
+@media screen and (min-width: 768px){
+.follow_item{
+margin: 16px 20px;
+position: relative;
+}
+.follow_item > .left{
+margin-right: 12px;
+position: relative;
+display: inline-block;
+vertical-align: middle;
+}
+}
+@media screen and (max-width: 767px){
+.follow_item{
+margin: 16px 10px;
+position: relative;
+}
+.follow_item > .left{
+margin-right: 3px;
+position: relative;
+display: inline-block;
+vertical-align: middle;
+}
 }

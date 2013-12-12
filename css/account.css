@@ -99,7 +99,8 @@ line-height: 30px;
 height: 30px;
 }
 .account_passwd > p,
-.account_validation > p{
+.account_validation > p,
+.account_bonus > p{
 padding: 5px 10px !important;
 height: 30px !important;
 line-height: 30px !important;
@@ -222,6 +223,7 @@ border-width: 10px 10px 10px 0;
 border-right-color: #fff;
 }
 #account_back:hover,
+#account_bonus:hover,
 #change_passwd:hover,
 #re-send_validation:hover,
 #account_container .account_modify:hover,
@@ -660,14 +662,17 @@ max-width: 900px;
 /**/
 .account_validation,
 .account_passwd,
-.account_user{
+.account_user,
+.account_bonus{
 position: relative;
 }
 .account_passwd,
-.account_user{
+.account_user,
+.account_bonus{
 border-bottom: 1px solid #ccc;
 }
-#change_passwd{
+#change_passwd,
+#account_bonus{
 position: absolute;
 width: 100%;
 height: 100%;

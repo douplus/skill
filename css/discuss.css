@@ -43,12 +43,15 @@ background-color: rgba(0, 0, 0, 0.6);
 }
 /**/
 #aa{
-margin-left: 2px;
-cursor: pointer;
-padding: 0 4px;
-border: 1px solid rgba(0,0,0,0.1);
-background: #f1f1f1;
-line-height: 22px;    
+color: #fff;
+background: #0995D8;
+border: 1px solid #008BD3;
+border-radius: 2px;
+line-height: 20px;
+height: 20px;
+margin-right: 5px;
+font-size: 13px;
+padding: 0 5px;   
 }
 
 .square-thumb {
@@ -216,6 +219,9 @@ width: 10px;
 height: 10px;
 background: #CC9966;
 border-radius: 50px;
+}
+.task_co{
+text-align: center;	
 }
 @media screen and (min-width: 981px){
 

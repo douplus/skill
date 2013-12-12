@@ -10,10 +10,17 @@ $(function(){
 			$('#account_list').attr('_tabbed', a).find('li.tabs-active').removeClass('tabs-active');
 			$(this).parent().addClass('tabs-active').blur();
 			$(''+a+'').removeClass('dom_hidden').data('status', true);
+			if( a === '#account_tabs-4' ){
+				GetFollow( JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid );
+			}
 		}
 	});
 	$('#top_nav_user_wrapperImg, #top_nav_user_wrapperImg + span').click(function(){    // 點擊 更改大頭貼
 		$('#box').attr('role-now', 'user_img').removeClass('dom_hidden').children('[box-role=user_img]').removeClass('dom_hidden');
+	});
+	$('#Notification-btn').click(function(){  // 點擊 通知按鈕
+		//$('#box').attr('role-now', 'user_img').removeClass('dom_hidden').children('[box-role=user_img]').removeClass('dom_hidden');
+		alert('即將開放。');
 	});
 	$('#user_img_leave').click(function(){  // 離開 更改大頭貼 介面
 		$('#box').attr('role-now', '').addClass('dom_hidden').children('[box-role=user_img]').addClass('dom_hidden');
@@ -604,3 +611,6 @@ function SaveNeed(a,b){  // 儲存 need
 		}
 	});
 }
+$(document).on('click', '#account_bonus',function(){  // 進入 積分獎勵 介面
+	alert('即將開放。');
+});

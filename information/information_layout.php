@@ -10,10 +10,10 @@
       </label>
       <label for="ani-1" class="back">
 	<p class="chinese">
-	<a>中國文學系</a><br/>
-	<a>外國文學系</a><br/>
-	<a>歷史學系</a><br/>
-	<a>台灣文學系</a><br/>
+	<a href="edit.php">中國文學系</a><br/>
+	<a href="edit.php">外國文學系</a><br/>
+	<a href="edit.php">歷史學系</a><br/>
+	<a href="edit.php">台灣文學系</a><br/>
 	</p>
       </label>
     </div>
@@ -29,11 +29,11 @@
       </label>
       <label for="ani-3" class="back">
 	<p class="chinese">
-	<a>數學系</a><br/>
-	<a>物理系</a><br/>
-	<a>化學系</a><br/>
-	<a>地球科學系</a><br/>
-	<a>光電系</a><br/>
+	<a href="edit.php">數學系</a><br/>
+	<a href="edit.php">物理系</a><br/>
+	<a href="edit.php">化學系</a><br/>
+	<a href="edit.php">地球科學系</a><br/>
+	<a href="edit.php">光電系</a><br/>
 	</p>
       </label>
     </div>
@@ -49,12 +49,12 @@
       </label>
       <label for="ani-5" class="back">
 	<p class="chinese">
-	<a>機械工程學系</a>&nbsp;&nbsp;&nbsp;&nbsp;<a>化學工程學系</a><br/>
-	<a>資源工程學系</a>&nbsp;&nbsp;&nbsp;&nbsp;<a>材料工程學系</a><br/>
-	<a>土木工程學系</a>&nbsp;&nbsp;&nbsp;&nbsp;<a>水利工程學系</a><br/>
-	<a>工科工程學系</a>&nbsp;&nbsp;&nbsp;&nbsp;<a>系統工程學系</a><br/>
-	<a>航太工程學系</a>&nbsp;&nbsp;&nbsp;&nbsp;<a>環境工程學系</a><br/>
-	<a>測量工程學系</a>&nbsp;&nbsp;&nbsp;&nbsp;<a>醫學工程學系</a><br/>
+	<a href="edit.php">機械工程學系</a>&nbsp;&nbsp;&nbsp;&nbsp;<a>化學工程學系</a><br/>
+	<a href="edit.php">資源工程學系</a>&nbsp;&nbsp;&nbsp;&nbsp;<a>材料工程學系</a><br/>
+	<a href="edit.php">土木工程學系</a>&nbsp;&nbsp;&nbsp;&nbsp;<a>水利工程學系</a><br/>
+	<a href="edit.php">工科工程學系</a>&nbsp;&nbsp;&nbsp;&nbsp;<a>系統工程學系</a><br/>
+	<a href="edit.php">航太工程學系</a>&nbsp;&nbsp;&nbsp;&nbsp;<a>環境工程學系</a><br/>
+	<a href="edit.php">測量工程學系</a>&nbsp;&nbsp;&nbsp;&nbsp;<a>醫學工程學系</a><br/>
 	</p>
       </label>
     </div>
@@ -70,11 +70,11 @@
       </label>
       <label for="ani-7" class="back">
 	<p class="chinese">
-	<a>會計系</a><br/>
-	<a>統計系</a><br/>
-	<a>工業資訊管理學系</a><br/>
-	<a>企業管理學系</a><br/>
-	<a>交通管理學系</a><br/>
+	<a href="edit.php">會計系</a><br/>
+	<a href="edit.php">統計系</a><br/>
+	<a href="edit.php">工業資訊管理學系</a><br/>
+	<a href="edit.php">企業管理學系</a><br/>
+	<a href="edit.php">交通管理學系</a><br/>
 	</p>
       </label>
     </div>
@@ -90,11 +90,11 @@
       </label>
       <label for="ani-9" class="back">
 	<p class="chinese">
-	<a>護理系</a><br/>
-	<a>醫技系</a><br/>
-	<a>醫學系</a><br/>
-	<a>物理治療系</a><br/>
-	<a>職能治療系</a><br/>
+	<a href="edit.php">護理系</a><br/>
+	<a href="edit.php">醫技系</a><br/>
+	<a href="edit.php">醫學系</a><br/>
+	<a href="edit.php">物理治療系</a><br/>
+	<a href="edit.php">職能治療系</a><br/>
 	</p>
       </label>
     </div>
@@ -110,10 +110,10 @@
       </label>
       <label for="ani-11" class="back">
 	<p class="chinese">
-	<a>法律系</a><br/>
-	<a>政治系</a><br/>
-	<a>經濟系</a><br/>
-	<a>心理系</a><br/>
+	<a href="edit.php">法律系</a><br/>
+	<a href="edit.php">政治系</a><br/>
+	<a href="edit.php">經濟系</a><br/>
+	<a href="edit.php">心理系</a><br/>
 	</p>
       </label>
     </div>
@@ -129,8 +129,8 @@
       </label>
       <label for="ani-13" class="back">
 	<p class="chinese">
-	<a>電機工程學系</a><br/>
-	<a>資訊工程學系</a><br/>
+	<a href="edit.php">電機工程學系</a><br/>
+	<a href="edit.php">資訊工程學系</a><br/>
 	</p>
       </label>
     </div>
@@ -146,9 +146,9 @@
       </label>
       <label for="ani-15" class="back">
 	<p class="chinese">
-	<a>建築系</a><br/>
-	<a>都市計劃學系</a><br/>
-	<a>工業設計學系</a><br/>
+	<a href="edit.php">建築系</a><br/>
+	<a href="edit.php">都市計劃學系</a><br/>
+	<a href="edit.php">工業設計學系</a><br/>
 	</p>
       </label>
     </div>
@@ -164,7 +164,7 @@
       </label>
       <label for="ani-17" class="back">
 	<p class="chinese">
-	<a>生命系</a><br/>
+	<a href="edit.php">生命系</a><br/>
 	</p>
       </label>
     </div>

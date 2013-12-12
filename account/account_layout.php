@@ -69,6 +69,14 @@ function CheckGender($a){
 					<i class="account_right-front"></i>
 				</div>
 			</section>
+			<section class="account_bonus">
+				<div _role="account_bonus" id="account_bonus">&nbsp;</div>
+				<p class="chinese">積分獎勵</p>
+				<div class="account_right">
+					<i class="account_right-bottom"></i>
+					<i class="account_right-front"></i>
+				</div>
+			</section>
 			<?php
 				if( (int)$user_ary['IS_CHECKED'] == 1 ){
 					echo '<section class="account_validation" style="opacity: 0.5; background: #eee;" _status="valid">';
@@ -80,7 +88,13 @@ function CheckGender($a){
 				<p class="chinese">重寄驗證信</p>
 				<div class="account_right">
 					<i class="account_right-bottom"></i>
-					<i class="account_right-front"></i>
+					<?php
+						if( (int)$user_ary['IS_CHECKED'] == 1 ){
+							echo '<i class="account_right-front" style="border-left-color: #eee;"></i>';
+						}else{
+							echo '<i class="account_right-front"></i>';
+						}
+					?>
 				</div>
 			</section>
 		</section>

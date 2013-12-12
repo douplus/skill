@@ -7,7 +7,7 @@
 	$email = $_POST['email'];
 	$sql_is_checked = 1;
 
-	// 
+	# 
 	$query = sprintf( "SELECT IS_CHECKED FROM `1_ACCOUNT` WHERE USERID = '$userid'" );
 	$result = mysql_query($query) or die('error@系統存取資料出錯。');
 	while( $a = mysql_fetch_array($result) ){
@@ -22,11 +22,11 @@
 	$captcha = GeneratorPassword();
 	$is_checked = 0;
 
-	// 創建 user 認證碼
+	# 創建 user 認證碼
 	$query = sprintf( "UPDATE `1_ACCOUNT` SET CAPTCHA = '$captcha', IS_CHECKED = '$is_checked' WHERE USERID = '$userid'" );
     $result = mysql_query($query) or die('error@伺服器創建您的認證碼失敗。');
 
-	// 發送重寄驗證信
+	# 發送重寄驗證信
 	require_once(dirname(__FILE__).'/email/class.phpmailer.php');
 	$mailer = new PHPMailer();
 	$mailer->CharSet = 'utf-8';
@@ -70,7 +70,7 @@ function GeneratorPassword(){
     $password_len = 24;
     $password = '';
 
-    // remove o,0,1,l
+    # remove o,0,1,l
     $word = 'abcdefghijkmnpqrstuvwxyz!@#$%^*()-ABCDEFGHIJKLMNPQRSTUVWXYZ<>;{}[]23456789';
     $len = strlen($word);
 

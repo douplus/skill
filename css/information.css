@@ -1,3 +1,13 @@
+#infor_all a{
+  color:white;
+  text-decoration:none;
+}
+
+#infor_all a:hover {  
+  text-decoration:underline;
+  color:white;
+}
+
 #infor_all{
   position:relative;
   width:100%;

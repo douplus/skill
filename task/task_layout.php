@@ -46,89 +46,49 @@
 	</section>
 </nav>
 <div id="task_container">
-	<article id="task_result" class="dom_hidden">
-		<section class="task_item">
-			<header>
-				<dl>
-					<dt class="task_user-male">&nbsp;</dt>
-					<dd itemprop="user" class="task_user_data">魯夫000</dd>
-				</dl>
-				<dl>
-					<dt class="task_skill">&nbsp;</dt>
-					<dd itemprop="skill" class="task_skill_data">
-						<span>二檔</span>
-						<span>三檔</span>
-						<span>霸氣</span>
-						<span>橡皮人</span>
-						<span>吃</span>
-					</dd>
-				</dl>
-			</header>
-			<p><em>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </em><a href="./discuss/index.php">點擊查看詳情</a></p>
-			<dl class="task_item_footer">
-				<dt class="task_classify">分類：</dt>
-				<dd class="task_classify_data">
-					<span>分類一</span>
-					<span>分類二</span>
-					<span>分類三</span>
-					<span>分類四</span>
-				</dd>
-			</dl>
-		</section>
-		<section class="task_item">
-			<header>
-				<dl>
-					<dt class="task_user-female">&nbsp;</dt>
-					<dd itemprop="user" class="task_user_data">娜美</dd>
-				</dl>
-				<dl>
-					<dt class="task_skill">&nbsp;</dt>
-					<dd itemprop="skill" class="task_skill_data">
-						<span>偷東西</span>
-						<span>航海術</span>
-						<span>海市蜃樓</span>
-						<span>棍法</span>
-					</dd>
-				</dl>
-			</header>
-			<p><em>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.  </em><a href="./discuss/index.php">點擊查看詳情</a></p>
-			<dl class="task_item_footer">
-				<dt class="task_classify">分類：</dt>
-				<dd class="task_classify_data">
-					<span>分類一</span>
-					<span>分類二</span>
-					<span>分類三</span>
-					<span>分類四</span>
-				</dd>
-			</dl>
-		</section>
-		<section class="task_item">
-			<header>
-				<dl>
-					<dt class="task_user-male">&nbsp;</dt>
-					<dd itemprop="user" class="task_user_data">索隆</dd>
-				</dl>
-				<dl>
-					<dt class="task_skill">&nbsp;</dt>
-					<dd itemprop="skill" class="task_skill_data">
-						<span>獅子歌歌</span>
-						<span>三千世界</span>
-						<span>鬼氣●九刀流-阿修羅</span>
-						<span>迷路</span>
-						<span>鬼斬</span>
-					</dd>
-				</dl>
-			</header>
-			<p><em><strong>Pellentesque habitant morbi tristique</strong> senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. <em>Aenean ultricies mi vitae est.</em> Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, <code>commodo vitae</code>, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis  </em><a href="./discuss/index.php">點擊查看詳情</a></p>
-			<dl class="task_item_footer">
-				<dt class="task_classify">分類：</dt>
-				<dd class="task_classify_data">
-					<span>分類一</span>
-					<span>分類二</span>
-					<span>分類三</span>
-					<span>分類四</span>
-				</dd>
-			</dl>
-		</section>
+	<article id="task_result">
+		<div class="task_show">
+			<div class="task_show1">
+				<div class="task_show_num task_vote_color">
+					<div class=" task_show3">1</div>
+					<p >vote</p>
+				</div>
+				<div class="task_show_num task_answer_color">
+					<div class="task_show3">2</div>
+					<p >answer</p>
+				</div>
+				<div class="task_show_num task_views_color">
+					<div class=" task_show3">3</div>
+					<p >views</p>
+				</div>
+												
+			</div>
+			<div class=" task_show_classify  ">
+				<img class="task_crown" src="../img/crown1.png">
+				<div class=" ">電<br>玩<br>相<br>關</div>
+			</div>				
+			<div class="task_show2">
+				c# Generic cannot convert source type to target type
+				<br>
+				<div class="task_span">
+					<span>css</span>
+					<span>爵士樂</span>
+					<span>jquery</span>
+					<span>煮菜</span>					
+				</div>
+				<div class="task_poster">
+					<div class="task_score">
+						1,995
+					</div>
+					<div class="task_name">
+						<a href="" style="text-decoration:none">Ahmed Ekri</a>
+					</div>
+					<div class="task_time">
+						48s ago
+					</div>																				  
+				</div>
+			</div>			
+		</div>
+		
 	</article>
 </div>
