@@ -4,7 +4,7 @@
 			<a data-pjax="master" id="a_learn_icon" rel="tipsy" title="查看各領域之神人"></a>
 			<div id="learn_icon">&nbsp;</div>
 			<div class="chinese">神人區</div>
-			<i id="i_learn" class="dom_hidden"></i>
+			<i id="i_learn" class="dom_hidden" style="border-right-color: #f1f1f1;"></i>
 		</div>
 		<div class="item">
 			<a data-pjax="task" id="a_task_icon" rel="tipsy" title="查看任務"></a>

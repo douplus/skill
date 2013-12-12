@@ -1,10 +1,10 @@
-<!--<nav id="learn_nav">
+<nav id="learn_nav">
 	<section>
-		<div class="targetMaster_box"><input type="input" id="targetMaster" value="" placeholder="尋找神人？" autofocus=""></div>
-		<input type="button" id="submitMaster" value="Search">
+		<div class="targetMaster_box">
+			<input type="input" id="SearchAccount" value="" placeholder="輸入帳號或名稱，即可尋找用戶" autofocus="">
+		</div>
 	</section>
 </nav>
--->
 <div id="learn_container">
 	<article>
 		<h2>I'm the God of the World.</h2>

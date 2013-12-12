@@ -11,6 +11,6 @@
 		
 	</article>
 	<article id="activated" class="" style="display:none;">
-		123
+		
 	</article>
 </article>

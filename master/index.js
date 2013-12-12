@@ -45,12 +45,20 @@ $(function(){  // header
 $(document).on('click', function(e){
 	$('#top_nav-user_wrapper').addClass('dom_hidden');
 });
-// 神人
-$(document).on('click', 'div.metro_front', function(){    // 點擊隱藏 神人區 Motto
+$(document).on('click', 'div.metro_front', function(){  // 點擊隱藏 神人區 Motto
 	var a = $(this).parents('section.learn_item');
 	$(this).removeClass('metro_front').css('background', '');
 	$(this).parents('section.learn_item').data('isMetro', false);
 });
+$(document).on('keydown', '#SearchAccount', function(e){  // 點擊 搜尋用戶
+	if( $(this).is(':focus') && (e.keyCode == 13) ){
+		if( $(this).val() == '' ){ alert('請輸入搜尋內容'); return false; }
+		Account_Search( $(this).val() );
+	}
+});
+function Account_Search( a ){
+	alert('即將開放。');
+}
 /*
 function SetFixedNav(){    // 關於左側導覽列滾動
 	var a = localStorage.viewport_height-118;
@@ -170,60 +178,6 @@ function SetIP(){    // 使用者開始使用 skill，設定 ip address and scor
 			console.log('資料格式正確，但是伺服器 設定 IP 發生錯誤。');
 		}
 	});
-	/*$.getJSON("http://jsonip.appspot.com?callback=?",
-		function(data){
-		   sessionStorage.setItem( 'where', JSON.stringify( data ) );
-			$.ajax({    // 設定 IP
-				url: '../php/user_ip.php',
-				data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, userip: data.ip },
-				type: 'POST',
-				dataType: 'html',
-				success: function(msg){  //console.log(data);
-					msg = msg.split('@');
-					if( msg[0] == 'success' ){
-						console.log( msg[1] );
-					}else if( msg[0] == 'error' ){
-						console.log( msg[1] );
-					}
-				},
-				error:function(xhr, ajaxOptions, thrownError){ 
-					console.log(xhr.status); 
-					console.log(thrownError);
-					console.log('資料格式正確，但是伺服器 設定 IP 發生錯誤。');
-				}
-			});
-	});
-	/*$.ajax({    // 抓取 IP
-		url: 'http://smart-ip.net/geoip-json?callback=?',
-		dataType: 'json',
-		success: function(data){  //console.log(data);
-            sessionStorage.setItem( 'where', JSON.stringify( data ) );
-			$.ajax({    // 設定 IP
-				url: '../php/user_ip.php',
-				data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, userip: data.host },
-				type: 'POST',
-				dataType: 'html',
-				success: function(msg){  //console.log(data);
-					msg = msg.split('@');
-					if( msg[0] == 'success' ){
-						console.log( msg[1] );
-					}else if( msg[0] == 'error' ){
-						console.log( msg[1] );
-					}
-				},
-				error:function(xhr, ajaxOptions, thrownError){ 
-					console.log(xhr.status); 
-					console.log(thrownError);
-					console.log('資料格式正確，但是伺服器 設定 IP 發生錯誤。');
-				}
-			});
-		},
-		error:function(xhr, ajaxOptions, thrownError){ 
-			console.log(xhr.status); 
-			console.log(thrownError);
-			console.log('資料格式正確，但是 smart-ip.net 發生錯誤。');
-		}
-	});*/
 }
 function CheckMaster(){    // 使用者開始使用 skill，設定 ip address and score
 	var a = $.timestamp.get({readable: true}).split(' ')[0];
@@ -239,11 +193,6 @@ function CheckMaster(){    // 使用者開始使用 skill，設定 ip address an
 			if( msg[0] == 'success' ){
 				localStorage.setItem( 'Master_list', msg[3]+'@'+msg[2] );
 				GetMaster();
-				/*if( parseInt( msg[1] ) != 0 || b == null || Math.abs( parseInt( Date.parse( a ) ) - parseInt( Date.parse( msg[3] ) ) ) > 0 ){
-					GetMaster(); console.log('GetMaster');
-				}else{
-					ShowMaster( b ); console.log('ShowMaster');
-				}*/
 			}else if( msg[0] == 'error' ){
 				alert( msg[1] );
 			}
