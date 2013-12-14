@@ -3,8 +3,8 @@
 	include('./db.php');
 
 	$userid = $_POST['userid'];
-	$old_passwd = $_POST['old_passwd'];
-	$new_passwd = $_POST['new_passwd'];
+	$old_passwd = md5( $_POST['old_passwd'].'skill' );
+	$new_passwd = md5( $_POST['new_passwd'].'skill' );
 	$sql_passwd = '';
 	
 	# 核對密碼

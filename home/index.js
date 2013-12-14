@@ -715,7 +715,6 @@ function CheckLogin( email, passwd ){    // 設定 登入
 					$('#preloader').find('span').text('請稍後..').end().removeClass('dom_hidden');
 				}else if( msg[0] == 'error' ){
 					$('#login-summary').append('<li><i class="icon-sign icon-sign-error"></i>帳號密碼輸入錯誤</li>').parent().removeClass('dom_hidden');
-					$('#sign-up-summary').parent().removeClass('dom_hidden');
 					$('#login-password').val('');
 				}
 			}, 1000);

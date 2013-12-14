@@ -6,7 +6,7 @@ $(function(){
 		success: function(msg){
 			msg = msg.split('@@');
 			// $('#preloader').removeClass('dom_hidden').find('span').text('任務區載入中');
-			// ShowTask( msg[1] );
+			ShowTask( msg[1] );
 			
 		},
 		error:function(xhr, ajaxOptions, thrownError){ 
@@ -27,45 +27,47 @@ $(function(){
 						for( var j=0; j<sklength; j++ ){
 						span += '<span>'+skill[j]+'</span>';	
 						}
-
-html+=	'<div class="task_show">'+
-			'<div class="task_show1">'+
-				'<div class="task_show_num task_vote_color">'+
-					'<div class=" task_show3">1</div>'+
-					'<p >vote</p>'+
-				'</div>'+
-				'<div class="task_show_num task_answer_color">'+
-					'<div class="task_show3">2</div>'+
-					'<p >answer</p>'+
-				'</div>'+
-				'<div class="task_show_num task_views_color">'+
-					'<div class=" task_show3">3</div>'+
-					'<p >views</p>'+
-				'</div>'+								
-			'</div>'+
-			'<div class="task_show2">'+
-				ary[2];
-		html+=	'<br>'+
-				'<div class="task_span">'+span+
-					// <span>css</span>
-					// <span>爵士樂</span>
-					// <span>jquery</span>
-					// <span>煮菜</span>					
-				'</div>'+
-				'<div class="task_poster">'+
-					'<div class="task_score">'+
-						'1,995'+
+		html+= '<div class="task_show">'+
+					'<div class="task_show1">'+
+						'<div class="task_show_num task_vote_color">'+
+							'<div class=" task_show3">1</div>'+
+							'<p >vote</p>'+
+						'</div>'+
+						'<div class="task_show_num task_answer_color">'+
+							'<div class="task_show3">2</div>'+
+							'<p >answer</p>'+
+						'</div>'+
+						'<div class="task_show_num task_views_color">'+
+							'<div class=" task_show3">3</div>'+
+							'<p >views</p>'+
+						'</div>'+														
 					'</div>'+
-					'<div class="task_name">'+
-						'<a href="" style="text-decoration:none">'+ary[3]+'</a>'+
-					'</div>'+
-					'<div class="task_time">'+
-						'48s ago'+
-					'</div>'+																				  
-				'</div>'+
-			'</div>'+			
-		'</div>';
-
+					'<div class=" task_show_classify ">'+
+						'<img class="task_crown" src="../img/crown1.png">'+
+						'<div class=" ">電<br>玩<br>相<br>關</div>'+
+					'</div>'+				
+					'<div class="task_show2">'+
+						ary[2];
+						html+= '<br>'+
+						'<div class="task_span">'+span;
+							// <span>css</span>
+							// <span>爵士樂</span>
+							// <span>jquery</span>
+							// <span>煮菜</span>					
+						html+= '</div>'+
+						'<div class="task_poster">'+
+							'<div class="task_score">'+
+								'1,995'+
+							'</div>'+
+							'<div class="task_name">'+
+								'<a href="" style="text-decoration:none">'+ary[3]+'</a>';
+							html+= '</div>'+
+							'<div class="task_time">'+
+								'48s ago'+
+							'</div>'+																				  
+						'</div>'+
+					'</div>'+			
+				'</div>';
 			}
 			$('#task_result').html( html );
 			// window.setTimeout(function(){

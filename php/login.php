@@ -9,7 +9,7 @@
 	mysql_set_charset('utf8') or die('Failed to set utf-8');
 
 	$email = $_POST['email'];
-	$passwd = $_POST['passwd'];
+	$passwd = md5( $_POST['passwd'].'skill' );
 	$userid = '';
 	$sql_passwd = '';
 	$is_skill = 0;
@@ -17,7 +17,7 @@
 	
 	// 取得 user 帳號
 	$query = sprintf( "SELECT USERID,USERNAME,GENDER,JOIN_TIME,SKILL,MOTTO,NEED FROM `1_CV` WHERE EMAIL = '$email'" );
-	$result = mysql_query($query) or die('error@此帳號未註冊。');
+	$result = mysql_query($query) or die('error@@此帳號未註冊。');
 	while( $a = mysql_fetch_array($result) ){
 		$userid = $a['USERID'];
 		$username = $a['USERNAME'];
@@ -34,8 +34,7 @@
 	}
 	
 	if( $userid == '' ){
-		$message  = 'error@此帳號未註冊。';
-		die($message);
+		die('error@@此帳號未註冊。');
 	}
 
 	// 核對密碼
@@ -48,8 +47,7 @@
 	}
 	
 	if( $sql_passwd == '' || $sql_passwd != $passwd ){
-		$message  = 'error@密碼輸入錯誤。';
-		die($message);
+		die('error@@密碼輸入錯誤。');
 	}
 	
 	echo 'success@@'.$username.'@@'.$userid.'@@'.$is_skill.'@@'.$is_motto.'@@'.json_encode( (object)$user_ary );

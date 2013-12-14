@@ -13,6 +13,7 @@
 	<script src="../library/jquery.tipsy.js"></script>
 	<script src="../library/jquery.tagcanvas.min.js"></script>
 	<script src="../library/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="../library/jquery.md5.js"></script>
 	<script src="../task/task.js"></script>
 	<script src="./index.js"></script>
 	<script src="../profile/cv.js"></script>

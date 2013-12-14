@@ -47,7 +47,7 @@
 </nav>
 <div id="task_container">
 	<article id="task_result">
-		<div class="task_show">
+		<!-- <div class="task_show">
 			<div class="task_show1">
 				<div class="task_show_num task_vote_color">
 					<div class=" task_show3">1</div>
@@ -88,7 +88,7 @@
 					</div>																				  
 				</div>
 			</div>			
-		</div>
+		</div> -->
 		
 	</article>
 </div>

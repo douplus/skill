@@ -5,7 +5,7 @@
 	$userid = $_POST['userid'];
 	$name = $_POST['name'];
 	$email = $_POST['email'];
-	$password = $_POST['password'];
+	$password = md5( $_POST['password'].'skill' );
 	$gender = $_POST['gender'];
 	$join_time = $_POST['join_time'];
 	$captcha = GeneratorPassword();
@@ -63,7 +63,7 @@
 				<div>您的申請帳號資料如下：</div>
 				<div>--------------</div>
 				<div>帳號:'.$email.'</div>
-				<div>密碼:'.$password.'</div>
+				<div>密碼:'.$_POST['password'].'</div>
 				<div>--------------</div>
 				<p>請直接點選 <strong><a href="http://merry.ee.ncku.edu.tw/~thwang/cur/register/reg.php?q='.$captcha.'&u='.$userid.'">此處</a></strong> 完成電子郵件認證。</p>
 				<p>祝您使用愉快！</p>
@@ -82,15 +82,15 @@
 <?php
 function GeneratorPassword(){
     $password_len = 24;
-    $password = '';
+    $a = '';
 
     // remove o,0,1,l
     $word = 'abcdefghijkmnpqrstuvwxyz!@#$%^*()-ABCDEFGHIJKLMNPQRSTUVWXYZ<>;{}[]23456789';
     $len = strlen($word);
 
     for ($i = 0; $i < $password_len; $i++) {
-        $password .= $word[rand()%$len];
+        $a .= $word[rand()%$len];
     }
-    return $password;
+    return $a;
 }
 ?>
