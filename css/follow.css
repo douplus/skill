@@ -1,0 +1,125 @@
+#follow_wrapper{
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+background: white;
+border: 1px solid #dfdfdf;
+margin: 0 auto;
+width: 100%;
+max-width: 980px;
+-webkit-box-shadow: 0 0 10px 1px #c3c3c3;
+-moz-box-shadow: 0 0 10px 1px #c3c3c3;
+box-shadow: 0 0 10px 1px #c3c3c3;
+}
+.follow_item > .center{
+color: #666;
+font-size: 16px;
+overflow: hidden;
+padding: 2px 0;
+max-height: 56px;
+vertical-align: middle;
+position: relative;
+display: inline-block;
+margin-right: 78px;
+}
+.follow_item > .right{
+position: absolute;
+right: 0;
+top: 0;
+margin: 15px 0;
+}
+.follow_item > .left > img{
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+border: 0;
+width: 60px;
+height: 60px;
+vertical-align: middle;
+cursor: pointer;
+-webkit-box-shadow: 1px 1px 5px 1px #EBE5D7;
+-moz-box-shadow: 1px 1px 5px 1px #EBE5D7;
+box-shadow: 1px 1px 5px 1px #EBE5D7;
+}
+.follow_item > .center > .title{
+color: black;
+font-weight: bold;
+line-height: 18px;
+height: 18px;
+}
+.follow_item > .center > .title > a:hover{
+text-decoration: underline;
+}
+.follow_item > .center > .context{
+margin-top: 3px;
+max-height: 35px;
+white-space: normal;
+line-height: 16px;
+font-size: 14px;
+}
+.follow_item > .right > .bottom{
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+border-radius: 3px;
+cursor: pointer;
+height: 28px;
+padding: 0 8px;
+color: white;
+background: #0995D8;
+border: 1px solid #008BD3;
+font-weight: bold;
+font-size: 14px;
+line-height: 28px;
+}
+#follow_select{
+margin: 16px 20px;
+position: relative;
+}
+#follow_select > div{
+font: bold 14px 'Lucida Grande', Tahoma, sans-serif;
+position: relative;
+display: inline-block;
+border: 1px solid #dcdcdc;
+border-radius: 4px;
+padding: 0 10px;
+color: #222;
+height: 30px;
+line-height: 30px;
+cursor: pointer;
+-webkit-box-sizing: content-box;
+-moz-box-sizing: content-box;
+box-sizing: content-box;
+background: #f5f5f5;
+margin-right: 10px;
+}
+#follow_select > ._s{
+opacity: .4;
+}
+.follow_item > .center > .title > a{
+color: black;
+text-decoration: none;
+}
+@media screen and (min-width: 768px){
+.follow_item{
+margin: 16px 20px;
+position: relative;
+}
+.follow_item > .left{
+margin-right: 12px;
+position: relative;
+display: inline-block;
+vertical-align: middle;
+}
+}
+@media screen and (max-width: 767px){
+.follow_item{
+margin: 16px 10px;
+position: relative;
+}
+.follow_item > .left{
+margin-right: 3px;
+position: relative;
+display: inline-block;
+vertical-align: middle;
+}
+}

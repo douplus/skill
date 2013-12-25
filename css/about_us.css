@@ -1,0 +1,534 @@
+.dom-hidden{
+  visibility:hidden;
+}
+
+/*team*/
+#team-member{
+  width:100%;
+  margin:0 auto;
+}
+
+.member{
+  width:80%;
+  float:left;
+}
+
+.member > img{
+  width:100px;
+  height:100px;
+  overflow:hidden;
+  float:left;
+}
+
+.member > .member-infor{
+  float:left;
+}
+
+/*contact us*/
+#contact b{
+  color:blue;
+  cursor:pointer;
+}
+
+#contact p{
+  font-size:16px;
+}
+
+#contactbox{
+  width:70%;
+  margin:40px auto;
+  padding:0 20px;
+}
+
+#contactbox span{
+  width:10%;
+  min-width:75px;
+  margin-left:3%;
+  text-align:justify;
+  float:left;
+}
+
+#advisername{
+  width:80%;
+  float:left;
+}
+
+#advisermail{
+  width:80%;
+  float:left;
+}
+
+#contactbox textarea{
+  width:80%;
+  min-height:100px;
+  float:left;
+}
+
+#contactbox button{
+  margin-right:7%;
+  margin-bottom:20px;
+  float:right;
+}
+
+@media screen and (min-width: 1200px){
+  .feature,.member{
+    width: 30%;
+    background:#fcfcfc;
+    margin:18px;
+    float: left;}
+ 
+  .feature > img{
+    width:70%;
+  }
+
+  .feature > h5{
+    font-size:x-large; 
+    font-weight: 200;
+    color: darkgoldenrod;
+  }
+
+  .feature > p{
+    font-size: large;
+    font-weight: 600;
+    margin: 15px;
+  }
+
+  .member-photo{
+    width:100%;
+    height:510px;
+    overflow:hidden;
+    float:left;
+    -webkit-box-shadow: 6px 6px 15px 4px #c3c3c3;
+    -moz-box-shadow: 6px 6px 15px 4px #c3c3c3;
+    box-shadow: 6px 6px 15px 4px #c3c3c3;
+  }
+
+  #member-cc{
+    background:url(../Images/cc.jpg);
+  }
+
+  #member-th{
+    background:url(../Images/th.jpg);
+  }
+
+  #member-dy{
+    background:url(../Images/dy.jpg);
+  }
+
+  .member-infor{
+    width:100%;
+    float:left;
+    padding:20px;
+    font-size:16px;
+  }
+
+  .member-infor > h3{
+    margin-right:15px;
+    color:#66aabb;
+    font-size:larger;
+  }
+
+  .member-infor > p{
+    margin-right:15px;
+    color:rgb(197,125,178);
+    font-size:large;
+  }
+}
+
+@media screen and (min-width:980px) and (max-width: 1199px){
+  .feature{ 
+    width: 100%;
+    background:#fcfcfc;
+    float: left;
+}
+  .feature > img{
+    width:20%;
+    float:left;
+  }
+
+  .feature > h5{
+    width:77%;
+    font-size:x-large;
+    text-align:left;
+    float:right;
+    font-weight: 200;
+    color: darkgoldenrod;
+    margin-top:35px;
+  }
+  
+  .feature > hr{
+  display:none;
+  }
+  .feature > p{
+    font-size: large;
+    width:65%;
+    float:left;
+    font-weight: 600;
+    margin: 15px;
+  }
+
+  #team-member{
+    margin:0 35px;
+  }
+
+  .member{
+   width:250px;
+   margin:18px;
+  }
+
+  .member-photo{
+    width:100%;
+    height:360px;
+    overflow:hidden;
+    float:left;
+    -webkit-box-shadow: 6px 6px 15px 4px #c3c3c3;
+    -moz-box-shadow: 6px 6px 15px 4px #c3c3c3;
+    box-shadow: 6px 6px 15px 4px #c3c3c3;
+  }
+
+  #member-cc{
+    background:url(../Images/cc250.jpg);
+  }
+
+  #member-th{
+    background:url(../Images/th250.jpg);
+  }
+
+  #member-dy{
+    background:url(../Images/dy250.jpg);
+  }
+
+  .member-infor{
+    width:100%;
+    float:left;
+    padding:20px;
+    font-size:16px;
+  }
+
+  .member-infor > h3{
+    margin-right:15px;
+    color:#66aabb;
+    font-size:larger;
+  }
+
+  .member-infor > p{
+    margin-right:15px;
+    color:rgb(197,125,178);
+    font-size:large;
+  }
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 979px){
+  .feature{ 
+    width: 100%;
+    background:#fcfcfc;
+    float: left;
+}
+  .feature > img{
+    width:25%;
+    float:left;
+  }
+
+  .feature > h5{
+    width:72%;
+    font-size:x-large;
+    text-align:left;
+    float:right;
+    font-weight: 200;
+    color: darkgoldenrod;
+    margin-top:20px;
+  }
+  
+  .feature > hr{
+  display:none;
+  }
+  .feature > p{
+    font-size: large;
+    width:60%;
+    float:left;
+    text-align:left;
+    font-weight: 600;
+    margin-left: 55px;
+  }
+  
+  #contactbox{
+    width:100%;
+  }
+
+  #team-member{
+    margin:0 10px;
+  }
+
+  .member{
+   width:200px;
+   margin:18px;
+  }
+
+  .member-photo{
+    width:100%;
+    height:290px;
+    overflow:hidden;
+    float:left;
+    -webkit-box-shadow: 6px 6px 15px 4px #c3c3c3;
+    -moz-box-shadow: 6px 6px 15px 4px #c3c3c3;
+    box-shadow: 6px 6px 15px 4px #c3c3c3;
+  }
+
+  #member-cc{
+    background:url(../Images/cc200.jpg);
+  }
+
+  #member-th{
+    background:url(../Images/th200.jpg);
+  }
+
+  #member-dy{
+    background:url(../Images/dy200.jpg);
+  }
+
+  .member-infor{
+    width:100%;
+    float:left;
+    margin-top:20px;
+    padding:13px;
+    font-size:16px;
+  }
+
+  .member-infor > h3{
+    margin-right:15px;
+    color:#66aabb;
+    font-size:larger;
+  }
+
+  .member-infor > p{
+    margin-right:15px;
+    color:rgb(197,125,178);
+    font-size:large;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 767px){
+  .feature{ 
+    width: 100%;
+    background:#fcfcfc;
+    float: left;
+}
+  .feature > img{
+    width:26%;
+    padding:7px;
+    float:left;
+  }
+
+  .feature > h5{
+    width:70%;
+    font-size:18px;
+    text-align:left;
+    float:right;
+    font-weight: 200;
+    color: darkgoldenrod;
+    margin-top:20px;
+  }
+  
+  .feature > hr{
+  display:none;
+  }
+  .feature > p{
+    font-size: large;
+    width:64%;
+    float:left;
+    text-align:left;
+    font-weight: 600;
+    margin-left: 28px;
+  }
+
+  #contactbox{
+    width:100%;
+    margin:20px auto;
+  }
+
+  #contactbox span{
+    width:100%;
+    float:left;
+  }
+
+  #contactbox input{
+    width:85%;
+    margin-left:3%;
+    float:left;
+  }
+  
+  #contactbox textarea{
+    width:85%;
+    margin-left:3%;
+    float:left;
+  }
+
+  #contact button{
+    margin:5px 11% 20px 0;
+  }
+
+  #team-member{
+    margin:0 20px;
+  }
+
+  .member{
+   width:100%;
+   height:150px;
+   margin:15px 0;
+  }
+
+  .member-photo{
+    width:149px;
+    height:149px;
+    margin-right:70px;
+    overflow:hidden;
+    float:right;
+    -webkit-box-shadow: 6px 6px 15px 4px #c3c3c3;
+    -moz-box-shadow: 6px 6px 15px 4px #c3c3c3;
+    box-shadow: 6px 6px 15px 4px #c3c3c3;
+  }
+
+  #member-cc{
+    background:url(../Images/cc150.jpg);
+  }
+
+  #member-th{
+    background:url(../Images/th150.jpg);
+  }
+
+  #member-dy{
+    background:url(../Images/dy150.jpg);
+  }
+
+  .member-infor{
+    width:50%;
+    float:left;
+    padding:30px 0;
+    font-size:16px;
+  }
+
+  .member-infor > h3{
+    margin-right:15px;
+    color:#66aabb;
+    font-size:larger;
+  }
+
+  .member-infor > p{
+    margin-right:15px;
+    color:rgb(197,125,178);
+    font-size:large;
+  }
+
+
+}
+
+@media screen and (min-width: 1px) and (max-width: 479px){
+  .feature{ 
+    width: 100%;
+    background:#fcfcfc;
+    float: left;
+}
+  .feature > img{
+    width:17%;
+    padding:25px 15px 20px 15px;
+    float:left;
+  }
+
+  .feature > h5{
+    font-size:18px;
+    text-align:left;
+    float:left;
+    font-weight: 200;
+    color: darkgoldenrod;
+    margin:21px 0 0 -10px;
+  }
+  
+  .feature > hr{
+  display:none;
+  }
+  .feature > p{
+    font-size:14px;
+    float:left;
+    text-align:left;
+    font-weight: 600;
+    margin: -55px 0 0 76px;
+  }
+
+  #contactbox{
+    width:100%;
+    margin:20px auto;
+  }
+
+  #contactbox span{
+    float:left;
+    margin:0;
+  }
+
+  #contactbox input{
+    width:85%;
+    margin:0;
+    float:left;
+  }
+  
+  #contactbox textarea{
+    width:85%;
+    margin:0;
+    float:left;
+  }
+
+  #contact button{
+    margin:5px 18% 20px 0;
+  }
+
+  .member{
+   width:100%;
+   min-width:300px;
+   height:150px;
+   margin:15px 0;
+  }
+
+  .member-photo{
+    width:120px;
+    height:120px;
+    margin:15px;
+    overflow:hidden;
+    float:right;
+    -webkit-box-shadow: 6px 6px 15px 4px #c3c3c3;
+    -moz-box-shadow: 6px 6px 15px 4px #c3c3c3;
+    box-shadow: 6px 6px 15px 4px #c3c3c3;
+  }
+
+  #member-cc{
+    background:url(../Images/cc120.jpg);
+  }
+
+  #member-th{
+    background:url(../Images/th120.jpg);
+  }
+
+  #member-dy{
+    background:url(../Images/dy120.jpg);
+  }
+
+  .member-infor{
+    width:50%;
+    float:left;
+    padding:30px 0;
+    font-size:16px;
+  }
+
+  .member-infor > h3{
+    margin-right:15px;
+    color:#66aabb;
+    font-size:larger;
+  }
+
+  .member-infor > p{
+    margin-right:15px;
+    color:rgb(197,125,178);
+    font-size:large;
+  }
+
+}
+
