@@ -7,14 +7,12 @@
 	<title>Skill-任務</title>
 	<!-- load : CSS files -->
 	<?php 
-		include('../master/css_files.php'); 
-		//include('../php/showtask.php');
+		include('../master/css_files.php');
 	?>
 	<!-- load : end of CSS files -->
 	<script src="../library/jquery-2.0.3.min.js"></script>
 	<script src="../library/jquery.pjax.js"></script>
 	<script src="../library/jquery.tipsy.js"></script>
-	<script src="../library/jquery.tagcanvas.min.js"></script>
 	<script src="../library/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="../master/index.js"></script>
 	<script src="./task.js"></script>
@@ -23,11 +21,9 @@
 	<script src="../information/information.js"></script>
 	<script src="../information/modernizr.custom.18273.js"></script>
 	<script src="./addtask.js"></script>
-	<script src="./showtask.js"></script>
 	<script src="../library/imageSlice.js"></script>
 	<script src="../library/jquery.tagsinput.min.js"></script>
 	<script src="../js/follow.js"></script>
-	<script src="./showtask.js"></script>
 <script>
 	(function(){    // include jQuery.js
 		CheckLogin();
@@ -95,7 +91,6 @@ $.viewport.set();
 	<article id="preloader" class="dom_hidden">
 		<h3><img src="../Images/preloader.gif"><span></span></h3>
 	</article>
-	<?php include('../php/tag_cloud.php'); ?>
 	<?php include('../php/fixed_header.php'); ?>
 	<?php include('../php/top_header.php'); ?>
 	<?php include('../box/box.php'); ?>

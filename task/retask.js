@@ -7,7 +7,7 @@ $('#re_task_submit').click(function(){
   
 
     if ( re_task_content == '') {
-      $('._co_box_dis_post2').append('<li>請輸入內容</li>');
+      $('.che_task_submit').html('<p>請輸入內容</p>');
       a = false;
     } 
 
@@ -20,14 +20,16 @@ $('#re_task_submit').click(function(){
               dataType: 'html',
               success: function(msg){
                 console.log(msg);
+                alert('創建任務成功');
+                window.location.reload(); 
               },
               error:function(xhr, ajaxOptions, thrownError){ 
                 console.log(xhr.status); 
                 console.log(thrownError);
               }
             });
-          alert('創建任務成功'); 
-          window.location.reload();   
+           
+            
     };	    
 	    
 });

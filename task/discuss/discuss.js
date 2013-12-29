@@ -47,7 +47,6 @@ $(function(){
 			console.log(b);
 			console.log(skill);
 			html='';
-			$('#task_poster').attr('src',photo);
 			$('#task_name').text('姓名:'+a[0]);
 			$('#task_department').text('學校:'+a[1]);
 			$('#task_score').text(a[3]);

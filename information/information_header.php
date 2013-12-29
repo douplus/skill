@@ -11,7 +11,6 @@
 	<script src="../library/jquery-2.0.3.min.js"></script>
 	<script src="../library/jquery.pjax.js"></script>
 	<script src="../library/jquery.tipsy.js"></script>
-	<script src="../library/jquery.tagcanvas.min.js"></script>
 	<script src="../library/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="../master/index.js"></script>
 	<script src="../task/task.js"></script>
@@ -89,7 +88,6 @@ $.viewport.set();
 	<article id="preloader" class="dom_hidden">
 		<h3><img src="../Images/preloader.gif"><span></span></h3>
 	</article>
-	<?php include('../php/tag_cloud.php'); ?>
 	<?php include('../php/fixed_header.php'); ?>
 	<?php include('../php/top_header.php'); ?>
 	<?php include('../box/box.php'); ?>

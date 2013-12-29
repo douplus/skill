@@ -21,7 +21,6 @@
 <!-- master : JS files -->
 <script>
 (function(){
-	$('#task_cloud_area').addClass('dom_hidden');
 	$('#page-container').css('left', 0);
 	$('#fixed_nav').find('i').addClass('dom_hidden');
 	$('#GoToAccount').attr({'href': '../account/index.php', 'data-pjax':'account'});

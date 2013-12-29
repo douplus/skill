@@ -2,8 +2,8 @@
 include('../../php/db.php');
 
 
-	session_start(); 	
-	$taskid = $_SESSION['task_id'];
+	session_start();         
+    $taskid = $_SESSION['task_id'];
 
 	$retaskuser = $_POST['userid'];
 	$retaskcontent = $_POST['retaskcon'];
@@ -17,5 +17,5 @@ include('../../php/db.php');
 	    $message  = 'error@伺服器創建您的回覆資訊。';
 	    die($message);
 	}
-		echo "成功@@";
+		echo "成功@@".$retaskuser.$taskid;
 ?>

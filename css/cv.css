@@ -456,7 +456,8 @@ cursor: pointer;
 color: #000;
 }
 #cv_list,
-#cv_box_list{
+#cv_box_list,
+#noti_list{
 position: relative;
 background: white;
 height: 44px;
@@ -465,7 +466,8 @@ text-align: center;
 float: left;
 }
 #cv_list li,
-#cv_box_list li{
+#cv_box_list li,
+#noti_list li{
 position: relative;
 list-style: none;
 font-size: 14px;
@@ -475,12 +477,14 @@ margin: 0 12px;
 display: inline-block;
 }
 #cv_list a,
-#cv_box_list a{
+#cv_box_list a,
+#noti_list a{
 text-decoration: none;
 color: #262626;
 }
 #cv_list a > div,
-#cv_box_list a > div{
+#cv_box_list a > div,
+#noti_list a > div{
 display: inline-block;
 }
 #cv_list li.tabs-active,
@@ -517,7 +521,8 @@ height: 10px;
 background: #CC9966;
 border-radius: 50px;
 }
-#profile_back{
+#profile_back,
+#noti_back{
 position: absolute;
 left: 0;
 top: 0;
@@ -526,7 +531,8 @@ width: 100%;
 z-index: 40;
 cursor: pointer;
 }
-.cv_back{
+.cv_back,
+.noti_back{
 position: absolute;
 left: 0;
 top: 0;
@@ -555,7 +561,8 @@ border-style: solid;
 border-width: 10px 10px 10px 0;
 border-right-color: #fff;
 }
-#profile_back:hover{
+#profile_back:hover,
+#noti_back:hover{
 background: rgba(77,144,254,.7);
 }
 .cv_img{

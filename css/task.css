@@ -96,6 +96,9 @@ height: 20px;
 width: 100%;
 float:left;		
 }
+.task_classify{
+width: 16px;
+}
 @media screen and (min-width: 981px){
 
 }
@@ -116,4 +119,10 @@ font-size: 14px;
 .task_show1 >.task_show_num{
 width: 55px;
 	}
+.task_classify{
+font-size: 12px;
+}
+.task_show_title{
+font-size: 12px;	
+}	
 }

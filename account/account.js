@@ -24,9 +24,6 @@ $(function(){
 	$('#change_passwd_leave').click(function(){  // 離開 變更密碼 介面
 		$('#box').attr('role-now', '').addClass('dom_hidden').children('[box-role=change_passwd]').addClass('dom_hidden');
 	});
-	$('#notification_leave').click(function(){  // 離開 通知 介面
-		$('#box').attr('role-now', '').addClass('dom_hidden').children('[box-role=notification]').addClass('dom_hidden');
-	});
 	$('#change_passwd-save').click(function(){  // 儲存 變更密碼
 		$('#change_passwd-summary').html('').parent().addClass('dom_hidden');
 		var a = $('#change_passwd-new').val();
@@ -356,9 +353,6 @@ $(document).on('click', '#change_passwd',function(){  // 進入 變更密碼 介
 	$('#change_passwd-new').val('');
 	$('#change_passwd-again').val('');
 	$('#box').attr('role-now', 'change_passwd').removeClass('dom_hidden').children('[box-role=change_passwd]').removeClass('dom_hidden');
-});
-$(document).on('click', '#Notification-btn',function(){  // 進入 通知 介面
-	$('#box').attr('role-now', 'notification').removeClass('dom_hidden').children('[box-role=notification]').removeClass('dom_hidden');
 });
 $(document).on('click', '#re-send_validation',function(){  // 點擊 重寄認證信
 	if( $(this).parent().attr('_status') === 'non-valid' ){

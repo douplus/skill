@@ -21,7 +21,7 @@
 			</div>
 			<div class="bottom">
 				<div>
-					<a id="Notification-btn" class="chinese">通知</a>
+					<a id="Notification-btn" class="chinese" href="../notification/index.php"><span class="noti-CountWrapper"><span class="noti-CountValue">15</span></span>通知</a>
 				</div>
 				<div>
 					<a id="top_nav_user_wrapperLogout" class="chinese">登出</a>

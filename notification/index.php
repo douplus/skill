@@ -6,23 +6,23 @@
 		$is_pjax = false; # 重新載入頁面
 	}
 ?>
-<?php if( !$is_pjax ) include('./master_header.php'); ?>
-<?php include('./master_layout.php'); ?>
+<?php if( !$is_pjax ) include('./notification_header.php'); ?>
+<?php include('./notification_layout.php'); ?>
 <!-- master : JS files -->
 <script>
 (function(){
-	$('#page-container').css('left', 50);
-	$('#fixed_nav').find('i').addClass('dom_hidden').end().find('#i_learn').removeClass('dom_hidden');
+	$('#page-container').css('left', 0);
+	$('#fixed_nav').find('i').addClass('dom_hidden');
 	$('#GoToAccount').attr({'href': '../account/index.php', 'data-pjax':'account'});
 	var $a = $('#fixed_nav > div.item > a');
-	$( $a[0] ).removeAttr('href').removeAttr('data-pjax');
+	$( $a[0] ).attr({'href':'../master/index.php', 'data-pjax':'master'});
 	$( $a[1] ).attr({'href':'../task/index.php', 'data-pjax':'task'});
 	$( $a[2] ).attr({'href':'../information/index.php', 'data-pjax':'information'});
 })();
-$(function(){ 
+$(function(){
 	StartUsing();
-	$('#learn_container .master img').tipsy({gravity: $.fn.tipsy.autoNS, html: true, fade: true});
+	$('a[rel=noti-tipsy]').tipsy({gravity: $.fn.tipsy.autoWE});
 });
 </script>
 <!-- master : end of JS files -->
-<?php include('./master_footer.php'); ?>
+<?php include('./notification_footer.php'); ?>

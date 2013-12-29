@@ -34,12 +34,6 @@ right: 0;
 z-index: 30;
 overflow-y: hidden;
 }
-#task_cloud{
-position: relative;
-height: 100%;
-width: 100%;
-overflow: hidden;
-}
 .task_item > header{
 width: 100%;
 padding: 2px 0;
@@ -362,15 +356,6 @@ background-position: 50% 50%;
 background-repeat: no-repeat;
 background-size: 100%;
 }
-#task_cloud_area{
-position: fixed;
-left: 50px;
-top: 98px;
-bottom: 0;
-right: 0;
-z-index: 35;
-overflow-y: auto;
-}
 #task_action-back{
 position: absolute;
 right: 0;
@@ -403,32 +388,6 @@ background-position: 50% 50%;
 background-repeat: no-repeat;
 background-size: 100%;
 }
-#task_cloud_text{
-position: absolute;
-right: 5px;
-bottom: 5px;
-height: 22px;
-line-height: 22px;
-font-size: 14px;
-padding: 4px 5px;
-background: rgb(51, 153, 255);
-color: white;
-border: 1px solid #ccc;
-border-color: rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
-border-bottom-color: #b3b3b3;
-border-radius: 5px;
-}
-#task_cloud_text > i{
-display: inline-block;
-width: 22px;
-height: 22px;
-line-height: 22px;
-background-image: url('../Images/cloud_white.png');
-background-position: 50% 50%;
-background-repeat: no-repeat;
-background-size: 100%;
-margin-right: 3px;
-}
 /*12/10 dnagyang rewrite layout*/
 .task_top{
 height: 50px;
@@ -437,6 +396,5 @@ background-color: #0995D8;
 .task_bot{
 height: 50px;
 background-color: white;
-
 }
 

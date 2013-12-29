@@ -14,7 +14,7 @@
 	<script src="../library/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="../master/index.js"></script>
 	<script src="../task/task.js"></script>
-	<script src="./cv.js"></script>
+	<script src="../profile/cv.js"></script>
 	<script src="../account/account.js"></script>
 	<script src="../information/information.js"></script>
 	<script src="../task/addtask.js"></script>
