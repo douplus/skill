@@ -340,10 +340,10 @@ width: 22px;
 height: 18px;
 line-height: 18px;
 vertical-align: text-top;
-background-image: url('../Images/cloud_gray.png');
+background-image: url('../Images/hot_gray.png');
 background-position: 50% 50%;
 background-repeat: no-repeat;
-background-size: 100%;
+background-size: 100% 100%;
 }
 #task_action-add_task > i{
 display: inline-block;
