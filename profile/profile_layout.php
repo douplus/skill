@@ -212,28 +212,12 @@ function CheckScore($a){
 	</article>
 	<article id="cv_tabs-2" class="dom_hidden">
 		<div style="position: relative;width: 96%;margin: 10px 2%;">
-			<div id="cv_task-accordion">
-				<h3>First</h3>
-				<div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
-				<h3>Second</h3>
-				<div>Phasellus mattis tincidunt nibh.</div>
-				<h3>Third</h3>
-				<div>Nam dui erat, auctor a, dignissim quis.</div>
-			</div>
+			
 		</div>
 	</article>
 	<article id="cv_tabs-3" class="dom_hidden">
 		<div style="position: relative;width: 96%;margin: 10px 2%;">
-			<div id="cv_rating-accordion">
-				<h3>1</h3>
-				<div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
-				<h3>2</h3>
-				<div>Phasellus mattis tincidunt nibh.</div>
-				<h3>3</h3>
-				<div>Nam dui erat, auctor a, dignissim quis.</div>
-				<h3>4</h3>
-				<div>Nam dui erat, auctor a, dignissim quis.</div>
-			</div>
+			
 		</div>
 	</article>
 	<article id="cv_tabs-4" class="dom_hidden">

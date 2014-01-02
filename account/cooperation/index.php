@@ -65,12 +65,15 @@
 	</nav>
 	</header>
 	<article id="co_container">
-		<p class="_co_box_tittle">今天開始的對話</p>
+		<p class="_co_box_tittle">開始的對話</p>
             <section class="_co_box_section1">
                 <div class="_co_box_framework0">
+                	<div class="_co_box_frameworkdiv">
+                	<div class="div_img">
                     <div class=" nailthumb-container square-thumb_left img-circle">
                         <img  src="../../img/image8.jpg" />
                     </div>                 
+                    </div>
                     <div>
                     <div style="color: #C5C5C5;">
                         <span>Edited by </span>
@@ -83,10 +86,14 @@
                         我都自己挖水晶做裝備在把它分解，但是這樣好慢喔@@"
                         請問有沒有方法能拿到分解材料，還是只能像我這樣慢慢挖呀@@!?                              
                     </div>
+                    </div>
                 </div>
                 <div class="_co_box_framework0">
+                	<div class="_co_box_frameworkdiv">
+                	<div class="div_img">                
                     <div class=" nailthumb-container square-thumb_right img-circle">
                         <img  src="../../img/image6.jpg" />
+                    </div>
                     </div>                 
                     <div>
                     <div style="color: #C5C5C5; text-align: right">
@@ -100,10 +107,14 @@
                         我都自己挖水晶做裝備在把它分解，但是這樣好慢喔@@"
                         請問有沒有方法能拿到分解材料，還是只能像我這樣慢慢挖呀@@!?                              
                     </div>
+                    </div>
                 </div>
                 <div class="_co_box_framework0">
+                	<div class="_co_box_frameworkdiv">
+                	<div class="div_img"> 
                     <div class=" nailthumb-container square-thumb_right img-circle">
                         <img  src="../../img/image6.jpg" />
+                    </div>
                     </div>                 
                     <div>
                     <div style="color: #C5C5C5; text-align: right">
@@ -116,12 +127,16 @@
                         我 只升完武器就沒材料了，但是還有一堆裝備沒升到...
                         我都自己挖水晶做裝備在把它分解，但是這樣好慢喔@@"
                         請問有沒有方法能拿到分解材料，還是只能像我這樣慢慢挖呀@@!?                              
+                    </div>
                     </div>
                 </div>   
                 <div class="_co_box_framework0">
+                	<div class="_co_box_frameworkdiv">
+                	<div class="div_img"> 
                     <div class=" nailthumb-container square-thumb_left img-circle">
                         <img  src="../../img/image8.jpg" />
-                    </div>                 
+                    </div> 
+                    </div>         
                     <div>
                     <div style="color: #C5C5C5;">
                         <span>Edited by </span>
@@ -133,6 +148,7 @@
                         我 只升完武器就沒材料了，但是還有一堆裝備沒升到...
                         我都自己挖水晶做裝備在把它分解，但是這樣好慢喔@@"
                         請問有沒有方法能拿到分解材料，還是只能像我這樣慢慢挖呀@@!?                              
+                    </div>
                     </div>
                 </div>
 				<div class="_co_box_task_border" >
@@ -144,7 +160,7 @@
 					</div>
 					<div class="_co_box_dis_post2 ">
 								<div class="_co_box_dis_anstime">answered </div>         
-								<div><textarea class="span5" rows="5" placeholder="內容" style="resize: vertical; width:95% "></textarea><br></div>
+								<div><textarea id="co_content" class="span5" rows="5" placeholder="內容" style="resize: vertical; width:95% "></textarea><br></div>
 								<div style="text-align: center;";>
 								<input id="login" class="btn botton btn-info" type="submit" name="Submit" value="發送">
 								<input class="btn botton btn-info" type="reset" name="reset" value="清除">
@@ -266,23 +282,4 @@
 							</div>
 						</article>
 						<article id="cv_box_tabs-3" class="dom_hidden">
-							<div style="position: relative;width: 96%;margin: 10px 2%;">
-								<div id="cv_box_participate-accordion">
-									<h3>1</h3>
-									<div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
-									<h3>2</h3>
-									<div>Phasellus mattis tincidunt nibh.</div>
-									<h3>3</h3>
-									<div>Nam dui erat, auctor a, dignissim quis.</div>
-									<h3>4</h3>
-									<div>Nam dui erat, auctor a, dignissim quis.</div>
-								</div>
-							</div>
-						</article>
-					</div>
-				</div>
-			</article>
-		</section>
-	</article>
-</body>
-</html>
+							<div style="position: relative;width: 96%;m

@@ -21,9 +21,11 @@
 	<script src="../information/information.js"></script>
 	<script src="../information/modernizr.custom.18273.js"></script>
 	<script src="./addtask.js"></script>
+	<script src="./search.js"></script>
 	<script src="../library/imageSlice.js"></script>
 	<script src="../library/jquery.tagsinput.min.js"></script>
 	<script src="../js/follow.js"></script>
+	<script src="../js/account_task.js"></script>
 <script>
 	(function(){    // include jQuery.js
 		CheckLogin();

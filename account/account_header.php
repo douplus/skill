@@ -17,6 +17,7 @@
 	<script src="../profile/cv.js"></script>
 	<script src="./account.js"></script>
 	<script src="../js/follow.js"></script>
+	<script src="../js/account_task.js"></script>
 	<script src="../information/information.js"></script>
 	<script src="../task/addtask.js"></script>
 	<script src="../library/imageSlice.js"></script>

@@ -83,6 +83,9 @@ include('../../php/re_showtask.php');
 							</div> 
 						</div>            
 					</div>
+					<?php 
+						$postphoto='<img id="user_poster" src="'.$photo.'">'
+					?>
 					<div class="_co_box_dis_wrapper">
 						<?php echo $html2; ?>	
 					</div>
@@ -90,7 +93,7 @@ include('../../php/re_showtask.php');
 	                    <div class="_co_box_dis_post" >
 	                            <div class="_co_box_dis_post1">
 	                                    <div  style = "margin: auto"; class=" nailthumb-container square-thumb-post img-circle">
-	                                            <img  id="user_poster" />
+	                                    	<?php echo $postphoto; ?>
 	                                    </div>
 	                            </div>
 	                            <div class="_co_box_dis_post2 ">

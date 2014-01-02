@@ -31,10 +31,6 @@
 })();
 $(function(){
 	StartUsing();
-	$('#cv_task-accordion, #cv_rating-accordion').accordion({    // jQuery UI Accordion 設定
-		heightStyle: 'content',
-		collapsible: true
-    });
 	$('a[rel=profile-tipsy]').tipsy({gravity: $.fn.tipsy.autoWE});
 });
 </script>

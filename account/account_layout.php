@@ -245,87 +245,81 @@ function CheckGender($a){
 		</section>
 	</article>
 	<article id="account_tabs-2" class="dom_hidden">
-		<div style="position: relative;width: 96%;margin: 10px 2%;">
-			<div id="account_task-accordion">
-				<h3>First</h3>
-				<div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
-				<h3>Second</h3>
-				<div>Phasellus mattis tincidunt nibh.</div>
-				<h3>Third</h3>
-				<div>Nam dui erat, auctor a, dignissim quis.</div>
-			</div>
+		<div style="position: relative;width: 96%;margin: 10px 2%;text-align: center;">
+			<header id="account_task_select">
+				<h2 class="chinese"><a _role="po" href="javascript:void(0);" id="account_task_po" class="_s">發問</a></h2>
+				<h2 class="chinese"><a _role="re" href="javascript:void(0);" id="account_task_re">回覆</a></h2>
+				<div class="stripe-line"></div>
+			</header>
+			<article id="account_task_wrapper" class="account_task_wrapper">
+				<ul _role="po">
+					<li>	
+						<h3 class="chinese"><a href="javascript:void(0);">我</a> ：「 <a href="../task/discuss/index.php?task_id=t_1387035584782">frrf</a> 」。</h3>
+						<span class="num chinese">1 coworks │ 2 answers │ 3 views</span>
+						<br>
+						<span class="date chinese">2013-12-29 18:37:27</span>
+					</li>
+					<li>	
+						<h3 class="chinese"><a href="javascript:void(0);">我</a> ：「 <a href="../task/discuss/index.php?task_id=t_1387035584782">frrf</a> 」。</h3>
+						<span class="num chinese">1 coworks │ 2 answers │ 3 views</span>
+						<br>
+						<span class="date chinese">2013-12-29 18:37:27</span>
+					</li>
+				</ul>
+				<ul _role="re" style="display: none;">
+					<li>	
+						<div class="thumbnail">
+							<a href="../profile/index.php?u=u_1383837057932&amp;v=u_1386052811154" title="frrf"><img width="50" height="50" src="../photo/u_1383837057932.jpg" title="frrf"></a>
+						</div>
+						<h3 class="chinese"><a href="../profile/index.php?u=u_1383837057932&amp;v=u_1386052811154">吳典陽</a> ：「 <a href="../task/discuss/index.php?task_id=t_1387035584782">frrf</a> 」。</h3>
+						<span class="num chinese">1 coworks │ 2 answers │ 3 views</span>
+						<br>
+						<span class="date chinese">2013-12-29 18:37:27</span>
+					</li>
+				</ul>
+			</article>
 		</div>
 	</article>
 	<article id="account_tabs-3" class="dom_hidden">
-		<div style="position: relative;width: 96%;margin: 10px 2%;">
-		<!--
-				<section class="co_item">
-					<div>
-						<section class="co_qu">
-							<div class="co_qu_image">
-								<img alt="none" src="">
-							</div>
-							<div class="co_qu_info">
-								<dl class="co_qu_info_name">
-									<dt class="co_user-male">&nbsp;</dt>
-									<dd itemprop="user" class="co_user_data">魯夫</dd>
-								</dl>
-								<p class="co_qu_info_data">
-									But as garbage collection takes time to kick in so we are practically have memory in heap containing both big string 1 & 2. They can be a issue for me if this happens a lot.
-								</p>
-							</div>
-						</section>
-						<section class="co_ans">
-							<div class="co_ans_image">
-								<img alt="none" src="">
-							</div>
-							<div class="co_ans_info">
-								<dl class="co_qu_info_name">
-									<dt class="co_user-female">&nbsp;</dt>
-									<dd itemprop="user" class="co_user_data">娜美</dd>
-								</dl>
-								<p class="co_ans_info_data">
-									I am not sure I get your answer, do you care to explain more? also edited my question.
-								</p>
-							</div>
-						</section>
-					</div>
-					<a class="co_item_more" href="./cooperation/index.php" title="查看更多">&gt; more...</a>
-				</section>
-				<section class="co_item">
-					<div>
-						<section class="co_qu">
-							<div class="co_qu_image">
-								<img alt="none" src="">
-							</div>
-							<div class="co_qu_info">
-								<dl class="co_qu_info_name">
-									<dt class="co_user-male">&nbsp;</dt>
-									<dd itemprop="user" class="co_user_data">索隆</dd>
-								</dl>
-								<p class="co_qu_info_data">
-									It shouldn't really matter for non-interned Strings. If you start running out of memory, the garbage collector will remove any objects that are no longer referenced. 
-								</p>
-							</div>
-						</section>
-						<section class="co_ans">
-							<div class="co_ans_image">
-								<img alt="none" src="">
-							</div>
-							<div class="co_ans_info">
-								<dl class="co_qu_info_name">
-									<dt class="co_user-male">&nbsp;</dt>
-									<dd itemprop="user" class="co_user_data">喬巴</dd>
-								</dl>
-								<p class="co_ans_info_data">
-									I think he wants to completely reassign str to a new string, not somehow mutate a preexisting one.
-								</p>
-							</div>
-						</section>
-					</div>
-					<a class="co_item_more" href="./cooperation/index.php" title="查看更多">&gt; more...</a>
-				</section>
-				-->
+		<div style="position: relative;width: 96%;margin: 10px 2%;text-align: center;">
+			<header id="account_co_select">
+				<h2 class="chinese"><a _role="done" href="javascript:void(0);" id="account_co_done" class="_s">合作中</a></h2>
+				<h2 class="chinese"><a _role="check" href="javascript:void(0);" id="account_co_check">待審查</a></h2>
+				<div class="stripe-line"></div>
+			</header>
+			<article class="account_co_wrapper">
+				<ul _role="done">
+					<li>	
+						<div class="thumbnail">
+							<a href="../profile/index.php?u=u_1383837057932&amp;v=u_1386052811154" title="frrf"><img width="50" height="50" src="../photo/u_1383837057932.jpg" title="frrf"></a>
+						</div>
+						<h3 class="chinese"><a href="../profile/index.php?u=u_1383837057932&amp;v=u_1386052811154">吳典陽</a> ：「 <a href="../task/discuss/index.php?task_id=t_1387035584782">frrf</a> 」。</h3>
+						<span class="num chinese">1 coworks │ 2 answers │ 3 views</span>
+						<br>
+						<span class="date chinese">2013-12-29 18:37:27</span>
+					</li>
+					<li>	
+						<div class="thumbnail">
+							<a href="../profile/index.php?u=u_1383837057932&amp;v=u_1386052811154" title="frrf"><img width="50" height="50" src="../photo/u_1383837057932.jpg" title="frrf"></a>
+						</div>
+						<h3 class="chinese"><a href="../profile/index.php?u=u_1383837057932&amp;v=u_1386052811154">吳典陽</a> ：「 <a href="../task/discuss/index.php?task_id=t_1387035584782">frrf</a> 」。</h3>
+						<span class="num chinese">1 coworks │ 2 answers │ 3 views</span>
+						<br>
+						<span class="date chinese">2013-12-29 18:37:27</span>
+					</li>
+				</ul>
+				<ul _role="check" style="display: none;">
+					<li>	
+						<div class="thumbnail">
+							<a href="../profile/index.php?u=u_1383837057932&amp;v=u_1386052811154" title="frrf"><img width="50" height="50" src="../photo/u_1383837057932.jpg" title="frrf"></a>
+						</div>
+						<h3 class="chinese"><a href="../profile/index.php?u=u_1383837057932&amp;v=u_1386052811154">吳典陽</a> 想要和你合作 ：「 <a href="../task/discuss/index.php?task_id=t_1387035584782">frrf</a> 」。</h3>
+						<span class="num chinese">1 coworks │ 2 answers │ 3 views</span>
+						<br>
+						<span class="date chinese">2013-12-29 18:37:27</span>
+					</li>
+				</ul>
+			</article>
 		</div>
 	</article>
 	<article id="account_tabs-4" class="dom_hidden">

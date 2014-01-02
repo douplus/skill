@@ -1,16 +1,16 @@
 <?php
 	header("Content-Type:text/html; charset=utf-8");
 	include('../php/db.php');
-	
-	$now_query = $q;
-	$now_by = $by;
+
+	$now_query = $_POST['search'];
+	$now_by = $_POST['select'];		
+
 	# this echo is for debugging.
 	echo '<div style="display:none;">關鍵字->'.$now_query.'，分類->'.$now_by.'</div>';
-	
 	if( $now_query == '' ){  # 未下關鍵字，即顯示 "最新 or 熱門" 任務
 		$querytask = sprintf( "SELECT 1_TASK.TASKID,1_TASK.CLASSIFY,1_TASK.TITTLE,1_TASK.TIMESTAMP,1_CV.USERNAME,1_CV.SKILL,1_CV.SCORE,1_TAG.TAG FROM `1_TASK`,`1_CV`,`1_TAG` WHERE 1_TASK.TASKPOSTERID = 1_CV.USERID AND 1_TASK.TASKID = 1_TAG.TASKID ORDER BY 1_TASK.TIMESTAMP" );
 	}else{  # 有下關鍵字，顯示該關鍵字有關連的任務
-		$querytask = sprintf( "SELECT 1_TASK.TASKID,1_TASK.CLASSIFY,1_TASK.TITTLE,1_TASK.TIMESTAMP,1_CV.USERNAME,1_CV.SKILL,1_CV.SCORE,1_TAG.TAG FROM `1_TASK`,`1_CV`,`1_TAG` WHERE 1_TASK.TASKPOSTERID = 1_CV.USERID AND 1_TASK.TASKID = 1_TAG.TASKID ORDER BY 1_TASK.TIMESTAMP" );
+		$querytask = sprintf( "SELECT 1_TASK.TASKID,1_TASK.CLASSIFY,1_TASK.TITTLE,1_TASK.TIMESTAMP,1_CV.USERNAME,1_CV.SKILL,1_CV.SCORE,1_TAG.TAG FROM `1_TASK`,`1_CV`,`1_TAG` WHERE 1_TASK.TASKPOSTERID = 1_CV.USERID AND 1_TASK.TASKID = 1_TAG.TASKID AND 1_TASK.TITTLE||1_TASK.CONTENT LIKE '%測試%' ORDER BY 1_TASK.TIMESTAMP" );
 	}
 	$resulttask = mysql_query($querytask) or die('error@抓取任務錯誤。');
 	while( $a1 = mysql_fetch_array($resulttask) ){
