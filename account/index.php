@@ -6,7 +6,7 @@
 		$is_pjax = false; # 重新載入頁面
 	}
 ?>
-<?php if( !$is_pjax ) include('./account_header.php'); ?>
+<?php if( !$is_pjax ) include_once(dirname(__FILE__).'/account_header.php'); ?>
 <?php
 	$u = isset( $_COOKIE['UserInfo'] ) ? $_COOKIE['UserInfo'] : '';
 	if( $u == '' ){
@@ -15,7 +15,7 @@
 	}else{
 		$user_info = json_decode($u, true);
 		$u = $user_info['userid'];
-		include('./account_layout.php');
+		include_once(dirname(__FILE__).'/account_layout.php');
 	}
 ?>
 <!-- master : JS files -->
@@ -42,4 +42,4 @@ $(function(){
 });
 </script>
 <!-- master : end of JS files -->
-<?php include('./account_footer.php'); ?>
+<?php include_once(dirname(__FILE__).'/account_footer.php'); ?>

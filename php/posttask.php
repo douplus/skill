@@ -21,9 +21,6 @@ foreach ($test as $v1 ) {
 }
 $tag = $a;
 
-$query = sprintf("INSERT INTO `1_TAG` (TASKID,TAG) VALUES ('%s','%s')",mysql_real_escape_string($task_id), mysql_real_escape_string($tag));
-$result = mysql_query($query);
-
 $query = sprintf("INSERT INTO `1_TASK` (TASKID,TITTLE,CONTENT,CLASSIFY,TASKPOSTERID) VALUES ('%s','%s','%s','%s','%s')",mysql_real_escape_string($task_id), mysql_real_escape_string($post_tittle), mysql_real_escape_string($post_content), mysql_real_escape_string($task_select), mysql_real_escape_string($task_poster_id));
 $result = mysql_query($query);
 if( !$result ){

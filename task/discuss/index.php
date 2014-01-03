@@ -22,11 +22,17 @@
 
 </head>
 <?php 
-$task_id = $_GET['task_id'];
-session_start(); 
-$_SESSION['task_id']=$task_id;
-include('../../php/get_task.php');
-include('../../php/re_showtask.php');
+	$task_id = $_GET['task_id'];
+	session_start(); 
+	$_SESSION['task_id']=$task_id;
+	include('../../php/get_task.php');
+	include('../../php/re_showtask.php');
+?>
+<!-- view計數器 -->
+<?php
+	$userinfo = $_COOKIE['UserInfo'];
+	$a = json_decode($userinfo);
+	$userid = $a -> userid;
 ?>
 <body>
 	<nav id="discuss_nav">

@@ -1,6 +1,7 @@
 <?php
 	header("Content-Type:text/html; charset=utf-8");
-	include('../php/db.php');
+	include_once(dirname(__FILE__).'/../php/db.php');
+	include_once(dirname(__FILE__).'/../php/function.php');
 
 	# 檢查帳號
 	$query = sprintf( "SELECT USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO,VIEWERS FROM `1_CV` WHERE USERID = '$u'" );
@@ -77,25 +78,6 @@
 		$is_activate = 'no';
 	}
 ?>
-<?php
-function CheckGender($a){
-	if( (int)$a == 1 ){  // 男
-		return 'male';
-	}else if( (int)$a == 2 ){  // 女
-		return 'female';
-	}else{  // 組織
-		return 'organization';
-	}
-}
-function CheckScore($a){
-	$copper = ((int)$a)%1000;
-	$temp = ((int)$a)/1000;
-	$gold = floor( $temp/10 );
-	$silver = floor( $temp )%10;
-	$score_ary = array( 'gold'=>$gold, 'silver'=>$silver, 'copper'=>$copper );
-	return $score_ary;
-}
-?>
 <nav id="cv_nav">
 	<section>
 		<img id="change_cv_img" class="cv_img" src="<?php echo '../photo/'.$user_ary['USER_PHOTO'];?>" alt="none" original-title="點擊變更我的大頭像"/>
@@ -140,89 +122,24 @@ function CheckScore($a){
 			</script>
 		</div>
 	</section>
-	<ul id="cv_list" _tabbed="#cv_tabs-1">
-		<div class="cv_back">
-			<a id="profile_back" rel="profile-tipsy" title="返回" onclick="javascript: window.history.back();return false;"></a>
-			<i class="back_bottom"></i>
-			<i class="back_front"></i>
-		</div>
-		<li class="tabs-active"><a class="cv_list_a" href="#cv_tabs-1"><div class="chinese">關於</div></a></li>
-		<li><a class="cv_list_a" href="#cv_tabs-2"><div class="chinese">任務</div></a></li>
-		<li><a class="cv_list_a" href="#cv_tabs-3"><div class="chinese">評分</div></a></li>
-		<li><a class="cv_list_a" href="#cv_tabs-4"><div class="chinese">關注</div></a></li>
-	</ul>
-</nav>
-<div id="cv_container">
-	<article id="cv_tabs-1">
-		<section class="cv_list">
-			<dl>
-				<dt class="cv_education">&nbsp;</dt>
-				<dd itemprop="education"><?php echo $user_ary['DEPARTMENT']; ?></dd>
-			</dl>
-			<dl class="dom_hidden">
-				<dt class="cv_email">&nbsp;</dt>
-				<dd itemprop="email">
-					<a class="a_learn_email"><?php echo $user_ary['EMAIL']; ?></a>
-				</dd>
-			</dl>
-			<dl>
-				<dt class="cv_join">&nbsp;</dt>
-				<dd itemprop="join">
-					<span class="learn_join_label">Joined on </span>
-					<span itemprop="join_time"><?php echo $user_ary['JOIN_TIME']; ?></span>
-				</dd>
-			</dl>
-			<dl>
-				<dt class="cv_skill">&nbsp;</dt>
-				<dd itemprop="skill" class="cv_skill_data">
-				<?php
-					$skill_ary_temp = explode( ',', $user_ary['SKILL'] );
-					$skill_ary_temp_len = count( $skill_ary_temp );
-					for( $i=0; $i<$skill_ary_temp_len; $i++ ){ echo '<span>'.$skill_ary_temp[$i].'</span>'; }
-					unset( $skill_ary_temp, $skill_ary_temp_len );
-				?>
-				</dd>
-			</dl>
-		</section>
-		<section class="cv_motto">
-			<h2 class="chinese">我的名言</h2>
-			<p class="chinese" itemprop="motto"><?php echo $user_ary['MOTTO']; ?></p>
-		</section>
-		<section class="cv_need">
-			<h2 class="chinese">我的需求</h2>
-			<div class="cv_need_list" itemprop="need">
-				<?php
-					$need_ary_temp = explode( ',', $user_ary['NEED'] );
-					$need_ary_temp_len = count( $need_ary_temp );
-					for( $i=0; $i<$need_ary_temp_len; $i++ ){ echo '<span>'.$need_ary_temp[$i].'</span>'; }
-					unset( $need_ary_temp, $need_ary_temp_len );
-				?>
-			</div>
-		</section>
-		<section class="cv_experience">
-			<h2 class="chinese">我的經歷</h2>
-			<div class="cv_experience_list">
-				<p class="chinese" itemprop="experience"><?php echo $user_ary['EXPERIENCE']; ?></p>
-			</div>
-		</section>
-		<section class="cv_about">
-			<h2 class="chinese">關於我</h2>
-			<p class="chinese" itemprop="about"><?php echo $user_ary['ABOUT_ME']; ?></p>
-		</section>
-	</article>
-	<article id="cv_tabs-2" class="dom_hidden">
-		<div style="position: relative;width: 96%;margin: 10px 2%;">
-			
-		</div>
-	</article>
-	<article id="cv_tabs-3" class="dom_hidden">
-		<div style="position: relative;width: 96%;margin: 10px 2%;">
-			
-		</div>
-	</article>
-	<article id="cv_tabs-4" class="dom_hidden">
-		<div style="position: relative;width: 96%;margin: 10px 2%;">
-			<?php include('../php/follow_layout.php');?>
-		</div>
-	</article>
-</div>
+	<?php
+		$stream = isset( $_GET['stream'] ) ? $_GET['stream'] : '';
+		switch( $stream ){
+			case 'about':
+				include_once(dirname(__FILE__).'/profile_about.php');
+				break;
+			case 'task':
+				include_once(dirname(__FILE__).'/profile_task.php');
+				break;
+			case 'rating':
+				include_once(dirname(__FILE__).'/profile_rating.php');
+				break;
+			case 'follow':
+				include_once(dirname(__FILE__).'/profile_follow.php');
+				break;
+			default:
+				echo '<script>window.location.href = "./index.php?stream=about&u='.$u.'&v='.$v.'"</script>';
+				exit;
+			break;
+		}
+	?>

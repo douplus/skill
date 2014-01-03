@@ -1,6 +1,6 @@
 $(function(){
 	// jQuery UI
-	$('#tabs-1').data('status', true);
+	/*$('#tabs-1').data('status', true);
 	$('#page-container').on('click', 'a.cv_list_a', function(e){    // 個人履歷 Tabs 切換
 		$(this).blur();
 		e.preventDefault();
@@ -14,7 +14,7 @@ $(function(){
 				GetFollow( JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, $('#cv_follow').attr('user-id') );
 			}
 		}
-	});
+	});*/
 	$('#page-container').on('click', '#cv_activate', function(e){  // 履歷區: 點擊 開通
 		if( $(this).data('activate') == 'no' ){
 			$('#preloader').find('span').text('設定開通中...').end().removeClass('dom_hidden');
@@ -132,6 +132,7 @@ function SetUnfollow( a, b, c ){
 		}
 	});
 }
+/*
 function GetFollow( a, b ){
 	$.ajax({
 		url: '../php/get_follow.php',
@@ -156,8 +157,8 @@ function GetFollow( a, b ){
 	});
 }
 function ShowFollow( a, b, c, d, e, g, h ){
-	/* USERID, USERNAME, USER_PHOTO, FOLLOWERS, IS_FOLLOW(yes/no) */
-	/*    0  ,     1   ,      2    ,     3    ,         4         */
+	* USERID, USERNAME, USER_PHOTO, FOLLOWERS, IS_FOLLOW(yes/no) *
+	/*    0  ,     1   ,      2    ,     3    ,         4         *
 	var temp1 = '', temp2 = '', temp3 = '';
 	if( parseInt( a ) != 0 ){  // 顯示關注中
 		var o_following = JSON.parse( b );
@@ -225,4 +226,4 @@ function ShowFollow( a, b, c, d, e, g, h ){
 		temp3 = '<section class="follow_item chinese">沒有開通紀錄。</section>';
 	}
 	$('#following').attr('num', a).html( temp1 ).next().attr('num', c).html( temp2 ).next().attr('num', g).html( temp3 );
-}
+}*/
