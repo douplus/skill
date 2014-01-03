@@ -840,7 +840,7 @@ border: 0;
 color: #008BD3;
 }
 /**/
-#account_container a:hover,
-#account_container a:active{
+#account_container a:not(#account_task_po):not(#account_task_re):not(#account_co_done):not(#account_co_check):hover,
+#account_container a:not(#account_task_po):not(#account_task_re):not(#account_co_done):not(#account_co_check):active{
 color: red;
-}
+)

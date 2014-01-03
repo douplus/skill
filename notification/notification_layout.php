@@ -47,9 +47,9 @@
 						$a = explode( '***', $noti_ary[$i] );
 						$temp .= '<li>	
 							<div class="thumbnail">
-								<a href="../profile/index.php?u='.$a[0].'&v='.$u.'" title="'.$a[3].'"><img width="50" height="50" src="../photo/'.$a[7].'" title="'.$a[3].'"></a>
+								<a href="../profile/index.php?stream=about&u='.$a[0].'&v='.$u.'" title="'.$a[3].'"><img width="50" height="50" src="../photo/'.$a[7].'" title="'.$a[3].'"></a>
 							</div>
-							<h3 class="chinese"><a href="../profile/index.php?u='.$a[0].'&v='.$u.'">'.$a[6].'</a> '.$a[1].' ：「 <a href="../task/discuss/index.php?task_id='.$a[2].'">'.$a[3].'</a> 」。</h3>
+							<h3 class="chinese"><a href="../profile/index.php?stream=about&u='.$a[0].'&v='.$u.'">'.$a[6].'</a> '.$a[1].' ：「 <a href="../task/discuss/index.php?task_id='.$a[2].'">'.$a[3].'</a> 」。</h3>
 							<span class="date chinese">'.$a[4].'</span>
 						</li>';
 					}
