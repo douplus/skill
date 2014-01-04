@@ -1,4 +1,83 @@
 <?php
+function Get_Task( $userid, $start, $end ){
+	$re_task_user_ary = array();
+	$re_task_user_ary_temp = array();
+	$re_task_ary = array();
+	$po_task_user_ary = array();
+	$po_task_ary = array();
+
+	# 抓 發問
+	$query = sprintf( "SELECT TASKID, TITTLE, TIMESTAMP FROM `1_TASK` WHERE TASKPOSTERID = '$userid' LIMIT $start,$end" );
+	$result = mysql_query($query) or die('error@伺服器查詢 發問任務清單 失敗。');
+	while( $a = mysql_fetch_array($result) ){
+		$po_task_ary[] = $a['TASKID'].'***'.$a['TITTLE'].'***'.$a['TIMESTAMP'];
+	}
+	$query = sprintf( "SELECT USERNAME, USER_PHOTO FROM `1_CV` WHERE USERID = '$userid' LIMIT 1" );
+	$result = mysql_query($query) or die('error@伺服器查詢 發問任務清單 失敗。');
+	while( $a = mysql_fetch_array($result) ){
+		$po_task_user_ary[] = $userid.'***'.$a['USERNAME'].'***'.$a['USER_PHOTO'];
+		break;
+	}
+
+	# 抓 回覆
+	$query = sprintf( "SELECT distinct 1_TASK.TASKPOSTERID, 1_TASK.TASKID , 1_TASK.TITTLE, 1_TASK.TIMESTAMP FROM `1_RE_TASK`, `1_TASK` WHERE 1_TASK.TASKID = 1_RE_TASK.TASKID AND 1_RE_TASK.USERID = '$userid' LIMIT $start,$end" );
+	$result = mysql_query($query) or die('error@伺服器查詢 回覆任務清單 失敗。');
+	while( $a = mysql_fetch_array($result) ){
+		$re_task_ary[] = $a['TASKID'].'***'.$a['TITTLE'].'***'.$a['TIMESTAMP'];
+		$re_task_user_ary_temp[] = $a['TASKPOSTERID'];
+	}
+	$re_task_user_ary_temp_len = count( $re_task_user_ary_temp );
+	for( $i=0; $i<$re_task_user_ary_temp_len; $i++ ){
+		$query = sprintf( "SELECT USERNAME, USER_PHOTO FROM `1_CV` WHERE USERID = '$re_task_user_ary_temp[$i]' LIMIT 1" );
+		$result = mysql_query($query) or die('error@伺服器查詢 回覆任務清單 失敗。');
+		while( $a = mysql_fetch_array($result) ){
+			$re_task_user_ary[] = $re_task_user_ary_temp[$i].'***'.$a['USERNAME'].'***'.$a['USER_PHOTO'];
+			break;
+		}
+	}
+
+	return 'success@查詢 任務清單 成功。@'.count( $po_task_ary ).'@'.json_encode( (object)$po_task_ary ).'@'.json_encode( (object)$po_task_user_ary ).'@'.count( $re_task_ary ).'@'.json_encode( (object)$re_task_ary ).'@'.json_encode( (object)$re_task_user_ary );
+}
+function Show_Task( $a, $b, $c, $d, $e, $f, $g ){
+	$temp1 = '';
+	$temp2 = '';
+	if( (int)$a != 0 ){  // 顯示 發問
+		$o_po = json_decode( $b, true );
+		$o_po_er = json_decode( $c, true );
+		$j = explode( '***', $o_po_er[0] );
+		for( $i=0; $i<(int)$a; $i++ ){
+			$h = explode( '***', $o_po[$i] );
+			$temp1 .= '<li>	
+					<h3 class="chinese"><a data-pjax="profile" href="../profile/index.php?stream=about&u='.$j[0].'&v='.$g.'">我</a> ：「 <a href="../task/discuss/index.php?task_id='.$h[0].'">'.$h[1].'</a> 」。</h3>
+					<span class="num chinese">1 coworks │ 2 answers │ 3 views</span>
+					<br>
+					<span class="date chinese">'.$h[2].'</span>
+				</li>';
+		}
+	}else{
+		$temp1 = '<li class="chinese">沒有發問任務。</li>';
+	}
+	if( (int)$d != 0 ){  // 顯示 發問
+		$o_re = json_decode( $e, true );
+		$o_re_er = json_decode( $f, true );
+		for( $i=0; $i<(int)$d; $i++ ){
+			$h = explode( '***', $o_re[$i] );
+			$j = explode( '***', $o_re_er[$i] );
+			$temp2 .= '<li>	
+				<div class="thumbnail">
+					<a href="../profile/index.php?stream=about&u='.$j[0].'&v='.$g.'" title="'.$h[1].'"><img width="50" height="50" src="../photo/'.$j[2].'" title="'.$h[1].'"></a>
+				</div>
+				<h3 class="chinese"><a href="../profile/index.php?stream=about&u='.$j[0].'&v='.$g.'">'.$j[1].'</a> ：「 <a href="../task/discuss/index.php?task_id='.$h[0].'">'.$h[1].'</a> 」。</h3>
+				<span class="num chinese">1 coworks │ 2 answers │ 3 views</span>
+				<br>
+				<span class="date chinese">'.$h[2].'</span>
+			</li>';
+		}
+	}else{
+		$temp2 = '<li class="chinese">沒有回覆任務。</li>';
+	}
+	return '<ul _role="po" num="'.$a.'">'.$temp1.'</ul><ul _role="re" num="'.$d.'" style="display: none;">'.$temp2.'</ul>';
+}
 function Get_Follow( $userid, $viewerid, $start, $end  ){
 	# 抓 正在關注
 	$following_ary = array();

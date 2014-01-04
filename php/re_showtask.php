@@ -11,7 +11,21 @@
         while( $c = mysql_fetch_array($result1) ){
         $allretask_ary[] = $c['CONTENT'].'***'.$c['TIMESTAMP'].'***'.$c['USERNAME'].'***'.$c['USER_PHOTO'];
         }
+        // 合作只有potask者才會出現
+        $userinfo = $_COOKIE['UserInfo'];
+        $a = json_decode($userinfo);
+        $userid = $a -> userid;
 
+        $SQLStr = "select TASKPOSTERID from `1_TASK` where TASKID = '$task_id'";
+        $res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
+            while( $a = mysql_fetch_array($res) ){
+                $taskposter = $a['TASKPOSTERID'];
+            break;
+        }
+        $btn_cowork = '';
+        if ($taskposter == $userid) {
+           $btn_cowork = '<a id="btn_cooperation_a" href="#myModal" role="button" class="btn" data-toggle="modal" style="margin-top: 3px;">合作</a>';
+        }
         // echo 'success@@'.json_encode( (object)$allretask_ary ); 
         // 檢查留言數 不只一個
         $html2 = '';
@@ -26,7 +40,7 @@
                                     '<img class="img-circle" src="../../photo/'.$d[3].'">'.                                                                      
                             '</div>'.
                             '</div>'.
-                                    '<a id="btn_cooperation_a" href="#myModal" role="button" class="btn" data-toggle="modal" style="margin-top: 3px;">合作</a>'.
+                                    $btn_cowork.
                             '</div>'.
                     '</div>'.
                     '<div class="_co_box_dis_framework2 ">'.

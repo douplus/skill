@@ -21,18 +21,46 @@
 	-->
 
 </head>
+<!-- view計數器  -->
+<?php
+	include('../../php/db.php');
+	$task_id = $_GET['task_id'];
+	$userinfo = $_COOKIE['UserInfo'];
+	$a = json_decode($userinfo);
+	$userid = $a -> userid;
+
+		$SQLStr = "select VIEW from `1_INFO3_TASK` where TASKID = '$task_id'";
+		$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
+			while( $a = mysql_fetch_array($res) ){
+				$view = $a['VIEW'];
+		    break;
+		}
+
+		$SQLStr = "select TASKPOSTERID from `1_TASK` where TASKID = '$task_id'";
+		$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
+			while( $a = mysql_fetch_array($res) ){
+				$taskposter = $a['TASKPOSTERID'];
+		    break;
+		}
+
+		$view = $view+1;
+		if ($userid == $taskposter) {
+			$view = $view-1;
+		}
+		
+		$query = mysql_query("UPDATE `1_INFO3_TASK` SET VIEW = $view WHERE TASKID = '$task_id' ");
+		if( !$query ){
+		    $message  = 'error@伺服器view失敗。';
+		    die($message);
+		}
+?>
+
 <?php 
 	$task_id = $_GET['task_id'];
 	session_start(); 
 	$_SESSION['task_id']=$task_id;
 	include('../../php/get_task.php');
 	include('../../php/re_showtask.php');
-?>
-<!-- view計數器 -->
-<?php
-	$userinfo = $_COOKIE['UserInfo'];
-	$a = json_decode($userinfo);
-	$userid = $a -> userid;
 ?>
 <body>
 	<nav id="discuss_nav">
@@ -117,7 +145,7 @@
 		</div>
 	</article>
 	</div>
-
+<!-- 合作訊息傳送 暫時關閉
 	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-header task_co ">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -130,6 +158,6 @@
 			<button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button>
 			<button class="btn btn-primary">傳送</button>
 		</div>
-	</div>   
+	</div>   --> 
 </body>
 </html>

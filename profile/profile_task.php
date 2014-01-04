@@ -12,8 +12,14 @@
 </nav>
 <div id="cv_container">
 	<article id="cv_tabs-2" class="">
-		<div style="position: relative;width: 96%;margin: 10px 2%;">
-			
+		<div style="position: relative;width: 96%;margin: 10px 2%;text-align: center;">
+			<?php
+				$_userid = $u;
+				$_viewerid = $v;
+				$_start = (int)0;
+				$_end = $_start+30;
+				include_once(dirname(__FILE__).'/../php/task_layout.php');
+			?>
 		</div>
 	</article>
 </div>
