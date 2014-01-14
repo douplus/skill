@@ -83,6 +83,18 @@ padding: 0 5px;
 color: black;
 font-size: 16px;
 }
+.account_co_btn{
+margin: 16px 0 0 0;    
+background: #008BD3;
+border: 1px solid #ccc;
+padding: 4px 6px;
+font-size: 14px;
+color: #555;
+cursor: pointer;
+vertical-align: middle;
+border-radius: 4px;
+color: rgb(255, 255, 255);
+}
 #account_container > article > section > p,
 .account_need_list,
 .account_skill_list,
@@ -641,25 +653,41 @@ max-width: 320px;
 }
 @media (max-width: 767px) and (min-width: 479px){
 .passwd_wrapper,
-.noti_wrapper{
+.noti_wrapper,
+.account_task_wrapper,
+.account_co_wrapper,
+#account_task_select,
+#account_co_select{
 max-width: 480px;
 }
 }
 @media (max-width: 979px) and (min-width: 768px){
 .passwd_wrapper,
-.noti_wrapper{
+.noti_wrapper,
+.account_task_wrapper,
+.account_co_wrapper,
+#account_task_select,
+#account_co_select{
 max-width: 568px;
 }
 }
 @media (max-width: 1199px) and (min-width: 980px){
 .passwd_wrapper,
-.noti_wrapper{
+.noti_wrapper,
+.account_task_wrapper,
+.account_co_wrapper,
+#account_task_select,
+#account_co_select{
 max-width: 780px;
 }
 }
 @media (min-width: 1200px){
 .passwd_wrapper,
-.noti_wrapper{
+.noti_wrapper,
+.account_task_wrapper,
+.account_co_wrapper,
+#account_task_select,
+#account_co_select{
 max-width: 900px;
 }
 }
@@ -695,3 +723,136 @@ cursor: pointer;
 z-index: 35;
 border-radius: 0 0 5px 5px;
 }
+/**/
+#account_task_select,
+#account_co_select{
+padding: 3px 0;
+overflow: hidden;
+margin: 0 auto;
+}
+@media (min-width: 601px){
+#account_task_select > h2,
+#account_co_select > h2{
+float: left;
+margin-right: 10px;
+font-size: 22px;
+line-height: 30px;
+}
+#account_task_select .stripe-line,
+#account_co_select .stripe-line{
+background: url(../Images/stripe.png);
+height: 14px;
+overflow: hidden;
+margin-top: 8px;
+}
+}
+@media (max-width: 600px){
+#account_task_select > h2,
+#account_co_select > h2{
+float: left;
+margin-right: 10px;
+font-size: 18px;
+line-height: 26px;
+}
+#account_task_select .stripe-line,
+#account_co_select .stripe-line{
+background: url(../Images/stripe.png);
+height: 14px;
+overflow: hidden;
+margin-top: 6px;
+}
+}
+#account_task_select > h2 > a,
+#account_co_select > h2 > a{
+color: #5E5E5E;
+text-decoration: none;
+}
+.account_task_wrapper,
+.account_co_wrapper{
+display: inline-block;
+position: relative;
+padding: 8px 0;
+width: 96%;
+background: white;
+border-radius: 1px;
+-moz-border-radius: 1px;
+-webkit-border-radius: 1px;
+box-shadow: 0 1px 3px 0 #b5b5b5;
+-moz-box-shadow: 0 1px 3px 0 #b5b5b5;
+-webkit-box-shadow: 0 1px 3px 0 #b5b5b5;
+border-bottom: 4px solid #008BD3;
+margin: 8px auto;
+}
+.account_task_wrapper > ul,
+.account_co_wrapper > ul{
+position: relative;
+float: left;
+width: 95%;
+padding: 5px 2.5%;
+text-align: left;
+}
+.account_task_wrapper li,
+.account_co_wrapper li{
+position: relative;
+float: left;
+width: 100%;
+background: transparent;
+padding: 8px 0 4px;
+border-bottom: 1px solid #f2f2f2;
+line-height: 18px;
+list-style: none;
+}
+.account_task_wrapper li .thumbnail,
+.account_co_wrapper li .thumbnail{
+position: relative;
+padding: 2px;
+float: left;
+margin: 0 10px 0 0;
+}
+.account_task_wrapper li .thumbnail img,
+.account_co_wrapper li .thumbnail img{
+background: white;
+padding: 4px;
+-moz-border-radius: 1px;
+-webkit-border-radius: 1px;
+box-shadow: 0 0 2px #B5B5B5;
+-moz-box-shadow: 0 0 2px #b5b5b5;
+-webkit-box-shadow: 0 0 2px #B5B5B5;
+}
+.account_task_wrapper li > h3 a,
+.account_co_wrapper li > h3 a{
+color: #3b5998;
+text-decoration: none;
+}
+.account_task_wrapper li > h3,
+.account_co_wrapper li > h3{
+color: #333;
+font-weight: normal;
+font-size: 14px;
+}
+.account_task_wrapper li > .date,
+.account_co_wrapper li > .date{
+color: #aaa;
+margin: 5px 0;
+font-size: 85%;
+float: right;
+}
+.account_task_wrapper li > .num,
+.account_co_wrapper li > .num{
+color: #555;
+margin: 5px 0;
+font-size: 85%;
+}
+.account_task_wrapper li:last-child,
+.account_co_wrapper li:last-child{
+border: 0;
+}
+#account_task_select ._s,
+#account_co_select ._s{
+color: #008BD3;
+}
+/**/
+#account_container a:not(#account_task_po):not(#account_task_re):not(#account_co_done):not(#account_co_check):hover,
+#account_container a:not(#account_task_po):not(#account_task_re):not(#account_co_done):not(#account_co_check):active{
+color: red;
+)

@@ -6,7 +6,7 @@
 	<meta name="ip" content="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
 	<title>Skill-帳戶</title>
 	<!-- load : CSS files -->
-	<?php include('../master/css_files.php'); ?>
+	<?php include_once('../master/css_files.php'); ?>
 	<!-- load : end of CSS files -->
 	<script src="../library/jquery-2.0.3.min.js"></script>
 	<script src="../library/jquery.pjax.js"></script>
@@ -17,8 +17,10 @@
 	<script src="../profile/cv.js"></script>
 	<script src="./account.js"></script>
 	<script src="../js/follow.js"></script>
+	<script src="../js/account_task.js"></script>
 	<script src="../information/information.js"></script>
 	<script src="../task/addtask.js"></script>
+	<script src="./account_cowork.js"></script>	
 	<script src="../library/imageSlice.js"></script>
 	<script src="../library/jquery.tagsinput.min.js"></script>
 <script>
@@ -83,13 +85,13 @@ $.viewport.set();
 </script>
 </head>
 <body>
-	<?php include('../php/error_layout.php'); ?>
+	<?php include_once('../php/error_layout.php'); ?>
 	<section id="init-overlay" class=""></section>
 	<article id="preloader" class="dom_hidden">
 		<h3><img src="../Images/preloader.gif"><span></span></h3>
 	</article>
-	<?php include('../php/fixed_header.php'); ?>
-	<?php include('../php/top_header.php'); ?>
-	<?php include('../box/box.php'); ?>
+	<?php include_once('../php/fixed_header.php'); ?>
+	<?php include_once('../php/top_header.php'); ?>
+	<?php include_once('../box/box.php'); ?>
 	<article id="page-container" style="position: fixed;left: 50px;top: 51px;bottom: 0;right: 0;z-index: 30;overflow-y: auto;">
 		<div class="wrapper" style="position: relative;width: 100%;height: 100%;z-index: 30;">

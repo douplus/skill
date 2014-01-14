@@ -243,7 +243,7 @@ function ShowMaster( a ){    // 顯示神人資料
 						html += photo+'" alt="loading" title="'+a[7]+'。<p>'+a[16]+' viewers : '+a[15]+' followers</p>"/>\
 					\</div>\
 					\<div class="learn_item_right">\
-						\<a class="learn_item_more" href="../profile/index.php?u=';
+						\<a class="learn_item_more" href="../profile/index.php?stream=about&u=';
 							html = html + a[0] + '&v=' + userid;
 						html += '" data-pjax="profile" title="履歷">&gt; more...</a>\
 						\<div class="details">\

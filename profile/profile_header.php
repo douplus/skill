@@ -21,6 +21,7 @@
 	<script src="../library/imageSlice.js"></script>
 	<script src="../library/jquery.tagsinput.min.js"></script>
 	<script src="../js/follow.js"></script>
+	<script src="../js/account_task.js"></script>
 <script>
 	(function(){    // include jQuery.js
 		function CheckLogin(){    // 檢查使用者是否登入

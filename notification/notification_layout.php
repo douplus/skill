@@ -1,25 +1,29 @@
 <?php
 	header("Content-Type:text/html; charset=utf-8");
 	include('../php/db.php');
-?>
-<?php
-function CheckGender($a){
-	if( (int)$a == 1 ){  // 男
-		return 'male';
-	}else if( (int)$a == 2 ){  // 女
-		return 'female';
-	}else{  // 組織
-		return 'organization';
+
+	$UserInfo = json_decode( $_COOKIE['UserInfo'], true );
+	$u = $UserInfo['userid'];
+
+	# 抓取通知
+	$query = sprintf( "SELECT 1_TASK.TITTLE, 1_NOTIFICATION.WHO, 1_NOTIFICATION.TASK_ID, 1_NOTIFICATION.TARGET, 1_NOTIFICATION.TIME, 1_NOTIFICATION.IS_READ FROM `1_NOTIFICATION`, `1_TASK` WHERE 1_NOTIFICATION.USERID = '$u' AND 1_NOTIFICATION.TASK_ID = 1_TASK.TASKID" );
+	$result = mysql_query($query) or die('error@系統存取通知的資料出錯。');
+	$noti_ary = array();
+	$user_ary = array();
+	while( $a = mysql_fetch_array($result) ){
+		$noti_ary[] = $a['WHO'].'***'.$a['TARGET'].'***'.$a['TASK_ID'].'***'.$a['TITTLE'].'***'.$a['TIME'].'***'.$a['IS_READ'];
+		$user_ary[] = $a['WHO'];
 	}
-}
-function CheckScore($a){
-	$copper = ((int)$a)%1000;
-	$temp = ((int)$a)/1000;
-	$gold = floor( $temp/10 );
-	$silver = floor( $temp )%10;
-	$score_ary = array( 'gold'=>$gold, 'silver'=>$silver, 'copper'=>$copper );
-	return $score_ary;
-}
+	$user_ary_len = count( $user_ary );
+	for( $i = 0; $i < $user_ary_len; $i++ ){
+		$query = sprintf( "SELECT USERNAME, USER_PHOTO  FROM `1_CV` WHERE 1_CV.USERID = '$user_ary[$i]'" );
+		$result = mysql_query($query) or die('error@系統存取通知的資料出錯。');
+		while( $a = mysql_fetch_array($result) ){
+			$noti_ary[$i] .= '***'.$a['USERNAME'].'***'.$a['USER_PHOTO'];
+			break;
+		}
+	}
+	//print_r($noti_ary);
 ?>
 <nav id="noti_nav">
 	<ul id="noti_list">
@@ -35,41 +39,29 @@ function CheckScore($a){
 	<div>
 		<article class="noti_wrapper">
 			<ul>
-				<li>	
-					<div class="thumbnail">
-						<a href="" title="Galaxy S5 螢幕已經開始量產" rel="bookmark"><img width="50" height="50" src="../photo/u_1383837389826.jpg?rand=0.5713774424511939" title="Galaxy S5 螢幕已經開始量產"></a>
-					</div>
-					<h3 class="chinese"><a href="">江佳佳</a> 想要和你合作 ：「 <a href="">Galaxy S5 螢幕已經開始量產</a> 」。</h3>
-					<span class="date chinese">十二月 24, 2013</span>
-				</li>
-				<li>		
-					<div class="thumbnail">
-						<a href="" title="Permalink to Sony 多達7款產品通過認證,或於明年上半年推出" rel="bookmark"><img width="50" height="50" src="../photo/u_1383837057932.jpg?rand=0.2010142777580768" title="Sony 多達7款產品通過認證,或於明年上半年推出"></a>
-					</div>
-					<h3 class="chinese"><a href="">吳典陽</a> 想要和你合作 ：「 <a href="">Sony 多達7款產品通過認證,或於明年上半年推出</a> 」。</h3>
-					<span class="date chinese">十二月 21, 2013</span>
-				</li>
-				<li>		
-					<div class="thumbnail">
-						<a href="" title="Permalink to 支援錄製 4K 影片, 6吋 Acer Liquid S2 發佈" rel="bookmark"><img width="50" height="50" src="../photo/u_1383837389826.jpg?rand=0.5713774424511939" title="支援錄製 4K 影片, 6吋 Acer Liquid S2 發佈"></a>
-					</div>
-					<h3 class="chinese"><a href="">江佳佳</a> 已和你合作 ：「 <a href="">支援錄製 4K 影片, 6吋 Acer Liquid S2 發佈</a> 」。</h3>
-					<span class="date chinese">十二月 20, 2013</span>
-				</li>
-				<li>		
-					<div class="thumbnail">
-						<a href="" title="Permalink to 除了 Galaxy Note Pro 12.2 ,Samsung 還將推 Galaxy Note Pro 10.1 ?" rel="bookmark"><img width="50" height="50" src="../photo/u_1383837389826.jpg?rand=0.5713774424511939" title="除了 Galaxy Note Pro 12.2 ,Samsung 還將推 Galaxy Note Pro 10.1 ?"></a>
-					</div>
-					<h3 class="chinese"><a href="">江佳佳</a> 已和你合作 ：「 <a href="">除了 Galaxy Note Pro 12.2 ,Samsung 還將推 Galaxy Note Pro 10.1 ?</a> 」。</h3>
-					<span class="date chinese">十二月 20, 2013</span>
-				</li>
-				<li>
+				<!-- WHO, TARGET, TASK_ID, TITTLE, TIME, IS_READ, USERNAME, USER_PHOTO -->
+				<!--  0 ,    1  ,    2   ,   3   ,  4  ,     5  ,    6    ,     7      -->
+				<?php
+					$temp = '';
+					for( $i = 0; $i < $user_ary_len; $i++ ){
+						$a = explode( '***', $noti_ary[$i] );
+						$temp .= '<li>	
+							<div class="thumbnail">
+								<a href="../profile/index.php?stream=about&u='.$a[0].'&v='.$u.'" title="'.$a[3].'"><img width="50" height="50" src="../photo/'.$a[7].'" title="'.$a[3].'"></a>
+							</div>
+							<h3 class="chinese"><a href="../profile/index.php?stream=about&u='.$a[0].'&v='.$u.'">'.$a[6].'</a> '.$a[1].' ：「 <a href="../task/discuss/index.php?task_id='.$a[2].'">'.$a[3].'</a> 」。</h3>
+							<span class="date chinese">'.$a[4].'</span>
+						</li>';
+					}
+					echo $temp;
+				?>
+				<!--<li>
 					<div class="thumbnail">
 						<a href="" title="Permalink to Google Doodle 更新迎接平安夜" rel="bookmark"><img width="50" height="50" src="../photo/u_1383837057932.jpg?rand=0.2010142777580768" title="Google Doodle 更新迎接平安夜"></a>
 					</div>
 					<h3 class="chinese"><a href="">吳典陽</a> 想要和你合作 ：「 <a href="">Google Doodle 更新迎接平安夜</a> 」。</h3>
 					<span class="date chinese">十二月 24, 2013</span>
-				</li>
+				</li>-->
 			</ul>
 		</article>
 	</div>

@@ -10,14 +10,19 @@ $(document).ready(function(){
     var a = true;
     console.log("a");
     if( post_tittle == '' ){
-      $('#input-tittle').append('<p class="hint">請輸入標題</p>');
+      $('#input-tittle > p').text('請輸入標題!');
       a = false;
     console.log("a");      
     }
     if( post_content == '' ){
-      $('#input-content').append('<p class="hint">請輸入內容</p>');
+      $('#input-content > p').text('請輸入內容!');
       a = false;
     }
+    if (task_select == "noclassify") {
+      alert("請填分類");
+      a = false;
+    }
+
 
     if (a == 1) {
         $.ajax({    

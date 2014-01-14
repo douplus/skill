@@ -21,9 +21,6 @@ foreach ($test as $v1 ) {
 }
 $tag = $a;
 
-$query = sprintf("INSERT INTO `1_TAG` (TASKID,TAG) VALUES ('%s','%s')",mysql_real_escape_string($task_id), mysql_real_escape_string($tag));
-$result = mysql_query($query);
-
 $query = sprintf("INSERT INTO `1_TASK` (TASKID,TITTLE,CONTENT,CLASSIFY,TASKPOSTERID) VALUES ('%s','%s','%s','%s','%s')",mysql_real_escape_string($task_id), mysql_real_escape_string($post_tittle), mysql_real_escape_string($post_content), mysql_real_escape_string($task_select), mysql_real_escape_string($task_poster_id));
 $result = mysql_query($query);
 if( !$result ){
@@ -31,5 +28,32 @@ if( !$result ){
     die($message);
 }
 
-echo $post_tittle;
+$query = sprintf("INSERT INTO `1_TAG` (TASKID,TAG) VALUES ('%s','%s')",mysql_real_escape_string($task_id), mysql_real_escape_string($tag));
+$result = mysql_query($query);
+if( !$result ){
+    $message  = 'error@伺服器創建TAG。';
+    die($message);
+}
+
+$query = sprintf("INSERT INTO `1_INFO3_TASK` (TASKID,VIEW,ANSWER,COWORK) VALUES ('%s','%s','%s','%s')",mysql_real_escape_string($task_id), mysql_real_escape_string('0'), mysql_real_escape_string('0'), mysql_real_escape_string('0'));
+$result = mysql_query($query);
+if( !$result ){
+    $message  = 'error@伺服器創建您的任務3資訊。';
+    die($message);
+}
+
+$query = sprintf("INSERT INTO `1_CHECK_TASK` (TASKID,COCHECK,COWORKER) VALUES ('%s','%s','%s')",mysql_real_escape_string($task_id), mysql_real_escape_string('0'), mysql_real_escape_string('no'));
+$result = mysql_query($query);
+if( !$result ){
+    $message  = 'error@伺服器創建您的1_CHECK_TASK。';
+    die($message);
+}
+
+$query = sprintf("INSERT INTO `1_COWORK_TASK` (TASKID,COWORK,COWORKER) VALUES ('%s','%s','%s')",mysql_real_escape_string($task_id), mysql_real_escape_string('0'), mysql_real_escape_string('no'));
+$result = mysql_query($query);
+if( !$result ){
+    $message  = 'error@伺服器創建您1_COWORK_TASK。';
+    die($message);
+}
+
 ?>

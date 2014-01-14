@@ -13,7 +13,7 @@
 (function(){
 	$('#page-container').css('left', 0);
 	$('#fixed_nav').find('i').addClass('dom_hidden');
-	$('#GoToAccount').attr({'href': '../account/index.php', 'data-pjax':'account'});
+	$('#GoToAccount').attr({'href': '../account/index.php?stream=about', 'data-pjax':'account'});
 	var $a = $('#fixed_nav > div.item > a');
 	$( $a[0] ).attr({'href':'../master/index.php', 'data-pjax':'master'});
 	$( $a[1] ).attr({'href':'../task/index.php', 'data-pjax':'task'});

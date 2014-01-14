@@ -6,7 +6,7 @@
 		$is_pjax = false; # 重新載入頁面
 	}
 ?>
-<?php if( !$is_pjax ) include('./profile_header.php'); ?>
+<?php if( !$is_pjax ) include_once(dirname(__FILE__).'/profile_header.php'); ?>
 <?php
 	$u = isset($_GET['u']) ? $_GET['u'] : '';
 	$v = isset($_GET['v']) ? $_GET['v'] : '';
@@ -15,7 +15,7 @@
 		echo '<script>window.location.href = "../master/index.php"</script>';
 		exit;
 	}else{
-		include('./profile_layout.php');
+		include_once(dirname(__FILE__).'/profile_layout.php');
 	}
 ?>
 <!-- master : JS files -->
@@ -23,7 +23,7 @@
 (function(){
 	$('#page-container').css('left', 0);
 	$('#fixed_nav').find('i').addClass('dom_hidden');
-	$('#GoToAccount').attr({'href': '../account/index.php', 'data-pjax':'account'});
+	$('#GoToAccount').attr({'href': '../account/index.php?stream=about', 'data-pjax':'account'});
 	var $a = $('#fixed_nav > div.item > a');
 	$( $a[0] ).attr({'href':'../master/index.php', 'data-pjax':'master'});
 	$( $a[1] ).attr({'href':'../task/index.php', 'data-pjax':'task'});
@@ -31,12 +31,8 @@
 })();
 $(function(){
 	StartUsing();
-	$('#cv_task-accordion, #cv_rating-accordion').accordion({    // jQuery UI Accordion 設定
-		heightStyle: 'content',
-		collapsible: true
-    });
 	$('a[rel=profile-tipsy]').tipsy({gravity: $.fn.tipsy.autoWE});
 });
 </script>
 <!-- master : end of JS files -->
-<?php include('./profile_footer.php'); ?>
+<?php include_once(dirname(__FILE__).'/profile_footer.php'); ?>

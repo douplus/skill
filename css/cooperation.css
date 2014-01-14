@@ -144,9 +144,11 @@ width: 85%;
 margin-left: 7.5%;
 position: relative;
 float: left;
-padding: 10px;
 box-shadow: 0 1px 2px #aaa;
 margin-bottom: 15px;
+}
+._co_box_frameworkdiv{
+padding: 10px;	
 }
 ._co_box_dis_anstime{
 color: #c8c9ca;
@@ -158,7 +160,6 @@ width: 85%;
 margin-left: 7.5%;
 position: relative;
 float: left;
-padding: 10px;
 box-shadow: 0 1px 2px #aaa;
 margin-bottom: 15px;
 background-color: #EEEEEF;
@@ -190,9 +191,8 @@ float: left;
 height:50px;
 width:80%;
 }
-.img{
-height: 60px;
-width: 60px;
+.div_img{
+	
 }
 .square-thumb_left {
 width: 50px;
@@ -212,8 +212,7 @@ margin-right: -80px;
 width: 50px;
 height: 50px;
 position: relative;
-float: right;
-margin-right: 10px;
+margin: auto;
 }
 @media screen and (min-width: 981px){
 
@@ -230,31 +229,40 @@ margin-left: 7.5%;
 }
 @media screen and (max-width: 600px){
 ._co_box_framework0{
-width: 99%;
-margin-left: 0.5%;
+width: 97%;
+margin-left: 1.5%;
+}
+.div_img{
+position: relative;
+float: left;
+width: 100%;
+margin-bottom: 6px;	
 }
 .square-thumb_left {
-width: 50px;
-height: 50px;
-position: relative;
-float: left;    
-margin-left: -50px;
+margin: auto;
+float: initial;
 }
 .square-thumb_right {
-width: 50px;
-height: 50px;
-position: relative;
-float: right;
-margin-right: -50px;
+margin: auto;
+float: initial;
 }
 ._co_box_task_border{
-width: 99%;
-margin-left: 0.5%;
+width: 97%;
+margin-left: 1.5%;
 }
-#co_container{
+._co_box_dis_post1 {
+width: 100%;
+}
+._co_box_dis_post2 {
+width: 100%;
+}
+#co_container {
+position: initial;
+}
+/*#co_container{
 right: 80px;
+}*/
 }
-
 /*.square-thumb_left {
 margin-left: -63px;
 }
@@ -270,7 +278,7 @@ margin-left: 10%;
 margin-right: -5px;
 }
 */
-}
+
 /****************/
 /** 2013/11/18 **/
 /* 梓憲新增 始  */

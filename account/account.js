@@ -1,6 +1,6 @@
 $(function(){
 	// jQuery UI
-	$('#account_tabs-1').data('status', true);
+	/*$('#account_tabs-1').data('status', true);
 	$('#page-container').on('click', 'a.account_list_a', function(e){    // 個人履歷 Tabs 切換
 		$(this).blur();
 		e.preventDefault();
@@ -14,7 +14,7 @@ $(function(){
 				GetFollow( JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid );
 			}
 		}
-	});
+	});*/
 	$('#top_nav_user_wrapperImg, #top_nav_user_wrapperImg + span').click(function(){    // 點擊 更改大頭貼
 		$('#box').attr('role-now', 'user_img').removeClass('dom_hidden').children('[box-role=user_img]').removeClass('dom_hidden');
 	});

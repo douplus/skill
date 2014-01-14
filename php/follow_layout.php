@@ -4,13 +4,16 @@
 		<div _role="follower">追隨者</div>
 		<div _role="activated">已開通</div>
 	</header>
-	<article id="following">
-		
-	</article>
-	<article id="follower" class="" style="display:none;">
-		
-	</article>
-	<article id="activated" class="" style="display:none;">
-		
-	</article>
+	<?php
+		include_once(dirname(__FILE__).'/db.php');
+		include_once(dirname(__FILE__).'/function.php');
+		$follow_info = Get_Follow( $_userid, $_viewerid, $_start, $_end  );
+		$msg = explode( '@', $follow_info );
+		if( $msg[0] == 'success' ){
+			echo ShowFollow( $msg[2], $msg[3], $msg[4], $msg[5], $_viewerid, $msg[6], $msg[7] );
+		}else if( $msg[0] == 'error' ){
+			echo '<script>alert( '.$msg[1].' )</script>';
+			exit;
+		}
+	?>
 </article>
