@@ -35,16 +35,28 @@
 				$view = $a['VIEW'];
 		    break;
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 30d59d47f2a484b87d5e4dbfd8e78a1aa03a3410
 		$SQLStr = "select TASKPOSTERID from `1_TASK` where TASKID = '$task_id'";
 		$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
 			while( $a = mysql_fetch_array($res) ){
 				$taskposter = $a['TASKPOSTERID'];
 		    break;
 		}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 30d59d47f2a484b87d5e4dbfd8e78a1aa03a3410
 		$view = $view+1;
 		if ($userid == $taskposter) {
 			$view = $view-1;
 		}
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 30d59d47f2a484b87d5e4dbfd8e78a1aa03a3410
 		$query = mysql_query("UPDATE `1_INFO3_TASK` SET VIEW = $view WHERE TASKID = '$task_id' ");
 		if( !$query ){
 		    $message  = 'error@伺服器view失敗。';
@@ -115,7 +127,11 @@
 						</div>            
 					</div>
 					<?php 
+<<<<<<< HEAD
 						$postphoto='<img id="user_poster" src="'.$user_img.'">'
+=======
+						$postphoto='<img id="user_poster" src="'.$photo.'">'
+>>>>>>> 30d59d47f2a484b87d5e4dbfd8e78a1aa03a3410
 					?>
 					<div class="_co_box_dis_wrapper">
 						<?php echo $html2; ?>	
