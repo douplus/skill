@@ -28,11 +28,19 @@ if( !$result ){
     die($message);
 }
 
-$query = sprintf("INSERT INTO `1_INFO3_TASK` (TASKID,VIEW,ANSWER,COWORK) VALUES ('%s','%s','%s','%s')",mysql_real_escape_string($task_id), mysql_real_escape_string('0'), mysql_real_escape_string('0'), mysql_real_escape_string('0'));
+$query = sprintf("INSERT INTO `1_TAG` (TASKID,TAG) VALUES ('%s','%s')",mysql_real_escape_string($task_id), mysql_real_escape_string($tag));
+$result = mysql_query($query);
+if( !$result ){
+    $message  = 'error@伺服器創建TAG。';
+    die($message);
+}
+
+$query = sprintf("INSERT INTO `1_INFO3_TASK` (TASKID,VIEW,ANSWER,NUM_COWORK) VALUES ('%s','%s','%s','%s')",mysql_real_escape_string($task_id), mysql_real_escape_string('0'), mysql_real_escape_string('0'), mysql_real_escape_string('0'));
 $result = mysql_query($query);
 if( !$result ){
     $message  = 'error@伺服器創建您的任務3資訊。';
     die($message);
 }
+
 
 ?>

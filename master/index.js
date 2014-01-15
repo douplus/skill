@@ -1,28 +1,21 @@
 $(function(){  // header
 	$('#top_nav_user_wrapperImg').tipsy({gravity: $.fn.tipsy.autoNS, html: true, fade: true});
-	/*
-	$('#a_fixed_arrow_up').click(function(){    // 
-		var $a = $('#fixed_nav [role=top]');
-		var a = parseInt( $a.attr('class').replace('item fixed_nav_item', '') );
-		var b = parseInt( $('#fixed_nav').data().num );
-		var c = a-b;
-		if( c >= 0 ){
-			$a.attr('class', 'item fixed_nav_item'+c+'');
-		}else{
-			$a.attr('class', 'item fixed_nav_item0');
-		}
-	});
-	$('#a_fixed_arrow_down').click(function(){    // 
-		var $a = $('#fixed_nav [role=top]');
-		var a = parseInt( $a.attr('class').replace('item fixed_nav_item', '') );
-		var b = parseInt( $('#fixed_nav').data().num );
-		var c = a+b;
-		if( (5-a) > b ){
-			$a.attr('class', 'item fixed_nav_item'+c+'');
-		}else{
-			alert('已經是最底層了');
-		}
-	});*/
+	/*$('#SearchAccount').on('keyup', function() {
+        clearTimeout($(this).data('timer'));
+        var search = this.value;
+        if (search.length >= 2) {
+            $(this).data('timer', setTimeout(function(){
+                $.ajax({
+                    type: 'POST',
+                    url: '../php/search_cv.php',
+                    data: { show: search }
+                }).done(function(msg) {
+                    //$('#t').html(msg);
+					console.log(msg);
+                });
+            }, 1000));
+        }
+    });*/
 	$('#top_nav_UserImg').click(function(){    // 點擊 top nav 使用者大頭像
 		var a = JSON.parse( localStorage.Based_CV );
 		$('#GoToAccount').prevAll('[top-nav=username]').text( a.USERNAME );
@@ -105,7 +98,6 @@ $(function(){    // 設定
 function InitialMaster(){
 	if( $('#i_learn').attr('Class') == '' ){
 		//$('#learn_container div.learn_item_more').tipsy({gravity: $.fn.tipsy.autoWE});
-		CheckMaster();
 	}
 }
 function StartUsing(){    // 使用者開始使用 skill，設定 ip address and score
@@ -178,128 +170,6 @@ function SetIP(){    // 使用者開始使用 skill，設定 ip address and scor
 			console.log('資料格式正確，但是伺服器 設定 IP 發生錯誤。');
 		}
 	});
-}
-function CheckMaster(){    // 使用者開始使用 skill，設定 ip address and score
-	var a = $.timestamp.get({readable: true}).split(' ')[0];
-	var b = localStorage.Master_info || null;
-	$.ajax({    //
-		url: '../php/check_master.php',
-		data: { time: a },
-		type: 'POST',
-		dataType: 'html',
-		success: function(msg){
-			//console.log( msg );
-			msg = msg.split('@');
-			if( msg[0] == 'success' ){
-				localStorage.setItem( 'Master_list', msg[3]+'@'+msg[2] );
-				GetMaster();
-			}else if( msg[0] == 'error' ){
-				alert( msg[1] );
-			}
-		},
-		error:function(xhr, ajaxOptions, thrownError){ 
-			console.log(xhr.status); 
-			console.log(thrownError);
-			alert('資料格式正確，但是伺服器發生錯誤。');
-		}
-	});
-}
-function GetMaster(){    // 抓神人資料
-	$.ajax({    //
-		url: '../php/get_master.php',
-		data: { time: $.timestamp.get({readable: true}).split(' ')[0] },
-		type: 'POST',
-		dataType: 'html',
-		success: function(msg){
-			console.log( msg );
-			msg = msg.split('@@');
-			if( msg[0] == 'success' ){
-				localStorage.setItem( 'Master_info', msg[1] );
-				ShowMaster( msg[1] );
-			}else if( msg[0] == 'error' ){
-				alert( msg[1] );
-			}
-		},
-		error:function(xhr, ajaxOptions, thrownError){ 
-			console.log(xhr.status); 
-			console.log(thrownError);
-			alert('資料格式正確，但是伺服器發生錯誤。');
-		}
-	});
-}
-function ShowMaster( a ){    // 顯示神人資料
-	/* USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO,FOLLOWERS,VIEWERS,M_SCORE */
-	/*    0  ,    1   ,  2  ,   3  ,     4    ,    5    ,  6  ,  7  ,  8 ,    9   ,    10    ,       11     ,  12 ,  13  ,    14    ,    15   ,   16   ,   17   */
-	clearTimeout( $('#learn_container').data().timeoutNum );
-	var o_data = JSON.parse( a ), count = 0, html = '';
-	var userid = JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid;
-	for( var obj in o_data ){ count += 1; }
-	for( var i=0; i<count; i++ ){
-		var a = o_data[i].split('***'), b = a[6].split(',');
-		var photo = '../photo/'+a[14]+'?rand=' + Math.random();
-		html += '<section class="learn_item master" master-id="'+a[0]+'">\
-					\<div class="learn_item_left">\
-						\<img src="';
-						html += photo+'" alt="loading" title="'+a[7]+'。<p>'+a[16]+' viewers : '+a[15]+' followers</p>"/>\
-					\</div>\
-					\<div class="learn_item_right">\
-						\<a class="learn_item_more" href="../profile/index.php?stream=about&u=';
-							html = html + a[0] + '&v=' + userid;
-						html += '" data-pjax="profile" title="履歷">&gt; more...</a>\
-						\<div class="details">\
-							\<dl>\
-								\<dt class="learn_user-';
-									html += CheckGender( a[3] );
-						html += '">&nbsp;</dt>\
-								\<dd itemprop="user">'+a[1]+'</dd>\
-							\</dl>\
-							\<dl class="learn_score">\
-								\<span class="badge1"></span>\
-									\<span _badge="gold" class="badgecount">'+JSON.parse( CheckScore( a[12] ) ).gold+'</span>\
-									\<span class="badge2"></span>\
-									\<span _badge="silver" class="badgecount">'+JSON.parse( CheckScore( a[12] ) ).silver+'</span>\
-									\<span class="badge3"></span>\
-									\<span _badge="copper" class="badgecount">'+JSON.parse( CheckScore( a[12] ) ).copper+'</span>\
-							\</dl>\
-							\<dl>\
-								\<dt class="learn_education">&nbsp;</dt>\
-								\<dd itemprop="education">';
-									html+=a[4];
-						html += '</dd>\
-							\</dl>\
-							\<dl class="dom_hidden">\
-								\<dt class="learn_email">&nbsp;</dt>\
-								\<dd itemprop="email">\
-									\<a class="a_learn_email">'+a[2]+'</a>\
-								\</dd>\
-							\</dl>\
-							\<dl>\
-								\<dt class="learn_join">&nbsp;</dt>\
-								\<dd itemprop="join">\
-									\<span class="learn_join_label">Joined on </span>\
-									\<span>'+a[5]+'</span>\
-								\</dd>\
-							\</dl>\
-							\<dl>\
-								\<dt class="learn_skill">&nbsp;</dt>\
-								\<dd itemprop="skill" class="learn_skill_data">';
-									for( var j=0; j<b.length; j++ ){ html += '<span>'+b[j]+'</span>'; }
-						html += '</dd>\
-							\</dl>\
-						\</div>\
-						\<div class="others">\
-							\<p itemprop="motto">'+a[7]+'</p>\
-							\<strong>Score:<span itemprop="motto-score">'+a[17]+'</span></strong>\
-						\</div>\
-					\</div>\
-				\</section>';
-	}
-	$('#learn_master').html( html );
-	$('#learn_master section.master img').tipsy({gravity: $.fn.tipsy.autoNS, html: true, fade: true});
-	window.setTimeout(function(){
-		StartLearnMetro();
-		SetMetroTag_P();
-	}, 1000);
 }
 function CheckGender(a){
 	if( parseInt( a ) == 1 ){  // 男

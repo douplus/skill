@@ -20,6 +20,7 @@
 	<script src="../js/account_task.js"></script>
 	<script src="../information/information.js"></script>
 	<script src="../task/addtask.js"></script>
+	<script src="./account_cowork.js"></script>	
 	<script src="../library/imageSlice.js"></script>
 	<script src="../library/jquery.tagsinput.min.js"></script>
 <script>

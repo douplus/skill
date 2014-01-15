@@ -37,12 +37,12 @@
 		}
 
 	/*USERNAME, DEPARTMENT, SKILL, SCORE, USER_PHOTO*/
-	$a = explode("***", $user_ary);
+	$user = explode("***", $user_ary);
 	/*TASKID, CLASSIFY, TITTLE, CONTENT, TIMESTAMP*/
 	$b = explode("***", $task_ary);
 
-	$photo = '../../photo/'.$a[4];
-	$skill = explode(',', $a[2]);
+	$photo = '../../photo/'.$user[4];
+	$skill = explode(',', $user[2]);
 	$date = str_split($b[4]);
 	$skilllengh=count($skill);
 	$html = '';

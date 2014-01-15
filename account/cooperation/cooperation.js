@@ -73,3 +73,34 @@ $(function(){
    		};	    	    
 	});
 });
+
+$(function(){
+	$('#btn_coo').click(function(){
+		var co_content = $('#co_content').val();
+		var copid = $('#discuss_title').attr('copid');
+		console.log(co_content);
+	    var a = true;
+    	if ( co_content == '') {
+    	  $('.btn_if').html('<p>請輸入內容</p>');
+    	  a = false;
+   		} 
+    	if (a == 1) {
+	        $.ajax({    
+	              url: '../../php/cooperation.php',
+	              data:{co_content : co_content , userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid ,cop_id:copid},
+	              type: 'POST',
+	              dataType: 'html',
+	              success: function(msg){
+	              	$('#co_content').val('');
+	                console.log(msg);
+	                alert(msg);
+
+	              },
+	              error:function(xhr, ajaxOptions, thrownError){ 
+	                console.log(xhr.status); 
+	                console.log(thrownError);
+	              }
+	        });        
+   		};	    	    
+	});
+});

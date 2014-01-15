@@ -7,6 +7,9 @@
 	}
 ?>
 <?php if( !$is_pjax ) include('./master_header.php'); ?>
+<?php
+	$q = isset($_GET['q']) ? $_GET['q'] : '';
+?>
 <?php include('./master_layout.php'); ?>
 <!-- master : JS files -->
 <script>

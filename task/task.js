@@ -35,6 +35,7 @@ $(document).on('keydown', '#task_search', function(e){    // 點擊 搜尋任務
 	if( $(this).is(':focus') && (e.keyCode == 13) ){
 		if( $('#task_search').val() == '' ){ alert('請輸入搜尋內容'); return false; }
 		TagInput_Search( $('#task_search').val(), $('#task_select').val() );
+		
 	}
 });
 $(document).on('click', '#task_action-tag_cloud', function(){    // 點擊 熱門任務
@@ -59,3 +60,6 @@ function TagInput_Search( a, b ){    // 點搜尋任務： 進入 任務搜尋�
 	$('#task-result_page').attr('href', './index.php?q='+a+'&by='+b).trigger('click');
 	return false;
 }
+
+
+

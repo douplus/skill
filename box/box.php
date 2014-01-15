@@ -9,7 +9,7 @@
 				<section id ="post-form">
 					<div class="task_select-area">
 						<select id="post_task_select">
-							<option value="尚未分類" style="color: #333;">↓依分類↓</option>
+							<option value="noclassify" style="color: #333;">↓依分類↓</option>
 							<option value="電腦網路">電腦網路</option>
 							<option value="生活資訊">生活資訊</option>
 							<option value="行動裝置">行動裝置</option>
@@ -34,12 +34,14 @@
 					</div>	
 					<div id ="input-tittle">
 						<input id="post-tittle" placeholder="標題">
+						<p></p>
 					</div>
 					<div id ="input-content">
 						<textarea id="post-content" placeholder="內容" rows="6"></textarea>
+						<p></p>
 					</div>
 					<div>
-						<button id="task-summit" type="button" class="btn">送出</button>
+						<button id="task-summit" type="button" class="btn btn-lg">送出</button>
 					</div>
 				</section>				
 			</div>

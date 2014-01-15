@@ -9,7 +9,35 @@
 	<article>
 		<h2>I'm the God of the World.</h2>
 		<div id="learn_master">
-			<img src="../Images/preloader_2779FF.gif" style="width: 50px;height: 50px;margin-top: 30px;">
+			<?php
+				include_once(dirname(__FILE__).'/../php/function.php');
+				include_once(dirname(__FILE__).'/../php/db.php');
+				if( $q == '' ){
+					$check_m = Check_Master( date( "Y-m-d", time() ) );
+					$check_m = explode('@', $check_m);
+					if( $check_m[0] == 'success' ){
+						echo '<script>localStorage.setItem( "Master_list", \''.$check_m[3].'@'.$check_m[2].'\' )</script>';
+						$get_m = Get_Master();
+						$get_m = explode('@@', $get_m);
+						if( $get_m[0] == 'success' ){
+							echo '<script>localStorage.setItem( "Master_info", \''.$get_m[1].'\' )</script>';
+							echo Show_Master( $get_m[1] );
+							echo '<script>
+									window.setTimeout(function(){
+										StartLearnMetro();
+										SetMetroTag_P();
+									}, 1000);
+								</script>';
+						}else if( $get_m[0] == 'error' ){
+							echo '<script>alert( \''.$get_m[1].'\' )</script>';
+						}
+					}else if( $check_m[0] == 'error' ){
+						echo '<script>alert( \''.$check_m[1].'\' )</script>';
+					}
+				}else{
+					echo '<script>alert( \'show search result.\' )</script>';
+				}
+			?>
 			<!--
 			<section class="learn_item master">
 				<div class="learn_item_left">

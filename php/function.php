@@ -1,4 +1,278 @@
 <?php
+function Show_Master( $a ){    # 顯示神人資料
+	/* USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO,FOLLOWERS,VIEWERS,M_SCORE */
+	/*    0  ,    1   ,  2  ,   3  ,     4    ,    5    ,  6  ,  7  ,  8 ,    9   ,    10    ,       11     ,  12 ,  13  ,    14    ,    15   ,   16   ,   17   */
+	$ary_data = json_decode( $a, true );
+	$count = 0;
+	$html = '';
+	$u_info = json_decode( $_COOKIE['UserInfo'], true );
+	$userid = $u_info['userid'];
+	$count = count( $ary_data );
+	for( $i=0; $i<$count; $i++ ){
+		$a = explode( '***', $ary_data[$i] );
+		$b = explode( ',', $a[6] );
+
+		$photo = '../photo/'.$a[14].'?rand='.rand();
+		$html .= '<section class="learn_item master" master-id="'.$a[0].'">
+					<div class="learn_item_left">
+						<img src="';
+						$html .= $photo.'" alt="loading" title="'.$a[7].'。<p>'.$a[16].' viewers : '.$a[15].' followers</p>"/>
+					</div>
+					<div class="learn_item_right">
+						<a class="learn_item_more" href="../profile/index.php?stream=about&u=';
+							$html = $html . $a[0] . '&v=' . $userid;
+						$html .= '" data-pjax="profile" title="履歷">&gt; more...</a>
+						<div class="details">
+							<dl>
+								<dt class="learn_user-';
+									$html .= CheckGender( $a[3] );
+									$score_ary = CheckScore( $a[12] );
+						$html .= '">&nbsp;</dt>
+								<dd itemprop="user">'.$a[1].'</dd>
+							</dl>
+							<dl class="learn_score">
+								<span class="badge1"></span>
+									<span _badge="gold" class="badgecount">'.$score_ary['gold'].'</span>
+									<span class="badge2"></span>
+									<span _badge="silver" class="badgecount">'.$score_ary['silver'].'</span>
+									<span class="badge3"></span>
+									<span _badge="copper" class="badgecount">'.$score_ary['copper'].'</span>
+							</dl>
+							<dl>
+								<dt class="learn_education">&nbsp;</dt>
+								<dd itemprop="education">';
+									$html .= $a[4];
+						$html .= '</dd>
+							</dl>
+							<dl class="dom_hidden">
+								<dt class="learn_email">&nbsp;</dt>
+								<dd itemprop="email">
+									<a class="a_learn_email">'.$a[2].'</a>
+								</dd>
+							</dl>
+							<dl>
+								<dt class="learn_join">&nbsp;</dt>
+								<dd itemprop="join">
+									<span class="learn_join_label">Joined on </span>
+									<span>'.$a[5].'</span>
+								</dd>
+							</dl>
+							<dl>
+								<dt class="learn_skill">&nbsp;</dt>
+								<dd itemprop="skill" class="learn_skill_data">';
+									for( $j=0; $j<count($b); $j++ ){ $html .= '<span>'.$b[$j].'</span>'; }
+						$html .= '</dd>
+							</dl>
+						</div>
+						<div class="others">
+							<p itemprop="motto">'.$a[7].'</p>
+							<strong>Score:<span itemprop="motto-score">'.$a[17].'</span></strong>
+						</div>
+					</div>
+				</section>';
+	}
+	return $html;
+}
+function Get_Master(){    # 抓神人資料
+	$master_ary = array();
+	$user_ary = array();
+
+	# 取得神人資訊
+	$query = sprintf( "SELECT USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO,FOLLOWERS,VIEWERS FROM `1_CV` WHERE IS_MASTER = '1' ORDER BY SCORE DESC" );
+	$result = mysql_query($query) or die('error@取得神人資訊錯誤。');
+	while( $a = mysql_fetch_array($result) ){
+		$master_ary[] = $a['USERID'].'***'.$a['USERNAME'].'***'.$a['EMAIL'].'***'.$a['GENDER'].'***'.$a['DEPARTMENT'].'***'.$a['JOIN_TIME'].'***'.$a['SKILL'].'***'.$a['MOTTO'].'***'.$a['NEED'].'***'.$a['ABOUT_ME'].'***'.$a['EXPERIENCE'].'***'.$a['LASTUSING_TIME'].'***'.$a['SCORE'].'***'.$a['USERIP'].'***'.$a['USER_PHOTO'].'***'.$a['FOLLOWERS'].'***'.$a['VIEWERS'];
+		$user_ary[] = $a['USERID'];
+	}
+
+	# 取得 motto 分數
+	$user_ary_len = count($user_ary);
+	for( $i=0; $i<$user_ary_len; $i++ ){
+		$a = $user_ary[$i];
+		$query = sprintf( "SELECT M_SCORE FROM `1_MOTTO` WHERE USERID = '$a'" );
+		$result = mysql_query($query) or die('error@取得神人資訊錯誤。');
+		if( mysql_num_rows( $result ) > 0 ){
+			while( $a = mysql_fetch_array($result) ){
+				$master_ary[$i] = $master_ary[$i].'***'.$a['M_SCORE'];
+			}
+		}else{
+			$master_ary[$i] = $master_ary[$i].'***0';
+		}
+	}
+
+	return 'success@@'.json_encode( (object)$master_ary ).'@@'.json_encode( (object)$user_ary );
+}
+function Check_Master($time){    # 
+	$master_str = '';
+	$user_str = '';
+	$is_another = 0;
+	$master_ary = array();
+	
+	# 取得 master list
+	$query = sprintf( "SELECT MASTERID, MASTER_TIME FROM `1_MASTER` ORDER BY MASTER_TIME DESC LIMIT 1" );
+	$result = mysql_query($query) or die('error@取得神人清單錯誤。');
+	if( mysql_num_rows( $result ) > 0 ){    # 有資料
+		while( $a = mysql_fetch_array($result) ){
+			if( abs( strtotime($a['MASTER_TIME'])-strtotime($time) ) > 0 ){
+				$is_another = 1;
+			}else{
+				$time = $a['MASTER_TIME'];
+			}
+			$master_str = $a['MASTERID'];
+		}
+	}else{    # 沒有資料
+		$is_another = 2;
+	}
+	
+	if( $is_another == 1 || $is_another == 2 ){
+		# 取得 user id of master
+		$query = sprintf( "SELECT USERID, SCORE FROM `1_CV` ORDER BY SCORE DESC LIMIT 12" );
+		$result = mysql_query($query) or die('error@取得神人資訊錯誤。');
+		while( $a = mysql_fetch_array($result) ){
+			$user_str = $user_str.','.$a['USERID'];
+			$master_ary[] = $a['USERID'];
+		}
+		$user_str = substr( $user_str, 1, strlen( $user_str ) );
+
+		# 設定 神人清單
+		$query = sprintf( "INSERT INTO `1_MASTER` (MASTERID, MASTER_TIME) VALUES ('%s', '%s')", mysql_real_escape_string($user_str), mysql_real_escape_string($time) );
+		$result = mysql_query($query) or die('error@設定神人清單錯誤。');
+		$master_str = $user_str;
+		
+		// 重設 神人清單
+		$query = sprintf( "UPDATE `1_CV` SET IS_MASTER = '0'" );
+		$result = mysql_query($query) or die('error@重設神人清單錯誤。');
+
+		$master_ary_len = count( $master_ary );
+		for( $i=0; $i<$master_ary_len; $i++ ){
+			$query = sprintf( "UPDATE `1_CV` SET IS_MASTER = '1' WHERE USERID = '$master_ary[$i]'" );
+			$result = mysql_query($query) or die('error@設定神人資訊錯誤。');
+		}
+		unset( $master_ary_len );
+	}
+
+	return 'success@'.$is_another.'@'.$master_str.'@'.$time;
+}
+function Classify_Ttransform( $a, $b ){
+	switch( $a ){
+		case 'e_c':
+			switch( $b ){
+				case 'pc_and_network':
+					return '電腦網路';
+					break;
+				case 'life':
+					return '生活資訊';
+					break;
+				case 'mobile':
+					return '行動裝置';
+					break;
+				case 'hobby':
+					return '休閒嗜好';
+					break;
+				case 'travel':
+					return '旅行遊玩';
+					break;
+				case 'food':
+					return '美食相關';
+					break;
+				case 'design':
+					return '繪畫設計';
+					break;
+				case 'entertainment':
+					return '影音娛樂';
+					break;
+				case 'sport':
+					return '運動健身';
+					break;
+				case 'human':
+					return '社會人文';
+					break;
+				case 'business':
+					return '商業金融';
+					break;
+				case 'education':
+					return '教育相關';
+					break;
+				case 'science':
+					return '科學常識';
+					break;
+				case 'troubled':
+					return '煩惱心事';
+					break;
+				case 'health':
+					return '醫療保健';
+					break;
+				case 'fashion':
+					return '流行時尚';
+					break;
+				case 'game':
+					return '電玩遊戲';
+					break;
+				default:
+					break;
+			}
+			break;
+		case 'c_e':
+			switch( $b ){
+				case '電腦網路':
+					return 'pc_and_network';
+					break;
+				case '生活資訊':
+					return 'life';
+					break;
+				case '行動裝置':
+					return 'mobile';
+					break;
+				case '休閒嗜好':
+					return 'hobby';
+					break;
+				case '旅行遊玩':
+					return 'travel';
+					break;
+				case '美食相關':
+					return 'food';
+					break;
+				case '繪畫設計':
+					return 'design';
+					break;
+				case '影音娛樂':
+					return 'entertainment';
+					break;
+				case '運動健身':
+					return 'sport';
+					break;
+				case '社會人文':
+					return 'human';
+					break;
+				case '商業金融':
+					return 'business';
+					break;
+				case '教育相關':
+					return 'education';
+					break;
+				case '科學常識':
+					return 'science';
+					break;
+				case '煩惱心事':
+					return 'troubled';
+					break;
+				case '醫療保健':
+					return 'health';
+					break;
+				case '流行時尚':
+					return 'fashion';
+					break;
+				case '電玩遊戲':
+					return 'game';
+					break;
+				default:
+					break;
+			}
+			break;
+		default:
+			break;
+	}
+}
 function Get_Task( $userid, $start, $end ){
 	$re_task_user_ary = array();
 	$re_task_user_ary_temp = array();

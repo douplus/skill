@@ -28,6 +28,13 @@
 	$userinfo = $_COOKIE['UserInfo'];
 	$a = json_decode($userinfo);
 	$userid = $a -> userid;
+	
+		$SQLStr = "select TASKPOSTERID from `1_TASK` where TASKID = '$task_id'";
+		$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
+			while( $a = mysql_fetch_array($res) ){
+				$taskposter = $a['TASKPOSTERID'];
+		    break;
+		}
 
 		$SQLStr = "select VIEW from `1_INFO3_TASK` where TASKID = '$task_id'";
 		$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
@@ -36,18 +43,10 @@
 		    break;
 		}
 
-		$SQLStr = "select TASKPOSTERID from `1_TASK` where TASKID = '$task_id'";
-		$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
-			while( $a = mysql_fetch_array($res) ){
-				$taskposter = $a['TASKPOSTERID'];
-		    break;
-		}
-
 		$view = $view+1;
 		if ($userid == $taskposter) {
 			$view = $view-1;
 		}
-		
 		$query = mysql_query("UPDATE `1_INFO3_TASK` SET VIEW = $view WHERE TASKID = '$task_id' ");
 		if( !$query ){
 		    $message  = 'error@伺服器view失敗。';
@@ -84,8 +83,8 @@
 							</div>										
 								<div class="_co_box_qu_content1">
 									<div style="padding: 5px;">
-									<p id="task_name"class="user_name">姓名:<?php echo $a[0]; ?></p>
-									<p id="task_department">學校:<?php echo $a[1]; ?></p>
+									<p id="task_name"class="user_name">姓名:<?php echo $user[0]; ?></p>
+									<p id="task_department">學校:<?php echo $user[1]; ?></p>
 									<p id="task_skill">專長:
 									<?php echo $html;?>	
 									</p>
@@ -96,7 +95,7 @@
 											<span class="badge2"></span>
 											<span class="badgecount">0</span>
 											<span class="badge3"></span>
-											<span id="task_score" class="badgecount"><?php echo $a[3]; ?></span>                              
+											<span id="task_score" class="badgecount"><?php echo $user[3]; ?></span>                              
 										</div>
 									</div>										
 								</div>                    
@@ -118,7 +117,7 @@
 						</div>            
 					</div>
 					<?php 
-						$postphoto='<img id="user_poster" src="'.$photo.'">'
+						$postphoto='<img id="user_poster" src="'.$user_img.'">'
 					?>
 					<div class="_co_box_dis_wrapper">
 						<?php echo $html2; ?>	
@@ -132,7 +131,7 @@
 	                            </div>
 	                            <div class="_co_box_dis_post2 ">
 	                                    <div class="_co_box_dis_anstime">answered </div>         
-	                                    <div style="padding: 5px 20px 0;"><textarea id="re_task_content"class="span5" rows="5" placeholder="內容" style="resize: vertical; "></textarea><br></div>
+	                                    <div style="padding: 5px 20px 0;"><textarea id="re_task_content"class="span7" rows="5" placeholder="內容" style="resize: vertical; "></textarea><br></div>
 	                                    <div >
 	                                    <input id="re_task_submit" class="btn botton btn-info" type="button" value="發送">
 	                                    </div>
