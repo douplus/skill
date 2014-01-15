@@ -37,7 +37,7 @@ $('#re_task_submit').click(function(){
               type: 'POST',
               dataType: 'html',
               success: function(msg){
-                $(".btn_cooperation_a").addClass('dom_hidden');
+                $(".btn_cooperation_a");
                 console.log(msg);
                 alert(msg);
                 window.location.reload(); 

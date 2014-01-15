@@ -35,7 +35,7 @@ $(document).ready(function() {
               dataType: 'html',
               success: function(msg){
                 console.log(msg);
-                alert('已送出資訊');
+                alert(msg);
                 window.location.reload(); 
               },
               error:function(xhr, ajaxOptions, thrownError){ 
@@ -45,4 +45,26 @@ $(document).ready(function() {
             }); 
           
   });  
+  $('.con_ref_btn').click(function() {
+    var taskid = $('.con_ref_btn').attr('taskid');
+    var wantcoworker = $('.con_ref_btn').attr('userid');    
+     console.log(taskid);
+     console.log(wantcoworker);    
+        $.ajax({    
+              url: '../php/cowork.php',
+              data:{'taskid': taskid , 'wantcoworker': wantcoworker , 'type': 'confirm_refuse'},
+              type: 'POST',
+              dataType: 'html',
+              success: function(msg){
+                console.log(msg);
+                alert(msg);
+                window.location.reload(); 
+              },
+              error:function(xhr, ajaxOptions, thrownError){ 
+                console.log(xhr.status); 
+                console.log(thrownError);
+              }
+            }); 
+          
+  });   
 });

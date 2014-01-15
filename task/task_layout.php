@@ -1,6 +1,5 @@
 <?php
 	header("Content-Type:text/html; charset=utf-8");
-<<<<<<< HEAD
 	include_once(dirname(__FILE__).'/../php/db.php');
 	include_once(dirname(__FILE__).'/../php/function.php');
 
@@ -8,19 +7,12 @@
 	$now_by = $by;
 	
 	$searchString = $now_query;
-=======
-	include('../php/db.php');
-
-	$now_query = $_POST['search'];
-	$now_by = $_POST['select'];		
->>>>>>> 30d59d47f2a484b87d5e4dbfd8e78a1aa03a3410
 
 	# this echo is for debugging.
 	echo '<div style="display:none;">關鍵字->'.$now_query.'，分類->'.$now_by.'</div>';
 	if( $now_query == '' ){  # 未下關鍵字，即顯示 "最新 or 熱門" 任務
 		$querytask = sprintf( "SELECT 1_TASK.TASKID,1_TASK.CLASSIFY,1_TASK.TITTLE,1_TASK.TIMESTAMP,1_CV.USERNAME,1_CV.SKILL,1_CV.SCORE,1_TAG.TAG FROM `1_TASK`,`1_CV`,`1_TAG` WHERE 1_TASK.TASKPOSTERID = 1_CV.USERID AND 1_TASK.TASKID = 1_TAG.TASKID ORDER BY 1_TASK.TIMESTAMP" );
 	}else{  # 有下關鍵字，顯示該關鍵字有關連的任務
-<<<<<<< HEAD
 		switch( $now_by ){
 			case 'all':
 				$querytask = sprintf( "SELECT 1_TASK.TASKID,1_TASK.CLASSIFY,1_TASK.TITTLE,1_TASK.TIMESTAMP,1_CV.USERNAME,1_CV.SKILL,1_CV.SCORE,1_TAG.TAG FROM `1_TASK`,`1_CV`,`1_TAG` WHERE 1_TASK.TITTLE LIKE BINARY '%s' AND 1_TASK.TASKPOSTERID = 1_CV.USERID AND 1_TASK.TASKID = 1_TAG.TASKID ORDER BY 1_TASK.TIMESTAMP" , '%'.$searchString.'%' );
@@ -62,9 +54,6 @@
 		$is_resulttask = '<p class="chineses" style="margin: 6px;font-size: 15px;color: #444;">查無資料，請重新搜尋。</p>';
 	}else{
 		$is_resulttask = '';
-=======
-		$querytask = sprintf( "SELECT 1_TASK.TASKID,1_TASK.CLASSIFY,1_TASK.TITTLE,1_TASK.TIMESTAMP,1_CV.USERNAME,1_CV.SKILL,1_CV.SCORE,1_TAG.TAG FROM `1_TASK`,`1_CV`,`1_TAG` WHERE 1_TASK.TASKPOSTERID = 1_CV.USERID AND 1_TASK.TASKID = 1_TAG.TASKID AND 1_TASK.TITTLE||1_TASK.CONTENT LIKE '%測試%' ORDER BY 1_TASK.TIMESTAMP" );
->>>>>>> 30d59d47f2a484b87d5e4dbfd8e78a1aa03a3410
 	}
 	while( $a1 = mysql_fetch_array($resulttask) ){
 		$alltask_ary[] = $a1['TASKID'].'***'.$a1['CLASSIFY'].'***'.$a1['TITTLE'].'***'.$a1['USERNAME'].'***'.$a1['SKILL'].'***'.$a1['SCORE'].'***'.$a1['TIMESTAMP'].'***'.$a1['TAG'];
@@ -82,24 +71,15 @@
 		for( $j=0; $j < $tagnum-1; $j++ ){ 
 			$span .= '<span>'.$tag[$j].'</span>';
 		}
-		// answer number(don't use in loop)
-		//  unset($ans_num);
-		// $query = sprintf( "SELECT 1_RE_TASK.CONTENT FROM `1_RE_TASK` WHERE  1_RE_TASK.TASKID =  '$a[0]' " );
-  //       $result = mysql_query($query) or die('error@錯誤。');
-	 //        while( $c = mysql_fetch_array($result) ){
-	 //        $ans_num[] = $c['CONTENT'];
-	 //        }
-		// 	 $ansnum = count( $ans_num );
-		
-		// view number & cowork number
+           
+		// view number & cowork number & answer number
 		$query = sprintf( "SELECT * FROM `1_INFO3_TASK` WHERE  TASKID =  '$a[0]'" );
 	    $result = mysql_query($query) or die('error@錯誤。');    
 	        while( $d = mysql_fetch_array($result) ){
 	        $view_num = $d['VIEW'];
-	        $cowork_num = $d['COWORK'];
+	        $cowork_num = $d['NUM_COWORK'];
 	        $ansnum = $d['ANSWER'];
 	        }
-	    //cowork number
 		$time = explode( '-', $a[6] );
 		$htmltask.= '<div class="task_show">'.
 			'<div class="task_show1">'.

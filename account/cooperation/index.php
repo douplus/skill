@@ -159,10 +159,11 @@
 						</div>    
 					</div>
 					<div class="_co_box_dis_post2 ">
-								<div class="_co_box_dis_anstime">answered </div>         
+								<div class="_co_box_dis_anstime">answered </div>
+								<div class='btn_if'></div>         
 								<div><textarea id="co_content" class="span5" rows="5" placeholder="內容" style="resize: vertical; width:95% "></textarea><br></div>
 								<div style="text-align: center;";>
-								<input id="login" class="btn botton btn-info" type="submit" name="Submit" value="發送">
+								<input id="btn_coo" class="btn botton btn-info" type="submit" name="Submit" value="發送">
 								<input class="btn botton btn-info" type="reset" name="reset" value="清除">
 								</div>
 					</div>
