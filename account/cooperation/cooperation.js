@@ -77,8 +77,11 @@ $(function(){
 $(function(){
 	$('#btn_coo').click(function(){
 		var co_content = $('#co_content').val();
+<<<<<<< HEAD
 		var copid = $('#discuss_title').attr('copid');
 		console.log(co_content);
+=======
+>>>>>>> b38c0e1a9ef4693a16435a0140e922c82954be8c
 	    var a = true;
     	if ( co_content == '') {
     	  $('.btn_if').html('<p>請輸入內容</p>');
@@ -87,6 +90,7 @@ $(function(){
     	if (a == 1) {
 	        $.ajax({    
 	              url: '../../php/cooperation.php',
+<<<<<<< HEAD
 	              data:{co_content : co_content , userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid ,cop_id:copid},
 	              type: 'POST',
 	              dataType: 'html',
@@ -95,6 +99,15 @@ $(function(){
 	                console.log(msg);
 	                alert(msg);
 
+=======
+	              data:{co_content : co_content , userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid },
+	              type: 'POST',
+	              dataType: 'html',
+	              success: function(msg){
+	                console.log(msg);
+	                alert('創建回覆成功');
+	                window.location.reload(); 
+>>>>>>> b38c0e1a9ef4693a16435a0140e922c82954be8c
 	              },
 	              error:function(xhr, ajaxOptions, thrownError){ 
 	                console.log(xhr.status); 

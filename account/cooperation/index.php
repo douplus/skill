@@ -175,7 +175,12 @@ $SQLStr = "select TITTLE from `1_TASK` where TASKID = '$copid'";
 								<div class='btn_if'></div>         
 								<div><textarea id="co_content" class="span5" rows="5" placeholder="內容" style="resize: vertical; width:95% "></textarea><br></div>
 								<div style="text-align: center;";>
+<<<<<<< HEAD
 								<input id="btn_coo" class="btn botton btn-info" type="button" value="發送">	
+=======
+								<input id="btn_coo" class="btn botton btn-info" type="submit" name="Submit" value="發送">
+								<input class="btn botton btn-info" type="reset" name="reset" value="清除">
+>>>>>>> b38c0e1a9ef4693a16435a0140e922c82954be8c
 								</div>
 					</div>
 				</div>
