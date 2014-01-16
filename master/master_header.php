@@ -59,7 +59,7 @@ $(function(){
 		}
     });
 	$.pjax({
-        selector: 'a[task-pjax]',
+        selector: 'a[task-pjax], a[cv-pjax]',
         container: '#page-container > div.wrapper', //内容替换的容器
         type : 'GET',
         cache: false,  //是否使用缓存

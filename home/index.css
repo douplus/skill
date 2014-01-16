@@ -287,6 +287,7 @@ left: 0;
 height: 45px;
 width: 100%;
 background: white;
+border-radius:10px;
 }
 #sign-up_box > section > article,
 #login_box > section > article,
@@ -294,7 +295,6 @@ background: white;
 overflow-y: auto;
 bottom: 10px;
 position: absolute;
-margin: 0;
 width: 100%;
 top: 45px;
 background: #e5e5e5;
@@ -330,8 +330,6 @@ color: #000;
 #login_box > section,
 #set_box > section{
 z-index: 501;
-height: 90%;
-width: 80%;
 position: fixed;
 left: 10%;
 right: 10%;
@@ -342,8 +340,13 @@ box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
 -webkit-box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
 -moz-box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
 -o-box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
+width:400px;
+height:415px;
+margin:auto auto;
+border-radius:10px;
 }
 }
+
 @media screen and (max-width: 767px){
 #sign-up_box > section,
 #login_box > section,
@@ -361,6 +364,8 @@ box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
 -webkit-box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
 -moz-box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
 -o-box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
+max-height: 500px;
+margin:auto auto;
 }
 }
 .action-wrapper{
@@ -402,19 +407,19 @@ font-family: "Helvetica Neue",Helvetica,"微軟正黑體",Arial,sans-serif;
 #enter-form{
 display: inline-block;
 position: relative;
-padding: 20px 0;
-width: 100%;
+padding: 0;
+width: 90%;
 }
 #sign-up-form > div,
 #login-form > div,
 #enter-form > div{
-margin-top: 18px;
 width: 100%;
+float:left;
 }
 #sign-up-form > div:first-child,
 #login-form > div:first-child,
 #enter-form > div:first-child{
-margin-top: 0;
+margin-top: 15px;
 }
 #sign-up-form > div > input,
 #login-form div > input{
@@ -459,7 +464,6 @@ display: inline-block;
 .input-failure{
 display: inline-block;
 border-radius: 4px;
-font-size: 13px;
 box-shadow: 0 1px 1px rgba(0,0,0,.1) inset,0 1px 0 rgba(255,255,255,.15);
 }
 #sign-up-summary,
@@ -470,7 +474,7 @@ color: #fff;
 text-align: left;
 margin: 5px;
 font-size: 17px;
-line-height: 29px;
+line-height: 24px;
 }
 .icon-sign-error{
 height: 16px;

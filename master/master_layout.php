@@ -7,8 +7,6 @@
 </nav>
 <div id="learn_container">
 	<article>
-		<h2>I'm the God of the World.</h2>
-		<div id="learn_master">
 			<?php
 				include_once(dirname(__FILE__).'/../php/function.php');
 				include_once(dirname(__FILE__).'/../php/db.php');
@@ -35,7 +33,18 @@
 						echo '<script>alert( \''.$check_m[1].'\' )</script>';
 					}
 				}else{
-					echo '<script>alert( \'show search result.\' )</script>';
+					$search_cv = Search_CV( $q );
+					$search_cv = explode('@@', $search_cv);
+					if( $search_cv[0] == 'success' ){
+						if( $search_cv[1] == 0  ){
+							echo '<div style="position: relative;width: 96%;margin: 10px 2%;"><article id="search_cv_wrapper"><section  class="s_cv_item">'.$search_cv[2].'</section></article></div>';;
+						}else if( $search_cv[1] == 1 ){
+							$show_cv = Show_Search_CV( $search_cv[2] );
+							echo $show_cv;
+						}
+					}else if( $search_cv[0] == 'error' ){
+						echo '<script>alert( \''.$search_cv[1].'\' )</script>';
+					}
 				}
 			?>
 			<!--
@@ -166,4 +175,5 @@
 		</section>
 		-->
 	</article>
+	<a id="cv-result_page" cv-pjax="cv-result" style="display: none;"></a>
 </div>

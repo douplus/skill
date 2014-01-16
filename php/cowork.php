@@ -7,17 +7,10 @@ include('../php/db.php');
 
     //按下合作後，創立待審查項目
 	if ($type == 'cocheck') {
-<<<<<<< HEAD
 		$query = sprintf("INSERT INTO `1_TASK_CO_TEMP` (TASKID,TASK_CO_TEMP,USERID) VALUES ('%s','%s','%s')",mysql_real_escape_string($taskid), mysql_real_escape_string('1'), mysql_real_escape_string($checker));
 		$result = mysql_query($query);
 		if( !$result ){
 		    $message  = 'error@伺服器創建1_TASK_CO_TEMP。';
-=======
-		$query = sprintf("INSERT INTO `1_TASK_CO_TEMP` (TASKID,TASK_CO_TEMP) VALUES ('%s','%s')",mysql_real_escape_string($taskid), mysql_real_escape_string('1'));
-		$result = mysql_query($query);
-		if( !$result ){
-		    $message  = 'error@伺服器創建您的任務。';
->>>>>>> b38c0e1a9ef4693a16435a0140e922c82954be8c
 		    die($message);
 		}				
 		$query = sprintf("INSERT INTO `1_CHECK_TASK` (TASKID,COWORKER) VALUES ('%s','%s')",mysql_real_escape_string($taskid), mysql_real_escape_string($checker));

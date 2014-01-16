@@ -1,21 +1,5 @@
 $(function(){  // header
 	$('#top_nav_user_wrapperImg').tipsy({gravity: $.fn.tipsy.autoNS, html: true, fade: true});
-	/*$('#SearchAccount').on('keyup', function() {
-        clearTimeout($(this).data('timer'));
-        var search = this.value;
-        if (search.length >= 2) {
-            $(this).data('timer', setTimeout(function(){
-                $.ajax({
-                    type: 'POST',
-                    url: '../php/search_cv.php',
-                    data: { show: search }
-                }).done(function(msg) {
-                    //$('#t').html(msg);
-					console.log(msg);
-                });
-            }, 1000));
-        }
-    });*/
 	$('#top_nav_UserImg').click(function(){    // 點擊 top nav 使用者大頭像
 		var a = JSON.parse( localStorage.Based_CV );
 		$('#GoToAccount').prevAll('[top-nav=username]').text( a.USERNAME );
@@ -34,6 +18,9 @@ $(function(){  // header
 		SetMetroTag_P();
 		SetInforTag_P();
 	});
+	$(document).on('click', '#search_cv_wrapper [_btn=goto]', function(){  // 點擊 神人 搜尋裡面的 一窺究竟
+		$(this).parent().prev().find('a').trigger('click');
+	});
 });
 $(document).on('click', function(e){
 	$('#top_nav-user_wrapper').addClass('dom_hidden');
@@ -49,18 +36,6 @@ $(document).on('keydown', '#SearchAccount', function(e){  // 點擊 搜尋用戶
 		Account_Search( $(this).val() );
 	}
 });
-function Account_Search( a ){
-	alert('即將開放。');
-}
-/*
-function SetFixedNav(){    // 關於左側導覽列滾動
-	var a = localStorage.viewport_height-118;
-	var b = ( Math.floor(a/55) > 5 ) ? 5 : Math.floor(a/55);
-	$('#fixed_nav').data({ 'num': b });
-	if( b >= 5 ){
-		$('#fixed_nav [role=top]').attr('class', 'item fixed_nav_item0');
-	}
-}*/
 function SetMetroTag_P(){    //  設定 Metro 介面 <p> 文字左右置中
 	var a = $('#learn_container').find('div.others');
 	a.children('p').css('width', a.width());
@@ -121,6 +96,7 @@ function StartUsing(){    // 使用者開始使用 skill，設定 ip address and
 						}, 2000);
 					}, 1000);
 				}
+				sessionStorage.setItem( 'score', msg[2] );
 				$('#score').text( msg[2] );
 				localStorage.setItem('photo_file', msg[3]);
 				SetPhoto( msg[3] );    console.log(parseInt( msg[6] ));
@@ -190,5 +166,9 @@ function CheckScore(a){
 function SetPhoto( a ){
 	a = a+'?rand=' + Math.random();
 	$('#top_nav_user_wrapperImg').attr('src', '../photo/'+a).parents('#top_nav-user_wrapper').prev().children('#top_nav_UserImg').attr('src', '../photo/'+a);
+}
+function Account_Search( a ){
+	$('#cv-result_page').attr( 'href', './index.php?q='+a ).trigger('click');
+	return false;
 }
 $(function(){ SetIP(); });

@@ -22,7 +22,14 @@
 	$( $a[1] ).attr({'href':'../task/index.php', 'data-pjax':'task'});
 	$( $a[2] ).attr({'href':'../information/index.php?stream=about', 'data-pjax':'information'});
 })();
-$(function(){ 
+$(function(){
+	<?php
+		if( $q == '' ){
+			echo '$(\'#SearchAccount\').val(\'\');';
+		}else{
+			echo '$(\'#SearchAccount\').val("'.$q.'");';
+		}
+	?>
 	StartUsing();
 	$('#learn_container .master img').tipsy({gravity: $.fn.tipsy.autoNS, html: true, fade: true});
 });

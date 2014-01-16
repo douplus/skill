@@ -25,9 +25,7 @@
 <?php
 	include('../../php/db.php');
 	$task_id = $_GET['task_id'];
-	$userinfo = $_COOKIE['UserInfo'];
-	$a = json_decode($userinfo);
-	$userid = $a -> userid;
+
 	
 		$SQLStr = "select TASKPOSTERID from `1_TASK` where TASKID = '$task_id'";
 		$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
@@ -55,11 +53,17 @@
 ?>
 
 <?php 
+	$userinfo = $_COOKIE['UserInfo'];
+	$a = json_decode($userinfo);
+	$userid = $a -> userid;
+
 	$task_id = $_GET['task_id'];
 	session_start(); 
 	$_SESSION['task_id']=$task_id;
 	include('../../php/get_task.php');
 	include('../../php/re_showtask.php');
+
+	$link = '姓名:<a href="../../profile/index.php?stream=about&u='.$taskposter.'&v='.$userid.'">'.$user[0].'</a>'
 ?>
 <body>
 	<nav id="discuss_nav">
@@ -83,7 +87,7 @@
 							</div>										
 								<div class="_co_box_qu_content1">
 									<div style="padding: 5px;">
-									<p id="task_name"class="user_name">姓名:<?php echo $user[0]; ?></p>
+									<p id="task_name"class="user_name"><?php echo $link;?></p>
 									<p id="task_department">學校:<?php echo $user[1]; ?></p>
 									<p id="task_skill">專長:
 									<?php echo $html;?>	
@@ -108,9 +112,6 @@
 								</div>                   
 							</div>
 							<div class="_co_box_qu_framework1_3">
-								<a href="" title="short permalink to this question" class="short-link" >share</a>
-								<span class="lsep">|</span>
-								<a href="" class="suggest-edit-post" title="">improve this question</a>
 								<p id="task_timestamp" style="margin-left: 80px;">
 									<?php echo $date; ?></p>
 							</div> 

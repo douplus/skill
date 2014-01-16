@@ -1,7 +1,4 @@
 $(function(){
-	$('#task_container').on('click', 'p', function(){    // 進入 問題討論串 介面
-		window.location.href = './task/index.html';
-	});
 	$('#task_container').on('click', 'dd.task_user_data', function(){    // 任務區 點擊使用者
 		$('#cv_box').removeClass('dom_hidden').children('section').removeClass('dom_hidden');
 	});

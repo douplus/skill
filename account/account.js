@@ -1,20 +1,4 @@
 $(function(){
-	// jQuery UI
-	/*$('#account_tabs-1').data('status', true);
-	$('#page-container').on('click', 'a.account_list_a', function(e){    // 個人履歷 Tabs 切換
-		$(this).blur();
-		e.preventDefault();
-		var a = $(this).attr('href');
-		if( !$(''+a+'').data().status ){
-			$(''+$('#account_list').attr('_tabbed')+'').addClass('dom_hidden').data('status', false);
-			$('#account_list').attr('_tabbed', a).find('li.tabs-active').removeClass('tabs-active');
-			$(this).parent().addClass('tabs-active').blur();
-			$(''+a+'').removeClass('dom_hidden').data('status', true);
-			if( a === '#account_tabs-4' ){
-				GetFollow( JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid, JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid );
-			}
-		}
-	});*/
 	$('#top_nav_user_wrapperImg, #top_nav_user_wrapperImg + span').click(function(){    // 點擊 更改大頭貼
 		$('#box').attr('role-now', 'user_img').removeClass('dom_hidden').children('[box-role=user_img]').removeClass('dom_hidden');
 	});

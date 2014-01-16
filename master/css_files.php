@@ -16,3 +16,4 @@
 <link rel="stylesheet" href="../css/error.css"/>
 <link rel="stylesheet" href="../css/task.css"/>
 <link rel="stylesheet" href="../css/notification.css"/>
+<link rel="stylesheet" href="../css/search_cv.css"/>
