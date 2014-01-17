@@ -16,12 +16,11 @@
 					<div top-nav="username">王梓憲</div>
 					<div top-nav="score" class="chinese">積分 - <strong id="score">110</strong></div>
 					<a id="GoToAccount" class="chinese" href="../account/index.php" data-pjax="account">帳戶設定</a><br>
-					<a id="GoToHome" class="chinese" href="../home/index.html" target="_blank">首頁</a>
 				</section>
 			</div>
 			<div class="bottom">
 				<div>
-					<a id="Notification-btn" class="chinese" data-pjax="notification" href="../notification/index.php"><span class="noti-CountWrapper"><span class="noti-CountValue">15</span></span>通知</a>
+					<a id="Notification-btn" class="chinese" data-pjax="notification" href="../notification/index.php"><span class="noti-CountWrapper dom_hidden"><span class="noti-CountValue">15</span></span>通知</a>
 				</div>
 				<div>
 					<a id="top_nav_user_wrapperLogout" class="chinese">登出</a>

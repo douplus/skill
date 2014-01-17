@@ -48,17 +48,28 @@ $userid = $a -> userid;
 	        		$bug.= $a[7].'bug';
 	        		if ($a[8] == '0') {
 						if ($userid == $a[7] ) {
+					$query = sprintf("SELECT 1_CV.USERNAME,1_COWORK_TASK.COWORK   FROM `1_CV`,`1_COWORK_TASK` WHERE 1_CV.USERID = '$a[6]' AND 1_COWORK_TASK.COWORKER= '$a[6]' AND 1_COWORK_TASK.TASKID= '$a[5]'");
+					$result = mysql_query($query) or die('error@錯誤。');
+						while( $t = mysql_fetch_array($result) ){
+				        $ref_name= $t['USERNAME'];
+				        $co_work= $t['COWORK'];
+				        }
+				       if ($co_work==0) {
 				$checkhtml.='<li>'.	
 								'<div class="thumbnail">'.
 									'<a href="../profile/index.php?u='.$a[7].'&amp;v='.$userid.'" title="'.$a[3].'"><img width="50" height="50" src="../photo/'.$a[6].'.jpg'.'" title="'.$a[3].'"></a>';
 					$checkhtml.='</div>'.
-								'<h3 class="chinese"><a href="../profile/index.php?u='.$a[7].'&amp;v='.$userid.'">'.$taskposter[0].'</a> 拒絕此合作 ：「 <a href="../task/discuss/index.php?task_id='.$a[5].'">'.$a[3].'</a> 」。</h3>'.
-								'<button class="account_co_btn con_ref_btn" type="button"  taskid="'.$a[5].'" userid="'.$a[0].'" >確認</button>'.					
+								'<h3 class="chinese"><a href="../profile/index.php?u='.$a[6].'&amp;v='.$userid.'">'.$ref_name.'</a> 拒絕此合作 ：「 <a href="../task/discuss/index.php?task_id='.$a[5].'">'.$a[3].'</a> 」。</h3>'.
+								'<button class="account_co_btn con_ref_btn" type="button"  taskid="'.$a[5].'" userid="'.$a[6].'" >確認</button>'.					
 								'<br>';
 					$checkhtml.='<span class="date chinese">'.$a[4].'</span>'.
 							'</li>';
+				       }
+
+																			        												
 						}
 	        		} else {
+	        			//po任務的人 和 合作的人
 		        		if ($userid == $a[6] || $userid == $a[7]) {
 				$coworkhtml.='<li>'.	
 								'<div class="thumbnail">'.

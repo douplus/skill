@@ -1,4 +1,52 @@
 <?php
+function Check_Notify( $u ){  # 檢查通知
+	# 抓取通知
+	$query = sprintf( "SELECT IS_READ FROM `1_NOTIFICATION` WHERE USERID = '$u' AND IS_READ = 0" );
+	$result = mysql_query($query);
+	if( !$result ){
+		return 'error@系統檢查通知出錯。';
+	}
+	$num = mysql_num_rows( $result );
+
+	return 'success@'.$num;
+}
+function Create_Notify( $userid, $who, $task_id, $target, $url ){  # 設定通知
+	$query = sprintf( "INSERT INTO `1_NOTIFICATION` (USERID, WHO, TASK_ID, TARGET, URL) VALUES ('%s', '%s', '%s', '%s', '%s')", mysql_real_escape_string($userid), mysql_real_escape_string($who), mysql_real_escape_string($task_id), mysql_real_escape_string($target), mysql_real_escape_string($url) );
+	$result = mysql_query($query);
+	if( !$result ){
+		return 'error@設定通知錯誤。';
+	}
+	return 'success@設定通知成功。';
+}
+function Get_Notify( $a ){
+	# 抓取通知
+	$query = sprintf( "SELECT 1_TASK.TITTLE, 1_NOTIFICATION.WHO, 1_NOTIFICATION.TASK_ID, 1_NOTIFICATION.TARGET, 1_NOTIFICATION.TIME, 1_NOTIFICATION.IS_READ, 1_NOTIFICATION.URL FROM `1_NOTIFICATION`, `1_TASK` WHERE 1_NOTIFICATION.USERID = '$a' AND 1_NOTIFICATION.TASK_ID = 1_TASK.TASKID ORDER BY `1_NOTIFICATION`.`TIME` DESC LIMIT 0 , 30" );
+	$result = mysql_query($query);
+	if( !$result ){
+		return 'error@@系統存取通知的資料出錯。';
+	}else if( mysql_num_rows( $result ) == 0 ){
+		return 'success@@0@@目前沒有通知喔。';
+	}
+	$noti_ary = array();
+	$user_ary = array();
+	while( $a = mysql_fetch_array($result) ){
+		$noti_ary[] = $a['WHO'].'***'.$a['TARGET'].'***'.$a['TASK_ID'].'***'.$a['TITTLE'].'***'.$a['TIME'].'***'.$a['IS_READ'].'***'.$a['URL'];
+		$user_ary[] = $a['WHO'];
+	}
+	$user_ary_len = count( $user_ary );
+	for( $i = 0; $i < $user_ary_len; $i++ ){
+		$query = sprintf( "SELECT USERNAME, USER_PHOTO FROM `1_CV` WHERE 1_CV.USERID = '$user_ary[$i]'" );
+		$result = mysql_query($query);
+		if( !$result ){
+			return 'error@@系統存取通知的資料出錯。';
+		}
+		while( $a = mysql_fetch_array($result) ){
+			$noti_ary[$i] .= '***'.$a['USERNAME'].'***'.$a['USER_PHOTO'];
+			break;
+		}
+	}
+	return 'success@@1@@'.$user_ary_len.'@@'.json_encode( (object)$noti_ary );
+}
 function Show_Search_CV( $a ){
 /*USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO,FOLLOWERS,VIEWERS,M_SCORE */
 /*  0  ,    1   ,  2  ,   3  ,     4    ,    5    ,  6  ,  7  ,  8 ,    9   ,    10    ,       11     ,  12 ,  13  ,    14    ,    15   ,   16   ,   17   */
@@ -25,7 +73,7 @@ function Show_Search_CV( $a ){
 }
 function Search_CV( $a ){    # 搜尋帳戶
 	$user_ary = array();
-	$query = sprintf( "SELECT USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO,FOLLOWERS,VIEWERS FROM `1_CV` WHERE 1_CV.USERNAME LIKE BINARY '%s' OR 1_CV.EMAIL = '$a'", '%'.$a.'%');
+	$query = sprintf( "SELECT USERID,USERNAME,EMAIL,GENDER,DEPARTMENT,JOIN_TIME,SKILL,MOTTO,NEED,ABOUT_ME,EXPERIENCE,LASTUSING_TIME,SCORE,USERIP,USER_PHOTO,FOLLOWERS,VIEWERS FROM `1_CV` WHERE 1_CV.USERNAME LIKE '%s' OR 1_CV.EMAIL = '$a'", '%'.$a.'%');
 	$result = mysql_query($query);
 	if( !$result ){
 		return 'error@@搜尋資訊錯誤。';

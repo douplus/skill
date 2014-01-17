@@ -58,9 +58,7 @@ $(function(){
     	if ( co_content == '') {
     	  $('.btn_if').html('<p>請輸入內容</p>');
     	  a = false;
-   		} 
-
-
+   		}
     	if (a == 1) {
 	        $.ajax({    
 	              url: '../../php/cooperation.php',
@@ -72,7 +70,7 @@ $(function(){
 	              	$('#co_content').val('');
 	              	var msg = msg.split('***');
 	              	//動態新增
-	              	html(msg[1]);        		              	
+	              	html(msg[1],co_content);        		              	
 	                console.log(msg);
 	                alert(msg[0]);
 	              },
@@ -81,8 +79,8 @@ $(function(){
 	                console.log(thrownError);
 	              }
 	        });        
-   		};	
-   		function html(a){
+   		}	
+   		function html(a,b){
     	var time = $.timestamp.get( { readable: true } );
     	var time_ary =time.split("-");
     	var time_ary2 =time_ary[2].split(":");
@@ -105,11 +103,11 @@ $(function(){
             '<span class="authors" style="">&nbsp;&nbsp;<a href="../../profile/index.php?stream=about&u='+userid+'&v='+userid+'">'+username+'</a></span>'+
             '<span class="lastEditedDate" style="">&nbsp;&nbsp;&nbsp;'+timestamp+'</span>'+
        ' </div >'+
-       	'<p style="text-align: center;" >'+co_content+'</p>'+                           
+       	'<p style="text-align: center;" >'+b+'</p>'+                           
         '</div>'+
         '</div>'+
     '</div>';       
-  		 $( "._co_box_section1" ).prepend(html); 			
+  		 $( "._co_box_section1" ).append(html); 			
    		}
    		   		    
 	});

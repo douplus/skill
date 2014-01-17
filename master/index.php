@@ -20,7 +20,7 @@
 	var $a = $('#fixed_nav > div.item > a');
 	$( $a[0] ).removeAttr('href').removeAttr('data-pjax');
 	$( $a[1] ).attr({'href':'../task/index.php', 'data-pjax':'task'});
-	$( $a[2] ).attr({'href':'../information/index.php?stream=about', 'data-pjax':'information'});
+	//$( $a[2] ).attr({'href':'../information/index.php?stream=about', 'data-pjax':'information'});
 })();
 $(function(){
 	<?php

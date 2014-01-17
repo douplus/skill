@@ -13,6 +13,11 @@
 			<i id="i_task" class="dom_hidden"></i>
 		</div>
 		<div class="item">
+			<a id="team" rel="tipsy" title="查看製作團隊"></a>
+			<div id="about_us_icon">&nbsp;</div>
+			<div class="chinese">團  隊</div>
+		</div>
+		<div class="item" style="display: none;">
 			<a data-pjax="information" id="a_information_icon" rel="tipsy" title="查看成大的資訊"></a>
 			<div id="information_icon">&nbsp;</div>
 			<div class="chinese">資訊區</div>

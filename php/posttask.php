@@ -1,4 +1,3 @@
-
 <?php
 include('./db.php');
 
@@ -7,8 +6,6 @@ $post_tittle = $_POST['tittle'];
 $post_content = $_POST['content'];
 $task_id = $_POST['task_id'];
 $task_poster_id = $_POST['task_poster_id'];
-
-
 
 // #開始 \w字 吃到空白停住，因為空白不是字
 preg_match_all('/#\w*/i',$post_content,$test);  

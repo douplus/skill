@@ -754,4 +754,13 @@ function CheckLogin( email, passwd ){    // 設定 登入
 		}
 	});
 }
-
+$(window).load( Initial );
+function Initial(){
+	var a = sessionStorage.Home_Site || null;
+	if( a == null || a !== 'team' ){
+		sessionStorage.setItem( 'Home_Site', 'none' );
+	}else{
+		$('#fixed-nav > li:nth-child(3)').children().trigger('click');
+		sessionStorage.setItem( 'Home_Site', 'none' );
+	}
+}

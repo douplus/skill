@@ -22,6 +22,7 @@
 	<script src="../library/jquery.tagsinput.min.js"></script>
 	<script src="../js/follow.js"></script>
 	<script src="../js/account_task.js"></script>
+	<script src="../account/account_cowork.js"></script>
 <script>
 	(function(){    // include jQuery.js
 		CheckLogin();

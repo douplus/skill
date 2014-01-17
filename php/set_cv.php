@@ -74,7 +74,7 @@
 	$mailer->IsHTML(true);
 
 	if( !$mailer->Send() ){
-		$message  = 'error@伺服器發送認證信失敗。';
+		$message  = 'error@創建帳戶成功，但伺服器發送認證信失敗。';
         die($message);
 	}
 	echo 'success@創建您的帳戶 & 發送認證信成功。';

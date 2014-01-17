@@ -76,7 +76,7 @@ $SQLStr = "select TITTLE from `1_TASK` where TASKID = '$copid'";
         break;
     }
 
-$SQLStr = sprintf( "SELECT * FROM `1_DISCUSS_COOPERATION`,`1_CV` WHERE 1_DISCUSS_COOPERATION.COOPERATION_ID = '$copid' AND 1_CV.USERID = 1_DISCUSS_COOPERATION.USERID ORDER BY 1_DISCUSS_COOPERATION.TIMESTAMP DESC" );
+$SQLStr = sprintf( "SELECT * FROM `1_DISCUSS_COOPERATION`,`1_CV` WHERE 1_DISCUSS_COOPERATION.COOPERATION_ID = '$copid' AND 1_CV.USERID = 1_DISCUSS_COOPERATION.USERID ORDER BY 1_DISCUSS_COOPERATION.TIMESTAMP " );
     $res = mysql_query($SQLStr) or die('error@取得討論。');
         while( $a = mysql_fetch_array($res) ){
             $dis_ary[] = $a['CONTENT'].'***'.$a['TIMESTAMP'].'***'.$a['USERNAME'].'***'.$a['USER_PHOTO'].'***'.$a['USERID'];

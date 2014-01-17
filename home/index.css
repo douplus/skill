@@ -36,12 +36,9 @@ font-weight: 900;
 src: local('Maven Pro Black'), local('MavenProBlack'), url('../css/Font/-91TwiFzqeL1F7Kh91APwXhCUOGz7vYGh680lGh-uXM.woff') format('woff');
 }
 .dom_hidden{
-overflow: hidden;
-width: 0 !important;
-height: 0 !important;
-border: 0 !important;
-margin: 0 !important;
-padding: 0 !important;
+visibility: hidden;
+height:0;
+overflow:hidden;
 }
 #header {
 top: 0;
@@ -157,11 +154,12 @@ margin: 0 auto;
 width: 480px;
 margin: 0 auto;
 }
+/*
 #sign-up-form,
 #login-form,
 #enter-form{
 max-width: 480px;
-}
+}*/
 }
 @media (max-width: 979px) and (min-width: 768px){
 .container{
@@ -236,13 +234,13 @@ display: block;
 margin-bottom: 0px;
 margin-left: 0px;
 }
-#sign-up-form input,
+/*#sign-up-form input,
 #login-form input,
 .button-command,
 .button-enter,
 .input-failure{
 max-width: 320px;
-}
+}*/
 }
 @media (min-width: 768px){
 #top-nav ul{
@@ -325,7 +323,7 @@ background: #f1f1f1;
 cursor: pointer;
 color: #000;
 }
-@media screen and (min-width: 768px){
+@media screen and (min-width: 601px){
 #sign-up_box > section,
 #login_box > section,
 #set_box > section{
@@ -346,8 +344,15 @@ margin:auto auto;
 border-radius:10px;
 }
 }
+@media screen and (max-height: 500px){
+#sign-up_box > section,
+#login_box > section,
+#set_box > section{
+  max-height:500px;
+}
+}
 
-@media screen and (max-width: 767px){
+@media screen and (max-width: 600px){
 #sign-up_box > section,
 #login_box > section,
 #set_box > section{
@@ -364,7 +369,6 @@ box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
 -webkit-box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
 -moz-box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
 -o-box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
-max-height: 500px;
 margin:auto auto;
 }
 }
@@ -401,19 +405,25 @@ font-family: "Helvetica Neue",Helvetica,"微軟正黑體",Arial,sans-serif;
 /**/
 #sign-up-form,
 #login-form,
-#set-skill,
-#set-need,
-#set-motto,
 #enter-form{
-display: inline-block;
 position: relative;
+float:right;
 padding: 0;
 width: 90%;
 }
+#set-need{
+position: relative;
+padding: 16px 0;
+}
+#set-motto{
+  width:90%;
+  margin:10px 5%;
+}
+
 #sign-up-form > div,
 #login-form > div,
 #enter-form > div{
-width: 100%;
+width: 90%;
 float:left;
 }
 #sign-up-form > div:first-child,
@@ -436,6 +446,7 @@ box-sizing: border-box;
 -moz-box-sizing: border-box;
 -webkit-box-sizing: border-box;
 width: 100%;
+float:left;
 }
 #sign-up-button,
 #login-button,
@@ -503,7 +514,7 @@ margin-left: 10px;
 #set-need > h2,
 #set-motto > h2{
 line-height: 30px;
-margin-bottom: 10px;
+margin-left: 5px;
 font-size: 20px;
 color: #fff;
 }
@@ -511,7 +522,7 @@ color: #fff;
 #set-need > p,
 #set-motto > p{
 text-align: left;
-margin: 0 10px;
+margin: 5px 10px;
 color: #FF0;
 }
 #motto-area{
@@ -520,7 +531,7 @@ background-color: rgba(130, 200, 255, 0.2);
 padding: 10px 2.5%;
 width: 95%;
 height: 100px;
-margin: 0px;
+margin: 10px 0;
 resize: vertical;
 color: #fff;
 }
@@ -554,7 +565,6 @@ box-sizing: border-box;
 -moz-box-sizing: border-box;
 -o-box-sizing: border-box;
 -webkit-box-sizing: border-box;
-max-width: 320px;
 }
 #preloader{
 background: rgba(0, 0, 0, 0.5);

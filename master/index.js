@@ -21,6 +21,10 @@ $(function(){  // header
 	$(document).on('click', '#search_cv_wrapper [_btn=goto]', function(){  // 點擊 神人 搜尋裡面的 一窺究竟
 		$(this).parent().prev().find('a').trigger('click');
 	});
+	$('#team').click(function(){    //
+		sessionStorage.setItem( 'Home_Site', 'team');
+		window.location.href = '../home/index.html';
+	});
 });
 $(document).on('click', function(e){
 	$('#top_nav-user_wrapper').addClass('dom_hidden');
@@ -65,6 +69,7 @@ function PjaxSuccess(){
 	clearTimeout( $('#preloader').data().timeoutNum );
 	$('div.tipsy').remove();
 	InitialMaster();
+	Check_Notify();
 }
 $(function(){    // 設定
 	InitialMaster();
@@ -171,4 +176,29 @@ function Account_Search( a ){
 	$('#cv-result_page').attr( 'href', './index.php?q='+a ).trigger('click');
 	return false;
 }
-$(function(){ SetIP(); });
+function Check_Notify(){
+	$.ajax({
+		url: '../php/check_notify.php',
+		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid },
+		type: 'POST',
+		dataType: 'html',
+		success: function(msg){  console.log(msg);
+			msg = msg.split('@');
+			if( msg[0] == 'success' ){
+				if( parseInt( msg[1] ) > 0 ){
+					$('#Notification-btn').children().children().text( msg[1] ).end().removeClass('dom_hidden');
+				}else{
+					$('#Notification-btn').children().addClass('dom_hidden').children().text( 0 );
+				}
+			}else if( msg[0] == 'error' ){
+				console.log( msg[1] );
+			}
+		},
+		error:function(xhr, ajaxOptions, thrownError){ 
+			console.log(xhr.status); 
+			console.log(thrownError);
+			console.log('資料格式正確，但是伺服器 設定 IP 發生錯誤。');
+		}
+	});
+}
+$(function(){ Check_Notify(); SetIP(); });

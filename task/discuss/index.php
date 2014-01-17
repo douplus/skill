@@ -87,7 +87,7 @@
 							</div>										
 								<div class="_co_box_qu_content1">
 									<div style="padding: 5px;">
-									<p id="task_name"class="user_name"><?php echo $link;?></p>
+									<p id="task_name" class="user_name" po_id="<?php echo $taskposter;?>"><?php echo $link;?></p>
 									<p id="task_department">學校:<?php echo $user[1]; ?></p>
 									<p id="task_skill">專長:
 									<?php echo $html;?>	

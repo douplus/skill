@@ -130,6 +130,14 @@ background-repeat: no-repeat;
 background-size: 25px 25px;
 background-position: 50% 50%;
 }
+#about_us_icon{
+height: 30px;
+width: 100%;
+background-image: url('../Images/about_us_w.png');
+background-repeat: no-repeat;
+background-size: 27px 27px;
+background-position: 50% 50%;
+}
 #information_icon{
 height: 30px;
 width: 100%;
