@@ -10,7 +10,7 @@
 			<a data-pjax="task" id="a_task_icon" rel="tipsy" title="查看任務"></a>
 			<div id="task_icon">&nbsp;</div>
 			<div class="chinese">任務區</div>
-			<i id="i_task" class="dom_hidden"></i>
+			<i id="i_task" class="dom_hidden" style="border-right-color: #fff;"></i>
 		</div>
 		<div class="item">
 			<a id="team" rel="tipsy" title="查看製作團隊"></a>
