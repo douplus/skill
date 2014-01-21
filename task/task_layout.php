@@ -85,6 +85,7 @@
 	        }
 		$time = explode( '-', $a[6] );
 		$htmltask.= '<div class="task_show">'.
+			'<div class="task_show_title">'.'<p class="chinese">'.$a[1].'</p>'.'</div>'.
 			'<div class="task_show1">'.
 				'<div class="task_show_num task_vote_color">'.
 					'<div class=" task_show3">'.$cowork_num.'</div>'.
@@ -102,7 +103,7 @@
 		/*	'<div class=" task_show_classify ">'.
 				'<img class="task_crown" src="../img/green1.png">'.
 				'</div>'.*/
-			'<div class="task_show_title">'.'<p class="chinese">'.$a[1].'</p>'.'</div>'.					
+							
 			'<div class="task_show2">';
 				$htmltask.='<div class="chinese"><a href="./discuss/index.php?task_id='.$a[0].'">'.$a[2].'</a></div>';
 				$htmltask.='<div class="task_span">'.$span; 				

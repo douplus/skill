@@ -13,11 +13,14 @@ width: 100%;
   color:yellow;
   font-weight:bold;
 }
+#add-task-box{
+  height:390px;
+}
 #post-form > .task_select-area > #post_task_select{
 border: 1px solid #ccc;
 background: white;
 height: 31px;
-padding: 4px 4px;
+padding: 4px 6px;
 font-size: 14px;
 cursor: pointer;
 -webkit-border-radius: 5px;

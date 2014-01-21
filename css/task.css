@@ -6,20 +6,13 @@ a{
 height: 50px;
 width: 50px;
 }
-#task_result > .task_show {
+#task_result > .task_show{
 position: relative;
 float: left;
 width: 95%;
 background-color: white;
 padding:0 2.5%;
 border-bottom:2px solid #eee;
-}
-.task_show > .task_show1{
-position: relative;
-float: left;
-text-align: center;
-padding-top: 12px;
-font-size: 20px;
 }
 .task_show > .task_show2{
 position: relative;
@@ -86,21 +79,7 @@ background-color: #eeebff;
 height:20px;
 padding: 5px;
 }
-/*
-a { 
-border: #A498BD solid; 
-height: 0px; 
-color: #4D2078; 
-border-width: 0px 0px 1px; 
-padding-bottom: 5px}
-a:hover {  
-border: #605080 solid; 
-height: 0px; 
-color: #9900CC; 
-border-width: 0px 0px 1px; 
-padding-bottom: 2px}
-*/
-.task_span > span {
+.task_span > span{
 float:left;
 font-size: 15px;
 color: #3E6D8E;
@@ -135,16 +114,19 @@ float:left;
 .task_classify{
 width: 16px;
 }
-@media screen and (min-width: 981px){
-
+.task_show > .task_show1{
+position: relative;
+float: left;
+text-align: center;
+padding-top: 12px;
+font-size: 20px;
 }
-
-@media screen and (min-width: 746px) and (max-width: 976px){
+@media (min-width: 746px) and (max-width: 999px){
 .task_show > .task_show2{
   width:50%;
 }
 }
-@media screen and (min-width:560px)and (max-width: 745px){
+@media (min-width:560px) and (max-width: 745px){
 #task_result > .task_show{
   width:100%;
   padding:0;
@@ -176,7 +158,7 @@ width:70px;
 float:left;
 }
 }
-@media screen and (max-width: 559px){
+@media (max-width: 559px){
 #task_result > .task_show{
   width:100%;
   padding:0;
@@ -184,11 +166,11 @@ float:left;
 .task_show > .task_show1{
 padding:0;
 font-size:16px;
-margin:6px 4px;
+margin:6px 3%;
 }
 .task_show > .task_show2{
 width:94%;
-  padding:0;
+padding:0;
 margin:0 3%;
 }
 .task_poster{
@@ -212,17 +194,17 @@ float:left;
   width:100%;
   right:0;
   top:0;
-  margin-top:-7px;
 }
 .task_show_title > p{
 border-radius:0;
-margin:6px 0;
-width:56px;
+margin:8px 0 0;
+width:60px;
 }
 }
 /*
-@media screen and (max-width: 384px){
+@media (max-width: 384px){
 .task_show_title{
 margin-top:-5px;
 }
 }
+*/
