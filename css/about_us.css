@@ -4,7 +4,8 @@
 
 /*team*/
 #team-member{
-  width:100%;
+  overflow-x:hidden;
+  width:90%;
   position:relative;
   float:left;
 }
@@ -21,10 +22,6 @@
   float:left;
 }
 
-.member > .member-infor{
-  float:left;
-}
-
 /*contact us*/
 #contact b{
   color:blue;
@@ -38,7 +35,7 @@
 #contactbox{
   width:70%;
   margin:40px auto;
-  padding:0 20px;
+  padding:0 5%;
 }
 
 #contactbox span{
@@ -172,7 +169,7 @@
   }
 
   #team-member{
-    margin:0 35px;
+    margin:0 5%;
   }
 
   .member{
@@ -204,9 +201,9 @@
   }
 
   .member-infor{
-    width:100%;
+    width:90%;
     max-width:250px;
-    padding:20px;
+    padding:20px 5%;
     font-size:16px;
   }
 
@@ -346,8 +343,9 @@
   }
 
   #contactbox{
-    width:100%;
+    width:90%%;
     margin:20px auto;
+    padding:0 5%;
   }
 
   #contactbox span{
@@ -406,7 +404,6 @@
 
   .member-infor{
     width:50%;
-    float:left;
     padding:30px 0;
     font-size:16px;
   }

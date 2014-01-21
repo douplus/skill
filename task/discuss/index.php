@@ -97,6 +97,7 @@ $link =$gender.'<a href="../../profile/index.php?stream=about&u='.$taskposter.'&
   		<article class="_co_box_article">
  		 <!--<div class="wrapper">-->
   			<div class="_co_box_framework0">
+				<div class="size_box">
   				<div class="_co_box_qu_framework1_1">
   					<div class="image">
   					<img id="task_poster" src="<?php echo $photo;?>">
@@ -131,6 +132,7 @@ $link =$gender.'<a href="../../profile/index.php?stream=about&u='.$taskposter.'&
   		<p id="task_timestamp" style="margin-left: 80px;">
   		x?php echo $date; ?x </p>
   		</div> -->
+		</div>
   		</div>            
 		<?php $postphoto='<img id="user_poster" src="'.$user_img.'">'?>
   		<div class="_co_box_dis_wrapper">
