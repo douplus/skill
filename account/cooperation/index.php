@@ -4,50 +4,30 @@
     <meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
 	<link rel="stylesheet" href="../../css/cv.css"/>
-	<link rel="stylesheet" href="../../library/jquery-ui-1.10.3.custom.min.css"/>
 	<link rel="stylesheet" href="../../library/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../library/jquery.nailthumb.1.1.min.css"/>
 	<link rel="stylesheet" href="../../css/cooperation.css"/>
+	<link rel="shortcut icon" type="image/png" href="../Images/favicon.png">
+	<link rel="Bookmark" type="image/png" href="../Images/favicon.png">
     <title>skill 神人網</title>
 	<script>localStorage.removeItem('jqData');localStorage.removeItem('co_jsData');</script>
+	<script src="../../library/jquery-2.0.3.min.js"></script>
+	<script src="../../library/jquery.nailthumb.1.1.min.js"></script>
+	<script src="../../library/bootstrap.min.js"></script>
+	<script src="./cooperation.js"></script>
 <script>
 	(function(){    // include jQuery.js
-		var jq_file = '../../library/jquery-2.0.3.min.js';
-		var jqData = localStorage.jqData || null;
-		if( jqData === null ){    // Load jQuery
-			var xhr = new XMLHttpRequest();
-			xhr.onreadystatechange = function(){
-				if( xhr.readyState == 4 ){
-					eval( xhr.responseText );
-					localStorage.jqData = xhr.responseText;
-					IncludeJS();
-				}else{
-					return;   
-				}
-			};
-			xhr.open( 'GET', jq_file, true );
-			xhr.send();
-		}else{    // Cache jQuery.js
-			eval(jqData);
-			IncludeJS();
-		}
-		function IncludeJS(){    // include js files
-			var js_file = new Array('../../library/jquery-ui-1.10.3.custom.min.js', 
-									'../../library/js_cookies.js',
-									'../../library/jquery.nailthumb.1.1.min.js',
-									'../../library/bootstrap.min.js',
-									'./cooperation.js');
-			var co_jsData = localStorage.co_jsData || null;
-			if( co_jsData === null ){
-				var data = '';
-				$.ajax({ type: 'GET', async : false, url: js_file[0] }).done(function(res){ data += res; });
-				$.ajax({ type: 'GET', async : false, url: js_file[1] }).done(function(res){ data += res; });
-				$.ajax({ type: 'GET', async : false, url: js_file[2] }).done(function(res){ data += res; });
-				$.ajax({ type: 'GET', async : false, url: js_file[3] }).done(function(res){ localStorage.co_jsData = res+data; });
-			}else{
-				eval(co_jsData);
+		CheckLogin();
+		function CheckLogin(){    // 檢查使用者是否登入
+			var a = $.cookie.get({ name: 'UserInfo' });
+			if( a == null || localStorage.Based_CV == null ){  // 未登入：跳回首頁
+				window.location.replace( '../../home/index.html' );
+			}else{  // 已登入：載入頁面
+				$(function(){ $('#init-overlay').addClass('dom_hidden'); });
+				//IncludeJS();
+				$.cookie.set({ name: 'UserInfo', value: a, expidxres: '7', path: '/~thwang/cur/' });
+				localStorage.setItem( 'UserInfo', a );
 			}
-			$.ajax({ type: 'GET', async : false, url: js_file[4] }).done(function(res){});
 		};
 	})();
 </script>
@@ -236,116 +216,3 @@ $SQLStr = sprintf( "SELECT * FROM `1_DISCUSS_COOPERATION`,`1_CV` WHERE 1_DISCUSS
 			</div>
 			</div>            
 	</article>
-	<article id="cv_box" class="dom_hidden">
-		<section class="dom_hidden">
-			<header>
-				<div id="cv_box_leave">離開</div>
-			</header>
-			<article>
-				<div class="wrapper">
-					<nav id="cv_box_nav">
-						<section>
-							<img class="cv_img" src="" alt="未找到大頭貼">
-							<div class="cv_user">
-								<dl>
-									<dt class="cv_user-male">&nbsp;</dt>
-									<dd itemprop="user">王梓憲</dd>
-								</dl>
-								<div class="cv_score">                                       
-									<span class="badge1"></span>
-									<span _badge="gold" class="badgecount">1</span>                                  
-									<span class="badge2"></span>
-									<span _badge="silver" class="badgecount">22</span>
-									<span class="badge3"></span>
-									<span _badge="copper" class="badgecount">374</span>                              
-								</div>
-								<input id="cv_follow" type="button" value="follow">
-							</div>
-						</section>
-						<ul id="cv_box_list" _tabbed="#cv_box_tabs-1">
-							<li class="tabs-active"><a href="#cv_box_tabs-1"><div>關於</div></a></li>
-							<li><a href="#cv_box_tabs-2"><div>任務</div></a></li>
-							<li><a href="#cv_box_tabs-3"><div>評分</div></a></li>
-						</ul>
-					</nav>
-					<div id="cv_container">
-						<article id="cv_box_tabs-1">
-							<section class="cv_list">
-								<dl>
-									<dt class="cv_education">&nbsp;</dt>
-									<dd itemprop="education">NCKU, 工科系</dd>
-								</dl>
-								<dl>
-									<dt class="cv_email">&nbsp;</dt>
-									<dd itemprop="email">
-										<a class="a_learn_email" href="mailto:onepiece@gmail.com" target="_blank">	shane120680@gmail.com</a>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="cv_join">&nbsp;</dt>
-									<dd itemprop="join">
-										<span class="learn_join_label">Joined on </span>
-										<span>2013/10/10</span>
-									</dd>
-								</dl>
-								<dl>
-									<dt class="cv_skill">&nbsp;</dt>
-									<dd itemprop="skill" class="cv_skill_data">
-										<span>php</span>
-										<span>html5</span>
-										<span>css</span>
-										<span>javascript</span>
-										<span>jquery</span>
-										<span>pgonegap</span>
-										<span>mysql</span>
-										<span>c</span>
-										<span>c++</span>
-										<span>magic</span>
-										<span>piano</span>
-										<span>cello</span>
-									</dd>
-								</dl>
-							</section>
-							<section class="cv_motto">
-								<h2>Motto</h2>
-								<p>當你的左臉被人打，那你的左臉就會痛。</p>
-							</section>
-							<section class="cv_need">
-								<h2>Need</h2>
-								<div class="cv_need_list">
-									<span>php</span>
-									<span>html5</span>
-									<span>css</span>
-									<span>javascript</span>
-									<span>jquery</span>
-									<span>pgonegap</span>
-									<span>mysql</span>
-									<span>c</span>
-								</div>
-							</section>
-							<section class="cv_about">
-								<h2>About me</h2>
-								<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas		</p>
-							</section>
-							<section class="cv_background">
-								<h2>Background</h2>
-								<div>
-									<p>first</p>
-									<p>second</p>
-								</div>
-							</section>
-						</article>
-						<article id="cv_box_tabs-2" class="dom_hidden">
-							<div style="position: relative;width: 96%;margin: 10px 2%;">
-								<div id="cv_box_task-accordion">
-									<h3>First</h3>
-									<div>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</div>
-									<h3>Second</h3>
-									<div>Phasellus mattis tincidunt nibh.</div>
-									<h3>Third</h3>
-									<div>Nam dui erat, auctor a, dignissim quis.</div>
-								</div>
-							</div>
-						</article>
-						<article id="cv_box_tabs-3" class="dom_hidden">
-							<div style="position: relative;width: 96%;m

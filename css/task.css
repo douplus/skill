@@ -24,8 +24,8 @@ font-size: 20px;
 position: relative;
 float: left;
 width: 65%;
-min-width:396px;
 padding-top:20px;
+margin-right:68px;
 }
 .task_show1 > .task_show_num{
 position: relative;
@@ -38,8 +38,8 @@ right: -27px;
 top: -12px;
 }
 .task_show_title{
-position: relative;
-float:right;
+position: absolute;
+right: 2.5%;
 top: 10px;
 }
 .task_show_title > p{
@@ -138,30 +138,29 @@ width: 16px;
 
 }
 
-@media screen and (min-width: 601px) and (max-width: 1000px){
+@media screen and (min-width: 746px) and (max-width: 976px){
 .task_show > .task_show2{
-  width:50%
+  width:50%;
 }
 }
 
-@media screen and (max-width: 600px){
-#task_result > .task_show {
-width: 95%;
-margin: 1px 1px 1px 5px;	
-}		
-.task_show2 > .task_poster {
-font-size: 14px;
-	}		
-.task_show > .task_show1{
-font-size: 14px;
-	}   
-.task_show1 >.task_show_num{
-width: 55px;
-	}
-.task_classify{
-font-size: 12px;
+@media screen and (max-width: 745px){
+#task_result > .task_show{
+  width:100%;
+  padding:0;
 }
-.task_show_title{
-font-size: 12px;	
-}	
+.task_show > .task_show1{
+padding:6px 3px;
+font-size:16px;
+width:90px;
+}
+.task_show3{
+  width:10px;
+  float:left;
+  position:relative;
+}
+.task_show_num > p{
+width:70px;
+float:left;
+}
 }

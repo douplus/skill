@@ -3,13 +3,14 @@
 <head>
     <meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+	<link rel="shortcut icon" type="image/png" href="../Images/favicon.png">
+	<link rel="Bookmark" type="image/png" href="../Images/favicon.png">
 	<link rel="stylesheet" href="../../library/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../library/jquery.nailthumb.1.1.min.css"/>        
     <link rel="stylesheet" href="../../css/discuss.css"/> 
 	<link rel="stylesheet" href="../../library/tipsy.css"/>
     <title>Skill 神人網</title>
 	<script src="../../library/jquery-2.0.3.min.js"></script>
-	<script src="../../library/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="../../library/jquery.nailthumb.1.1.min.js"></script>
 	<script src="../../library/jquery.tipsy.js"></script>
 	<script src="../../library/bootstrap.min.js"></script>
