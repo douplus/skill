@@ -6,7 +6,7 @@
 		</div>
 		<li class="tabs-active"><a class="cv_list_a" href="./index.php?stream=about&u=<?php echo $u;?>&v=<?php echo $v;?>" data-pjax="stream-cowork"><div class="chinese">關於</div></a></li>
 		<li><a class="cv_list_a" href="./index.php?stream=task&u=<?php echo $u;?>&v=<?php echo $v;?>" data-pjax="stream-task""><div class="chinese">任務</div></a></li>
-		<li><a class="cv_list_a" href="./index.php?stream=rating&u=<?php echo $u;?>&v=<?php echo $v;?>" data-pjax="stream-rating"><div class="chinese">評分</div></a></li>
+		<!--<li><a class="cv_list_a" href="./index.php?stream=rating&u=<?php echo $u;?>&v=<?php echo $v;?>" data-pjax="stream-rating"><div class="chinese">評分</div></a></li>-->
 		<li><a class="cv_list_a" href="./index.php?stream=follow&u=<?php echo $u;?>&v=<?php echo $v;?>" data-pjax="stream-follow""><div class="chinese">關注</div></a></li>
 	</ul>
 </nav>

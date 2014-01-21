@@ -91,7 +91,7 @@ $link = '姓名：<a href="../../profile/index.php?stream=about&u='.$taskposter.
   					<div>
   					<p id="task_name" class="user_name chinese" po_id="<?php echo $taskposter;?>"><?php echo $link;?></p>
   					<p id="task_department" class="chinese">學校：<?php echo $user[1]; ?></p>
-  					<p :id="task_skill" class="chinese">專長：<?php echo $html;?></p>
+  					<p id="task_skill" class="chinese"><div>專長：</div><?php echo $html;?></p>
   						<div class="">                       
   						<span class="reputation-score" ></span>                                           
   						<span class="badge1"></span>

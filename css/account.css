@@ -850,6 +850,9 @@ color: #555;
 margin: 5px 0;
 font-size: 85%;
 }
+#go_work{
+  margin:5px 0;
+}
 .account_task_wrapper li:last-child,
 .account_co_wrapper li:last-child{
 border: 0;
