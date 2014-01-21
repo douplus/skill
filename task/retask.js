@@ -42,8 +42,7 @@ $(document).ready(function(){
               dataType: 'html',
               success: function(msg){
                 console.log(msg);
-                alert(msg);
-                
+                alert(msg);                
                 console.log('ajax');
                 console.log(checker);
                 $('.btn_cooperation_a[userid='+checker+']').remove(); 
@@ -59,21 +58,21 @@ $(document).ready(function(){
             var username = JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).username;
             var userid = JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid;  
             var html = '';
-                html += '<div class="_co_box_dis" style="border-bottom: 2px solid #E4E4E4;">'+
+                html += '<div class="_co_box_dis">'+
                                 '<div class="_co_box_dis_framework1">'+
-                                        '<div class="_co_box_discuss"style="padding: 15px 0 15px 20px;">'+
+                                        '<div class="_co_box_discuss">'+
                                         '<div>'+
-                                        '<div class=" nailthumb-container square-thumb img-circle">'+
+                                        '<div class=" nailthumb-container square-thumb">'+
                                                 '<img class="img-circle" src="../../photo/'+a+'">'+                                                                      
                                         '</div>'+
-                                        '</div>';
-                                  html+='</div>'+
+                                        '</div>'+
+                                '</div>'+
                                 '</div>'+
                                 '<div class="_co_box_dis_framework2">'+
-                                '<div class="_co_box_span">';
-                                html+= '<div class="_co_box_dis_anstime"><a href="">'+username+'</a>&nbsp&nbsp&nbsp&nbsp&nbsp answered '+time+'</div>';           
-                                html+= '<p style="padding: 10px 0;">'+c+'</p></div>';                            
-                             html+='</div></div>'; 
+                                '<div class="_co_box_span">'+
+                                '<div class="_co_box_dis_anstime"><a href="">'+username+'</a><p class="reply_time">answered '+time+'</p></div>'+
+                                '<p class="reply_content chinese">'+c+'</p></div>'+                            
+                                '</div></div>'; 
                 $( "._co_box_dis_wrapper" ).append(html);             
             }  
 });

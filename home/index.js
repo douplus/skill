@@ -341,7 +341,7 @@ $(function(){
 			$('#enter-summary > strong').text( obj.USERNAME );
 			$('#enter-form').removeClass('dom_hidden');
 			var a = JSON.stringify( { 'username': obj.USERNAME, 'userid': obj.USERID, 'email': obj.EMAIL } );
-			$.cookie.set({ name: 'UserInfo', value: a, expires: '1', path: '/' });
+			$.cookie.set({ name: 'UserInfo', value: a, expires: '7', path: '/~thwang/cur/' });
 			localStorage.setItem( 'UserInfo', a );
 		}
 		$('#login_box').removeClass('dom_hidden').children('section').removeClass('dom_hidden');
@@ -683,7 +683,7 @@ function SetCompleted( motto ){    // 設定 完成註冊
 				obj['MOTTO'] = motto;
 				localStorage.setItem( 'Based_CV', JSON.stringify( obj ) );
 				var a = JSON.stringify( { 'username': sessionStorage.temp_SetUserName, 'userid': sessionStorage.temp_SetUserId, 'email': sessionStorage.temp_SetEmail } );
-				$.cookie.set({ name: 'UserInfo', value: a, expires: '1', path: '/' });
+				$.cookie.set({ name: 'UserInfo', value: a, expires: '7', path: '/~thwang/cur/' });
 				localStorage.setItem( 'UserInfo', a );
 				alert( '完成註冊。' );
 				window.location.replace( '../master/index.php' );
@@ -736,7 +736,7 @@ function CheckLogin( email, passwd ){    // 設定 登入
 						return false;
 					}
 					var a = JSON.stringify( { 'username': msg[1], 'userid': msg[2], 'email': obj.EMAIL } );
-					$.cookie.set({ name: 'UserInfo', value: a, expires: '1', path: '/' });
+					$.cookie.set({ name: 'UserInfo', value: a, expires: '7', path: '/~thwang/cur/' });
 					localStorage.setItem( 'UserInfo', a );
 					alert( '歡迎~'+msg[1]+'。' );
 					window.location.replace( '../master/index.php' );

@@ -14,7 +14,7 @@
 		$noti = Create_Notify( $checker , $_POST['po_id'], $taskid, '想要和您合作', '/account/index.php?stream=cowork' );
 		$noti = explode( '@', $noti );
 
-		$query = sprintf("INSERT INTO `1_TASK_CO_TEMP` (TASKID,TASK_CO_TEMP,USERID) VALUES ('%s','%s','%s')",mysql_real_escape_string($taskid), mysql_real_escape_string('0'), mysql_real_escape_string($checker));
+		$query = sprintf("INSERT INTO `1_TASK_CO_TEMP` (TASKID,TASK_CO_TEMP,USERID) VALUES ('%s','%s','%s')",mysql_real_escape_string($taskid), mysql_real_escape_string('2'), mysql_real_escape_string($checker));
 		$result = mysql_query($query);
 		if( !$result ){
 		    $message  = 'error@伺服器創建1_TASK_CO_TEMP。';
@@ -46,35 +46,39 @@
 		    $message  = 'error@伺服器創建您1_COWORK_TASK。';
 		    die($message);
 		}
-
-		$SQLStr = "select NUM_COWORK from `1_INFO3_TASK` where TASKID = '$taskid'";
-		$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
-			while( $a = mysql_fetch_array($res) ){
-				$NUM_COWORK = $a['NUM_COWORK'];
-		    break;
-		}
-		
 		$query = mysql_query("UPDATE `1_TASK_CO_TEMP` SET TASK_CO_TEMP = '1' WHERE TASKID = '$taskid' AND USERID = '$enterer'");
 			if( !$query ){
 			    $message  = 'error@伺服器cowork失敗。';
 			    die($message);
-			}	 
+			}	
 
-		$NUM_COWORK = $NUM_COWORK + 1 ;
-		$query = mysql_query("UPDATE `1_INFO3_TASK` SET NUM_COWORK = '$NUM_COWORK' WHERE TASKID = '$taskid'  ");
+		// NUM_COWORK counter
+		$query = mysql_query("UPDATE `1_INFO3_TASK` SET NUM_COWORK = NUM_COWORK+1 , SUM = SUM+0.5 WHERE TASKID = '$taskid'  ");
 		if( !$query ){
 		    $message  = 'error@伺服器cowork失敗。';
 		    die($message);
-		}	        
-		
-		echo '合作關係已建立，請至合作區查看';
+		}
+		// 傳資料到 account_cowork.js 動態新增
+		$query = sprintf( "SELECT 1_INFO3_TASK.VIEW,1_INFO3_TASK.ANSWER,1_INFO3_TASK.NUM_COWORK,1_CV.USER_PHOTO,1_CV.USERNAME,1_TASK.TITTLE FROM `1_INFO3_TASK`,`1_CV`,`1_TASK` WHERE 1_CV.USERID = '$poster' AND 1_TASK.TASKID = '$taskid' AND 1_INFO3_TASK.TASKID =  1_TASK.TASKID " );
+		$result = mysql_query($query) or die('error@錯誤。');
+			//0:VIEW 1:ANSWER 2:NUM_COWORK 3:USER_PHOTO 4:USERNAME 5:TITTLE 
+			while( $a = mysql_fetch_array($result) ){
+	        $dym_cowork = $a['VIEW'].'***'.$a['ANSWER'].'***'.$a['NUM_COWORK'].'***'.$a['USER_PHOTO'].'***'.$a['USERNAME'].'***'.$a['TITTLE'];
+	        }			        
+
+		echo '合作關係已建立，請至合作區查看'.'***'.$dym_cowork;
 	}	
 	//拒絕合作，待審查區清空
 	if ($type == 'refuse') {
 		# 推送通知
 		$noti = Create_Notify( $poster, $enterer, $taskid, '拒絕和您合作', '/account/index.php?stream=cowork' );
 		$noti = explode( '@', $noti );
-	
+
+		$query = mysql_query("UPDATE `1_TASK_CO_TEMP` SET TASK_CO_TEMP = '0' WHERE TASKID = '$taskid' AND USERID = '$enterer'");
+			if( !$query ){
+			    $message  = 'error@伺服器cowork失敗。';
+			    die($message);
+			}		
 		$query = mysql_query("DELETE FROM `1_CHECK_TASK`  WHERE TASKID = '$taskid' AND COWORKER='$enterer' ");
 		if( !$query ){
 		    $message  = 'error@伺服器checkd待審查清空失敗。';

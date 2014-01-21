@@ -34,11 +34,11 @@
             for ($i=0; $i < $num; $i++) { 
                 $d = explode("***", $allretask_ary[$i]);
 
-       $html2 .= '<div class="_co_box_dis" style="border-bottom: 2px solid #E4E4E4;">'.
+       $html2 .= '<div class="_co_box_dis"">'.
                     '<div class="_co_box_dis_framework1">'.
-                            '<div class="_co_box_discuss"style="padding: 15px 0 15px 20px;">'.
+                            '<div class="_co_box_discuss">'.
                             '<div>'.
-                            '<div class=" nailthumb-container square-thumb img-circle">'.
+                            '<div class=" nailthumb-container square-thumb">'.
                                     '<img class="img-circle" src="../../photo/'.$d[3].'">'.                                                                      
                             '</div>'.
                             '</div>';
@@ -48,19 +48,25 @@
                                     if ($taskposter != $d[5]) {
                                         // 按下合作的人=發文的人 出現已合作
                                         if (in_array($d[5],$temp_userid)) {
-                                           //檢查是否被拒絕還是成功 TASK_CO_TEMP 1:成功 0:拒絕
+                                           //檢查是否被拒絕還是成功 TASK_CO_TEMP 1:成功 0:拒絕 2:未確認
                                             $SQLStr = sprintf( "SELECT 1_TASK_CO_TEMP.TASK_CO_TEMP FROM `1_TASK_CO_TEMP` WHERE 1_TASK_CO_TEMP.USERID = '$d[5]' AND 1_TASK_CO_TEMP.TASKID = '$taskid' " );
                                             $res = mysql_query($SQLStr) or die('error@取得TASK_CO_TEMP。');
                                                 while( $a = mysql_fetch_array($res) ){
                                                     $task_co_temp = $a['TASK_CO_TEMP'];     
                                             } 
-                                            if ($task_co_temp == 1) {
-                                                $btn_cowork='<p>已合作</p>';
-                                            } else {
-                                                $btn_cowork='<p>拒絕合作</p>';
-                                            } 
+                                            switch($task_co_temp)
+                                            {
+                                                case 1:
+                                                  $btn_cowork='<p id="co_yes">合作達成</p>';
+                                                  break;
+                                                case 0:
+                                                  $btn_cowork='<p id="co_no">拒絕合作</p>';
+                                                  break;
+                                                default:
+                                                  $btn_cowork='';
+                                            }
                                         } else {
-                                            $btn_cowork = '<button taskid="'.$d[4].'" userid="'.$d[5].'"  class="btn btn_cooperation_a" style="margin-top: 3px;">合作</button>';
+                                            $btn_cowork = '<div id="button-container"><button id="cowork-button" taskid="'.$d[4].'" userid="'.$d[5].'"  class="btn btn_cooperation_a">合作</button></div>';
                                         }
                                     } else {
                                         $btn_cowork='';
@@ -69,10 +75,10 @@
                             $html2 .= $btn_cowork.
                             '</div>'.
                     '</div>'.
-                    '<div class="_co_box_dis_framework2 ">'.
+                    '<div class="_co_box_dis_framework2">'.
                     '<div class="_co_box_span">';
-                    $html2 .= '<div class="_co_box_dis_anstime"><a href="">'.$d[2].'</a>&nbsp&nbsp&nbsp&nbsp&nbsp answered '.$d[1].'</div>';           
-                    $html2 .= '<p style="padding: 10px 0;">'.$d[0].'</p>'.'</div>';                             
+                    $html2 .= '<div class="_co_box_dis_anstime chinese"><a href="">'.$d[2].'</a><p class="reply_time">answered '.$d[1].'</p></div>';           
+                    $html2 .= '<p class="reply_content chinese">'.$d[0].'</p>'.'</div>';                             
                 $html2 .='</div></div>';                   
             }
 ?>

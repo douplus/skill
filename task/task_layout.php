@@ -13,8 +13,8 @@
 	$userid = $a -> userid;
 	# this echo is for debugging.
 	echo '<div style="display:none;">關鍵字->'.$now_query.'，分類->'.$now_by.'</div>';
-	if( $now_query == '' ){  # 未下關鍵字，即顯示 "最新 or 熱門" 任務
-		$querytask = sprintf( "SELECT 1_TASK.TASKID,1_TASK.CLASSIFY,1_TASK.TITTLE,1_TASK.TIMESTAMP,1_CV.USERNAME,1_CV.USERID,1_CV.SKILL,1_CV.SCORE,1_TAG.TAG FROM `1_TASK`,`1_CV`,`1_TAG` WHERE 1_TASK.TASKPOSTERID = 1_CV.USERID AND 1_TASK.TASKID = 1_TAG.TASKID ORDER BY 1_TASK.TIMESTAMP DESC " );
+	if( $now_query == '' ){  # 未下關鍵字，即顯示 "最新 or 熱門" 任務 熱門加權 cowork 5 answer 3 view 2
+		$querytask = sprintf( "SELECT 1_TASK.TASKID,1_TASK.CLASSIFY,1_TASK.TITTLE,1_TASK.TIMESTAMP,1_CV.USERNAME,1_CV.USERID,1_CV.SKILL,1_CV.SCORE,1_TAG.TAG FROM `1_TASK`,`1_CV`,`1_TAG`,`1_INFO3_TASK` WHERE 1_TASK.TASKPOSTERID = 1_CV.USERID AND 1_TASK.TASKID = 1_TAG.TASKID AND 1_TASK.TASKID = 1_INFO3_TASK.TASKID ORDER BY 1_INFO3_TASK.SUM DESC  " );
 	}else{  # 有下關鍵字，顯示該關鍵字有關連的任務
 		switch( $now_by ){
 			case 'all':
@@ -54,7 +54,7 @@
 	
 	$resulttask = mysql_query($querytask) or die('error@搜尋任務發生錯誤。'/*.mysql_error()*/);
 	if( mysql_num_rows($resulttask) == 0 ){
-		$is_resulttask = '<p class="chineses" style="margin: 6px;font-size: 15px;color: #444;">查無資料，請重新搜尋。</p>';
+		$is_resulttask = '<p class="chineses">查無資料，請重新搜尋。</p>';
 	}else{
 		$is_resulttask = '';
 	}
@@ -102,17 +102,17 @@
 			'<div class=" task_show_classify ">'.
 				'<img class="task_crown" src="../img/green1.png">'.
 			'</div>'.
-			'<div class="task_show_title">'.'<p class="chinese" style="width:16px;">'.$a[1].'</p>'.'</div>'.					
+			'<div class="task_show_title">'.'<p class="chinese">'.$a[1].'</p>'.'</div>'.					
 			'<div class="task_show2">';
-				$htmltask.='<p class="chinese"><a href="./discuss/index.php?task_id='.$a[0].'" style="text-decoration: none;">'.$a[2].'</a></p>';
+				$htmltask.='<p class="chinese"><a href="./discuss/index.php?task_id='.$a[0].'">'.$a[2].'</a></p>';
 				$htmltask.='<div class="task_span">'.$span; 				
 				$htmltask.= '</div>'.
 				'<div class="task_poster">'.
 				//	'<div class="task_score">'.
 				//		$a[5].
 				//	'</div>'.
-					'<div class="task_name">'.
-						'<a class="chinese" href="../profile/index.php?stream=about&u='.$a[8].'&v='.$userid.'" style="text-decoration:none">'.$a[3].'</a>';
+					'<div class="task_name chinese">'.
+						'<a href="../profile/index.php?stream=about&u='.$a[8].'&v='.$userid.'">'.$a[3].'</a>';
 					$htmltask.= '</div>'.
 					'<div class="task_time">';
 						$htmltask.= $time[1].'-'.$time[2].
@@ -131,7 +131,7 @@
                     <option value="all">全部任務</option>
                     <option value="context">依內容</option>
                     <option value="tag">依標籤</option>
-                    <option value="disabled" style="color: #333;">↓依分類↓</option>
+                    <option value="disabled">分類↓</option>
                     <option value="classify-pc_and_network">電腦網路</option>
                     <option value="classify-life">生活資訊</option>
                     <option value="classify-mobile">行動裝置</option>
@@ -172,47 +172,5 @@
 <div id="task_container">
 	<article id="task_result">
 	<?php  echo $is_resulttask.$htmltask; ?>	
-		<!-- <div class="task_show">
-			<div class="task_show1">
-				<div class="task_show_num task_vote_color">
-					<div class=" task_show3">1</div>
-					<p >vote</p>
-				</div>
-				<div class="task_show_num task_answer_color">
-					<div class="task_show3">2</div>
-					<p >answer</p>
-				</div>
-				<div class="task_show_num task_views_color">
-					<div class=" task_show3">3</div>
-					<p >views</p>
-				</div>
-												
-			</div>
-			<div class=" task_show_classify  ">
-				<img class="task_crown" src="../img/crown1.png">
-				<div class=" ">電<br>玩<br>相<br>關</div>
-			</div>				
-			<div class="task_show2">
-				c# Generic cannot convert source type to target type
-				<br>
-				<div class="task_span">
-					<span>css</span>
-					<span>爵士樂</span>
-					<span>jquery</span>
-					<span>煮菜</span>					
-				</div>
-				<div class="task_poster">
-					<div class="task_score">
-						1,995
-					</div>
-					<div class="task_name">
-						<a href="" style="text-decoration:none">Ahmed Ekri</a>
-					</div>
-					<div class="task_time">
-						48s ago
-					</div>																				  
-				</div>
-			</div>			
-		</div> -->
 	</article>
 </div>

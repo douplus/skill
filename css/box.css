@@ -16,7 +16,7 @@ left: 0;
 height: 45px;
 width: 100%;
 background: white;
-z-index: 502;
+border-radius:10px;
 }
 #box > section > article{
 overflow-y: auto;
@@ -64,18 +64,16 @@ margin-left: 10px;
 @media screen and (min-width: 768px){
 #box > section{
 z-index: 501;
-height: 90%;
-width: 80%;
-position: fixed;
-left: 10%;
-right: 10%;
-top: 5%;
-bottom: 5%;
+position: relative;
 background: whitesmoke;
 box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
 -webkit-box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
 -moz-box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
 -o-box-shadow: 5px 5px 50px rgba(20%,20%,40%,0.5);
+width:500px;
+height:500px;
+border-radius:10px;
+margin:10% auto;
 }
 }
 @media screen and (max-width: 767px){

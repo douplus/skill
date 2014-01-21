@@ -161,6 +161,7 @@ margin: 0 auto;
 max-width: 480px;
 }*/
 }
+/*
 @media (max-width: 979px) and (min-width: 768px){
 .container{
 width: 724px;
@@ -193,7 +194,7 @@ margin: 0 auto;
 #enter-form{
 max-width: 900px;
 }
-}
+}*/
 @media (max-width: 767px){
 #nav-button{
 display: inline-block;

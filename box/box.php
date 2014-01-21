@@ -1,5 +1,5 @@
 <article id="box" class="dom_hidden">
-	<section box-role="add_task" class="dom_hidden">
+	<section box-role="add_task" id="add-task-box" class="dom_hidden">
 		<header>
 			<div class="box_title chinese">新增任務</div>
 			<div class="box_leave chinese" id="add_task_leave">離開</div>
@@ -34,15 +34,15 @@
 					</div>	
 					<div id ="input-tittle">
 						<input id="post-tittle" placeholder="標題">
-						<p></p>
 					</div>
 					<div id ="input-content">
 						<textarea id="post-content" placeholder="內容" rows="6"></textarea>
-						<p></p>
 					</div>
 					<div>
-						<button id="task-summit" type="button" class="btn btn-lg">送出</button>
+						<button id="task-summit" type="button" class="btn btn-lg chinese">新增任務</button>
 					</div>
+					<p id="post-title-false" class="chinese"></p>
+					<p id="post-content-false" class="chiense"></p>
 				</section>				
 			</div>
 		</article>
@@ -84,9 +84,10 @@
 					<div class="input-password">
 						<input type="password" id="change_passwd-old" minlength="6" maxlength="128" placeholder="目前的密碼">
 					</div>
-					<section class="input-password-forget">
+					<p id="plz_input"class="chinese">請輸入新密碼：</p>
+					<!--<section class="input-password-forget">
 						<div id="forget-password" class="chinese">忘記密碼?</div>
-					</section>
+					</section>-->
 					<div class="input-password-new">
 						<input type="password" id="change_passwd-new" minlength="6" maxlength="128" placeholder="新密碼">
 					</div>

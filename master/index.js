@@ -7,6 +7,7 @@ $(function(){  // header
 		return false;
 	});
 	$('#top_nav_user_wrapperLogout').click(function(){    // 登出
+		$.cookie.remove({ name: 'UserInfo', path: '/~thwang/cur/', domain: '' });
 		$.cookie.remove({ name: 'UserInfo', path: '/', domain: '' });
 		localStorage.clear();
 		window.location.href = '../home/index.html';
@@ -111,14 +112,14 @@ function StartUsing(){    // 使用者開始使用 skill，設定 ip address and
 				if( parseInt( msg[6] ) == 1 ){
 					document.write('<script type="text/undefined">');
 					alert('您的信箱超過14天未驗證成功，帳號已被停用。');
-					$.cookie.remove({ name: 'UserInfo', path: '/', domain: '' });
+					$.cookie.remove({ name: 'UserInfo', path: '/~thwang/cur/', domain: '' });
 					localStorage.clear();
 					window.location.href = '../home/index.html';
 				}
 			}else if( msg[0] == 'error' ){
 				alert( msg[1] );
 				if( msg[2] == 'null' ){
-					$.cookie.remove({ name: 'UserInfo', path: '/', domain: '' });
+					$.cookie.remove({ name: 'UserInfo', path: '/~thwang/cur/', domain: '' });
 					localStorage.clear();
 					window.location.href = '../home/index.html';
 				}

@@ -5,7 +5,8 @@
 /*team*/
 #team-member{
   width:100%;
-  margin:0 auto;
+  position:relative;
+  float:left;
 }
 
 .member{
@@ -72,10 +73,12 @@
 
 @media screen and (min-width: 1200px){
   .feature,.member{
-    width: 30%;
+    width: 29%;
     background:#fcfcfc;
-    margin:18px;
-    float: left;}
+    margin:18px 0 18px 4%;
+    float: left;
+    position:relative;
+  }
  
   .feature > img{
     width:70%;
@@ -95,6 +98,7 @@
 
   .member-photo{
     width:100%;
+    max-width:350px;
     height:510px;
     overflow:hidden;
     float:left;
@@ -117,7 +121,7 @@
 
   .member-infor{
     width:100%;
-    float:left;
+    max-width:350px;
     padding:20px;
     font-size:16px;
   }
@@ -172,12 +176,13 @@
   }
 
   .member{
-   width:250px;
-   margin:18px;
+   width:29%;
+   margin:18px 0 18px 4%;
   }
 
   .member-photo{
     width:100%;
+    max-width:250px;
     height:360px;
     overflow:hidden;
     float:left;
@@ -200,7 +205,7 @@
 
   .member-infor{
     width:100%;
-    float:left;
+    max-width:250px;
     padding:20px;
     font-size:16px;
   }
@@ -256,17 +261,14 @@
     width:100%;
   }
 
-  #team-member{
-    margin:0 10px;
-  }
-
   .member{
-   width:200px;
-   margin:18px;
+   width:28%;
+   margin:15px 0 15px 5%;
   }
 
   .member-photo{
     width:100%;
+    max-width:200px;
     height:290px;
     overflow:hidden;
     float:left;
@@ -289,6 +291,7 @@
 
   .member-infor{
     width:100%;
+    max-width:200px;
     float:left;
     margin-top:20px;
     padding:13px;

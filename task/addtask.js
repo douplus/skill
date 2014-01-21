@@ -13,12 +13,12 @@ $(document).ready(function(){
     var a = true;
     console.log("a");
     if( post_tittle == '' ){
-      $('#input-tittle > p').text('請輸入標題!');
+      $('#post-title-false').text('標題不可是空白！');
       a = false;
     console.log("a");      
     }
     if( post_content == '' ){
-      $('#input-content > p').text('請輸入內容!');
+      $('#post-content-false').text('內容不可是空白！');
       a = false;
     }
     if (task_select == "noclassify") {
@@ -30,41 +30,41 @@ $(document).ready(function(){
 
 var username = JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).username;
 
-var htmltask = '';
-    htmltask += '<div class="task_show">'+
-      '<div class="task_show1">'+
-        '<div class="task_show_num task_vote_color">'+
-          '<div class=" task_show3">0</div>'+
-          '<p >cowork</p>'+
-        '</div>'+
-        '<div class="task_show_num task_answer_color">'+
-          '<div class="task_show3">0</div>'+
-          '<p >answer</p>'+
-        '</div>'+
-        '<div class="task_show_num task_views_color">'+
-          '<div class=" task_show3">0</div>'+
-          '<p >views</p>'+
-        '</div>'+                           
-      '</div>'+
-      '<div class=" task_show_classify ">'+
-        '<img class="task_crown" src="../img/green1.png">'+
-      '</div>'+
-      '<div class="task_show_title">'+'<p class="chinese" style="width:16px;">'+task_select+'</p></div>'+          
-      '<div class="task_show2">';
-        htmltask+='<p class="chinese"><a href="./discuss/index.php?task_id='+task_id+'" style="text-decoration: none;">'+post_tittle+'</a></p>';
-        htmltask+='<div class="task_span">';         
-        htmltask+= '</div>'+
-        '<div class="task_poster">'+
-          '<div class="task_name">'+
-            '<a class="chinese" href="" style="text-decoration:none">'+username+'</a>';
-          htmltask+= '</div>'+
-          '<div class="task_time">'+
-               timestamp+
-          '</div>'+                                         
-        '</div>'+
-      '</div>'+     
-    '</div>';
-  htmltask+= '<div class="task_bottom"></div>';
+// var htmltask = '';
+//     htmltask += '<div class="task_show">'+
+//       '<div class="task_show1">'+
+//         '<div class="task_show_num task_vote_color">'+
+//           '<div class=" task_show3">0</div>'+
+//           '<p >cowork</p>'+
+//         '</div>'+
+//         '<div class="task_show_num task_answer_color">'+
+//           '<div class="task_show3">0</div>'+
+//           '<p >answer</p>'+
+//         '</div>'+
+//         '<div class="task_show_num task_views_color">'+
+//           '<div class=" task_show3">0</div>'+
+//           '<p >views</p>'+
+//         '</div>'+                           
+//       '</div>'+
+//       '<div class=" task_show_classify ">'+
+//         '<img class="task_crown" src="../img/green1.png">'+
+//       '</div>'+
+//       '<div class="task_show_title">'+'<p class="chinese">'+task_select+'</p></div>'+          
+//       '<div class="task_show2">';
+//         htmltask+='<p class="chinese"><a href="./discuss/index.php?task_id='+task_id+'">'+post_tittle+'</a></p>';
+//         htmltask+='<div class="task_span">';         
+//         htmltask+= '</div>'+
+//         '<div class="task_poster">'+
+//           '<div class="task_name">'+
+//             '<a class="chinese" href="">'+username+'</a>';
+//           htmltask+= '</div>'+
+//           '<div class="task_time">'+
+//                timestamp+
+//           '</div>'+                                         
+//         '</div>'+
+//       '</div>'+     
+//     '</div>';
+//   htmltask+= '<div class="task_bottom"></div>';
 
     if (a == 1) {
         $.ajax({    
@@ -78,8 +78,8 @@ var htmltask = '';
                 $('#post_task_select').val('noclassify');
                 $('#post-tittle').val('');
                 $('#post-content').val('');
-                //動態新增剛輸入
-                $( "#task_result" ).prepend(htmltask);   
+                //動態新增剛輸入 
+                //$( "#task_result" ).prepend(htmltask);   
               },
               error:function(xhr, ajaxOptions, thrownError){ 
                 console.log(xhr.status); 

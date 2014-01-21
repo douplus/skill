@@ -23,141 +23,138 @@
 </head>
 <!-- view計數器  -->
 <?php
-	include('../../php/db.php');
-	$task_id = $_GET['task_id'];
+include('../../php/db.php');
+$task_id = $_GET['task_id'];
 
-	
-		$SQLStr = "select TASKPOSTERID from `1_TASK` where TASKID = '$task_id'";
-		$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
-			while( $a = mysql_fetch_array($res) ){
-				$taskposter = $a['TASKPOSTERID'];
-		    break;
-		}
+$userinfo = $_COOKIE['UserInfo'];
+$a = json_decode($userinfo);
+$userid = $a -> userid;
 
-		$SQLStr = "select VIEW from `1_INFO3_TASK` where TASKID = '$task_id'";
-		$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
-			while( $a = mysql_fetch_array($res) ){
-				$view = $a['VIEW'];
-		    break;
-		}
+$SQLStr = "select TASKPOSTERID from `1_TASK` where TASKID = '$task_id'";
+$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
+while( $a = mysql_fetch_array($res) ){
+  $taskposter = $a['TASKPOSTERID'];
+  break;
+}
+// view +1
+$SQLStr = "select VIEW,SUM from `1_INFO3_TASK` where TASKID = '$task_id'";
+$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
+while( $a = mysql_fetch_array($res) ){
+  $view = $a['VIEW'];
+  $sum = $a['SUM'];
+  break;
+}
 
-		$view = $view+1;
-		if ($userid == $taskposter) {
-			$view = $view-1;
-		}
-		$query = mysql_query("UPDATE `1_INFO3_TASK` SET VIEW = $view WHERE TASKID = '$task_id' ");
-		if( !$query ){
-		    $message  = 'error@伺服器view失敗。';
-		    die($message);
-		}
+$view = $view+1;
+$sum = $sum+0.2;
+if ($userid == $taskposter) {
+  $view = $view-1;
+  $sum = $sum-0.2;
+}
+$query = mysql_query("UPDATE `1_INFO3_TASK` SET VIEW = $view , SUM = $sum WHERE TASKID = '$task_id' ");
+if( !$query ){
+  $message  = 'error@伺服器view失敗。';
+  die($message);
+}
+
+
+
+
+$task_id = $_GET['task_id'];
+session_start(); 
+$_SESSION['task_id']=$task_id;
+include('../../php/get_task.php');
+include('../../php/re_showtask.php');
+
+$link = '姓名：<a href="../../profile/index.php?stream=about&u='.$taskposter.'&v='.$userid.'">'.$user[0].'</a>'
 ?>
-
-<?php 
-	$userinfo = $_COOKIE['UserInfo'];
-	$a = json_decode($userinfo);
-	$userid = $a -> userid;
-
-	$task_id = $_GET['task_id'];
-	session_start(); 
-	$_SESSION['task_id']=$task_id;
-	include('../../php/get_task.php');
-	include('../../php/re_showtask.php');
-
-	$link = '姓名:<a href="../../profile/index.php?stream=about&u='.$taskposter.'&v='.$userid.'">'.$user[0].'</a>'
-?>
-<body>
-	<nav id="discuss_nav">
-		<ul id="discuss_list">
-			<div class="discuss_back">
-				<a id="discuss_back" rel="discuss-tipsy" onclick="javascript: window.history.back();return false;" title="返回"></a>
-				<i class="back_bottom"></i>
-				<i class="back_front"></i>
+  <body>
+  	<nav id="discuss_nav">
+  		<ul id="discuss_list">
+  		<div class="discuss_back">
+  		<a id="discuss_back" rel="discuss-tipsy" onclick="javascript: window.history.back();return false;" title="返回"></a>
+  		<i class="back_bottom"></i>
+  		<i class="back_front"></i>
+  		</div>
+  		<li id="task_top_tittle"><?php echo $b[1]; ?></li>
+  		</ul>
+  	</nav>
+  	<article id="container">
+  		<article class="_co_box_article">
+ 		 <!--<div class="wrapper">-->
+  			<div class="_co_box_framework0">
+  				<div class="_co_box_qu_framework1_1">
+  					<div class="image">
+  					<img id="task_poster" src="<?php echo $photo;?>">
+					</div>										
+  				<div class="_co_box_qu_content1">
+  					<div>
+  					<p id="task_name" class="user_name chinese" po_id="<?php echo $taskposter;?>"><?php echo $link;?></p>
+  					<p id="task_department" class="chinese">學校：<?php echo $user[1]; ?></p>
+  					<p :id="task_skill" class="chinese">專長：<?php echo $html;?></p>
+  						<div class="">                       
+  						<span class="reputation-score" ></span>                                           
+  						<span class="badge1"></span>
+  						<span class="badgecount">0</span>                                  
+  						<span class="badge2"></span>
+  						<span class="badgecount">0</span>
+  						<span class="badge3"></span>
+  						<span id="task_score" class="badgecount"><?php echo $user[3]; ?></span>                              
+  					</div>
+  				</div>										
+  				</div>                    
+  			</div>
+			<div class="_co_box_qu_framework1_2">								
+  				<h1 id="task_tittle" class="tittle chinese"><?php echo $b[2]; ?></h1>
+  				<div id="task_content"class="_co_box_qu_content2 chinese">
+  				<p ><?php echo $b[3]; ?></p>                                
+  				</div>                   
+  				<div id="task_timestamp">
+  				<p><?php echo $date; ?></p>
+  				</div>
+  			</div>
+  		<!--
+  		<div class="_co_box_qu_framework1_3">
+  		<p id="task_timestamp" style="margin-left: 80px;">
+  		x?php echo $date; ?x </p>
+  		</div> -->
+  		</div>            
+		<?php $postphoto='<img id="user_poster" src="'.$user_img.'">'?>
+  		<div class="_co_box_dis_wrapper">
+  		<?php echo $html2; ?>	
+  		</div>
+  		<div class="_co_box_dis_border" >
+  			<div class="_co_box_dis_post" >
+  			<div class="_co_box_dis_post1">
+  			<div class=" nailthumb-container square-thumb-post">
+  			<?php echo $postphoto; ?>
+  			</div>
+  		</div>
+  		<div class="_co_box_dis_post2 ">
+			<div><textarea id="re_task_content"class="span7" rows="5" placeholder="回復任務..." style="resize: vertical; "></textarea><br>
 			</div>
-			<li id="task_top_tittle"><?php echo $b[1]; ?></li>
-		</ul>
-	</nav>
-	<article id="container">
-		<div>
-			<article class="_co_box_article">
-				<div class="wrapper">
-						<div class="_co_box_framework0">
-							<div class="_co_box_qu_framework1_1">
-							<div class="image">
-								<div style="padding: 10px;"><img id="task_poster" src="<?php echo $photo;?>"></div>
-							</div>										
-								<div class="_co_box_qu_content1">
-									<div style="padding: 5px;">
-									<p id="task_name" class="user_name" po_id="<?php echo $taskposter;?>"><?php echo $link;?></p>
-									<p id="task_department">學校:<?php echo $user[1]; ?></p>
-									<p id="task_skill">專長:
-									<?php echo $html;?>	
-									</p>
-										<div class="">                       
-											<span class="reputation-score" ></span>                                           
-											<span class="badge1"></span>
-											<span class="badgecount">0</span>                                  
-											<span class="badge2"></span>
-											<span class="badgecount">0</span>
-											<span class="badge3"></span>
-											<span id="task_score" class="badgecount"><?php echo $user[3]; ?></span>                              
-										</div>
-									</div>										
-								</div>                    
-							</div>
-							<div class="_co_box_qu_framework1_2">								
-								<h1 id="task_tittle"class="tittle"style="padding-bottom: 10px; border-bottom: 2px solid #D5D5D5; font-size: 30px;"><?php echo $b[2]; ?></h1>
-								<div id="task_content"class="_co_box_qu_content2">
-								<p style="margin: 10px;"><?php echo $b[3]; ?>
-								</p>                                
-								</div>                   
-							</div>
-							<div class="_co_box_qu_framework1_3">
-								<p id="task_timestamp" style="margin-left: 80px;">
-									<?php echo $date; ?></p>
-							</div> 
-						</div>            
-					</div>
-					<?php 
-						$postphoto='<img id="user_poster" src="'.$user_img.'">'
-					?>
-					<div class="_co_box_dis_wrapper">
-						<?php echo $html2; ?>	
-					</div>
-					<div class="_co_box_dis_border" >
-	                    <div class="_co_box_dis_post" >
-	                            <div class="_co_box_dis_post1">
-	                                    <div  style = "margin: auto"; class=" nailthumb-container square-thumb-post img-circle">
-	                                    	<?php echo $postphoto; ?>
-	                                    </div>
-	                            </div>
-	                            <div class="_co_box_dis_post2 ">
-	                                    <div class="_co_box_dis_anstime">answered </div>         
-	                                    <div style="padding: 5px 20px 0;"><textarea id="re_task_content"class="span7" rows="5" placeholder="內容" style="resize: vertical; "></textarea><br></div>
-	                                    <div >
-	                                    <input id="re_task_submit" class="btn botton btn-info" type="button" value="發送">
-	                                    </div>
-	                                    <div style='margin-top: 5px;' class='che_task_submit'></div>
-	                            </div>
-	                    </div>      
-					</div> 
-				</div>	
-			</article>
-		</div>
-	</article>
-	</div>
-<!-- 合作訊息傳送 暫時關閉
-	<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-header task_co ">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-			<h3 id="myModalLabel"><?php echo $b[2];?></h3>
-		</div>
-		<div class="modal-body task_co">
-			<textarea rows="4" class="span5"></textarea>
-		</div>
-		<div class="modal-footer">
-			<button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button>
-			<button class="btn btn-primary">傳送</button>
-		</div>
-	</div>   --> 
-</body>
-</html>
+  			<div>
+  			<input id="re_task_submit" class="btn botton btn-info" type="button" value="發送">
+  			</div>
+  			<div class='che_task_submit'></div>
+  			</div>
+  		</div>      
+  	</article>
+  </article>
+  </div>
+  <!-- 合作訊息傳送 暫時關閉
+  <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header task_co ">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+  <h3 id="myModalLabel"><?php echo $b[2];?></h3>
+  </div>
+  <div class="modal-body task_co">
+  <textarea rows="4" class="span5"></textarea>
+  </div>
+  <div class="modal-footer">
+  <button class="btn" data-dismiss="modal" aria-hidden="true">關閉</button>
+  <button class="btn btn-primary">傳送</button>
+  </div>
+  </div>   --> 
+  </body>
+  </html>

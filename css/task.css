@@ -127,7 +127,7 @@ font-size: 12px;
 
 @media screen and (max-width: 600px){
 #task_result > .task_show {
-width: 94%;
+width: 95%;
 margin: 1px 1px 1px 5px;	
 }		
 .task_show2 > .task_poster {

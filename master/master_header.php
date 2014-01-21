@@ -34,7 +34,7 @@
 			}else{  // 已登入：載入頁面
 				$(function(){ $('#init-overlay').addClass('dom_hidden'); });
 				//IncludeJS();
-				$.cookie.set({ name: 'UserInfo', value: a, expires: '1', path: '/' });
+				$.cookie.set({ name: 'UserInfo', value: a, expires: '7', path: '/~thwang/cur/' });
 				localStorage.setItem( 'UserInfo', a );
 			}
 		};

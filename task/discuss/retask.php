@@ -23,15 +23,7 @@
 	}
 
 	# answer counter
-	$SQLStr = "select ANSWER from `1_INFO3_TASK` where TASKID = '$taskid'";
-	$res = mysql_query($SQLStr) or die('error@取得任務ANSWER。');
-		while( $a = mysql_fetch_array($res) ){
-			$answer = $a['ANSWER'];
-	    break;
-	}
-	$answer = $answer+1;
-
-	$query = mysql_query("UPDATE `1_INFO3_TASK` SET ANSWER = $answer WHERE TASKID = '$taskid' ");
+	$query = mysql_query("UPDATE `1_INFO3_TASK` SET ANSWER = ANSWER+1 , SUM = SUM+0.3 WHERE TASKID = '$taskid' ");
 	if( !$query ){
 	    $message  = 'error@伺服器answer失敗。';
 	    die($message);
