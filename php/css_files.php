@@ -1,5 +1,5 @@
-<link rel="shortcut icon" type="image/x-icon" href="../Images/shortcut.ico">
-<link rel="Bookmark" type="image/x-icon" href="../Images/shortcut.ico">
+<link rel="shortcut icon" type="image/png" href="../Images/favicon.png">
+<link rel="Bookmark" type="image/png" href="../Images/favicon.png">
 <link rel="stylesheet" href="../library/tipsy.css"/>
 <link rel="stylesheet" href="../css/index.css"/>
 <link rel="stylesheet" href="../css/master.css"/>

@@ -17,7 +17,7 @@ border-bottom:2px solid #eee;
 position: relative;
 float: left;
 text-align: center;
-padding-top: 10px;
+padding-top: 12px;
 font-size: 20px;
 }
 .task_show > .task_show2{
@@ -25,7 +25,7 @@ position: relative;
 float: left;
 width: 65%;
 min-width:396px;
-padding-top:10px;
+padding-top:20px;
 }
 .task_show1 > .task_show_num{
 position: relative;
@@ -72,13 +72,11 @@ margin: 5px 0 0 20px;
 }
 .task_show2 > div{
 font-size: 20px;
-padding: 10px 25px 2px;
 }
 .task_show2 > div > a{
 color: #4D2078;
 clip:height;
 height:20px;
-padding: 5px;
 }
 .task_show2 > div > a:hover{
 color: #4d2078;
@@ -140,16 +138,10 @@ width: 16px;
 
 }
 
-@media screen and (min-width: 601px) and (max-width: 980px){
-.task_show2 > .task_poster {
-font-size: 14px;
-	}		
-.task_classify{
-font-size: 12px;
+@media screen and (min-width: 601px) and (max-width: 1000px){
+.task_show > .task_show2{
+  width:50%
 }
-.task_show_title{
-font-size: 12px;	
-}	
 }
 
 @media screen and (max-width: 600px){

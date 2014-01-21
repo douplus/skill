@@ -14,7 +14,7 @@
 	<script src="../library/jquery.md5.js"></script>
 	<script src="../task/task.js"></script>
 	<script src="./master.js"></script>
-	<script src="../profile/cv.js"></script>
+	<script src="../profile/profile.js"></script>
 	<script src="../account/account.js"></script>
 	<script src="../information/information.js"></script>
 	<script src="../task/addtask.js"></script>

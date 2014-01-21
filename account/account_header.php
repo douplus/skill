@@ -11,9 +11,9 @@
 	<script src="../library/jquery-2.0.3.min.js"></script>
 	<script src="../library/jquery.pjax.js"></script>
 	<script src="../library/jquery.tipsy.js"></script>
-	<script src="../master/index.js"></script>
+	<script src="../master/master.js"></script>
 	<script src="../task/task.js"></script>
-	<script src="../profile/cv.js"></script>
+	<script src="../profile/profile.js"></script>
 	<script src="./account.js"></script>
 	<script src="../js/follow.js"></script>
 	<script src="../js/account_task.js"></script>

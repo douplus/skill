@@ -15,7 +15,7 @@ font: normal 100% Helvetica, Arial, sans-serif;
 margin: 0 !important;
 z-index: 1;
 /*background: #e5e5e5;*/
-background: url('../Images/grid.png') repeat;
+background: url('../Images/cop_background.png') repeat;
 height: 100%;
 }
 .dom_hidden{
@@ -130,9 +130,9 @@ background-color: rgba(0, 0, 0, 0.6);
 }
 /**/
 ._co_box_tittle{
-margin-top: 60px;
+margin-top: 30px;
 text-align: center;
-font-size: 30px;
+font-size: 18px;
 font-weight: 600;
 font-family: verdana;
 margin-bottom: 20px;
