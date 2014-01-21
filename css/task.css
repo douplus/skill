@@ -1,4 +1,6 @@
-
+a{
+  text-decoration:none;
+}
 .task_crown{
 height: 50px;
 width: 50px;
@@ -6,15 +8,14 @@ width: 50px;
 #task_result > .task_show {
 position: relative;
 float: left;
-width: 80%;
+width: 95%;
 background-color: white;
-margin: 20px 10% 0;
-box-shadow: 0 1px 1px #aaa;
+padding:0 2.5%;
+border-bottom:2px solid #eee;
 }
 .task_show > .task_show1{
 position: relative;
 float: left;
-width: 100%;
 text-align: center;
 padding-top: 10px;
 font-size: 20px;
@@ -22,7 +23,9 @@ font-size: 20px;
 .task_show > .task_show2{
 position: relative;
 float: left;
-width: 100%;
+width: 65%;
+min-width:396px;
+padding-top:10px;
 }
 .task_show1 > .task_show_num{
 position: relative;
@@ -35,9 +38,17 @@ right: -27px;
 top: -12px;
 }
 .task_show_title{
-position: absolute;
-top: 12px;
-right: 5px;	
+position: relative;
+float:right;
+top: 10px;
+}
+.task_show_title > p{
+background:rgb(207,232,253);
+color:rgb(4,71,4);
+padding:3px;
+border-radius:5px;
+font-size: 14px;
+font-weight:bold;
 }
 .task_poster{
 position: relative;
@@ -46,13 +57,13 @@ width: 100%;
 padding-bottom: 5px;	
 }
 .task_show1 > .task_vote_color{
-color: #555555;	
+color: darkcyan;	
 }
 .task_show1 > .task_answer_color{
-color: #9a4444;
+color: rgb(141,2,2);
 }
 .task_show1 > .task_views_color{
-color: #999;	
+color: rgb(105,170,105);	
 }
 .task_show2 > .task_span{
 position: relative;
@@ -63,6 +74,33 @@ margin: 5px 0 0 20px;
 font-size: 20px;
 padding: 10px 25px 2px;
 }
+.task_show2 > p > a{
+color: #4D2078;
+clip:height;
+height:20px;
+padding: 5px;
+}
+.task_show2 >p > a:hover{
+color: #4d2078;
+clip:height;
+background-color: #eeebff;
+height:20px;
+padding: 5px;
+}
+/*
+a { 
+border: #A498BD solid; 
+height: 0px; 
+color: #4D2078; 
+border-width: 0px 0px 1px; 
+padding-bottom: 5px}
+a:hover {  
+border: #605080 solid; 
+height: 0px; 
+color: #9900CC; 
+border-width: 0px 0px 1px; 
+padding-bottom: 2px}
+*/
 .task_span > span {
 float:left;
 font-size: 15px;
@@ -78,13 +116,12 @@ text-decoration: none;
 font-size: 15px;
 }
 .task_poster > .task_time {	
-margin-right: 10px;	
 float:right;	
 color: #999;
 }
 .task_poster > .task_name {	
-margin-right: 10px;	
 float:right;		
+margin:0 10px;
 }
 .task_poster > .task_score {	
 margin-right: 10px;	

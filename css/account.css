@@ -853,6 +853,9 @@ font-size: 85%;
 #go_work{
   margin:5px 0;
 }
+#go_work > a{
+  text-decoration:none;
+}
 .account_task_wrapper li:last-child,
 .account_co_wrapper li:last-child{
 border: 0;

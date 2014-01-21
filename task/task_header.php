@@ -13,13 +13,11 @@
 	<script src="../library/jquery-2.0.3.min.js"></script>
 	<script src="../library/jquery.pjax.js"></script>
 	<script src="../library/jquery.tipsy.js"></script>
-	<script src="../library/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="../master/index.js"></script>
 	<script src="./task.js"></script>
 	<script src="../profile/cv.js"></script>
 	<script src="../account/account.js"></script>
 	<script src="../information/information.js"></script>
-	<script src="../information/modernizr.custom.18273.js"></script>
 	<script src="./addtask.js"></script>
 	<script src="../library/imageSlice.js"></script>
 	<script src="../library/jquery.tagsinput.min.js"></script>

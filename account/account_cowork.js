@@ -35,9 +35,7 @@ var coworkhtml = '';
     coworkhtml+='</div>'+
 				'<h3 class="chinese"><a href="../profile/index.php?u='+poster+'&amp;v='+enterer+'">'+e+'</a> ：「 <a href="../task/discuss/index.php?task_id='+taskid+'">'+f+'</a> 」。</h3>';
     coworkhtml+='<span class="num chinese">'+a+' views │ '+b+' answers │ '+c+' coworks</span>'+
-				'<br>'+
-				'<br>'+
-				'<a href="./cooperation/index.php?cooperation_id='+taskid+'">前往合作討論區</a>'+
+				'<p id="go_work"><a href="./cooperation/index.php?cooperation_id='+taskid+'">前往合作討論區</a></p>'+
 				'<span class="date chinese"></span>'+
 			'</li>';
 			$( "ul[_role='done']" ).prepend(coworkhtml);

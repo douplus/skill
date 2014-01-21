@@ -47,7 +47,7 @@
 	$skilllengh=count($skill);
 	$html = '';
 	for ($i=0; $i < $skilllengh; $i++) { 
-		$html .= '<span id ="aa">'.$skill[$i].'</span>';
+		$html .= '<span class ="speciality">'.$skill[$i].'</span>';
 	}
 	$date = $date[5].$date[6].' / '.$date[8].$date[9].' At '.$date[11].$date[12].' : '.$date[14].$date[15];
 	$user_img = '../../photo/'.$user_img;

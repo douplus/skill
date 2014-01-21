@@ -11,7 +11,6 @@
 	<script src="../library/jquery-2.0.3.min.js"></script>
 	<script src="../library/jquery.pjax.js"></script>
 	<script src="../library/jquery.tipsy.js"></script>
-	<script src="../library/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="../master/index.js"></script>
 	<script src="../task/task.js"></script>
 	<script src="../profile/cv.js"></script>

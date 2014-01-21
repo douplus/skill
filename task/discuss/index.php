@@ -24,12 +24,20 @@
 <!-- view計數器  -->
 <?php
 include('../../php/db.php');
+include('../../php/function.php');
 $task_id = $_GET['task_id'];
 
 $userinfo = $_COOKIE['UserInfo'];
 $a = json_decode($userinfo);
 $userid = $a -> userid;
 
+$SQLStr = "select GENDER,SCORE from `1_CV`,`1_TASK`  where USERID = TASKPOSTERID AND TASKID = '$task_id'";
+$res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
+while( $a = mysql_fetch_array($res) ){
+  $gender = $a['GENDER'];
+  $score = $a['SCORE'];
+  break;
+}
 $SQLStr = "select TASKPOSTERID from `1_TASK` where TASKID = '$task_id'";
 $res = mysql_query($SQLStr) or die('error@取得任務資訊錯誤1。');
 while( $a = mysql_fetch_array($res) ){
@@ -63,10 +71,15 @@ if( !$query ){
 $task_id = $_GET['task_id'];
 session_start(); 
 $_SESSION['task_id']=$task_id;
+
+$score = CheckScore($score);
+
 include('../../php/get_task.php');
 include('../../php/re_showtask.php');
+$gender = '<span class="dis_user-'.CheckGender($gender).'">&nbsp;</span>';
+$link =$gender.'<a href="../../profile/index.php?stream=about&u='.$taskposter.'&v='.$userid.'">'.$user[0].'</a>'
 
-$link = '姓名：<a href="../../profile/index.php?stream=about&u='.$taskposter.'&v='.$userid.'">'.$user[0].'</a>'
+
 ?>
   <body>
   	<nav id="discuss_nav">
@@ -90,21 +103,20 @@ $link = '姓名：<a href="../../profile/index.php?stream=about&u='.$taskposter.
   				<div class="_co_box_qu_content1">
   					<div>
   					<p id="task_name" class="user_name chinese" po_id="<?php echo $taskposter;?>"><?php echo $link;?></p>
-  					<p id="task_department" class="chinese">學校：<?php echo $user[1]; ?></p>
-  					<p id="task_skill" class="chinese"><div>專長：</div><?php echo $html;?></p>
-  						<div class="">                       
+  					<div class="">                       
   						<span class="reputation-score" ></span>                                           
   						<span class="badge1"></span>
-  						<span class="badgecount">0</span>                                  
+  						<span class="badgecount"><?php echo $score[gold];?></span>                                  
   						<span class="badge2"></span>
-  						<span class="badgecount">0</span>
+  						<span class="badgecount"><?php echo $score[silver];?></span>
   						<span class="badge3"></span>
-  						<span id="task_score" class="badgecount"><?php echo $user[3]; ?></span>                              
+  						<span id="task_score" class="badgecount"><?php echo $score[copper];?></span>                              
   					</div>
+            <p id="task_skill" class="chinese"><span>專長：</span><?php echo $html;?></p>            
   				</div>										
   				</div>                    
   			</div>
-			<div class="_co_box_qu_framework1_2">								
+			  <div class="_co_box_qu_framework1_2">								
   				<h1 id="task_tittle" class="tittle chinese"><?php echo $b[2]; ?></h1>
   				<div id="task_content"class="_co_box_qu_content2 chinese">
   				<p ><?php echo $b[3]; ?></p>                                

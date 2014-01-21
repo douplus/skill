@@ -69,10 +69,11 @@ $use_photo='<img  src="../../photo/'.$user_img.'" />';
 // 拉cop_tittle 新增回復資料
 
 $copid = $_GET['cooperation_id'];
-$SQLStr = "select TITTLE from `1_TASK` where TASKID = '$copid'";
+$SQLStr = "select TITTLE,CONTENT from `1_TASK` where TASKID = '$copid'";
     $res = mysql_query($SQLStr) or die('error@取得合作區標題。');
         while( $a = mysql_fetch_array($res) ){
             $cop_tittle = $a['TITTLE'];
+            $cop_content = $a['CONTENT'];
         break;
     }
 
@@ -129,7 +130,7 @@ $SQLStr = sprintf( "SELECT * FROM `1_DISCUSS_COOPERATION`,`1_CV` WHERE 1_DISCUSS
 	</nav>
 	</header>
 	<article id="co_container">
-		<p class="_co_box_tittle"><?php echo $cop_tittle; ?>開始的對話</p>
+		<p class="_co_box_tittle"><?php echo $cop_content; ?></p>
             <section class="_co_box_section1">
             	<?php echo $html;?>
                 <!-- <div class="_co_box_framework0">

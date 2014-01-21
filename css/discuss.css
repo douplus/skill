@@ -35,7 +35,10 @@ overflow-y: auto;
   position:relative;
   float:left;
 }
-#aa{
+#task_skill > span{
+  float:left;
+}
+.speciality{
 color: #fff;
 background:#008bd3;
 border: 1px solid #008BD3;
@@ -142,6 +145,28 @@ border-bottom:4px solid cornflowerblue;
 .img-circle{
 width:60px;
 margin:8px 0;
+}
+.dis_user-male{
+background-image: url('../Images/male.png');
+background-repeat: no-repeat;
+background-size: 100%;
+background-position: 50% 50%;
+position: relative;
+width: 16px;
+height: 16px;
+float: left;
+margin: 2px;
+}
+.dis_user-female{
+background-image: url('../Images/female.png');
+background-repeat: no-repeat;
+background-size: 100%;
+background-position: 50% 50%;
+position: relative;
+width: 16px;
+height: 16px;
+float: left;
+margin: 2px;
 }
 #button-container{
   text-align:center;

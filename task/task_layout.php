@@ -99,26 +99,26 @@
 					'<p >views</p>'.
 				'</div>'.														
 			'</div>'.
-			'<div class=" task_show_classify ">'.
+		/*	'<div class=" task_show_classify ">'.
 				'<img class="task_crown" src="../img/green1.png">'.
-			'</div>'.
+				'</div>'.*/
 			'<div class="task_show_title">'.'<p class="chinese">'.$a[1].'</p>'.'</div>'.					
 			'<div class="task_show2">';
 				$htmltask.='<p class="chinese"><a href="./discuss/index.php?task_id='.$a[0].'">'.$a[2].'</a></p>';
 				$htmltask.='<div class="task_span">'.$span; 				
 				$htmltask.= '</div>'.
-				'<div class="task_poster">'.
+  			'</div>'.			
+			'<div class="task_poster">'.
 				//	'<div class="task_score">'.
 				//		$a[5].
 				//	'</div>'.
-					'<div class="task_name chinese">'.
-						'<a href="../profile/index.php?stream=about&u='.$a[8].'&v='.$userid.'">'.$a[3].'</a>';
-					$htmltask.= '</div>'.
 					'<div class="task_time">';
 						$htmltask.= $time[1].'-'.$time[2].
-					'</div>'.																				  
-				'</div>'.
-			'</div>'.			
+					'</div>'.
+					'<div class="task_name chinese">'.
+						'<a href="../profile/index.php?stream=about&u='.$a[8].'&v='.$userid.'">'.$a[3].'</a>'.
+					'</div>'.
+			'</div>'.
 		'</div>';
 	}
 	$htmltask.= '<div class="task_bottom"></div>';
