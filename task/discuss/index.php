@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
-	<link rel="shortcut icon" type="image/png" href="../Images/favicon.png">
-	<link rel="Bookmark" type="image/png" href="../Images/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="../../Images/favicon.png">
+	<link rel="Bookmark" type="image/png" href="../../Images/favicon.png">
 	<link rel="stylesheet" href="../../library/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../library/jquery.nailthumb.1.1.min.css"/>        
     <link rel="stylesheet" href="../../css/discuss.css"/> 
@@ -14,7 +14,7 @@
 	<script src="../../library/jquery.nailthumb.1.1.min.js"></script>
 	<script src="../../library/jquery.tipsy.js"></script>
 	<script src="../../library/bootstrap.min.js"></script>
-	<script src="../retask.js"></script> 
+	<script src="../retask.js"></script>
 	<!--
 	<script src="./discuss.js"></script>  標題和結尾 
 	<script src="../retask.js"></script> 新增任務 

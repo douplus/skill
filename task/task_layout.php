@@ -96,7 +96,7 @@
 				'</div>'.
 				'<div class="task_show_num task_views_color">'.
 					'<div class=" task_show3">'.$view_num.'</div>'.
-					'<p >views</p>'.
+					'<p >visits</p>'.
 				'</div>'.														
 			'</div>'.
 		/*	'<div class=" task_show_classify ">'.

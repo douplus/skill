@@ -7,8 +7,8 @@
 	<link rel="stylesheet" href="../../library/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../library/jquery.nailthumb.1.1.min.css"/>
 	<link rel="stylesheet" href="../../css/cooperation.css"/>
-	<link rel="shortcut icon" type="image/png" href="../Images/favicon.png">
-	<link rel="Bookmark" type="image/png" href="../Images/favicon.png">
+	<link rel="shortcut icon" type="image/png" href="../../Images/favicon.png">
+	<link rel="Bookmark" type="image/png" href="../../Images/favicon.png">
     <title>skill 神人網</title>
 	<script>localStorage.removeItem('jqData');localStorage.removeItem('co_jsData');</script>
 	<script src="../../library/jquery-2.0.3.min.js"></script>
