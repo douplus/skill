@@ -104,7 +104,7 @@
 				'</div>'.*/
 			'<div class="task_show_title">'.'<p class="chinese">'.$a[1].'</p>'.'</div>'.					
 			'<div class="task_show2">';
-				$htmltask.='<p class="chinese"><a href="./discuss/index.php?task_id='.$a[0].'">'.$a[2].'</a></p>';
+				$htmltask.='<div class="chinese"><a href="./discuss/index.php?task_id='.$a[0].'">'.$a[2].'</a></div>';
 				$htmltask.='<div class="task_span">'.$span; 				
 				$htmltask.= '</div>'.
   			'</div>'.			

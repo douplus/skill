@@ -96,16 +96,16 @@ function StartUsing(){    // 使用者開始使用 skill，設定 ip address and
 					var $a = $('#preloader');
 					$a.find('span').text('每日登入，積分+5').end().removeClass('dom_hidden');
 					window.setTimeout(function(){
-						$a.find('span').text('您的積分：'+msg[2]+'');
+						$a.find('span').text('您的積分：'+ Math.floor( msg[2] ) +'');
 						window.setTimeout(function(){
 							$a.addClass('dom_hidden');
 						}, 2000);
 					}, 1000);
 				}
 				sessionStorage.setItem( 'score', msg[2] );
-				$('#score').text( msg[2] );
+				$('#score').text( Math.floor( msg[2] ) );
 				localStorage.setItem('photo_file', msg[3]);
-				SetPhoto( msg[3] );    console.log(parseInt( msg[6] ));
+				SetPhoto( msg[3] );
 				if( parseInt( msg[4] ) == 0 ){
 					$('#error_log').text('請盡快認證信箱，否則系統將於'+msg[5]+'封鎖您的帳號。').parent().removeClass('dom_hidden');
 				}
@@ -141,9 +141,9 @@ function SetIP(){    // 使用者開始使用 skill，設定 ip address and scor
 		success: function(msg){  //console.log(msg);
 			msg = msg.split('@');
 			if( msg[0] == 'success' ){
-				console.log( msg[1] );
+				//console.log( msg[1] );
 			}else if( msg[0] == 'error' ){
-				console.log( msg[1] );
+				//console.log( msg[1] );
 			}
 		},
 		error:function(xhr, ajaxOptions, thrownError){ 
@@ -183,7 +183,8 @@ function Check_Notify(){
 		data: { userid: JSON.parse( $.cookie.get({ name: 'UserInfo' }) ).userid },
 		type: 'POST',
 		dataType: 'html',
-		success: function(msg){  console.log(msg);
+		success: function(msg){
+			//console.log(msg);
 			msg = msg.split('@');
 			if( msg[0] == 'success' ){
 				if( parseInt( msg[1] ) > 0 ){

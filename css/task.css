@@ -70,17 +70,17 @@ position: relative;
 float: left;
 margin: 5px 0 0 20px;
 }
-.task_show2 > p{
+.task_show2 > div{
 font-size: 20px;
 padding: 10px 25px 2px;
 }
-.task_show2 > p > a{
+.task_show2 > div > a{
 color: #4D2078;
 clip:height;
 height:20px;
 padding: 5px;
 }
-.task_show2 >p > a:hover{
+.task_show2 > div > a:hover{
 color: #4d2078;
 clip:height;
 background-color: #eeebff;
@@ -141,19 +141,9 @@ width: 16px;
 }
 
 @media screen and (min-width: 601px) and (max-width: 980px){
-#task_result > .task_show {
-width: 100%;
-margin: 1px 1px 1px 5px;	
-}		
 .task_show2 > .task_poster {
 font-size: 14px;
 	}		
-.task_show > .task_show1{
-font-size: 14px;
-	}   
-.task_show1 >.task_show_num{
-width: 55px;
-	}
 .task_classify{
 font-size: 12px;
 }
