@@ -77,7 +77,7 @@
                     '</div>'.
                     '<div class="_co_box_dis_framework2">'.
                     '<div class="_co_box_span">';
-                    $html2 .= '<div class="_co_box_dis_anstime chinese"><a href="">'.$d[2].'</a><p class="reply_time">answered '.$d[1].'</p></div>';           
+                    $html2 .= '<div class="_co_box_dis_anstime chinese"><a href="../../profile/index.php?u='.$d[5].'&amp;v='.$userid.'">'.$d[2].'</a><p class="reply_time">answered '.$d[1].'</p></div>';           
                     $html2 .= '<p class="reply_content chinese">'.$d[0].'</p>'.'</div>';                             
                 $html2 .='</div></div>';                   
             }
