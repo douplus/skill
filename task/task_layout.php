@@ -131,7 +131,7 @@
                     <option value="all">全部任務</option>
                     <option value="context">依內容</option>
                     <option value="tag">依標籤</option>
-                    <option value="disabled">分類▼</option>
+                    <option value="disabled" style="color: #333;">分類▼</option>
                     <option value="classify-pc_and_network">電腦網路</option>
                     <option value="classify-life">生活資訊</option>
                     <option value="classify-mobile">行動裝置</option>
