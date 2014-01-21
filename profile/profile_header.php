@@ -6,14 +6,14 @@
 	<meta name="ip" content="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
 	<title>Skill-履歷</title>
 	<!-- load : CSS files -->
-	<?php include('../master/css_files.php'); ?>
+	<?php include('../php/css_files.php'); ?>
 	<!-- load : end of CSS files -->
 	<script src="../library/jquery-2.0.3.min.js"></script>
 	<script src="../library/jquery.pjax.js"></script>
 	<script src="../library/jquery.tipsy.js"></script>
 	<script src="../master/index.js"></script>
 	<script src="../task/task.js"></script>
-	<script src="./cv.js"></script>
+	<script src="./profile.js"></script>
 	<script src="../account/account.js"></script>
 	<script src="../information/information.js"></script>
 	<script src="../task/addtask.js"></script>

@@ -6,7 +6,7 @@
 	<meta name="ip" content="<?php echo $_SERVER["REMOTE_ADDR"]; ?>">
 	<title>Skill-帳戶</title>
 	<!-- load : CSS files -->
-	<?php include_once('../master/css_files.php'); ?>
+	<?php include_once('../php/css_files.php'); ?>
 	<!-- load : end of CSS files -->
 	<script src="../library/jquery-2.0.3.min.js"></script>
 	<script src="../library/jquery.pjax.js"></script>

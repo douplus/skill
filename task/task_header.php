@@ -7,7 +7,7 @@
 	<title>Skill-任務</title>
 	<!-- load : CSS files -->
 	<?php 
-		include('../master/css_files.php');
+		include('../php/css_files.php');
 	?>
 	<!-- load : end of CSS files -->
 	<script src="../library/jquery-2.0.3.min.js"></script>

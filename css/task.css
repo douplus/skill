@@ -45,7 +45,7 @@ top: 10px;
 .task_show_title > p{
 background:rgb(207,232,253);
 color:rgb(4,71,4);
-padding:3px;
+padding:3px 6px;
 border-radius:5px;
 font-size: 14px;
 font-weight:bold;

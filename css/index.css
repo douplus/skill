@@ -197,16 +197,16 @@ line-height: 50px;
 font-size: 39px;
 font-weight: 600;
 color: #2D72D9;
-margin: 0 5px;
-padding-right: 3px;
+margin: 0;
+margin-left:7px;
 cursor: pointer;
 }
 #top_logo > div{
 display: inline-block;
 position: relative;
 height: 50px;
-width: 135px;
-background-image: url('../Images/skill-logo.png');
+width: 100px;
+background-image: url('../Images/skill_logo.png');
 background-repeat: no-repeat;
 background-size: 100% 100%;
 background-position: 50% 50%;
