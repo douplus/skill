@@ -391,16 +391,24 @@ background: #f7f7f7;
 margin-left: 5px;
 }
 }
+@media screen and (max-width: 400px){
+.UserImg_wrapper{
+position: relative;
+width: 100%;
+margin: 10px 0;
+}
+}
+@media screen and (min-width: 401px){
+.UserImg_wrapper{
+position: relative;
+width: 90%;
+margin: 10px 5%;
+}
+}
 .badgecount{
 margin: 0 5px;
 }
 /**/
-.UserImg_wrapper{
-position: relative;
-width: 90%;
-height: 330px;
-margin: 10px auto;
-}
 .passwd_wrapper{
 display: inline-block;
 position: relative;
@@ -419,14 +427,6 @@ width: 114px;
 height: 114px;
 border: 3px dashed #333;
 margin: 0;
-float:right;
-}
-.UserImg_btn{
-position: relative;
-width: 100%;
-height: 40px;
-float: right;
-margin:70px -24px 0 0;
 }
 #UserImg_upload-btn,
 #UserImg_save-btn{
@@ -447,53 +447,33 @@ background: #f5f5f5;
 border: 1px solid #ccc;
 border-color:rgba(0,0,0,.1) rgba(0,0,0,.1) rgba(0,0,0,.25);
 border-bottom-color: #b3b3b3;
+margin-bottom: 5px;
 }
-@media screen and (min-width: 768px){
-.UserImg_wrapper > section{
+.UserImg_wrapper > section:nth-child(1){
+position: relative;
+width: 100%;
+margin: 10px 0;
+}
+.UserImg_wrapper > section:nth-child(2){
+position: relative;
+width: 100%;
+max-width: 310px;
+margin: 10px auto 0;
+}
+.UserImg_preview{
 position: relative;
 float: left;
 width: 50%;
-height: 310px;
-margin: 20px 0;
+margin: 0 0 10px;
 }
-.UserImg_preview{
-position: relative;
-width: 100%;
-height: 270px;
-text-align:center;
-}
-.UserImg_preview > section{
-position: relative;
-margin: 0 12% 10px 12%;
-height: 20px;
-line-height: 20px;
-font-size: 16px;
-color: #222;
-float:right;
-}
-}
-@media screen and (max-width: 767px){
-.UserImg_wrapper > section{
+.UserImg_btn{
 position: relative;
 float: left;
-width: 100%;
-height: 310px;
-margin: 20px 0;
-}
-.UserImg_preview{
-position: relative;
-width: 100%;
-height: 160px;
-float: left;
+width: 50%;
+margin: 20px 0 10px;
 }
 .UserImg_preview > section{
-position: relative;
-margin: 4px 0;
-height: 20px;
 line-height: 20px;
-font-size: 16px;
-color: #222;
-}
 }
 /**/
 .account_experience_input,
@@ -574,6 +554,7 @@ padding: 0 15px;
 box-sizing: border-box;
 -moz-box-sizing: border-box;
 -webkit-box-sizing: border-box;
+display: inline-block;
 color: #fafafa;
 font-weight: 700;
 letter-spacing: 3px;
@@ -587,13 +568,13 @@ font-size: 17px;
 line-height: 29px;
 }
 #plz_input{
-position:relative;
-float:left;
-width:90%;
-margin:12px 0 1px 1px;
-color:yellow;
-text-align:left;
-font-weight:bold;
+position: relative;
+float: left;
+width: 100%;
+margin: 12px 0 1px 1px;
+color: yellow;
+text-align: center;
+font-weight: bold;
 }
 .passwd_wrapper > div > input{
 border: 1px solid #1672B9;
@@ -645,7 +626,7 @@ width: 100%;
 }
 @media screen and (min-width: 768px){
 .passwd_wrapper input,
-.button-command,
+#change_passwd-save,
 .input-failure,
 .input-password-forget{
 max-width: 600px;
@@ -653,7 +634,7 @@ max-width: 600px;
 }
 @media screen and (max-width: 767px){
 .passwd_wrapper input,
-.button-command,
+#change_passwd-save,
 .input-failure,
 .input-password-forget{
 max-width: 320px;

@@ -9,7 +9,7 @@
 				<section id ="post-form">
 					<div class="task_select-area">
 						<select id="post_task_select">
-							<option value="noclassify" style="color: #333;">↓依分類↓</option>
+							<option value="noclassify" style="color: #333;">分類</option>
 							<option value="電腦網路">電腦網路</option>
 							<option value="生活資訊">生活資訊</option>
 							<option value="行動裝置">行動裝置</option>
@@ -60,7 +60,7 @@
 					</section>
 					<section>
 						<div class="UserImg_preview">
-							<section class="chinese">預覽圖片</section>
+							<section class="chinese">▼預覽圖片</section>
 							<canvas id="UserImg_preview"></canvas>
 						</div>
 						<div class="UserImg_btn">

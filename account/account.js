@@ -113,7 +113,7 @@ $(function(){
 });
 var slicer;
 function initial_slicer(){
-	slicer = new ImageCropper(304, 304, 114, 114);
+	slicer = new ImageCropper(298, 298, 114, 114);
 	slicer.setCanvas('UserImg_slicer');
 	slicer.addPreview('UserImg_preview');
 	if( !slicer.isAvailable() ){
