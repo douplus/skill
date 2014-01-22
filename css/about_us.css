@@ -39,11 +39,13 @@
 }
 
 #contactbox span{
-  width:10%;
-  min-width:75px;
-  margin-left:3%;
-  text-align:justify;
-  float:left;
+width: 10%;
+min-width: 75px;
+margin-left: 3%;
+text-align: justify;
+float: left;
+font-size: 15px;
+margin: 8px 0 8px 3%;
 }
 
 #advisername{

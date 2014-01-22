@@ -34,6 +34,7 @@ overflow-y: auto;
 {
   position:relative;
   float:left;
+  margin-left:4px;
 }
 #task_skill > span{
   float:left;
@@ -267,6 +268,9 @@ resize:vertical;
 width:90%;
 margin-right:5%;
 }
+#dis_score{
+margin-left:5px;
+}
 .badge1 {
 display: inline-block;
 width: 10px;
@@ -289,7 +293,7 @@ background: #CC9966;
 border-radius: 50px;
 }
 
-@media (min-width:600px) and (max-width:1214px){
+@media (min-width:885px) and (max-width:1214px){
 .size_box,._co_box_dis,._co_box_dis_post{
 width:100%;
 margin:0;
@@ -303,7 +307,7 @@ margin-left:2%;
   margin-right:5%;
 }
 }
-@media (min-width: 526px) and (max-width: 599px){
+@media (min-width: 526px) and (max-width: 884px){
 .size_box,._co_box_dis,._co_box_dis_post{
 width: 100%; 
 margin:0;
@@ -312,26 +316,38 @@ margin:0;
 width: 100%;	
 }
 .image{
-width:25%;
+width:21%;
 }
 #task_poster{
   width:90px;
 }
+#user_poster{
+  width:90px;
+}
 ._co_box_qu_framework1_2{
 width: 100%;
+text-align:left;
 }
 ._co_box_qu_content1{
-  width:70%;
+  width:74%;
   margin:0 5% 0 0;
+}
+._co_box_qu_content2{
+  text-align:left;
 }
 ._co_box_qu_framework1_2 > h1{
   text-decoration:underline;
   width:90%;
   margin:0 auto;
+  text-align:left;
 }
 }
 
 @media (max-width: 525px){
+.size_box,._co_box_dis,._co_box_dis_post{
+width: 100%; 
+margin:0;
+}
 ._co_box_framework0{
 width: 100%; 
 }
@@ -342,7 +358,7 @@ width: 100%;
 width:25%;
 }
 #task_poster{
-  width:75px;
+  width:60px;
 }
 ._co_box_qu_framework1_2{
 width: 100%;
@@ -353,9 +369,15 @@ width: 100%;
 }
 ._co_box_qu_framework1_2 > h1{
   text-decoration:underline;
+  text-align:left;
+  margin-left:5%;
+  width:95%;
 }
 ._co_box_discuss{
   width:20%;
+}
+._co_box_qu_content2{
+  text-align:left;
 }
 .img-circle{
   width:50px;
@@ -366,8 +388,8 @@ font-size:small;
 ._co_box_dis_framework2{
 width:80%;
 }
-.img{
-  width:65px;
+#user_poster{
+width:60px;
 }
 ._co_box_dis_anstime{
 margin:0;

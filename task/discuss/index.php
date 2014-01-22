@@ -105,7 +105,7 @@ $link =$gender.'<a href="../../profile/index.php?stream=about&u='.$taskposter.'&
   				<div class="_co_box_qu_content1">
   					<div>
   					<p id="task_name" class="user_name chinese" po_id="<?php echo $taskposter;?>"><?php echo $link;?></p>
-  					<div class="">                       
+  					<div id="dis_score">                       
   						<span class="reputation-score" ></span>                                           
   						<span class="badge1"></span>
   						<span class="badgecount"><?php echo $score[gold];?></span>                                  

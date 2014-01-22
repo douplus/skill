@@ -320,9 +320,12 @@ line-height: 30px;
 height: 30px;
 padding: 1px 10px;
 border: 1px solid rgba(0,0,0,0.1);
-background: #f1f1f1;
+background: #0995D8;
 cursor: pointer;
-color: #000;
+color: #fff;
+border-radius: 4px;
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
 }
 @media screen and (min-width: 601px){
 #sign-up_box > section,
@@ -615,4 +618,45 @@ width: 18px;
 height: 3px;
 border-top: 9px double black;
 border-bottom: 3px solid black;
+}
+#contactbox > div > input,
+#contactbox > div > textarea{
+border: 1px solid #1672B9;
+background: #e7f1f8;
+font-size: 15px;
+border-radius: 5px;
+padding: 8px 10px;
+box-shadow: inset 0 1px 2px rgba(15,82,135,.25),0 1px 0 rgba(255,255,255,.15);
+margin: 0;
+color: #555;
+line-height: 17px;
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+}
+#contactmessage{
+resize: vertical;
+}
+#contactbox > div{
+position: relative;
+width: 100%;
+float: left;
+}
+#advisebutton{
+border: 1px solid #1D80CF;
+text-align: center;
+font-size: 15px;
+box-shadow: inset 0 1px 0 rgba(255,255,255,.3),0 1px 1px rgba(50,50,50,.05);
+border-radius: 5px;
+cursor: pointer;
+line-height: 28px;
+padding: 0 15px;
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+display: inline-block;
+color: #fafafa;
+font-weight: 700;
+letter-spacing: 3px;
+background: #4096EE;
 }
